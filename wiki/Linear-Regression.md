@@ -14,7 +14,9 @@ mvn exec:java -Dexec.mainClass=dev.nm.examples.LinearRegressionExample
 
 Fit four observations: x = `[1,2,3,4]`, y = `[6,5,7,10]`. Ordinary least squares chooses slope and intercept to minimize
 
-$$\sum_i\left(y_i-\beta_1x_i-\beta_0\right)^2.$$
+```math
+\sum_i\left(y_i-\beta_1x_i-\beta_0\right)^2.
+```
 
 This is a deliberately small teaching dataset from the test suite. It illustrates the API and diagnostics; it is not evidence of a useful forecasting relationship.
 
@@ -26,7 +28,9 @@ Construct `OLSRegression(problem)`. Retrieve coefficients through `beta().betaHa
 
 ## Expected result and validation
 
-$$\hat y=1.4x+3.5.$$
+```math
+\hat y=1.4x+3.5.
+```
 
 | Quantity | Value |
 |---|---|

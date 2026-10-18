@@ -14,11 +14,15 @@ mvn exec:java -Dexec.mainClass=dev.nm.examples.QuadraticProgrammingExample
 
 Minimize
 
-$$f(x)=\tfrac12x^THx+p^Tx=x_1^2+x_2^2-2x_1-5x_2$$
+```math
+f(x)=\tfrac12x^THx+p^Tx=x_1^2+x_2^2-2x_1-5x_2
+```
 
 subject to
 
-$$x_1-2x_2\ge-2,\quad -x_1-2x_2\ge-6,\quad -x_1+2x_2\ge-2,\quad x_1\ge0,\quad x_2\ge0.$$
+```math
+x_1-2x_2\ge-2,\quad -x_1-2x_2\ge-6,\quad -x_1+2x_2\ge-2,\quad x_1\ge0,\quad x_2\ge0.
+```
 
 Here H = diag(2,2), so the objective is strictly convex and a feasible optimum is unique. This problem is adapted from the NM Dev test identified as example 16.4 in Nocedal and Wright's *Numerical Optimization*.
 
@@ -35,13 +39,17 @@ The example uses a tolerance of `1e-10` and an iteration cap of 1,000, rather th
 
 ## Expected result and independent validation
 
-$$x^*=(1.4,1.7),\qquad f(x^*)=-6.45.$$
+```math
+x^{\ast}=(1.4,1.7),\qquad f(x^{\ast})=-6.45.
+```
 
 The constraint slacks A*x-b are `[0,1.2,4,1.4,1.7]`; only the first constraint is active. The executable checks the reference point, objective, every constraint and stationarity.
 
 For the convention A*x >= b, the Lagrangian is f(x) minus lambda-transpose times (A*x-b). At the solution:
 
-$$Hx^*+p=(0.8,-1.6)^T=A^T\lambda,\qquad\lambda=(0.8,0,0,0,0)^T.$$
+```math
+Hx^{\ast}+p=(0.8,-1.6)^T=A^T\lambda,\qquad\lambda=(0.8,0,0,0,0)^T.
+```
 
 Nonnegative multipliers, feasibility, stationarity and complementary slackness certify optimality for this convex problem. This gives stronger evidence than simply comparing a printed vector to another solver's output.
 

@@ -14,7 +14,9 @@ mvn exec:java -Dexec.mainClass=dev.nm.examples.RootFindingExample
 
 Find a root in `[0.4, 1.0]` of
 
-$$f(x)=x^4-\sin(x)\cos(x).$$
+```math
+f(x)=x^4-\sin(x)\cos(x).
+```
 
 Bisection repeatedly halves a bracket. For a continuous function, opposite signs at the endpoints establish that at least one root lies inside. The chosen interval matters: this example is not a search for every root of the equation.
 
@@ -26,7 +28,9 @@ The example checks the endpoint signs before calling the solver. It leaves `NoRo
 
 ## Expected result and validation
 
-$$x\approx0.8396570801734923.$$
+```math
+x\approx0.8396570801734923.
+```
 
 The executable checks the distance to this reference and the function residual `abs(f(root))`, both to `1e-10`. These checks answer different questions: a small residual does not always mean a small error in x, especially near a flat root.
 

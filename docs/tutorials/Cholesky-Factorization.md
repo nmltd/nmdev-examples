@@ -14,7 +14,9 @@ mvn exec:java -Dexec.mainClass=dev.nm.examples.CholeskyExample
 
 Factor the symmetric positive-definite matrix
 
-$$A=\begin{bmatrix}2&1&1\\1&2&1\\1&1&2\end{bmatrix}=LL^T.$$
+```math
+A=\begin{bmatrix}2&1&1\\1&2&1\\1&1&2\end{bmatrix}=LL^T.
+```
 
 Cholesky factorization is useful when working with covariance matrices or solving positive-definite linear systems. It produces a lower-triangular factor. It does not compute an inverse, and an inverse is usually unnecessary when solving a system.
 
@@ -32,7 +34,9 @@ The Java source prints the factor and checks the largest absolute reconstruction
 
 The lower-triangular factor is approximately
 
-$$L=\begin{bmatrix}1.414214&0&0\\0.707107&1.224745&0\\0.707107&0.408248&1.154701\end{bmatrix}.$$
+```math
+L=\begin{bmatrix}1.414214&0&0\\0.707107&1.224745&0\\0.707107&0.408248&1.154701\end{bmatrix}.
+```
 
 The reconstruction error should be below `1e-12`. Exact formatting and last-bit rounding may differ across runtimes. This check tests the defining factorization identity rather than a particular printed representation.
 

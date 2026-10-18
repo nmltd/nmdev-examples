@@ -14,7 +14,9 @@ mvn exec:java -Dexec.mainClass=dev.nm.examples.InterpolationExample
 
 Estimate values between observations `(0,0)` and `(1,4)`. Between any two adjacent observations, linear interpolation uses
 
-$$f(x)=y_0+\frac{x-x_0}{x_1-x_0}(y_1-y_0).$$
+```math
+f(x)=y_0+\frac{x-x_0}{x_1-x_0}(y_1-y_0).
+```
 
 For these observations the line is `f(x)=4x`. This tiny case makes the result independently verifiable before using a larger calibration table.
 

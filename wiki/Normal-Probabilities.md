@@ -14,7 +14,9 @@ mvn exec:java -Dexec.mainClass=dev.nm.examples.NormalProbabilityExample
 
 For a standard-normal random variable Z, compute a cumulative probability, a right-tail probability and the 97.5th percentile:
 
-$$\Phi(z)=P(Z\le z),\qquad q=\Phi^{-1}(0.975).$$
+```math
+\Phi(z)=P(Z\le z),\qquad q=\Phi^{-1}(0.975).
+```
 
 These operations arise in statistical thresholds and uncertainty calculations. Their validity depends on whether a normal model is appropriate for the data.
 
