@@ -60,52 +60,6 @@ def build_tutorials(repo, output):
         target.write_text(f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} — NM Dev examples</title><style>{CSS}.math-display{{overflow-x:auto}}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main>{site_nav(prefix)}{body}<footer><a href="{prefix}tutorials.html">All tutorials</a> · <a href="{REPO_URL}/blob/main/{source.relative_to(repo).as_posix()}">Edit this page</a></footer></main></body></html>')
     print(f'Generated {len(sources)} tutorial and setup pages from docs Markdown.')
 
-def add_library_filters(chart, rows):
-    """Add one accessible selection shared by both inline SVG charts."""
-    from report import LIBRARIES, VERSIONS, COLORS
-    libraries = [lib for lib in LIBRARIES if any(row['params']['library'] == lib for row in rows)]
-    controls = '<fieldset id="library-filters"><legend>Visible libraries</legend><p>Select libraries to compare. Selection applies to both charts; NM Dev remains the 1× reference even when its points are hidden. Axis scales stay fixed for comparison.</p><div class="library-options">'
-    for lib in libraries:
-        controls += (f'<label><input type="checkbox" value="{lib}" checked> '
-                     f'<span class="library-swatch" style="background:{COLORS[lib]}" aria-hidden="true"></span> '
-                     f'{html.escape(VERSIONS[lib])}</label>')
-        chart = re.sub(r'(id="chart-\d+-point-\d+-'+re.escape(lib)+r'-[^\"]+")',
-                       r'\1 data-library="'+lib+'"', chart)
-    controls += '</div><div class="filter-actions"><button type="button" id="show-all">Show all</button> <button type="button" id="hide-all">Hide all</button></div><p id="selection-status" role="status" aria-live="polite"></p></fieldset>'
-    chart = chart.replace('<section><h2>', controls+'<section><h2>', 1)
-    style = '#library-filters{border:1px solid #ccd6dd;border-radius:12px;background:white;padding:16px;margin:24px 0}#library-filters legend{font-size:1.2em;font-weight:700}.library-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}.library-options label{display:flex;align-items:center;gap:7px;cursor:pointer;padding:8px;border:1px solid #dbe2e8;border-radius:6px}.library-options input{width:18px;height:18px;accent-color:#126c78}.library-swatch{width:12px;height:12px;border-radius:50%;flex-shrink:0}.filter-actions{margin-top:16px}.filter-actions button{padding:8px 16px;cursor:pointer}svg [data-library][hidden]{display:none!important}'
-    chart = chart.replace('</style>', style+'</style>')
-    script = """
-<script>
-(()=>{
- const boxes=[...document.querySelectorAll('#library-filters input')];
- const points=[...document.querySelectorAll('svg [data-library]')];
- const status=document.getElementById('selection-status');
- function update(){
-  const selected=new Set(boxes.filter(box=>box.checked).map(box=>box.value));
-  points.forEach(point=>{
-   const visible=selected.has(point.dataset.library);
-   point.toggleAttribute('hidden',!visible);
-   point.setAttribute('aria-hidden',String(!visible));
-   point.setAttribute('tabindex',visible?'0':'-1');
-  });
-  // The plot legend retains every series; dim unselected legend labels.
-  document.querySelectorAll('svg g[id*="legend_"] text').forEach(label=>{
-   const box=boxes.find(box=>box.closest('label').textContent.trim()===label.textContent.trim());
-   if(box)label.style.opacity=box.checked?'1':'0.25';
-  });
-  document.getElementById('tooltip').hidden=true;
-  status.textContent=selected.size+' of '+boxes.length+' libraries shown'+(selected.size===0?'. Select a library or Show all to display results.':'.');
- }
- boxes.forEach(box=>box.addEventListener('change',update));
- document.getElementById('show-all').addEventListener('click',()=>{boxes.forEach(box=>box.checked=true);update()});
- document.getElementById('hide-all').addEventListener('click',()=>{boxes.forEach(box=>box.checked=false);update()});
- update();
-})();
-</script>
-"""
-    return chart.replace('</body>',script+'</body>')
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('results', type=Path, help='Completed result archive with charts.html and jmh.json')
@@ -150,14 +104,8 @@ def main():
              'methodology.html':('Methodology',(guide/'methodology.md').read_text()),
              'reproduce.html':('Reproduce',(guide/'reproduce.md').read_text())}
     for name,(title,text) in pages.items(): (output/name).write_text(page(title,text,name))
-    chart = (source/'charts.html').read_text()
-    chart = chart.replace('</style>',CSS+'</style>')
-    chart = chart.replace('<h1>NM Dev benchmark charts</h1>',site_nav()+nav('benchmarks.html')+'<h1>NM Dev benchmark charts</h1>')
-    chart = chart.replace('Full report and raw measurements','Raw measurements and archived report')
-    chart = chart.replace('<p>Hover, tap or keyboard-focus any point to inspect its measurements.</p>',
-        f'<p class="note">Run: {html.escape(source.name)} · {len(rows)} measured cases. <a href="results.html">Results tables</a> · <a href="libraries.html">Versions and backends</a></p><p>Hover, tap or keyboard-focus any point to inspect its measurements. Press Escape to dismiss.</p>')
-    chart = chart.replace('</main>', '<footer><a href="reproduce.html">Reproduce and publish</a> · <a href="tutorials.html">Java tutorials</a></footer></main>')
-    chart = add_library_filters(chart, rows)
+    from interactive_charts import write_explorer
+    chart = write_explorer(source, rows, site_nav()+nav('benchmarks.html'), CSS)
     (output/'benchmarks.html').write_text(chart)
     (output/'.nojekyll').write_text('')
     build_tutorials(repo, output)

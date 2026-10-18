@@ -4,6 +4,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 import sys
+import json
+import re
 
 repo=Path(__file__).resolve().parents[1]
 root=repo/'docs'
@@ -31,7 +33,8 @@ for path,page in pages.items():
 for name in ['index.html','getting-started.html','tutorials.html','benchmarks.html','results.html','methodology.html','libraries.html','validation.html','reproduce.html']:
  if (root/name).resolve() not in pages:errors.append(f'Missing required page: {name}')
 chart=(root/'benchmarks.html').read_text()
-if chart.count('data-library=')!=286:errors.append('Expected 286 filterable chart points')
+payload=re.search(r'<script type="application/json" id="benchmark-data">(.*?)</script>',chart,re.S)
+if not payload or len(json.loads(payload.group(1))['points'])!=286:errors.append('Expected 286 measured chart points')
 for source in (root/'tutorials').glob('*.md'):
  if not source.with_suffix('.html').exists():errors.append(f'Missing generated tutorial: {source}')
 if errors:print('\n'.join(errors));sys.exit(1)
