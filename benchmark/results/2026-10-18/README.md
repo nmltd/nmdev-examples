@@ -2,6 +2,8 @@
 
 [Suite and reproduction instructions](../../README.md) · [Methodology](../../METHODOLOGY.md)
 
+**[Interactive charts with tooltips](charts.html)** — download and open the HTML file in a browser. Hover, tap or keyboard-focus a point for its timing, 99.9% confidence interval and ratio to NM Dev. GitHub inline image previews do not expose these tooltips; the standalone SVGs also include native tooltip titles.
+
 Measured here: **13 operations × four libraries × two sizes = 104 cases**, with two JVM forks and ten measured iteration means per case. Lower milliseconds per operation is faster. These are observations on a shared virtual machine, not universal performance rankings.
 
 ## Environment

@@ -49,6 +49,10 @@ The direct build verifies third-party checksums, uses the JMH annotation process
 
 Defaults: one JMH worker; two independent JVM forks per case; three 300 ms warmup iterations; five 500 ms measurement iterations; fixed 1 GiB heap and `ActiveProcessorCount=1` in each fork. Allow roughly 12–15 minutes for a full run on similar hardware. Additional JMH options can follow the output-directory argument. Label any changed configuration in the results you publish.
 
+## Interactive charts
+
+Download and open [charts.html](results/2026-10-18/charts.html) in a browser to inspect timings, confidence intervals and ratios by hovering, tapping or focusing chart points. Standalone SVGs also contain native titles. GitHub inline image previews do not expose point-level tooltips.
+
 ## Regenerate the report
 
 After a complete run:

@@ -4,6 +4,7 @@ import argparse
 import csv
 import json
 from pathlib import Path
+from chart_tooltips import annotate_svg, write_html
 
 
 OPERATIONS = ["transpose", "addition", "scale", "multiplication", "determinant",
@@ -49,6 +50,7 @@ def main():
                                "See the recorded environment files for JVM details. No exclusive CPU reservation or affinity pinning is claimed.")
     sections = [f"# Linear algebra benchmark results — {root.name}",
                 "[Suite and reproduction instructions](../../README.md) · [Methodology](../../METHODOLOGY.md)",
+                "**[Interactive charts with tooltips](charts.html)** — download and open the HTML file in a browser. Hover, tap or keyboard-focus a point for its timing, 99.9% confidence interval and ratio to NM Dev. GitHub inline image previews do not expose these tooltips; the standalone SVGs also include native tooltip titles.",
                 "Measured here: **13 operations × four libraries × two sizes = 104 cases**, with two JVM forks and ten measured iteration means per case. Lower milliseconds per operation is faster. These are observations on a shared virtual machine, not universal performance rankings.",
                 "## Environment",
                 environment_description,
@@ -86,10 +88,23 @@ def main():
     colors = {"NMDEV": "#126c78", "EJML": "#4678ba", "COMMONS": "#d18829", "JAMA": "#9d608e"}
     for size in sizes:
         fig, ax = plt.subplots(figsize=(12, 8))
+        tooltips = {}
         for j, library in enumerate(LIBRARIES):
             values = [index[library, size, op]["primaryMetric"]["score"] / index["NMDEV", size, op]["primaryMetric"]["score"] for op in OPERATIONS]
             positions = [i + (j - 1.5) * 0.19 for i in range(len(OPERATIONS))]
-            ax.scatter(values, positions, s=36, color=colors[library], label=VERSIONS[library], zorder=3)
+            for i, operation in enumerate(OPERATIONS):
+                point = ax.scatter([values[i]], [positions[i]], s=36, color=colors[library],
+                                   label=VERSIONS[library] if i == 0 else None, zorder=3)
+                key = f"point-{size}-{library}-{operation}"
+                point.set_gid(key)
+                metric = index[library, size, operation]["primaryMetric"]
+                low, high = metric["scoreConfidence"]
+                tooltips[key] = (f"{VERSIONS[library]} · {operation} · {size} × {size}\n"
+                                 f"Mean: {metric['score']:.6g} ms/op\n"
+                                 f"99.9% confidence interval: [{low:.6g}, {high:.6g}] ms/op\n"
+                                 f"JMH error half-width: ±{metric['scoreError']:.3g} ms/op\n"
+                                 f"Time / NM Dev: {values[i]:.4f}× (lower is faster)\n"
+                                 "2 JVM forks · 10 measured iteration means")
         ax.set_yticks(range(len(OPERATIONS)), OPERATIONS)
         ax.invert_yaxis()
         ax.set_xscale("log")
@@ -103,6 +118,8 @@ def main():
         fig.tight_layout(rect=(0, 0.05, 1, 1))
         fig.savefig(root / f"relative-times-{size}.svg", metadata={"Date": None})
         plt.close(fig)
+        annotate_svg(root / f"relative-times-{size}.svg", tooltips)
+    write_html(root, sizes)
     print(f"Summarized {len(rows)} measured cases")
 
 
