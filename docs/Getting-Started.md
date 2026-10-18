@@ -72,3 +72,109 @@ On Windows use `;` instead of `:` inside the Java classpath. Maven commands work
 | Numerical check fails | Record the exact resolved version, JVM and error; do not simply loosen the tolerance |
 
 The dependency is pinned to stable 1.2.6. Record the resolved binary checksum when reporting numerical differences or reproducing a result.
+
+## 6. Use NMDEV in your own application
+
+Create a directory containing the following `pom.xml` and save your valid
+license as `nm.lic` in that directory. Keep the settings.xml server from step 2.
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>example</groupId>
+  <artifactId>my-nmdev-app</artifactId>
+  <version>1.0.0</version>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+  </properties>
+  <repositories>
+    <repository>
+      <id>github-nmdev</id>
+      <url>https://maven.pkg.github.com/nmltd/nmdev</url>
+      <releases><enabled>true</enabled></releases>
+      <snapshots><enabled>false</enabled></snapshots>
+    </repository>
+  </repositories>
+  <dependencies>
+    <dependency>
+      <groupId>dev.nm</groupId>
+      <artifactId>nmdev</artifactId>
+      <version>1.2.6</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.14.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <configuration><mainClass>example.FirstMatrix</mainClass></configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
+
+Save this as `src/main/java/example/FirstMatrix.java`:
+
+```java
+package example;
+
+import dev.nm.algebra.linear.matrix.doubles.matrixtype.dense.DenseMatrix;
+
+public final class FirstMatrix {
+    public static void main(String[] args) {
+        DenseMatrix a = new DenseMatrix(new double[][] {{1, 2}, {3, 4}});
+        System.out.println("Rows = " + a.nRows() + ", columns = " + a.nCols());
+        System.out.println("Entry (2, 1) = " + a.get(2, 1));
+    }
+}
+```
+
+From the directory containing `pom.xml` and `nm.lic`, run:
+
+```bash
+mvn -U clean compile exec:java
+```
+
+Expected output:
+
+```text
+Rows = 2, columns = 2
+Entry (2, 1) = 3.0
+```
+
+NMDEV matrix indices start at 1. Java arrays still start at 0. The combined
+customer JAR contains its runtime dependencies; this application does not need
+the private parent POM, nmutils/nmlicense dependencies, or an obfuscation plugin.
+
+## 7. Customer setup checklist
+
+- Obtain package access for the GitHub account that owns your token. A token
+  alone does not grant access to a package your account cannot read.
+- Create a classic token with `read:packages`; authorize organization SSO when
+  your organization requires it. Keep it in your local secret manager/environment.
+- On macOS/Linux use `~/.m2/settings.xml`; on Windows use
+  `%USERPROFILE%\\.m2\\settings.xml`. Create the directory/file if absent and
+  merge the server entry without deleting other configured servers.
+- Obtain a trial or commercial license through [NM Dev](https://nm.dev/products/nmdev).
+  Request the modules used by your application and replace expired trials.
+- Package authentication happens during Maven download. License validation
+  happens when Java executes. Fix the failing stage independently.
+- A 404 can also indicate inaccessible private packages. Check the exact
+  `dev.nm:nmdev:1.2.6` coordinates and account permissions before changing code.
+- Verify the first matrix example, then run the tutorials relevant to your task.
+- When requesting help, include Java/Maven/OS versions, exact dependency version,
+  working directory, command and error text. Remove tokens and license contents.
+
+Public API reference: https://nmltd.github.io/nmdev/. Release notes:
+https://github.com/nmltd/nmdev/releases/tag/v1.2.6 (repository access may be required).
