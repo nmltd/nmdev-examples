@@ -15,6 +15,7 @@ import dev.nm.algebra.linear.matrix.doubles.linearsystem.LUSolver;
 final class NmAdapter implements Adapter {
     final Matrix a,b,spd,rhs;
     NmAdapter(Inputs in) {a=new DenseMatrix(in.a);b=new DenseMatrix(in.b);spd=new DenseMatrix(in.spd);rhs=new DenseMatrix(in.rhs);}
+    public Object[] inputs(){return new Object[]{a,b,spd,rhs};}
     public Object run(String op) {
         switch(op) {
             case "transpose": return a.t();

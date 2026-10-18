@@ -1,11 +1,12 @@
 /* Copyright (c) NM LTD. See the repository LICENSE. */
 package dev.nm.benchmark;
 
-import org.apache.commons.math3.linear.*;
+import org.apache.commons.math4.legacy.linear.*;
 
 final class CommonsAdapter implements Adapter {
     final RealMatrix a,b,spd,rhs;
     CommonsAdapter(Inputs in){a=new Array2DRowRealMatrix(in.a);b=new Array2DRowRealMatrix(in.b);spd=new Array2DRowRealMatrix(in.spd);rhs=new Array2DRowRealMatrix(in.rhs);}
+    public Object[] inputs(){return new Object[]{a,b,spd,rhs};}
     public Object run(String op) {
         switch(op) {
             case "transpose": return a.transpose();

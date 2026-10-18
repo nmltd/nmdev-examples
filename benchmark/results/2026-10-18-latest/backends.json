@@ -1,0 +1,13 @@
+{
+  "NMDEV": "Validated combined obfuscated 1.2.6 JAR; exact hash and CI source in validated-nmdev-artifact.json",
+  "COMMONS": "Apache Commons Math4 legacy linear algebra; pinned official development snapshot 4.0-20261018.085925-1575",
+  "PARALLEL_COLT": "Upstream 0.11.4 release tag compiled without algorithm modifications; ConcurrencyUtils threads=1",
+  "EJML": "EJML 0.46.1",
+  "OJALGO": "R064Store/decomposition factories; library thread limit=1; deferred scalar results materialized inside timing",
+  "JAMA": "JAMA 1.0.3",
+  "JBLAS": "Bundled native libjblas; requested native environment threads=1; actual native worker counts not independently audited",
+  "COLT": "Colt 1.2.0",
+  "MTJ": "F2jBLAS/F2jLAPACK/F2jARPACK explicitly forced by fork flags",
+  "UJMP": "Core algorithms only; external backends disabled; threads=1",
+  "F2J_LAPACK": "Direct translated Java BLAS/LAPACK distribution arpack_combined_all0.1; replacement distribution, not JLAPACK0.8"
+}

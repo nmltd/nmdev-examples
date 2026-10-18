@@ -4,10 +4,10 @@ All eleven adapters below compile and have passed 429 baseline correctness cases
 
 | Library | Version | Integration result |
 |---|---|---|
-| NM Dev | 1.2.6-SNAPSHOT | Passed; combined binary checksum recorded |
-| Apache Commons Math | 3.6.1 | Passed |
+| NM Dev | 1.2.6 | Passed; combined binary checksum recorded |
+| Apache Commons Math | 4.0-SNAPSHOT (20261018.085925-1575) | Passed |
 | Colt | 1.2.0 | Passed |
-| Parallel Colt | 0.10.1 | Passed; added JPLASMA/core-lapack dependencies and one-thread setting |
+| Parallel Colt | 0.11.4 (upstream source tag) | Passed; added JPLASMA/core-lapack dependencies and one-thread setting |
 | EJML | 0.46.1 | Passed |
 | JAMA | 1.0.3 | Passed |
 | jblas | 1.2.5 | Passed; bundled native libraries loaded on this Linux x86-64 environment |
@@ -25,3 +25,8 @@ All eleven adapters below compile and have passed 429 baseline correctness cases
 - Parallel Colt, ojAlgo and UJMP receive explicit one-thread settings, in addition to the common one-worker JMH configuration.
 
 The original four-library report remains available as a separate historical run. Its omissions were integration scope decisions, not evidence that other libraries could not run.
+
+
+## Current version selection
+
+The latest comparison upgrades the primary Commons adapter to **Commons Math 4.0-SNAPSHOT**, Parallel Colt to **0.11.4** from its upstream release tag, and NM Dev to the validated **1.2.6** release JAR. See the [complete version audit](https://github.com/nmltd/nmdev-examples/blob/main/benchmark/dependency-audit/2026-10-18/README.md) for all eleven libraries, release-versus-snapshot distinctions and exact checksums. Version labels below are read from the selected run.

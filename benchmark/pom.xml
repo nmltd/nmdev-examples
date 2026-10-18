@@ -3,17 +3,19 @@
   <groupId>dev.nm</groupId><artifactId>nmdev-benchmark</artifactId><version>1.0.0-SNAPSHOT</version>
   <name>NM Dev reproducible linear algebra benchmarks</name>
   <properties><maven.compiler.release>11</maven.compiler.release><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding></properties>
-  <repositories><repository><id>github-nmdev</id><url>https://maven.pkg.github.com/nmltd/maven-packages</url><snapshots><enabled>true</enabled></snapshots></repository></repositories>
+  <repositories><repository><id>github-nmdev</id><url>https://maven.pkg.github.com/nmltd/nmdev</url><snapshots><enabled>true</enabled></snapshots></repository><repository><id>apache-snapshots</id><url>https://repository.apache.org/content/repositories/snapshots</url><snapshots><enabled>true</enabled></snapshots></repository></repositories>
   <dependencies>
-    <dependency><groupId>dev.nm</groupId><artifactId>nmdev-dist</artifactId><version>1.2.6-SNAPSHOT</version></dependency>
-    <dependency><groupId>org.ejml</groupId><artifactId>ejml-ddense</artifactId><version>0.46.1</version></dependency>
+    <!-- Compatibility dependency for JTransforms, not the primary Commons benchmark adapter. -->
     <dependency><groupId>org.apache.commons</groupId><artifactId>commons-math3</artifactId><version>3.6.1</version></dependency>
+    <dependency><groupId>dev.nm</groupId><artifactId>nmdev</artifactId><version>1.2.6</version></dependency>
+    <dependency><groupId>org.ejml</groupId><artifactId>ejml-ddense</artifactId><version>0.46.1</version></dependency>
+    <dependency><groupId>org.apache.commons</groupId><artifactId>commons-math4-legacy</artifactId><version>4.0-20261018.085925-1575</version></dependency>
     <dependency><groupId>gov.nist.math</groupId><artifactId>jama</artifactId><version>1.0.3</version></dependency>
     <dependency><groupId>org.openjdk.jmh</groupId><artifactId>jmh-core</artifactId><version>1.37</version></dependency>
     <dependency><groupId>org.openjdk.jmh</groupId><artifactId>jmh-generator-annprocess</artifactId><version>1.37</version><scope>provided</scope></dependency>
     <dependency><groupId>colt</groupId><artifactId>colt</artifactId><version>1.2.0</version></dependency>
     <dependency><groupId>concurrent</groupId><artifactId>concurrent</artifactId><version>1.3.4</version></dependency>
-    <dependency><groupId>net.sourceforge.parallelcolt</groupId><artifactId>parallelcolt</artifactId><version>0.10.1</version></dependency>
+    <dependency><groupId>net.sourceforge.parallelcolt</groupId><artifactId>parallelcolt</artifactId><version>0.11.4</version></dependency>
     <dependency><groupId>net.sourceforge.jplasma</groupId><artifactId>core-lapack</artifactId><version>0.1</version></dependency>
     <dependency><groupId>org.jblas</groupId><artifactId>jblas</artifactId><version>1.2.5</version></dependency>
     <dependency><groupId>net.sourceforge.f2j</groupId><artifactId>arpack_combined_all</artifactId><version>0.1</version></dependency>

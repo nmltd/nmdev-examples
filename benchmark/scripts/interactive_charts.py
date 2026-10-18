@@ -5,15 +5,16 @@ from pathlib import Path
 from report import LIBRARIES, VERSIONS, COLORS, OPERATIONS
 
 def write_explorer(source, rows, navigation, css):
+    versions=json.loads((source/"versions.json").read_text()) if (source/"versions.json").exists() else dict(VERSIONS)
     libraries=[lib for lib in LIBRARIES if any(r['params']['library']==lib for r in rows)]
     backends=json.loads((source/'backends.json').read_text())
     points=[]
     for row in rows:
         metric=row['primaryMetric']
         points.append(dict(library=row['params']['library'],size=int(row['params']['size']),operation=row['params']['operation'],mean=metric['score'],low=metric['scoreConfidence'][0],high=metric['scoreConfidence'][1],error=metric['scoreError'],forks=row['forks'],iterations=sum(map(len,metric['rawData']))))
-    data=dict(run=source.name,libraries=[dict(id=lib,label=VERSIONS[lib],color=COLORS[lib],backend=backends.get(lib,'')) for lib in libraries],operations=OPERATIONS,sizes=sorted({p['size'] for p in points}),points=points)
-    options=''.join(f'<option value="{lib}">{html.escape(VERSIONS[lib])}</option>' for lib in libraries)
-    checks=''.join(f'<label><input type="checkbox" name="library" value="{lib}" checked><span class="swatch" style="background:{COLORS[lib]}"></span>{html.escape(VERSIONS[lib])}</label>' for lib in libraries)
+    data=dict(run=source.name,libraries=[dict(id=lib,label=versions[lib],color=COLORS[lib],backend=backends.get(lib,'')) for lib in libraries],operations=OPERATIONS,sizes=sorted({p['size'] for p in points}),points=points)
+    options=''.join(f'<option value="{lib}">{html.escape(versions[lib])}</option>' for lib in libraries)
+    checks=''.join(f'<label><input type="checkbox" name="library" value="{lib}" checked><span class="swatch" style="background:{COLORS[lib]}"></span>{html.escape(versions[lib])}</label>' for lib in libraries)
     ops=''.join(f'<label><input type="checkbox" name="operation" value="{op}" checked>{op}</label>' for op in OPERATIONS)
     style='''fieldset{background:white;border:1px solid #cbd6df;border-radius:10px;margin:20px 0;padding:16px}legend{font-weight:700;font-size:1.15em}.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}.choices label{display:flex;align-items:center;gap:8px;padding:7px;border:1px solid #dce3e8;border-radius:6px;cursor:pointer}.choices input{width:18px;height:18px;accent-color:#126c78}.swatch{width:11px;height:11px;border-radius:50%;flex-shrink:0}.toolbar{display:flex;gap:16px;flex-wrap:wrap;align-items:end;margin:14px 0}.toolbar label{display:flex;flex-direction:column;gap:4px}button,select,input{font:inherit}button,select{padding:8px 12px}button{cursor:pointer}input[type=text]{padding:8px;width:min(100%,800px);box-sizing:border-box}section{background:white;border:1px solid #dbe2e8;border-radius:12px;padding:16px;margin:24px 0}.plot{overflow-x:auto}.plot svg{width:100%;min-width:720px;height:auto;display:block}.plot circle{cursor:help}.plot circle:focus{outline:2px solid #111}#tooltip{position:fixed;z-index:10;pointer-events:none;white-space:pre-line;max-width:min(440px,calc(100vw - 24px));background:#102a38;color:white;padding:12px 16px;border-radius:8px;box-shadow:0 4px 20px #0004;font-size:14px;line-height:1.5}#selection-status{font-weight:600}.hint{font-size:.9em;color:#435766}[hidden]{display:none!important}'''
     script=(Path(__file__).parent/'chart_controls.js').read_text()

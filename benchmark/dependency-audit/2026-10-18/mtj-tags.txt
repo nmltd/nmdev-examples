@@ -1,0 +1,10 @@
+14701ed057538827dcdc58c22794962cad3b4e9d	refs/tags/mtj-1.0
+cab306c7e87191af061f639aed895be0f174b73a	refs/tags/mtj-1.0^{}
+6a5231374c86c52de965a6a467c24c4e336ecdd9	refs/tags/mtj-1.0.1
+f60d8b2afa7726d69bd15d1698fbb7aff35be853	refs/tags/mtj-1.0.1^{}
+a7c6879e97b31671529e4f725cc99fd69b205617	refs/tags/mtj-1.0.2
+10831b3c61a5681cc7e13ec6b26aaa17a9a3669d	refs/tags/mtj-1.0.2^{}
+e43d259e8e15ebcf82f43449f82514d8017bdbcc	refs/tags/mtj-1.0.3
+9b858877c89a3ed38d19b2705e369bf978b4af94	refs/tags/mtj-1.0.3^{}
+6f43345f347d078ea8c8b0e5848027a7ee71a8d0	refs/tags/mtj-1.0.4
+2771a1da7ab5fb0f1369e7d114f6c8146654b270	refs/tags/mtj-1.0.4^{}

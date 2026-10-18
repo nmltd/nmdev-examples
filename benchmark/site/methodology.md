@@ -2,7 +2,7 @@
 
 ## What is measured
 
-JMH 1.37 measures average milliseconds per completed operation. Each library receives the same seeded input values and uses its native matrix representation. The benchmark returns the resulting matrix, scalar or array of factor objects to JMH's generated consumer. No network requests or random generation occur in timed operations.
+JMH 1.37 measures average milliseconds per completed operation. Each library receives the same seeded input values and uses its native matrix representation. The benchmark returns the resulting materialized matrix, scalar or array of factor objects to JMH's generated consumer. Returning a lazy expression alone is insufficient. The corrected ojAlgo adapter materializes scalar expressions inside timing; existing physical stores are returned directly to avoid unnecessary extra copies. No network requests or random generation occur in timed operations.
 
 Inputs are created and converted in trial setup. Outputs are allocated inside the operation, as required by the selected APIs. EJML decomposition APIs receive a fresh copy when the adapter uses an in-place decomposition, protecting repeated inputs; that copy is timed. Other APIs may make internal copies. This measures the cost of the documented adapter calls, not a lower-level allocation-free kernel.
 
@@ -12,7 +12,7 @@ Each operation includes a string switch and the adapter invocation. This common 
 
 `java.util.Random` uses seed `20261018 + n` for each matrix size. A has bounded off-diagonal entries `(uniform[0,1)-0.5)/n`, with `1+i/n` added to diagonal entry i. B has similarly bounded entries without the diagonal addition. The SPD matrix is `A^T A`; the right-hand side has n rows and one column.
 
-These deterministic dense inputs are well-conditioned and intentionally avoid near-singularity. Results say nothing about sparse, ill-conditioned, rectangular, low-rank or highly structured inputs. QR and SVD use square matrices in this run, unlike some historical defaults. A single seed is not a workload distribution.
+These baseline dense inputs are well-conditioned and intentionally avoid near-singularity. Separate rectangular multiplication and difficult-input accuracy tracks extend coverage; their results are never pooled with the baseline. No sparse performance is measured. QR and SVD use square matrices in this run, unlike some historical defaults. A single seed is not a workload distribution.
 
 ## Equivalent mathematical tasks and API differences
 
@@ -28,7 +28,7 @@ These deterministic dense inputs are well-conditioned and intentionally avoid ne
 | SVD | Full U, diagonal singular values, V; reconstruction and both orthogonality checks |
 | Solve | New factorization plus solve for one RHS; residual against RHS |
 
-NM Dev uses `Inverse` for both general and SPD inverse, matching the original adapter. EJML, Commons Math and JAMA use Cholesky-based paths for the SPD inverse. General inversion paths can also differ by library. These are task-level API comparisons; a result is not a controlled comparison of identical algorithms.
+NM Dev uses `Inverse` for both general and SPD inverse. `Inverse` detects symmetry and attempts Cholesky, with an LU fallback on a runtime exception. Bytecode and debugger constructor-breakpoint checks against the exact measured JAR confirm the SPD fixture takes Cholesky, without LU fallback. See the [fairness audit](https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-fairness-audit/README.md). EJML, Commons Math and JAMA use Cholesky-based paths for the SPD inverse. General inversion paths can also differ by library. These are task-level API comparisons; a result is not a controlled comparison of identical algorithms.
 
 Factor retrieval and any required materialization are timed. Libraries differ in pivot representation and factor storage. EJML's symmetric-eigen adapter assembles dense Q and D from the returned eigenpairs so it returns the same mathematical outputs. No attempt is made to tune each library beyond the adapters shown in source. Review the adapter source before drawing conclusions about API choices.
 
@@ -60,3 +60,21 @@ The expanded rerun preserves the initial harness timing settings and input seed.
 - UJMP uses only its core algorithms, with optional external backends disabled. Its results pass independent arithmetic and factorization checks.
 
 These choices are visible in source and are part of the measured API workload. They should not be interpreted as a claim that every adapter is optimally tuned for its library.
+
+## Fairness revision 2 and expanded tracks
+
+The earlier expanded archive timed an unevaluated ojAlgo scaling expression. Those scaling values are invalid for completed-work comparisons. Historical JSON remains unchanged and the archive report is marked. The corrected run reruns the full 286-case matrix; it does not splice corrected values into an older run.
+
+The corrected trial setup runs each operation twice, validates outputs and checks bit-for-bit preservation of native A/B/SPD/RHS inputs. It rejects any ojAlgo matrix output that is not a physical store. `FairnessValidationMain` demonstrates rejection of the old deferred scalar result and of a changed input. These checks are outside timed methods.
+
+The baseline still has 13 operations and eleven adapters. The large profile has sizes 512/1024 and multiplication, LU, Cholesky, QR and solve for NM Dev, EJML, ojAlgo and native jblas. The rectangular profile measures multiplication for those same four libraries at shapes 128×512×64, 512×128×256, 1024×256×64 and 255×257×129 (m×k×n). Each measured rectangular fork independently checks arithmetic twice and exact input preservation.
+
+`BENCH_THREADS` configures JVM-visible processors, explicit adapter thread limits and requested native thread environment variables. `BENCH_CPUSET` optionally pins the launcher and inherited fork processes. One JMH worker is retained: this measures internal library scaling, not concurrent client throughput. EJML's selected DDRM calls remain sequential; increasing the processor budget does not substitute a different parallel API. Native jblas worker counts remain unaudited. Affinity does not reserve physical cores or eliminate shared-host interference.
+
+All runs include JMH's GC profiler, raw allocation metrics, exact invocation overrides, dependency hashes and a zipped harness-source snapshot. Short audit runs are diagnostic; longer defaults remain available for stronger timing estimates. Sizes, thread budgets and fork counts must be compared within their own run.
+
+## Difficult-input accuracy diagnostics
+
+`DifficultValidationMain` tests row scaling with pivoting, tightly clustered eigenvalues, an 8×8 Hilbert matrix, and exact rank deficiency. It records every PASS/FAIL and exits nonzero if any case fails. Failed cases are retained in the audit and are not silently dropped or represented by a zero timing.
+
+For solves and inverses, these diagnostics use Frobenius-norm backward error `||AX-B|| / (||A|| ||X|| + ||B||)`, checking both multiplication orientations for an inverse. This assesses the residual relative to the computation's scale; it does not imply a small forward error for an ill-conditioned system. Other operations retain reconstruction/orthogonality checks and the common `1e-8` threshold. A failed rank-deficient QR call is recorded as an API failure, not proof that a mathematically valid QR factorization cannot exist.

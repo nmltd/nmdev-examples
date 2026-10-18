@@ -1,0 +1,1284 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = NMDEV, shape = 128x512x64)
+
+# Run progress: 0.00% complete, ETA 00:00:25
+# Fork: 1 of 2
+# Warmup Iteration   1: 4.433 ms/op
+# Warmup Iteration   2: 5.358 ms/op
+Iteration   1: 4.140 ms/op
+                 gc.alloc.rate:      165.137 MB/sec
+                 gc.alloc.rate.norm: 725322.286 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 4.405 ms/op
+                 gc.alloc.rate:      156.729 MB/sec
+                 gc.alloc.rate.norm: 725210.043 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 4.121 ms/op
+                 gc.alloc.rate:      165.877 MB/sec
+                 gc.alloc.rate.norm: 725194.939 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 3.13% complete, ETA 00:00:48
+# Fork: 2 of 2
+# Warmup Iteration   1: 4.535 ms/op
+# Warmup Iteration   2: 4.479 ms/op
+Iteration   1: 4.248 ms/op
+                 gc.alloc.rate:      162.658 MB/sec
+                 gc.alloc.rate.norm: 725198.833 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 4.463 ms/op
+                 gc.alloc.rate:      154.417 MB/sec
+                 gc.alloc.rate.norm: 725205.043 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 4.247 ms/op
+                 gc.alloc.rate:      155.882 MB/sec
+                 gc.alloc.rate.norm: 725202.776 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  4.271 ±(99.9%) 0.388 ms/op [Average]
+  (min, avg, max) = (4.121, 4.271, 4.463), stdev = 0.138
+  CI (99.9%): [3.883, 4.659] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  160.117 ±(99.9%) 14.118 MB/sec [Average]
+  (min, avg, max) = (154.417, 160.117, 165.877), stdev = 5.035
+  CI (99.9%): [145.999, 174.234] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  725222.320 ±(99.9%) 138.094 B/op [Average]
+  (min, avg, max) = (725194.939, 725222.320, 725322.286), stdev = 49.246
+  CI (99.9%): [725084.226, 725360.414] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = NMDEV, shape = 512x128x256)
+
+# Run progress: 6.25% complete, ETA 00:00:46
+# Fork: 1 of 2
+# Warmup Iteration   1: 21.862 ms/op
+# Warmup Iteration   2: 20.454 ms/op
+Iteration   1: 20.198 ms/op
+                 gc.alloc.rate:      358.471 MB/sec
+                 gc.alloc.rate.norm: 7616152.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 20.581 ms/op
+                 gc.alloc.rate:      347.532 MB/sec
+                 gc.alloc.rate.norm: 7616156.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 19.406 ms/op
+                 gc.alloc.rate:      362.925 MB/sec
+                 gc.alloc.rate.norm: 7616118.545 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            7.000 ms
+
+
+# Run progress: 9.38% complete, ETA 00:00:45
+# Fork: 2 of 2
+# Warmup Iteration   1: 21.511 ms/op
+# Warmup Iteration   2: 23.518 ms/op
+Iteration   1: 22.061 ms/op
+                 gc.alloc.rate:      325.855 MB/sec
+                 gc.alloc.rate.norm: 7616156.800 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 21.154 ms/op
+                 gc.alloc.rate:      341.528 MB/sec
+                 gc.alloc.rate.norm: 7616165.600 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 19.410 ms/op
+                 gc.alloc.rate:      362.345 MB/sec
+                 gc.alloc.rate.norm: 7616126.545 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            8.000 ms
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  20.468 ±(99.9%) 2.898 ms/op [Average]
+  (min, avg, max) = (19.406, 20.468, 22.061), stdev = 1.033
+  CI (99.9%): [17.570, 23.366] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  349.776 ±(99.9%) 40.670 MB/sec [Average]
+  (min, avg, max) = (325.855, 349.776, 362.925), stdev = 14.503
+  CI (99.9%): [309.106, 390.446] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  7616145.915 ±(99.9%) 52.745 B/op [Average]
+  (min, avg, max) = (7616118.545, 7616145.915, 7616165.600), stdev = 18.810
+  CI (99.9%): [7616093.170, 7616198.661] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.333, 1.000), stdev = 0.516
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.time":
+  15.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 2.500, 8.000), stdev = 3.886
+  CI (99.9%): [15.000, 15.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = NMDEV, shape = 1024x256x64)
+
+# Run progress: 12.50% complete, ETA 00:00:44
+# Fork: 1 of 2
+# Warmup Iteration   1: 20.411 ms/op
+# Warmup Iteration   2: 20.457 ms/op
+Iteration   1: 18.246 ms/op
+                 gc.alloc.rate:      199.832 MB/sec
+                 gc.alloc.rate.norm: 3827251.333 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 18.443 ms/op
+                 gc.alloc.rate:      195.025 MB/sec
+                 gc.alloc.rate.norm: 3827312.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 18.162 ms/op
+                 gc.alloc.rate:      200.795 MB/sec
+                 gc.alloc.rate.norm: 3827255.333 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 15.63% complete, ETA 00:00:42
+# Fork: 2 of 2
+# Warmup Iteration   1: 19.615 ms/op
+# Warmup Iteration   2: 19.672 ms/op
+Iteration   1: 17.787 ms/op
+                 gc.alloc.rate:      203.154 MB/sec
+                 gc.alloc.rate.norm: 3827256.667 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 18.858 ms/op
+                 gc.alloc.rate:      193.037 MB/sec
+                 gc.alloc.rate.norm: 3827303.273 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 17.745 ms/op
+                 gc.alloc.rate:      205.510 MB/sec
+                 gc.alloc.rate.norm: 3827246.667 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  18.207 ±(99.9%) 1.171 ms/op [Average]
+  (min, avg, max) = (17.745, 18.207, 18.858), stdev = 0.418
+  CI (99.9%): [17.036, 19.378] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  199.559 ±(99.9%) 13.333 MB/sec [Average]
+  (min, avg, max) = (193.037, 199.559, 205.510), stdev = 4.755
+  CI (99.9%): [186.226, 212.892] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  3827270.879 ±(99.9%) 80.809 B/op [Average]
+  (min, avg, max) = (3827246.667, 3827270.879, 3827312.000), stdev = 28.817
+  CI (99.9%): [3827190.069, 3827351.688] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = NMDEV, shape = 255x257x129)
+
+# Run progress: 18.75% complete, ETA 00:00:41
+# Fork: 1 of 2
+# Warmup Iteration   1: 9.793 ms/op
+# Warmup Iteration   2: 9.811 ms/op
+Iteration   1: 9.425 ms/op
+                 gc.alloc.rate:      213.486 MB/sec
+                 gc.alloc.rate.norm: 2114841.091 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 9.916 ms/op
+                 gc.alloc.rate:      202.599 MB/sec
+                 gc.alloc.rate.norm: 2114853.714 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 9.153 ms/op
+                 gc.alloc.rate:      220.185 MB/sec
+                 gc.alloc.rate.norm: 2114837.455 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 21.88% complete, ETA 00:00:39
+# Fork: 2 of 2
+# Warmup Iteration   1: 10.083 ms/op
+# Warmup Iteration   2: 11.483 ms/op
+Iteration   1: 9.920 ms/op
+                 gc.alloc.rate:      203.127 MB/sec
+                 gc.alloc.rate.norm: 2114848.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 9.504 ms/op
+                 gc.alloc.rate:      211.124 MB/sec
+                 gc.alloc.rate.norm: 2114835.636 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 9.032 ms/op
+                 gc.alloc.rate:      221.421 MB/sec
+                 gc.alloc.rate.norm: 2114825.043 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  9.492 ±(99.9%) 1.045 ms/op [Average]
+  (min, avg, max) = (9.032, 9.492, 9.920), stdev = 0.373
+  CI (99.9%): [8.447, 10.536] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  211.991 ±(99.9%) 22.637 MB/sec [Average]
+  (min, avg, max) = (202.599, 211.991, 221.421), stdev = 8.073
+  CI (99.9%): [189.353, 234.628] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  2114840.157 ±(99.9%) 28.107 B/op [Average]
+  (min, avg, max) = (2114825.043, 2114840.157, 2114853.714), stdev = 10.023
+  CI (99.9%): [2114812.049, 2114868.264] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = EJML, shape = 128x512x64)
+
+# Run progress: 25.00% complete, ETA 00:00:37
+# Fork: 1 of 2
+# Warmup Iteration   1: 1.979 ms/op
+# Warmup Iteration   2: 1.750 ms/op
+Iteration   1: 1.674 ms/op
+                 gc.alloc.rate:      37.142 MB/sec
+                 gc.alloc.rate.norm: 65624.520 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 1.807 ms/op
+                 gc.alloc.rate:      34.253 MB/sec
+                 gc.alloc.rate.norm: 65628.613 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 1.642 ms/op
+                 gc.alloc.rate:      37.982 MB/sec
+                 gc.alloc.rate.norm: 65622.095 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 28.13% complete, ETA 00:00:35
+# Fork: 2 of 2
+# Warmup Iteration   1: 2.608 ms/op
+# Warmup Iteration   2: 1.623 ms/op
+Iteration   1: 1.608 ms/op
+                 gc.alloc.rate:      38.630 MB/sec
+                 gc.alloc.rate.norm: 65623.744 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 1.804 ms/op
+                 gc.alloc.rate:      34.601 MB/sec
+                 gc.alloc.rate.norm: 65626.832 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 1.771 ms/op
+                 gc.alloc.rate:      34.808 MB/sec
+                 gc.alloc.rate.norm: 65626.069 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  1.718 ±(99.9%) 0.245 ms/op [Average]
+  (min, avg, max) = (1.608, 1.718, 1.807), stdev = 0.087
+  CI (99.9%): [1.473, 1.962] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  36.236 ±(99.9%) 5.357 MB/sec [Average]
+  (min, avg, max) = (34.253, 36.236, 38.630), stdev = 1.910
+  CI (99.9%): [30.879, 41.592] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  65625.312 ±(99.9%) 6.542 B/op [Average]
+  (min, avg, max) = (65622.095, 65625.312, 65628.613), stdev = 2.333
+  CI (99.9%): [65618.771, 65631.854] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = EJML, shape = 512x128x256)
+
+# Run progress: 31.25% complete, ETA 00:00:34
+# Fork: 1 of 2
+# Warmup Iteration   1: 6.483 ms/op
+# Warmup Iteration   2: 6.205 ms/op
+Iteration   1: 5.815 ms/op
+                 gc.alloc.rate:      171.361 MB/sec
+                 gc.alloc.rate.norm: 1048777.333 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 5.817 ms/op
+                 gc.alloc.rate:      169.661 MB/sec
+                 gc.alloc.rate.norm: 1048781.943 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 5.808 ms/op
+                 gc.alloc.rate:      171.773 MB/sec
+                 gc.alloc.rate.norm: 1048780.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 34.38% complete, ETA 00:00:32
+# Fork: 2 of 2
+# Warmup Iteration   1: 7.478 ms/op
+# Warmup Iteration   2: 5.557 ms/op
+Iteration   1: 5.585 ms/op
+                 gc.alloc.rate:      177.962 MB/sec
+                 gc.alloc.rate.norm: 1048772.973 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 5.635 ms/op
+                 gc.alloc.rate:      174.939 MB/sec
+                 gc.alloc.rate.norm: 1048772.973 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 5.752 ms/op
+                 gc.alloc.rate:      172.360 MB/sec
+                 gc.alloc.rate.norm: 1048786.514 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  5.735 ±(99.9%) 0.284 ms/op [Average]
+  (min, avg, max) = (5.585, 5.735, 5.817), stdev = 0.101
+  CI (99.9%): [5.452, 6.019] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  173.009 ±(99.9%) 8.331 MB/sec [Average]
+  (min, avg, max) = (169.661, 173.009, 177.962), stdev = 2.971
+  CI (99.9%): [164.678, 181.340] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  1048778.623 ±(99.9%) 14.875 B/op [Average]
+  (min, avg, max) = (1048772.973, 1048778.623, 1048786.514), stdev = 5.305
+  CI (99.9%): [1048763.747, 1048793.498] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = EJML, shape = 1024x256x64)
+
+# Run progress: 37.50% complete, ETA 00:00:31
+# Fork: 1 of 2
+# Warmup Iteration   1: 8.262 ms/op
+# Warmup Iteration   2: 6.689 ms/op
+Iteration   1: 6.848 ms/op
+                 gc.alloc.rate:      72.634 MB/sec
+                 gc.alloc.rate.norm: 524521.600 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 6.676 ms/op
+                 gc.alloc.rate:      73.673 MB/sec
+                 gc.alloc.rate.norm: 524515.355 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 7.070 ms/op
+                 gc.alloc.rate:      70.623 MB/sec
+                 gc.alloc.rate.norm: 524519.467 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 40.63% complete, ETA 00:00:29
+# Fork: 2 of 2
+# Warmup Iteration   1: 8.309 ms/op
+# Warmup Iteration   2: 6.675 ms/op
+Iteration   1: 7.353 ms/op
+                 gc.alloc.rate:      67.937 MB/sec
+                 gc.alloc.rate.norm: 524535.429 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 6.698 ms/op
+                 gc.alloc.rate:      73.650 MB/sec
+                 gc.alloc.rate.norm: 524521.600 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 6.718 ms/op
+                 gc.alloc.rate:      74.355 MB/sec
+                 gc.alloc.rate.norm: 524515.355 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  6.894 ±(99.9%) 0.753 ms/op [Average]
+  (min, avg, max) = (6.676, 6.894, 7.353), stdev = 0.269
+  CI (99.9%): [6.140, 7.647] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  72.145 ±(99.9%) 6.840 MB/sec [Average]
+  (min, avg, max) = (67.937, 72.145, 74.355), stdev = 2.439
+  CI (99.9%): [65.305, 78.985] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  524521.467 ±(99.9%) 20.746 B/op [Average]
+  (min, avg, max) = (524515.355, 524521.467, 524535.429), stdev = 7.398
+  CI (99.9%): [524500.721, 524542.214] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = EJML, shape = 255x257x129)
+
+# Run progress: 43.75% complete, ETA 00:00:27
+# Fork: 1 of 2
+# Warmup Iteration   1: 3.376 ms/op
+# Warmup Iteration   2: 3.055 ms/op
+Iteration   1: 3.090 ms/op
+                 gc.alloc.rate:      81.086 MB/sec
+                 gc.alloc.rate.norm: 263291.815 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 3.030 ms/op
+                 gc.alloc.rate:      82.708 MB/sec
+                 gc.alloc.rate.norm: 263285.731 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 3.011 ms/op
+                 gc.alloc.rate:      82.586 MB/sec
+                 gc.alloc.rate.norm: 263285.412 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 46.88% complete, ETA 00:00:26
+# Fork: 2 of 2
+# Warmup Iteration   1: 3.291 ms/op
+# Warmup Iteration   2: 2.927 ms/op
+Iteration   1: 2.925 ms/op
+                 gc.alloc.rate:      85.369 MB/sec
+                 gc.alloc.rate.norm: 263285.257 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 2.892 ms/op
+                 gc.alloc.rate:      86.093 MB/sec
+                 gc.alloc.rate.norm: 263281.803 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 2.855 ms/op
+                 gc.alloc.rate:      86.326 MB/sec
+                 gc.alloc.rate.norm: 263281.803 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  2.967 ±(99.9%) 0.254 ms/op [Average]
+  (min, avg, max) = (2.855, 2.967, 3.090), stdev = 0.090
+  CI (99.9%): [2.713, 3.221] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  84.028 ±(99.9%) 6.121 MB/sec [Average]
+  (min, avg, max) = (81.086, 84.028, 86.326), stdev = 2.183
+  CI (99.9%): [77.907, 90.149] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  263285.304 ±(99.9%) 10.274 B/op [Average]
+  (min, avg, max) = (263281.803, 263285.304, 263291.815), stdev = 3.664
+  CI (99.9%): [263275.030, 263295.577] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = OJALGO, shape = 128x512x64)
+
+# Run progress: 50.00% complete, ETA 00:00:24
+# Fork: 1 of 2
+# Warmup Iteration   1: 1.643 ms/op
+# Warmup Iteration   2: 1.444 ms/op
+Iteration   1: 1.451 ms/op
+                 gc.alloc.rate:      43.161 MB/sec
+                 gc.alloc.rate.norm: 65713.429 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 1.469 ms/op
+                 gc.alloc.rate:      42.239 MB/sec
+                 gc.alloc.rate.norm: 65714.087 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 1.466 ms/op
+                 gc.alloc.rate:      42.176 MB/sec
+                 gc.alloc.rate.norm: 65713.784 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 53.13% complete, ETA 00:00:22
+# Fork: 2 of 2
+# Warmup Iteration   1: 1.840 ms/op
+# Warmup Iteration   2: 1.653 ms/op
+Iteration   1: 1.473 ms/op
+                 gc.alloc.rate:      42.203 MB/sec
+                 gc.alloc.rate.norm: 65715.353 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 2.869 ms/op
+                 gc.alloc.rate:      21.801 MB/sec
+                 gc.alloc.rate.norm: 65750.054 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 2.852 ms/op
+                 gc.alloc.rate:      21.801 MB/sec
+                 gc.alloc.rate.norm: 65751.562 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  1.930 ±(99.9%) 2.021 ms/op [Average]
+  (min, avg, max) = (1.451, 1.930, 2.869), stdev = 0.721
+  CI (99.9%): [≈ 0, 3.951] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  35.563 ±(99.9%) 29.912 MB/sec [Average]
+  (min, avg, max) = (21.801, 35.563, 43.161), stdev = 10.667
+  CI (99.9%): [5.651, 65.475] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  65726.378 ±(99.9%) 53.112 B/op [Average]
+  (min, avg, max) = (65713.429, 65726.378, 65751.562), stdev = 18.940
+  CI (99.9%): [65673.266, 65779.490] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = OJALGO, shape = 512x128x256)
+
+# Run progress: 56.25% complete, ETA 00:00:21
+# Fork: 1 of 2
+# Warmup Iteration   1: 6.368 ms/op
+# Warmup Iteration   2: 6.032 ms/op
+Iteration   1: 5.644 ms/op
+                 gc.alloc.rate:      176.964 MB/sec
+                 gc.alloc.rate.norm: 1048873.333 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 5.784 ms/op
+                 gc.alloc.rate:      172.756 MB/sec
+                 gc.alloc.rate.norm: 1048871.556 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 5.615 ms/op
+                 gc.alloc.rate:      177.942 MB/sec
+                 gc.alloc.rate.norm: 1048867.243 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 59.38% complete, ETA 00:00:20
+# Fork: 2 of 2
+# Warmup Iteration   1: 6.949 ms/op
+# Warmup Iteration   2: 5.963 ms/op
+Iteration   1: 5.817 ms/op
+                 gc.alloc.rate:      170.606 MB/sec
+                 gc.alloc.rate.norm: 1048878.857 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 5.797 ms/op
+                 gc.alloc.rate:      172.288 MB/sec
+                 gc.alloc.rate.norm: 1048871.556 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 6.048 ms/op
+                 gc.alloc.rate:      161.628 MB/sec
+                 gc.alloc.rate.norm: 1048882.824 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  5.784 ±(99.9%) 0.433 ms/op [Average]
+  (min, avg, max) = (5.615, 5.784, 6.048), stdev = 0.154
+  CI (99.9%): [5.351, 6.217] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  172.031 ±(99.9%) 16.357 MB/sec [Average]
+  (min, avg, max) = (161.628, 172.031, 177.942), stdev = 5.833
+  CI (99.9%): [155.673, 188.388] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  1048874.228 ±(99.9%) 15.822 B/op [Average]
+  (min, avg, max) = (1048867.243, 1048874.228, 1048882.824), stdev = 5.642
+  CI (99.9%): [1048858.406, 1048890.050] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = OJALGO, shape = 1024x256x64)
+
+# Run progress: 62.50% complete, ETA 00:00:18
+# Fork: 1 of 2
+# Warmup Iteration   1: 6.682 ms/op
+# Warmup Iteration   2: 5.525 ms/op
+Iteration   1: 5.461 ms/op
+                 gc.alloc.rate:      91.346 MB/sec
+                 gc.alloc.rate.norm: 524576.842 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 6.803 ms/op
+                 gc.alloc.rate:      72.477 MB/sec
+                 gc.alloc.rate.norm: 524616.533 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 9.560 ms/op
+                 gc.alloc.rate:      51.610 MB/sec
+                 gc.alloc.rate.norm: 524688.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 65.63% complete, ETA 00:00:17
+# Fork: 2 of 2
+# Warmup Iteration   1: 6.265 ms/op
+# Warmup Iteration   2: 5.346 ms/op
+Iteration   1: 5.347 ms/op
+                 gc.alloc.rate:      92.437 MB/sec
+                 gc.alloc.rate.norm: 524576.842 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 5.440 ms/op
+                 gc.alloc.rate:      90.989 MB/sec
+                 gc.alloc.rate.norm: 524576.842 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 5.417 ms/op
+                 gc.alloc.rate:      91.456 MB/sec
+                 gc.alloc.rate.norm: 524576.842 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  6.338 ±(99.9%) 4.692 ms/op [Average]
+  (min, avg, max) = (5.347, 6.338, 9.560), stdev = 1.673
+  CI (99.9%): [1.646, 11.030] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  81.719 ±(99.9%) 46.591 MB/sec [Average]
+  (min, avg, max) = (51.610, 81.719, 92.437), stdev = 16.615
+  CI (99.9%): [35.128, 128.310] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  524601.984 ±(99.9%) 126.275 B/op [Average]
+  (min, avg, max) = (524576.842, 524601.984, 524688.000), stdev = 45.031
+  CI (99.9%): [524475.709, 524728.259] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = OJALGO, shape = 255x257x129)
+
+# Run progress: 68.75% complete, ETA 00:00:15
+# Fork: 1 of 2
+# Warmup Iteration   1: 3.215 ms/op
+# Warmup Iteration   2: 2.817 ms/op
+Iteration   1: 2.958 ms/op
+                 gc.alloc.rate:      84.388 MB/sec
+                 gc.alloc.rate.norm: 263381.412 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 3.372 ms/op
+                 gc.alloc.rate:      74.366 MB/sec
+                 gc.alloc.rate.norm: 263390.164 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 3.501 ms/op
+                 gc.alloc.rate:      71.273 MB/sec
+                 gc.alloc.rate.norm: 263397.655 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 71.88% complete, ETA 00:00:14
+# Fork: 2 of 2
+# Warmup Iteration   1: 3.279 ms/op
+# Warmup Iteration   2: 3.029 ms/op
+Iteration   1: 3.030 ms/op
+                 gc.alloc.rate:      82.269 MB/sec
+                 gc.alloc.rate.norm: 263380.174 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 3.066 ms/op
+                 gc.alloc.rate:      79.322 MB/sec
+                 gc.alloc.rate.norm: 263382.687 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 2.946 ms/op
+                 gc.alloc.rate:      83.839 MB/sec
+                 gc.alloc.rate.norm: 263382.706 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  3.145 ±(99.9%) 0.654 ms/op [Average]
+  (min, avg, max) = (2.946, 3.145, 3.501), stdev = 0.233
+  CI (99.9%): [2.491, 3.800] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  79.243 ±(99.9%) 15.052 MB/sec [Average]
+  (min, avg, max) = (71.273, 79.243, 84.388), stdev = 5.368
+  CI (99.9%): [64.191, 94.295] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  263385.800 ±(99.9%) 19.009 B/op [Average]
+  (min, avg, max) = (263380.174, 263385.800, 263397.655), stdev = 6.779
+  CI (99.9%): [263366.790, 263404.809] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = JBLAS, shape = 128x512x64)
+
+# Run progress: 75.00% complete, ETA 00:00:12
+# Fork: 1 of 2
+# Warmup Iteration   1: 0.586 ms/op
+# Warmup Iteration   2: 0.542 ms/op
+Iteration   1: 0.469 ms/op
+                 gc.alloc.rate:      132.345 MB/sec
+                 gc.alloc.rate.norm: 65597.260 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 0.457 ms/op
+                 gc.alloc.rate:      134.818 MB/sec
+                 gc.alloc.rate.norm: 65597.260 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 0.469 ms/op
+                 gc.alloc.rate:      133.149 MB/sec
+                 gc.alloc.rate.norm: 65597.352 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas12180434245181264551/libjblas.so
+
+# Run progress: 78.13% complete, ETA 00:00:10
+# Fork: 2 of 2
+# Warmup Iteration   1: 0.464 ms/op
+# Warmup Iteration   2: 0.487 ms/op
+Iteration   1: 0.442 ms/op
+                 gc.alloc.rate:      140.708 MB/sec
+                 gc.alloc.rate.norm: 65596.793 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 0.435 ms/op
+                 gc.alloc.rate:      142.663 MB/sec
+                 gc.alloc.rate.norm: 65596.279 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 0.437 ms/op
+                 gc.alloc.rate:      142.375 MB/sec
+                 gc.alloc.rate.norm: 65596.305 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  0.452 ±(99.9%) 0.044 ms/op [Average]
+  (min, avg, max) = (0.435, 0.452, 0.469), stdev = 0.016
+  CI (99.9%): [0.407, 0.496] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  137.676 ±(99.9%) 13.345 MB/sec [Average]
+  (min, avg, max) = (132.345, 137.676, 142.663), stdev = 4.759
+  CI (99.9%): [124.332, 151.021] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  65596.875 ±(99.9%) 1.380 B/op [Average]
+  (min, avg, max) = (65596.279, 65596.875, 65597.352), stdev = 0.492
+  CI (99.9%): [65595.495, 65598.255] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = JBLAS, shape = 512x128x256)
+
+# Run progress: 81.25% complete, ETA 00:00:09
+# Fork: 1 of 2
+# Warmup Iteration   1: 2.298 ms/op
+# Warmup Iteration   2: 1.988 ms/op
+Iteration   1: 1.948 ms/op
+                 gc.alloc.rate:      512.524 MB/sec
+                 gc.alloc.rate.norm: 1048679.314 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 1.903 ms/op
+                 gc.alloc.rate:      519.664 MB/sec
+                 gc.alloc.rate.norm: 1048678.826 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            5.000 ms
+
+Iteration   3: 1.735 ms/op
+                 gc.alloc.rate:      569.154 MB/sec
+                 gc.alloc.rate.norm: 1048674.069 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas10833479997992813173/libjblas.so
+
+# Run progress: 84.38% complete, ETA 00:00:07
+# Fork: 2 of 2
+# Warmup Iteration   1: 2.135 ms/op
+# Warmup Iteration   2: 2.006 ms/op
+Iteration   1: 1.924 ms/op
+                 gc.alloc.rate:      516.407 MB/sec
+                 gc.alloc.rate.norm: 1048679.846 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 2.153 ms/op
+                 gc.alloc.rate:      463.962 MB/sec
+                 gc.alloc.rate.norm: 1048685.583 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            6.000 ms
+
+Iteration   3: 2.408 ms/op
+                 gc.alloc.rate:      411.531 MB/sec
+                 gc.alloc.rate.norm: 1048693.143 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas8767528662005527936/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas8767528662005527936/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas8767528662005527936/libjblas_arch_flavor.so
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  2.012 ±(99.9%) 0.660 ms/op [Average]
+  (min, avg, max) = (1.735, 2.012, 2.408), stdev = 0.235
+  CI (99.9%): [1.352, 2.672] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  498.874 ±(99.9%) 152.114 MB/sec [Average]
+  (min, avg, max) = (411.531, 498.874, 569.154), stdev = 54.245
+  CI (99.9%): [346.760, 650.988] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  1048681.797 ±(99.9%) 18.668 B/op [Average]
+  (min, avg, max) = (1048674.069, 1048681.797, 1048693.143), stdev = 6.657
+  CI (99.9%): [1048663.129, 1048700.465] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.333, 1.000), stdev = 0.516
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.time":
+  11.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 1.833, 6.000), stdev = 2.858
+  CI (99.9%): [11.000, 11.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = JBLAS, shape = 1024x256x64)
+
+# Run progress: 87.50% complete, ETA 00:00:06
+# Fork: 1 of 2
+# Warmup Iteration   1: 2.249 ms/op
+# Warmup Iteration   2: 2.206 ms/op
+Iteration   1: 2.279 ms/op
+                 gc.alloc.rate:      217.531 MB/sec
+                 gc.alloc.rate.norm: 524402.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 2.152 ms/op
+                 gc.alloc.rate:      231.449 MB/sec
+                 gc.alloc.rate.norm: 524396.500 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 2.200 ms/op
+                 gc.alloc.rate:      225.890 MB/sec
+                 gc.alloc.rate.norm: 524399.130 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas15246740205679092640/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas15246740205679092640/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas15246740205679092640/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas15246740205679092640/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas15246740205679092640
+
+# Run progress: 90.63% complete, ETA 00:00:04
+# Fork: 2 of 2
+# Warmup Iteration   1: 2.946 ms/op
+# Warmup Iteration   2: 2.527 ms/op
+Iteration   1: 2.193 ms/op
+                 gc.alloc.rate:      227.680 MB/sec
+                 gc.alloc.rate.norm: 524399.130 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 5.230 ms/op
+                 gc.alloc.rate:      94.255 MB/sec
+                 gc.alloc.rate.norm: 524480.400 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 2.946 ms/op
+                 gc.alloc.rate:      168.566 MB/sec
+                 gc.alloc.rate.norm: 524418.971 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  2.833 ±(99.9%) 3.398 ms/op [Average]
+  (min, avg, max) = (2.152, 2.833, 5.230), stdev = 1.212
+  CI (99.9%): [≈ 0, 6.231] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  194.229 ±(99.9%) 152.064 MB/sec [Average]
+  (min, avg, max) = (94.255, 194.229, 231.449), stdev = 54.227
+  CI (99.9%): [42.165, 346.293] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  524416.022 ±(99.9%) 91.311 B/op [Average]
+  (min, avg, max) = (524396.500, 524416.022, 524480.400), stdev = 32.563
+  CI (99.9%): [524324.711, 524507.334] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -Dbenchmark.threads=1 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.RectangularBenchmark.compute
+# Parameters: (library = JBLAS, shape = 255x257x129)
+
+# Run progress: 93.75% complete, ETA 00:00:03
+# Fork: 1 of 2
+# Warmup Iteration   1: 1.246 ms/op
+# Warmup Iteration   2: 1.146 ms/op
+Iteration   1: 1.023 ms/op
+                 gc.alloc.rate:      244.975 MB/sec
+                 gc.alloc.rate.norm: 263237.633 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 0.998 ms/op
+                 gc.alloc.rate:      251.176 MB/sec
+                 gc.alloc.rate.norm: 263236.020 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 0.984 ms/op
+                 gc.alloc.rate:      251.929 MB/sec
+                 gc.alloc.rate.norm: 263236.627 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas1234379472377975508/libjblas.so
+
+# Run progress: 96.88% complete, ETA 00:00:01
+# Fork: 2 of 2
+# Warmup Iteration   1: 1.031 ms/op
+# Warmup Iteration   2: 1.138 ms/op
+Iteration   1: 1.012 ms/op
+                 gc.alloc.rate:      246.458 MB/sec
+                 gc.alloc.rate.norm: 263236.611 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 0.984 ms/op
+                 gc.alloc.rate:      252.273 MB/sec
+                 gc.alloc.rate.norm: 263236.471 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 0.977 ms/op
+                 gc.alloc.rate:      256.549 MB/sec
+                 gc.alloc.rate.norm: 263235.094 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas14995219937426804396/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas14995219937426804396/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas14995219937426804396/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas14995219937426804396/libquadmath-0.so
+
+
+Result "dev.nm.benchmark.RectangularBenchmark.compute":
+  0.996 ±(99.9%) 0.051 ms/op [Average]
+  (min, avg, max) = (0.977, 0.996, 1.023), stdev = 0.018
+  CI (99.9%): [0.945, 1.048] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate":
+  250.560 ±(99.9%) 11.836 MB/sec [Average]
+  (min, avg, max) = (244.975, 250.560, 256.549), stdev = 4.221
+  CI (99.9%): [238.725, 262.396] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.alloc.rate.norm":
+  263236.409 ±(99.9%) 2.336 B/op [Average]
+  (min, avg, max) = (263235.094, 263236.409, 263237.633), stdev = 0.833
+  CI (99.9%): [263234.073, 263238.745] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.RectangularBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# Run complete. Total time: 00:00:50
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                        (library)      (shape)  Mode  Cnt        Score     Error   Units
+RectangularBenchmark.compute                         NMDEV   128x512x64  avgt    6        4.271 ±   0.388   ms/op
+RectangularBenchmark.compute:gc.alloc.rate           NMDEV   128x512x64  avgt    6      160.117 ±  14.118  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm      NMDEV   128x512x64  avgt    6   725222.320 ± 138.094    B/op
+RectangularBenchmark.compute:gc.count                NMDEV   128x512x64  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                         NMDEV  512x128x256  avgt    6       20.468 ±   2.898   ms/op
+RectangularBenchmark.compute:gc.alloc.rate           NMDEV  512x128x256  avgt    6      349.776 ±  40.670  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm      NMDEV  512x128x256  avgt    6  7616145.915 ±  52.745    B/op
+RectangularBenchmark.compute:gc.count                NMDEV  512x128x256  avgt    6        2.000            counts
+RectangularBenchmark.compute:gc.time                 NMDEV  512x128x256  avgt    6       15.000                ms
+RectangularBenchmark.compute                         NMDEV  1024x256x64  avgt    6       18.207 ±   1.171   ms/op
+RectangularBenchmark.compute:gc.alloc.rate           NMDEV  1024x256x64  avgt    6      199.559 ±  13.333  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm      NMDEV  1024x256x64  avgt    6  3827270.879 ±  80.809    B/op
+RectangularBenchmark.compute:gc.count                NMDEV  1024x256x64  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                         NMDEV  255x257x129  avgt    6        9.492 ±   1.045   ms/op
+RectangularBenchmark.compute:gc.alloc.rate           NMDEV  255x257x129  avgt    6      211.991 ±  22.637  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm      NMDEV  255x257x129  avgt    6  2114840.157 ±  28.107    B/op
+RectangularBenchmark.compute:gc.count                NMDEV  255x257x129  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                          EJML   128x512x64  avgt    6        1.718 ±   0.245   ms/op
+RectangularBenchmark.compute:gc.alloc.rate            EJML   128x512x64  avgt    6       36.236 ±   5.357  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm       EJML   128x512x64  avgt    6    65625.312 ±   6.542    B/op
+RectangularBenchmark.compute:gc.count                 EJML   128x512x64  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                          EJML  512x128x256  avgt    6        5.735 ±   0.284   ms/op
+RectangularBenchmark.compute:gc.alloc.rate            EJML  512x128x256  avgt    6      173.009 ±   8.331  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm       EJML  512x128x256  avgt    6  1048778.623 ±  14.875    B/op
+RectangularBenchmark.compute:gc.count                 EJML  512x128x256  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                          EJML  1024x256x64  avgt    6        6.894 ±   0.753   ms/op
+RectangularBenchmark.compute:gc.alloc.rate            EJML  1024x256x64  avgt    6       72.145 ±   6.840  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm       EJML  1024x256x64  avgt    6   524521.467 ±  20.746    B/op
+RectangularBenchmark.compute:gc.count                 EJML  1024x256x64  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                          EJML  255x257x129  avgt    6        2.967 ±   0.254   ms/op
+RectangularBenchmark.compute:gc.alloc.rate            EJML  255x257x129  avgt    6       84.028 ±   6.121  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm       EJML  255x257x129  avgt    6   263285.304 ±  10.274    B/op
+RectangularBenchmark.compute:gc.count                 EJML  255x257x129  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                        OJALGO   128x512x64  avgt    6        1.930 ±   2.021   ms/op
+RectangularBenchmark.compute:gc.alloc.rate          OJALGO   128x512x64  avgt    6       35.563 ±  29.912  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm     OJALGO   128x512x64  avgt    6    65726.378 ±  53.112    B/op
+RectangularBenchmark.compute:gc.count               OJALGO   128x512x64  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                        OJALGO  512x128x256  avgt    6        5.784 ±   0.433   ms/op
+RectangularBenchmark.compute:gc.alloc.rate          OJALGO  512x128x256  avgt    6      172.031 ±  16.357  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm     OJALGO  512x128x256  avgt    6  1048874.228 ±  15.822    B/op
+RectangularBenchmark.compute:gc.count               OJALGO  512x128x256  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                        OJALGO  1024x256x64  avgt    6        6.338 ±   4.692   ms/op
+RectangularBenchmark.compute:gc.alloc.rate          OJALGO  1024x256x64  avgt    6       81.719 ±  46.591  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm     OJALGO  1024x256x64  avgt    6   524601.984 ± 126.275    B/op
+RectangularBenchmark.compute:gc.count               OJALGO  1024x256x64  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                        OJALGO  255x257x129  avgt    6        3.145 ±   0.654   ms/op
+RectangularBenchmark.compute:gc.alloc.rate          OJALGO  255x257x129  avgt    6       79.243 ±  15.052  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm     OJALGO  255x257x129  avgt    6   263385.800 ±  19.009    B/op
+RectangularBenchmark.compute:gc.count               OJALGO  255x257x129  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                         JBLAS   128x512x64  avgt    6        0.452 ±   0.044   ms/op
+RectangularBenchmark.compute:gc.alloc.rate           JBLAS   128x512x64  avgt    6      137.676 ±  13.345  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm      JBLAS   128x512x64  avgt    6    65596.875 ±   1.380    B/op
+RectangularBenchmark.compute:gc.count                JBLAS   128x512x64  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                         JBLAS  512x128x256  avgt    6        2.012 ±   0.660   ms/op
+RectangularBenchmark.compute:gc.alloc.rate           JBLAS  512x128x256  avgt    6      498.874 ± 152.114  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm      JBLAS  512x128x256  avgt    6  1048681.797 ±  18.668    B/op
+RectangularBenchmark.compute:gc.count                JBLAS  512x128x256  avgt    6        2.000            counts
+RectangularBenchmark.compute:gc.time                 JBLAS  512x128x256  avgt    6       11.000                ms
+RectangularBenchmark.compute                         JBLAS  1024x256x64  avgt    6        2.833 ±   3.398   ms/op
+RectangularBenchmark.compute:gc.alloc.rate           JBLAS  1024x256x64  avgt    6      194.229 ± 152.064  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm      JBLAS  1024x256x64  avgt    6   524416.022 ±  91.311    B/op
+RectangularBenchmark.compute:gc.count                JBLAS  1024x256x64  avgt    6          ≈ 0            counts
+RectangularBenchmark.compute                         JBLAS  255x257x129  avgt    6        0.996 ±   0.051   ms/op
+RectangularBenchmark.compute:gc.alloc.rate           JBLAS  255x257x129  avgt    6      250.560 ±  11.836  MB/sec
+RectangularBenchmark.compute:gc.alloc.rate.norm      JBLAS  255x257x129  avgt    6   263236.409 ±   2.336    B/op
+RectangularBenchmark.compute:gc.count                JBLAS  255x257x129  avgt    6          ≈ 0            counts
+
+Benchmark result is saved to benchmark/results/2026-10-18-latest-rectangular/jmh.json

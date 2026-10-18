@@ -5,7 +5,8 @@ import no.uib.cipr.matrix.*;
 final class MtjAdapter implements Adapter {
  final DenseMatrix a,b,spd,rhs; final int n;
  MtjAdapter(Inputs in){a=new DenseMatrix(in.a);b=new DenseMatrix(in.b);spd=new DenseMatrix(in.spd);rhs=new DenseMatrix(in.rhs);n=a.numRows();}
- public Object run(String op){try{switch(op){
+ public Object[] inputs(){return new Object[]{a,b,spd,rhs};}
+    public Object run(String op){try{switch(op){
  case "transpose":return a.transpose(new DenseMatrix(n,n));case "addition":return a.copy().add(b);case "scale":return a.copy().scale(1.5);case "multiplication":return a.mult(b,new DenseMatrix(n,n));
  case "determinant":{DenseLU f=DenseLU.factorize(a);Matrix u=f.getU();double d=1;int[] p=f.getPivots();for(int i=0;i<n;i++){d*=u.get(i,i);if(p[i]!=i+1)d=-d;}return d;}
  case "inverse":return a.solve(Matrices.identity(n),new DenseMatrix(n,n));case "inverseSPD":return DenseCholesky.factorize(spd).solve(Matrices.identity(n));

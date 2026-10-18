@@ -1,0 +1,83 @@
+[
+  {
+    "library": "jama",
+    "source": "https://github.com/fiji/Jama.git",
+    "returncode": 0,
+    "tags": []
+  },
+  {
+    "library": "ujmp",
+    "source": "https://github.com/ujmp/universal-java-matrix-package.git",
+    "returncode": 0,
+    "tags": [
+      "31a20812e81d18c5b23bc9a8ad7039f21a9a4337\trefs/tags/0.1.1",
+      "3abfe1cefff5697d2c771b025828a90ba3479673\trefs/tags/0.2.0",
+      "be3b19dfe1fc97944d5c9e64fc9e524a97717bdf\trefs/tags/0.2.1",
+      "180621a46bbdf4ffa2b35b45f716eaeb69169077\trefs/tags/0.2.2",
+      "eec644381d6b5f8f1d3ead55e555e0dc3fa7a80c\trefs/tags/0.2.3",
+      "1e7e0a1a46716118634798bc7fbbb2e7aa2406c9\trefs/tags/0.2.4",
+      "e6849c53f3af899aa3997409f7c0bb5bd30914c9\trefs/tags/0.2.5",
+      "768f66d4e9771d97b1e607124b674b8eb026bcea\trefs/tags/0.3.0"
+    ]
+  },
+  {
+    "library": "jblas",
+    "source": "https://github.com/jblas-project/jblas.git",
+    "returncode": 0,
+    "tags": [
+      "43038ea9ded8d94611eb8a24fbf67e6c6589e4c4\trefs/tags/jblas-1.2.0",
+      "564a9034452da84cf6b111576e87f55be5a35254\trefs/tags/jblas-1.2.2",
+      "0040bb3c054c2e93e003c0365dc8f64cc8ce5b58\trefs/tags/jblas-1.2.2^{}",
+      "7f50150e3fce11480eb85c4f80a6d67ea7186e46\trefs/tags/jblas-1.2.3",
+      "2b66dd0ddf06d5a14424778c6e96189b9611d97d\trefs/tags/jblas-1.2.3^{}",
+      "bc20318d5038786f87c3767f3e63c2b8f808547e\trefs/tags/jblas-1.2.4",
+      "0f99b989d5948d7e18c7e67b881fca96db970974\trefs/tags/jblas-1.2.5",
+      "b4a3052a6d13ad709be86d8f86e67c7f2c3518b5\trefs/tags/jblas-1.2.5^{}"
+    ]
+  },
+  {
+    "library": "mtj",
+    "source": "https://github.com/fommil/matrix-toolkits-java.git",
+    "returncode": 0,
+    "tags": [
+      "6a5231374c86c52de965a6a467c24c4e336ecdd9\trefs/tags/mtj-1.0.1",
+      "f60d8b2afa7726d69bd15d1698fbb7aff35be853\trefs/tags/mtj-1.0.1^{}",
+      "a7c6879e97b31671529e4f725cc99fd69b205617\trefs/tags/mtj-1.0.2",
+      "10831b3c61a5681cc7e13ec6b26aaa17a9a3669d\trefs/tags/mtj-1.0.2^{}",
+      "e43d259e8e15ebcf82f43449f82514d8017bdbcc\trefs/tags/mtj-1.0.3",
+      "9b858877c89a3ed38d19b2705e369bf978b4af94\trefs/tags/mtj-1.0.3^{}",
+      "6f43345f347d078ea8c8b0e5848027a7ee71a8d0\trefs/tags/mtj-1.0.4",
+      "2771a1da7ab5fb0f1369e7d114f6c8146654b270\trefs/tags/mtj-1.0.4^{}"
+    ]
+  },
+  {
+    "library": "ejml",
+    "source": "https://github.com/lessthanoptimal/ejml.git",
+    "returncode": 0,
+    "tags": [
+      "e25487be305098db1094180f0ba20fda6b365e30\trefs/tags/v0.42",
+      "19747f584c4eb4adb92c21a3d9e3fb87060d3707\trefs/tags/v0.43",
+      "53c2a8fb9fce3331870667dd9fabc752b8b57aa0\trefs/tags/v0.43.1",
+      "7d47450d8451ee081a77fe304d9984ceb27e6fa7\trefs/tags/v0.44.0",
+      "fccec27052760c048151111371cff6336274a076\trefs/tags/v0.45.0",
+      "d00df0cfd7a17bf326418b7453d4ae0901049c68\trefs/tags/v0.45.1",
+      "67c513d4196a092626812913c761807642934b5f\trefs/tags/v0.46.0",
+      "fe9b94b4c47aeebb74ef90a6759d92916a9d4146\trefs/tags/v0.46.1"
+    ]
+  },
+  {
+    "library": "ojalgo",
+    "source": "https://github.com/optimatika/ojAlgo.git",
+    "returncode": 0,
+    "tags": [
+      "4ca883be5b94f3c689802354b8f22a5117495aea\trefs/tags/v57.3.0",
+      "943033207a448e879d5d41c28ab880ac1bf55479\trefs/tags/v57.3.0^{}",
+      "063cbc9fe70504c8510e402a69d25fb3f45a0120\trefs/tags/v57.3.1",
+      "0fa057357317123543451f91baf700d825770a58\trefs/tags/v57.3.1^{}",
+      "6993459370ef71b5d9a35a12f88f797994d03fd4\trefs/tags/v57.4.0",
+      "e1100ea4748af9dfee3b2844491c5fb5b51eb041\trefs/tags/v57.4.0^{}",
+      "cbbb2a9f11fdf4f6df23a6d8f59abe50fc157691\trefs/tags/v57.5.0",
+      "6d69002b9641b2a2d4a9da821a237fab60f91dac\trefs/tags/v57.5.0^{}"
+    ]
+  }
+]

@@ -6,6 +6,7 @@ import Jama.*;
 final class JamaAdapter implements Adapter {
     final Matrix a,b,spd,rhs;
     JamaAdapter(Inputs in){a=new Matrix(in.a);b=new Matrix(in.b);spd=new Matrix(in.spd);rhs=new Matrix(in.rhs);}
+    public Object[] inputs(){return new Object[]{a,b,spd,rhs};}
     public Object run(String op) {
         switch(op) {
             case "transpose": return a.transpose();
