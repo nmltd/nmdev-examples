@@ -28,7 +28,7 @@ python3 benchmark/scripts/publish-pages.py benchmark/results/my-run
 <pre><code class="language-bash"># Pin a single computational worker; affinity is optional and must be valid on your host.
 BENCH_CPUSET=0 BENCH_THREADS=1 bash benchmark/scripts/run.sh benchmark/results/my-fair-baseline
 
-# Larger square matrices: four libraries, sizes 512/1024, five operations.
+# Larger square matrices: four libraries, sizes 512/1024/2000, five operations.
 BENCH_CPUSET=0 BENCH_PROFILE=large bash benchmark/scripts/run.sh benchmark/results/my-large
 
 # Tall, wide and odd-sized multiplication, with four explicitly supported adapters.
@@ -41,7 +41,7 @@ BENCH_CPUSET=0-3 BENCH_THREADS=4 BENCH_PROFILE=large bash benchmark/scripts/run.
 java -XX:ActiveProcessorCount=1 -cp 'benchmark/target/classes:benchmark/target/lib/*' \
   dev.nm.benchmark.DifficultValidationMain &gt; difficult-correctness.csv
 </code></pre>
-<p>The large profile intentionally avoids automatically scheduling every decomposition at historical 5,000×5,000 sizes. Use explicit JMH <code>-p size=... -p operation=... -p library=...</code> overrides when resources permit. Historical-sized tests are a separate experiment, not implied by the 512/1024 track.</p>
+<p>The large profile intentionally avoids automatically scheduling every decomposition at historical 5,000×5,000 sizes. Use explicit JMH <code>-p size=... -p operation=... -p library=...</code> overrides when resources permit. Historical-sized tests are a separate experiment, not implied by the 512/1024/2000 track.</p>
 <p><code>run.sh</code> rebuilds the harness against the local combined JAR, verifies locked third-party artifacts, runs all baseline guards, and records allocation metrics with <code>-prof gc</code>. Use new directories for each profile; previous JSON/logs are never overwritten. If your Maven build uses a differently named NM Dev JAR, run the direct build first with <code>NMDEV_JAR</code> pointing at that file.</p>
 <h2>Verify the measured binary's SPD inverse path</h2>
 <p>The JDI helper needs a full JDK with <code>jdk.jdi</code> and compiler modules. It sets constructor breakpoints only on Chol and LU, without modifying the JAR. The debug run is separate from timing.</p>
@@ -60,4 +60,11 @@ java com.sun.tools.javap.Main -p -c -classpath benchmark/target/lib/nmdev-1.2.6.
   -DpomFile=benchmark/target/parallelcolt-source/pom.xml
 mvn -f benchmark/pom.xml package
 </code></pre>
-<p>The direct route is the validated build used for these measurements. Per-run <code>versions.json</code> and <code>validated-nmdev-artifact.json</code> preserve labels and proof of the tested customer JAR. Current version labels do not replace the labels of historical archives.</p><footer><a href="https://github.com/nmltd/nmdev-examples/tree/main/benchmark">Benchmark source and run archives</a> · <a href="tutorials.html">Java tutorials</a></footer></main></body></html>
+<p>The direct route is the validated build used for these measurements. Per-run <code>versions.json</code> and <code>validated-nmdev-artifact.json</code> preserve labels and proof of the tested customer JAR. Current version labels do not replace the labels of historical archives.</p>
+<h2>2000-square comparison</h2>
+<p>Run the same four-library, five-operation profile at size 2000 only, keeping one-thread and four-thread results separate:</p>
+<pre><code class="language-bash">BENCH_CPUSET=0 BENCH_THREADS=1 BENCH_PROFILE=size2000 bash benchmark/scripts/run.sh benchmark/results/my-2000-one -wi 2 -w 100ms -i 3 -r 200ms
+BENCH_CPUSET=0-3 BENCH_THREADS=4 BENCH_PROFILE=size2000 bash benchmark/scripts/run.sh benchmark/results/my-2000-four -wi 2 -w 100ms -i 3 -r 200ms
+</code></pre>
+<p>The short iteration targets are diagnostic: an iteration still completes a full operation even when it takes longer than its target. Every fork runs full-size correctness and input-preservation checks before timing. Setup and reference checks can dominate wall-clock runtime. This profile does not include every baseline library/operation.</p>
+<p>Use <code>BENCH_PROFILE=size2000</code> for size 2000 alone. Do not append a second <code>-p size=...</code> to the same invocation: JMH combines repeated parameter declarations rather than replacing the profile's size list.</p><footer><a href="https://github.com/nmltd/nmdev-examples/tree/main/benchmark">Benchmark source and run archives</a> · <a href="tutorials.html">Java tutorials</a></footer></main></body></html>

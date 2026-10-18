@@ -109,3 +109,5 @@ BENCH_CPUSET=0-3 BENCH_THREADS=4 BENCH_PROFILE=size2000 bash benchmark/scripts/r
 ```
 
 The short iteration targets are diagnostic: an iteration still completes a full operation even when it takes longer than its target. Every fork runs full-size correctness and input-preservation checks before timing. Setup and reference checks can dominate wall-clock runtime. This profile does not include every baseline library/operation.
+
+Use `BENCH_PROFILE=size2000` for size 2000 alone. Do not append a second `-p size=...` to the same invocation: JMH combines repeated parameter declarations rather than replacing the profile's size list.

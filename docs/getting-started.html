@@ -6,12 +6,12 @@
 cd nmdev-examples
 </code></pre>
 <h2>2. Configure package authentication</h2>
-<p>The starter uses <code>dev.nm:nmdev:1.2.6</code> from <code>https://maven.pkg.github.com/nmltd/nmdev</code>. Follow the <a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry">GitHub Maven registry instructions</a> and create a personal access token (classic) with <code>read:packages</code>. Your GitHub account and token must have access to this package; contact NM Dev if access is denied.</p>
+<p>The starter uses <code>dev.nm:nmdev-dist:1.2.6</code> from <code>https://maven.pkg.github.com/nmltd/maven-packages</code>. Follow the <a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry">GitHub Maven registry instructions</a> and create a personal access token (classic) with <code>read:packages</code>. The binary package is public; no access to the private source repository is required. GitHub still requires authentication for Maven downloads.</p>
 <p>Merge this server entry into your local <code>~/.m2/settings.xml</code>. The server ID must match the repository ID in <code>pom.xml</code>:</p>
 <pre><code class="language-xml">&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.2.0&quot;&gt;
   &lt;servers&gt;
     &lt;server&gt;
-      &lt;id&gt;github-nmdev&lt;/id&gt;
+      &lt;id&gt;github-nm-packages&lt;/id&gt;
       &lt;username&gt;${env.GITHUB_USERNAME}&lt;/username&gt;
       &lt;password&gt;${env.GITHUB_PACKAGES_TOKEN}&lt;/password&gt;
     &lt;/server&gt;
@@ -81,8 +81,8 @@ license as <code>nm.lic</code> in that directory. Keep the settings.xml server f
   &lt;/properties&gt;
   &lt;repositories&gt;
     &lt;repository&gt;
-      &lt;id&gt;github-nmdev&lt;/id&gt;
-      &lt;url&gt;https://maven.pkg.github.com/nmltd/nmdev&lt;/url&gt;
+      &lt;id&gt;github-nm-packages&lt;/id&gt;
+      &lt;url&gt;https://maven.pkg.github.com/nmltd/maven-packages&lt;/url&gt;
       &lt;releases&gt;&lt;enabled&gt;true&lt;/enabled&gt;&lt;/releases&gt;
       &lt;snapshots&gt;&lt;enabled&gt;false&lt;/enabled&gt;&lt;/snapshots&gt;
     &lt;/repository&gt;
@@ -90,7 +90,7 @@ license as <code>nm.lic</code> in that directory. Keep the settings.xml server f
   &lt;dependencies&gt;
     &lt;dependency&gt;
       &lt;groupId&gt;dev.nm&lt;/groupId&gt;
-      &lt;artifactId&gt;nmdev&lt;/artifactId&gt;
+      &lt;artifactId&gt;nmdev-dist&lt;/artifactId&gt;
       &lt;version&gt;1.2.6&lt;/version&gt;
     &lt;/dependency&gt;
   &lt;/dependencies&gt;
@@ -136,8 +136,7 @@ customer JAR contains its runtime dependencies; this application does not need
 the private parent POM, nmutils/nmlicense dependencies, or an obfuscation plugin.</p>
 <h2>7. Customer setup checklist</h2>
 <ul>
-<li>Obtain package access for the GitHub account that owns your token. A token
-  alone does not grant access to a package your account cannot read.</li>
+<li>The binary package is public. You do not need access to the private NMDEV source repository.</li>
 <li>Create a classic token with <code>read:packages</code>; authorize organization SSO when
   your organization requires it. Keep it in your local secret manager/environment.</li>
 <li>On macOS/Linux use <code>~/.m2/settings.xml</code>; on Windows use
@@ -147,11 +146,10 @@ the private parent POM, nmutils/nmlicense dependencies, or an obfuscation plugin
   Request the modules used by your application and replace expired trials.</li>
 <li>Package authentication happens during Maven download. License validation
   happens when Java executes. Fix the failing stage independently.</li>
-<li>A 404 can also indicate inaccessible private packages. Check the exact
-  <code>dev.nm:nmdev:1.2.6</code> coordinates and account permissions before changing code.</li>
+<li>For a 404, check the exact <code>dev.nm:nmdev-dist:1.2.6</code> coordinates and public repository URL before changing code.</li>
 <li>Verify the first matrix example, then run the tutorials relevant to your task.</li>
 <li>When requesting help, include Java/Maven/OS versions, exact dependency version,
   working directory, command and error text. Remove tokens and license contents.</li>
 </ul>
 <p>Public API reference: https://nmltd.github.io/nmdev/. Release notes:
-https://github.com/nmltd/nmdev/releases/tag/v1.2.6 (repository access may be required).</p><footer><a href="tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/Getting-Started.md">Edit this page</a></footer></main></body></html>
+https://github.com/nmltd/maven-packages/releases/tag/nmdev-1.2.6-validated.</p><footer><a href="tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/Getting-Started.md">Edit this page</a></footer></main></body></html>

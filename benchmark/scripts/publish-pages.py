@@ -127,13 +127,17 @@ def main():
         note=f'<p role="note"><strong>2000 × 2000 · {threads} requested compute thread(s).</strong> Four libraries; multiplication, LU, Cholesky, QR and solve. Two JVM forks; two 100 ms warmups and three 200 ms measurements per fork. One JMH worker. Each fork validates 2000-square outputs before timing. Native worker counts are not independently audited. <a href="results-2000-{threads}thread.html">Timing tables and evidence</a>.</p>'
         large_chart=large_chart.replace('<h1>NM Dev benchmark explorer</h1>','<h1>NM Dev benchmark explorer</h1>'+note)
         (output/name).write_text(large_chart)
-        report=archive_links((large/'README.md').read_text(),large)
+        report=f'[Open the interactive {threads}-thread chart]({name})\n\n'+archive_links((large/'README.md').read_text(),large)
         (output/f'results-2000-{threads}thread.html').write_text(page(f'2000 × 2000 · {threads} threads',report,'results.html'))
         large_links.append(f'<a href="{name}">2000 × 2000 · {threads} thread(s)</a>')
     if large_links:
         links='<p><strong>Large-matrix comparisons:</strong> '+' · '.join(large_links)+'</p>'
-        for name in ['benchmarks.html']+[f'benchmarks-2000-{t}thread.html' for t in [1,4] if (output/f'benchmarks-2000-{t}thread.html').exists()]:
-            p=output/name;p.write_text(p.read_text().replace('<h1>NM Dev benchmark explorer</h1>','<h1>NM Dev benchmark explorer</h1>'+links))
+        for name in ['benchmarks.html','results.html']+[f'benchmarks-2000-{t}thread.html' for t in [1,4] if (output/f'benchmarks-2000-{t}thread.html').exists()]:
+            p=output/name
+            text=p.read_text()
+            if name=='results.html': text=text.replace('<main>','<main>'+links,1)
+            else: text=text.replace('<h1>NM Dev benchmark explorer</h1>','<h1>NM Dev benchmark explorer</h1>'+links)
+            p.write_text(text)
     (output/'.nojekyll').write_text('')
     build_tutorials(repo, output)
     print(f'Generated {len(pages)+1} benchmark Pages from {source.name}; raw measurements unchanged.')

@@ -39,3 +39,17 @@ for source in (root/'tutorials').glob('*.md'):
  if not source.with_suffix('.html').exists():errors.append(f'Missing generated tutorial: {source}')
 if errors:print('\n'.join(errors));sys.exit(1)
 print(f'Checked {len(pages)} pages: internal links, anchors, global navigation and chart points passed.')
+
+# Additional profile pages can have fewer libraries/operations than the baseline.
+for path in pages:
+    text=path.read_text()
+    payload=re.search(r'<script type="application/json" id="benchmark-data">(.*?)</script>',text,re.S)
+    if not payload: continue
+    dataset=json.loads(payload.group(1))
+    expected={(lib['id'],size,op) for lib in dataset['libraries'] for size in dataset['sizes'] for op in dataset['operations']}
+    actual={(point['library'],point['size'],point['operation']) for point in dataset['points']}
+    if expected!=actual or len(actual)!=len(dataset['points']):
+        raise SystemExit(f'Incomplete or duplicate chart profile: {path}')
+    if any(point['mean']<=0 for point in dataset['points']):
+        raise SystemExit(f'Nonpositive logarithmic chart value: {path}')
+print('All chart profiles have complete, unique library/size/operation matrices.')
