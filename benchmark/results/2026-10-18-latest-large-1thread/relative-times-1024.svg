@@ -1,0 +1,472 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink" width="936pt" height="576pt" viewBox="0 0 936 576" version="1.1">
+ <metadata>
+  <rdf:RDF>
+   <ns2:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <ns2:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </ns2:Agent>
+    </dc:creator>
+   </ns2:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 576  L 936 576  L 936 0  L 0 0  z " style="fill: #ffffff" />
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 86.2 458.4528  L 925.2 458.4528  L 925.2 50.856  L 86.2 50.856  z " style="fill: #ffffff" />
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 542.76026 458.4528  L 542.76026 50.856  " clip-path="url(#p319f92018b)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square" />
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="md35b650bce" d="M 0 0  L 0 3.5  " style="stroke: #000000; stroke-width: 0.8" />
+      </defs>
+      <g>
+       <use xlink:href="#md35b650bce" x="542.76026" y="458.4528" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_1">
+      
+      <g transform="translate(533.96026 473.051238)">
+       <text>
+        <tspan x="0" y="-0.976562" style="font-size: 10px; font-family: 'DejaVu Sans'">1</tspan>
+        <tspan x="6.362305" y="-0.976562" style="font-size: 10px; font-family: 'DejaVu Sans'">0</tspan>
+        <tspan x="12.820312" y="-4.804688" style="font-size: 7px; font-family: 'DejaVu Sans'">0</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <defs>
+       <path id="m645c25228e" d="M 0 0  L 0 2  " style="stroke: #000000; stroke-width: 0.6" />
+      </defs>
+      <g>
+       <use xlink:href="#m645c25228e" x="168.940067" y="458.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m645c25228e" x="263.116453" y="458.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m645c25228e" x="329.935661" y="458.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m645c25228e" x="381.764666" y="458.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#m645c25228e" x="424.112047" y="458.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m645c25228e" x="459.916247" y="458.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#m645c25228e" x="490.931256" y="458.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_9">
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m645c25228e" x="518.288432" y="458.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_10">
+     <g id="line2d_11">
+      <g>
+       <use xlink:href="#m645c25228e" x="703.755855" y="458.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_11">
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m645c25228e" x="797.93224" y="458.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_12">
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#m645c25228e" x="864.751449" y="458.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_13">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m645c25228e" x="916.580454" y="458.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="text_2">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="505.7" y="486.729362" transform="rotate(-0 505.7 486.729362)">Time / NM Dev time (log scale; lower is faster)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_15">
+      <defs>
+       <path id="m6ac8ae3f9b" d="M 0 0  L -3.5 0  " style="stroke: #000000; stroke-width: 0.8" />
+      </defs>
+      <g>
+       <use xlink:href="#m6ac8ae3f9b" x="86.2" y="93.021883" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="79.2" y="96.821102" transform="rotate(-0 79.2 96.821102)">multiplication</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m6ac8ae3f9b" x="86.2" y="173.838141" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="79.2" y="177.63736" transform="rotate(-0 79.2 177.63736)">cholesky</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_17">
+      <g>
+       <use xlink:href="#m6ac8ae3f9b" x="86.2" y="254.6544" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="79.2" y="258.453619" transform="rotate(-0 79.2 258.453619)">lu</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#m6ac8ae3f9b" x="86.2" y="335.470659" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="79.2" y="339.269877" transform="rotate(-0 79.2 339.269877)">qr</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_19">
+      <g>
+       <use xlink:href="#m6ac8ae3f9b" x="86.2" y="416.286917" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="79.2" y="420.086136" transform="rotate(-0 79.2 420.086136)">solve</text>
+     </g>
+    </g>
+   </g>
+   <g id="line2d_20">
+    <path d="M 542.76026 458.4528  L 542.76026 50.856  " clip-path="url(#p319f92018b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333" />
+   </g>
+   <g id="patch_3">
+    <path d="M 86.2 458.4528  L 86.2 50.856  " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square" />
+   </g>
+   <g id="patch_4">
+    <path d="M 925.2 458.4528  L 925.2 50.856  " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square" />
+   </g>
+   <g id="patch_5">
+    <path d="M 86.2 458.4528  L 925.2 458.4528  " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square" />
+   </g>
+   <g id="patch_6">
+    <path d="M 86.2 50.856  L 925.2 50.856  " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square" />
+   </g>
+   <g id="point-1024-NMDEV-multiplication" data-tooltip="NM Dev 1.2.6 · multiplication · 1024 × 1024&#10;Mean: 801.604 ms/op&#10;99.9% confidence interval: [772.426, 830.781] ms/op&#10;JMH error half-width: ±29.2 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6 · multiplication · 1024 × 1024&#10;Mean: 801.604 ms/op&#10;99.9% confidence interval: [772.426, 830.781] ms/op&#10;JMH error half-width: ±29.2 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>NM Dev 1.2.6 · multiplication · 1024 × 1024
+Mean: 801.604 ms/op
+99.9% confidence interval: [772.426, 830.781] ms/op
+JMH error half-width: ±29.2 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><defs>
+     <path id="m9701afdcaf" d="M 0 2.645751  C 0.701661 2.645751 1.374679 2.366978 1.870829 1.870829  C 2.366978 1.374679 2.645751 0.701661 2.645751 0  C 2.645751 -0.701661 2.366978 -1.374679 1.870829 -1.870829  C 1.374679 -2.366978 0.701661 -2.645751 0 -2.645751  C -0.701661 -2.645751 -1.374679 -2.366978 -1.870829 -1.870829  C -2.366978 -1.374679 -2.645751 -0.701661 -2.645751 0  C -2.645751 0.701661 -2.366978 1.374679 -1.870829 1.870829  C -1.374679 2.366978 -0.701661 2.645751 0 2.645751  z " style="stroke: #126c78" />
+    </defs>
+    <g clip-path="url(#p319f92018b)">
+     <use xlink:href="#m9701afdcaf" x="542.76026" y="69.383127" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-1024-NMDEV-cholesky" data-tooltip="NM Dev 1.2.6 · cholesky · 1024 × 1024&#10;Mean: 154.113 ms/op&#10;99.9% confidence interval: [137.145, 171.08] ms/op&#10;JMH error half-width: ±17 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6 · cholesky · 1024 × 1024&#10;Mean: 154.113 ms/op&#10;99.9% confidence interval: [137.145, 171.08] ms/op&#10;JMH error half-width: ±17 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>NM Dev 1.2.6 · cholesky · 1024 × 1024
+Mean: 154.113 ms/op
+99.9% confidence interval: [137.145, 171.08] ms/op
+JMH error half-width: ±17 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#m9701afdcaf" x="542.76026" y="150.199386" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-1024-NMDEV-lu" data-tooltip="NM Dev 1.2.6 · lu · 1024 × 1024&#10;Mean: 71.2668 ms/op&#10;99.9% confidence interval: [41.5329, 101.001] ms/op&#10;JMH error half-width: ±29.7 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6 · lu · 1024 × 1024&#10;Mean: 71.2668 ms/op&#10;99.9% confidence interval: [41.5329, 101.001] ms/op&#10;JMH error half-width: ±29.7 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>NM Dev 1.2.6 · lu · 1024 × 1024
+Mean: 71.2668 ms/op
+99.9% confidence interval: [41.5329, 101.001] ms/op
+JMH error half-width: ±29.7 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#m9701afdcaf" x="542.76026" y="231.015644" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-1024-NMDEV-qr" data-tooltip="NM Dev 1.2.6 · qr · 1024 × 1024&#10;Mean: 930.814 ms/op&#10;99.9% confidence interval: [725.172, 1136.46] ms/op&#10;JMH error half-width: ±206 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6 · qr · 1024 × 1024&#10;Mean: 930.814 ms/op&#10;99.9% confidence interval: [725.172, 1136.46] ms/op&#10;JMH error half-width: ±206 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>NM Dev 1.2.6 · qr · 1024 × 1024
+Mean: 930.814 ms/op
+99.9% confidence interval: [725.172, 1136.46] ms/op
+JMH error half-width: ±206 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#m9701afdcaf" x="542.76026" y="311.831903" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-1024-NMDEV-solve" data-tooltip="NM Dev 1.2.6 · solve · 1024 × 1024&#10;Mean: 92.2364 ms/op&#10;99.9% confidence interval: [48.9554, 135.517] ms/op&#10;JMH error half-width: ±43.3 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6 · solve · 1024 × 1024&#10;Mean: 92.2364 ms/op&#10;99.9% confidence interval: [48.9554, 135.517] ms/op&#10;JMH error half-width: ±43.3 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>NM Dev 1.2.6 · solve · 1024 × 1024
+Mean: 92.2364 ms/op
+99.9% confidence interval: [48.9554, 135.517] ms/op
+JMH error half-width: ±43.3 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#m9701afdcaf" x="542.76026" y="392.648161" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-1024-EJML-multiplication" data-tooltip="EJML 0.46.1 · multiplication · 1024 × 1024&#10;Mean: 345.726 ms/op&#10;99.9% confidence interval: [323.373, 368.078] ms/op&#10;JMH error half-width: ±22.4 ms/op&#10;Time / NM Dev: 0.4313× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · multiplication · 1024 × 1024&#10;Mean: 345.726 ms/op&#10;99.9% confidence interval: [323.373, 368.078] ms/op&#10;JMH error half-width: ±22.4 ms/op&#10;Time / NM Dev: 0.4313× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>EJML 0.46.1 · multiplication · 1024 × 1024
+Mean: 345.726 ms/op
+99.9% confidence interval: [323.373, 368.078] ms/op
+JMH error half-width: ±22.4 ms/op
+Time / NM Dev: 0.4313× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><defs>
+     <path id="mbdaa9b7c23" d="M 0 2.645751  C 0.701661 2.645751 1.374679 2.366978 1.870829 1.870829  C 2.366978 1.374679 2.645751 0.701661 2.645751 0  C 2.645751 -0.701661 2.366978 -1.374679 1.870829 -1.870829  C 1.374679 -2.366978 0.701661 -2.645751 0 -2.645751  C -0.701661 -2.645751 -1.374679 -2.366978 -1.870829 -1.870829  C -2.366978 -1.374679 -2.645751 -0.701661 -2.645751 0  C -2.645751 0.701661 -2.366978 1.374679 -1.870829 1.870829  C -1.374679 2.366978 -0.701661 2.645751 0 2.645751  z " style="stroke: #4678ba" />
+    </defs>
+    <g clip-path="url(#p319f92018b)">
+     <use xlink:href="#mbdaa9b7c23" x="347.43044" y="85.142298" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-1024-EJML-cholesky" data-tooltip="EJML 0.46.1 · cholesky · 1024 × 1024&#10;Mean: 52.6727 ms/op&#10;99.9% confidence interval: [47.7525, 57.593] ms/op&#10;JMH error half-width: ±4.92 ms/op&#10;Time / NM Dev: 0.3418× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · cholesky · 1024 × 1024&#10;Mean: 52.6727 ms/op&#10;99.9% confidence interval: [47.7525, 57.593] ms/op&#10;JMH error half-width: ±4.92 ms/op&#10;Time / NM Dev: 0.3418× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>EJML 0.46.1 · cholesky · 1024 × 1024
+Mean: 52.6727 ms/op
+99.9% confidence interval: [47.7525, 57.593] ms/op
+JMH error half-width: ±4.92 ms/op
+Time / NM Dev: 0.3418× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#mbdaa9b7c23" x="293.401161" y="165.958556" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-1024-EJML-lu" data-tooltip="EJML 0.46.1 · lu · 1024 × 1024&#10;Mean: 313.81 ms/op&#10;99.9% confidence interval: [293.569, 334.05] ms/op&#10;JMH error half-width: ±20.2 ms/op&#10;Time / NM Dev: 4.4033× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · lu · 1024 × 1024&#10;Mean: 313.81 ms/op&#10;99.9% confidence interval: [293.569, 334.05] ms/op&#10;JMH error half-width: ±20.2 ms/op&#10;Time / NM Dev: 4.4033× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>EJML 0.46.1 · lu · 1024 × 1024
+Mean: 313.81 ms/op
+99.9% confidence interval: [293.569, 334.05] ms/op
+JMH error half-width: ±20.2 ms/op
+Time / NM Dev: 4.4033× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#mbdaa9b7c23" x="887.063636" y="246.774815" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-1024-EJML-qr" data-tooltip="EJML 0.46.1 · qr · 1024 × 1024&#10;Mean: 634.61 ms/op&#10;99.9% confidence interval: [607.974, 661.246] ms/op&#10;JMH error half-width: ±26.6 ms/op&#10;Time / NM Dev: 0.6818× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · qr · 1024 × 1024&#10;Mean: 634.61 ms/op&#10;99.9% confidence interval: [607.974, 661.246] ms/op&#10;JMH error half-width: ±26.6 ms/op&#10;Time / NM Dev: 0.6818× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>EJML 0.46.1 · qr · 1024 × 1024
+Mean: 634.61 ms/op
+99.9% confidence interval: [607.974, 661.246] ms/op
+JMH error half-width: ±26.6 ms/op
+Time / NM Dev: 0.6818× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#mbdaa9b7c23" x="453.790489" y="327.591073" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-1024-EJML-solve" data-tooltip="EJML 0.46.1 · solve · 1024 × 1024&#10;Mean: 325.049 ms/op&#10;99.9% confidence interval: [252.368, 397.729] ms/op&#10;JMH error half-width: ±72.7 ms/op&#10;Time / NM Dev: 3.5241× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · solve · 1024 × 1024&#10;Mean: 325.049 ms/op&#10;99.9% confidence interval: [252.368, 397.729] ms/op&#10;JMH error half-width: ±72.7 ms/op&#10;Time / NM Dev: 3.5241× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>EJML 0.46.1 · solve · 1024 × 1024
+Mean: 325.049 ms/op
+99.9% confidence interval: [252.368, 397.729] ms/op
+JMH error half-width: ±72.7 ms/op
+Time / NM Dev: 3.5241× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#mbdaa9b7c23" x="835.329179" y="408.407332" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-1024-JBLAS-multiplication" data-tooltip="jblas 1.2.5 (native) · multiplication · 1024 × 1024&#10;Mean: 132.309 ms/op&#10;99.9% confidence interval: [116.872, 147.746] ms/op&#10;JMH error half-width: ±15.4 ms/op&#10;Time / NM Dev: 0.1651× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="jblas 1.2.5 (native) · multiplication · 1024 × 1024&#10;Mean: 132.309 ms/op&#10;99.9% confidence interval: [116.872, 147.746] ms/op&#10;JMH error half-width: ±15.4 ms/op&#10;Time / NM Dev: 0.1651× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>jblas 1.2.5 (native) · multiplication · 1024 × 1024
+Mean: 132.309 ms/op
+99.9% confidence interval: [116.872, 147.746] ms/op
+JMH error half-width: ±15.4 ms/op
+Time / NM Dev: 0.1651× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><defs>
+     <path id="meb0611d77d" d="M 0 2.645751  C 0.701661 2.645751 1.374679 2.366978 1.870829 1.870829  C 2.366978 1.374679 2.645751 0.701661 2.645751 0  C 2.645751 -0.701661 2.366978 -1.374679 1.870829 -1.870829  C 1.374679 -2.366978 0.701661 -2.645751 0 -2.645751  C -0.701661 -2.645751 -1.374679 -2.366978 -1.870829 -1.870829  C -2.366978 -1.374679 -2.645751 -0.701661 -2.645751 0  C -2.645751 0.701661 -2.366978 1.374679 -1.870829 1.870829  C -1.374679 2.366978 -0.701661 2.645751 0 2.645751  z " style="stroke: #6750a4" />
+    </defs>
+    <g clip-path="url(#p319f92018b)">
+     <use xlink:href="#meb0611d77d" x="124.336364" y="100.901468" style="fill: #6750a4; stroke: #6750a4" />
+    </g>
+   </g>
+   <g id="point-1024-JBLAS-cholesky" data-tooltip="jblas 1.2.5 (native) · cholesky · 1024 × 1024&#10;Mean: 27.3732 ms/op&#10;99.9% confidence interval: [24.7624, 29.984] ms/op&#10;JMH error half-width: ±2.61 ms/op&#10;Time / NM Dev: 0.1776× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="jblas 1.2.5 (native) · cholesky · 1024 × 1024&#10;Mean: 27.3732 ms/op&#10;99.9% confidence interval: [24.7624, 29.984] ms/op&#10;JMH error half-width: ±2.61 ms/op&#10;Time / NM Dev: 0.1776× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>jblas 1.2.5 (native) · cholesky · 1024 × 1024
+Mean: 27.3732 ms/op
+99.9% confidence interval: [24.7624, 29.984] ms/op
+JMH error half-width: ±2.61 ms/op
+Time / NM Dev: 0.1776× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#meb0611d77d" x="141.374326" y="181.717727" style="fill: #6750a4; stroke: #6750a4" />
+    </g>
+   </g>
+   <g id="point-1024-JBLAS-lu" data-tooltip="jblas 1.2.5 (native) · lu · 1024 × 1024&#10;Mean: 54.9399 ms/op&#10;99.9% confidence interval: [48.1697, 61.71] ms/op&#10;JMH error half-width: ±6.77 ms/op&#10;Time / NM Dev: 0.7709× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="jblas 1.2.5 (native) · lu · 1024 × 1024&#10;Mean: 54.9399 ms/op&#10;99.9% confidence interval: [48.1697, 61.71] ms/op&#10;JMH error half-width: ±6.77 ms/op&#10;Time / NM Dev: 0.7709× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>jblas 1.2.5 (native) · lu · 1024 × 1024
+Mean: 54.9399 ms/op
+99.9% confidence interval: [48.1697, 61.71] ms/op
+JMH error half-width: ±6.77 ms/op
+Time / NM Dev: 0.7709× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#meb0611d77d" x="482.326351" y="262.533985" style="fill: #6750a4; stroke: #6750a4" />
+    </g>
+   </g>
+   <g id="point-1024-JBLAS-qr" data-tooltip="jblas 1.2.5 (native) · qr · 1024 × 1024&#10;Mean: 295.971 ms/op&#10;99.9% confidence interval: [145.42, 446.521] ms/op&#10;JMH error half-width: ±151 ms/op&#10;Time / NM Dev: 0.3180× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="jblas 1.2.5 (native) · qr · 1024 × 1024&#10;Mean: 295.971 ms/op&#10;99.9% confidence interval: [145.42, 446.521] ms/op&#10;JMH error half-width: ±151 ms/op&#10;Time / NM Dev: 0.3180× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>jblas 1.2.5 (native) · qr · 1024 × 1024
+Mean: 295.971 ms/op
+99.9% confidence interval: [145.42, 446.521] ms/op
+JMH error half-width: ±151 ms/op
+Time / NM Dev: 0.3180× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#meb0611d77d" x="276.62855" y="343.350244" style="fill: #6750a4; stroke: #6750a4" />
+    </g>
+   </g>
+   <g id="point-1024-JBLAS-solve" data-tooltip="jblas 1.2.5 (native) · solve · 1024 × 1024&#10;Mean: 42.0037 ms/op&#10;99.9% confidence interval: [37.3594, 46.648] ms/op&#10;JMH error half-width: ±4.64 ms/op&#10;Time / NM Dev: 0.4554× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="jblas 1.2.5 (native) · solve · 1024 × 1024&#10;Mean: 42.0037 ms/op&#10;99.9% confidence interval: [37.3594, 46.648] ms/op&#10;JMH error half-width: ±4.64 ms/op&#10;Time / NM Dev: 0.4554× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>jblas 1.2.5 (native) · solve · 1024 × 1024
+Mean: 42.0037 ms/op
+99.9% confidence interval: [37.3594, 46.648] ms/op
+JMH error half-width: ±4.64 ms/op
+Time / NM Dev: 0.4554× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#meb0611d77d" x="360.059298" y="424.166502" style="fill: #6750a4; stroke: #6750a4" />
+    </g>
+   </g>
+   <g id="point-1024-OJALGO-multiplication" data-tooltip="ojAlgo 57.5.0 · multiplication · 1024 × 1024&#10;Mean: 352.348 ms/op&#10;99.9% confidence interval: [311.383, 393.314] ms/op&#10;JMH error half-width: ±41 ms/op&#10;Time / NM Dev: 0.4396× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="ojAlgo 57.5.0 · multiplication · 1024 × 1024&#10;Mean: 352.348 ms/op&#10;99.9% confidence interval: [311.383, 393.314] ms/op&#10;JMH error half-width: ±41 ms/op&#10;Time / NM Dev: 0.4396× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>ojAlgo 57.5.0 · multiplication · 1024 × 1024
+Mean: 352.348 ms/op
+99.9% confidence interval: [311.383, 393.314] ms/op
+JMH error half-width: ±41 ms/op
+Time / NM Dev: 0.4396× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><defs>
+     <path id="mcd3808531e" d="M 0 2.645751  C 0.701661 2.645751 1.374679 2.366978 1.870829 1.870829  C 2.366978 1.374679 2.645751 0.701661 2.645751 0  C 2.645751 -0.701661 2.366978 -1.374679 1.870829 -1.870829  C 1.374679 -2.366978 0.701661 -2.645751 0 -2.645751  C -0.701661 -2.645751 -1.374679 -2.366978 -1.870829 -1.870829  C -2.366978 -1.374679 -2.645751 -0.701661 -2.645751 0  C -2.645751 0.701661 -2.366978 1.374679 -1.870829 1.870829  C -1.374679 2.366978 -0.701661 2.645751 0 2.645751  z " style="stroke: #7a756e" />
+    </defs>
+    <g clip-path="url(#p319f92018b)">
+     <use xlink:href="#mcd3808531e" x="351.837656" y="116.660639" style="fill: #7a756e; stroke: #7a756e" />
+    </g>
+   </g>
+   <g id="point-1024-OJALGO-cholesky" data-tooltip="ojAlgo 57.5.0 · cholesky · 1024 × 1024&#10;Mean: 73.9597 ms/op&#10;99.9% confidence interval: [58.2158, 89.7036] ms/op&#10;JMH error half-width: ±15.7 ms/op&#10;Time / NM Dev: 0.4799× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="ojAlgo 57.5.0 · cholesky · 1024 × 1024&#10;Mean: 73.9597 ms/op&#10;99.9% confidence interval: [58.2158, 89.7036] ms/op&#10;JMH error half-width: ±15.7 ms/op&#10;Time / NM Dev: 0.4799× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>ojAlgo 57.5.0 · cholesky · 1024 × 1024
+Mean: 73.9597 ms/op
+99.9% confidence interval: [58.2158, 89.7036] ms/op
+JMH error half-width: ±15.7 ms/op
+Time / NM Dev: 0.4799× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#mcd3808531e" x="372.237983" y="197.476897" style="fill: #7a756e; stroke: #7a756e" />
+    </g>
+   </g>
+   <g id="point-1024-OJALGO-lu" data-tooltip="ojAlgo 57.5.0 · lu · 1024 × 1024&#10;Mean: 147.262 ms/op&#10;99.9% confidence interval: [108.354, 186.171] ms/op&#10;JMH error half-width: ±38.9 ms/op&#10;Time / NM Dev: 2.0664× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="ojAlgo 57.5.0 · lu · 1024 × 1024&#10;Mean: 147.262 ms/op&#10;99.9% confidence interval: [108.354, 186.171] ms/op&#10;JMH error half-width: ±38.9 ms/op&#10;Time / NM Dev: 2.0664× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>ojAlgo 57.5.0 · lu · 1024 × 1024
+Mean: 147.262 ms/op
+99.9% confidence interval: [108.354, 186.171] ms/op
+JMH error half-width: ±38.9 ms/op
+Time / NM Dev: 2.0664× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#mcd3808531e" x="711.336747" y="278.293156" style="fill: #7a756e; stroke: #7a756e" />
+    </g>
+   </g>
+   <g id="point-1024-OJALGO-qr" data-tooltip="ojAlgo 57.5.0 · qr · 1024 × 1024&#10;Mean: 307.867 ms/op&#10;99.9% confidence interval: [238.624, 377.11] ms/op&#10;JMH error half-width: ±69.2 ms/op&#10;Time / NM Dev: 0.3308× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="ojAlgo 57.5.0 · qr · 1024 × 1024&#10;Mean: 307.867 ms/op&#10;99.9% confidence interval: [238.624, 377.11] ms/op&#10;JMH error half-width: ±69.2 ms/op&#10;Time / NM Dev: 0.3308× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>ojAlgo 57.5.0 · qr · 1024 × 1024
+Mean: 307.867 ms/op
+99.9% confidence interval: [238.624, 377.11] ms/op
+JMH error half-width: ±69.2 ms/op
+Time / NM Dev: 0.3308× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#mcd3808531e" x="285.781199" y="359.109414" style="fill: #7a756e; stroke: #7a756e" />
+    </g>
+   </g>
+   <g id="point-1024-OJALGO-solve" data-tooltip="ojAlgo 57.5.0 · solve · 1024 × 1024&#10;Mean: 147.044 ms/op&#10;99.9% confidence interval: [128.68, 165.408] ms/op&#10;JMH error half-width: ±18.4 ms/op&#10;Time / NM Dev: 1.5942× (lower is faster)&#10;2 JVM forks · 6 measured iteration means" tabindex="0" role="img" aria-label="ojAlgo 57.5.0 · solve · 1024 × 1024&#10;Mean: 147.044 ms/op&#10;99.9% confidence interval: [128.68, 165.408] ms/op&#10;JMH error half-width: ±18.4 ms/op&#10;Time / NM Dev: 1.5942× (lower is faster)&#10;2 JVM forks · 6 measured iteration means">
+    <title>ojAlgo 57.5.0 · solve · 1024 × 1024
+Mean: 147.044 ms/op
+99.9% confidence interval: [128.68, 165.408] ms/op
+JMH error half-width: ±18.4 ms/op
+Time / NM Dev: 1.5942× (lower is faster)
+2 JVM forks · 6 measured iteration means</title><g clip-path="url(#p319f92018b)">
+     <use xlink:href="#mcd3808531e" x="651.084123" y="439.925673" style="fill: #7a756e; stroke: #7a756e" />
+    </g>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(86.2 22.324875)">Dense linear algebra — 1024 × 1024</text>
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(86.2 35.856)">4 libraries · ratios of measured means on a shared VM</text>
+   </g>
+   <g id="legend_1">
+    <g id="PathCollection_1">
+     <g>
+      <use xlink:href="#m9701afdcaf" x="407.706875" y="515.864542" style="fill: #126c78; stroke: #126c78" />
+     </g>
+    </g>
+    <g id="text_9">
+     <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="423.906875" y="518.227042" transform="rotate(-0 423.906875 518.227042)">NM Dev 1.2.6</text>
+    </g>
+    <g id="PathCollection_2">
+     <g>
+      <use xlink:href="#mbdaa9b7c23" x="407.706875" y="529.074854" style="fill: #4678ba; stroke: #4678ba" />
+     </g>
+    </g>
+    <g id="text_10">
+     <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="423.906875" y="531.437354" transform="rotate(-0 423.906875 531.437354)">EJML 0.46.1</text>
+    </g>
+    <g id="PathCollection_3">
+     <g>
+      <use xlink:href="#meb0611d77d" x="511.82" y="515.864542" style="fill: #6750a4; stroke: #6750a4" />
+     </g>
+    </g>
+    <g id="text_11">
+     <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="528.02" y="518.227042" transform="rotate(-0 528.02 518.227042)">jblas 1.2.5 (native)</text>
+    </g>
+    <g id="PathCollection_4">
+     <g>
+      <use xlink:href="#mcd3808531e" x="511.82" y="529.074854" style="fill: #7a756e; stroke: #7a756e" />
+     </g>
+    </g>
+    <g id="text_12">
+     <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="528.02" y="531.437354" transform="rotate(-0 528.02 531.437354)">ojAlgo 57.5.0</text>
+    </g>
+   </g>
+  </g>
+  <g id="text_13">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start; fill: #555555" x="9.36" y="570.24" transform="rotate(-0 9.36 570.24)">2 JVM forks · JVM 17.0.20 · 1 worker · See report for backend details and confidence intervals</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p319f92018b">
+   <rect x="86.2" y="50.856" width="839" height="407.5968" />
+  </clipPath>
+ </defs>
+</svg>

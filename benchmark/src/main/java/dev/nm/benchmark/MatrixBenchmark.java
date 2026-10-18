@@ -26,7 +26,7 @@ public class MatrixBenchmark {
     @Setup(Level.Trial) public void setup() {
         Inputs inputs=new Inputs(size);
         adapter=create(library,inputs);
-        Validation.check(operation,inputs,adapter,adapter.run(operation));
+        Validation.checkRepeated(operation, inputs, adapter);
     }
     static Adapter create(String name,Inputs inputs) {
         switch(name){case "NMDEV":return new NmAdapter(inputs);case "EJML":return new EjmlAdapter(inputs);case "COMMONS":return new CommonsAdapter(inputs);case "JAMA":return new JamaAdapter(inputs);case "COLT":return new ColtAdapter(inputs);case "PARALLEL_COLT":return new ParallelColtAdapter(inputs);case "JBLAS":return new JblasAdapter(inputs);case "F2J_LAPACK":return new F2jLapackAdapter(inputs);case "MTJ":return new MtjAdapter(inputs);case "OJALGO":return new OjalgoAdapter(inputs);case "UJMP":return new UjmpAdapter(inputs);default:throw new IllegalArgumentException(name);}

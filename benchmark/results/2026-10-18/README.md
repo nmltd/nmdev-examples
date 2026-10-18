@@ -18,7 +18,7 @@ All 156 correctness cases (including size 4) passed twice. Each measured fork al
 
 Tables show **mean ± JMH 99.9% confidence half-width**, in milliseconds per operation. This is not standard deviation. Very small differences or overlapping intervals should not be treated as established rankings. Normalized charts use ratios of means and do not display ratio uncertainty.
 
-The adapters use different public APIs and sometimes different algorithms. In particular NM Dev uses its general inverse routine on the SPD task, while the other adapters use Cholesky-based inversion. Consult the [methodology](../../METHODOLOGY.md) and adapter source before interpreting any timing difference.
+The adapters use different public APIs and sometimes different algorithms. Correction: NM Dev Inverse detects symmetry and attempts Cholesky for SPD inputs, with LU fallback on a runtime exception. The exact measured JAR was verified by bytecode and constructor-breakpoint tracing; see the [fairness audit](../2026-10-18-fairness-audit/README.md). Consult the [methodology](../../METHODOLOGY.md) and adapter source before interpreting any timing difference.
 
 ## 64 × 64 matrices
 

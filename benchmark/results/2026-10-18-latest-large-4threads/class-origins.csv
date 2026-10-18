@@ -1,0 +1,12 @@
+library,class,loaded_jar,status
+NMDEV,dev.nm.algebra.linear.matrix.doubles.matrixtype.dense.DenseMatrix,nmdev-1.2.6.jar,PASS
+COMMONS,org.apache.commons.math4.legacy.linear.Array2DRowRealMatrix,commons-math4-legacy-4.0-SNAPSHOT.jar,PASS
+PARALLEL_COLT,cern.colt.matrix.tdouble.impl.DenseDoubleMatrix2D,parallelcolt-0.11.4.jar,PASS
+EJML,org.ejml.data.DMatrixRMaj,ejml-core-0.46.1.jar,PASS
+OJALGO,org.ojalgo.matrix.store.R064Store,ojalgo-57.5.0.jar,PASS
+COLT,cern.colt.matrix.impl.DenseDoubleMatrix2D,colt-1.2.0.jar,PASS
+JAMA,Jama.Matrix,jama-1.0.3.jar,PASS
+JBLAS,org.jblas.DoubleMatrix,jblas-1.2.5.jar,PASS
+MTJ,no.uib.cipr.matrix.DenseMatrix,mtj-1.0.4.jar,PASS
+UJMP,org.ujmp.core.Matrix,ujmp-core-0.3.0.jar,PASS
+F2J_LAPACK,org.netlib.blas.Dgemm,arpack_combined_all-0.1.jar,PASS

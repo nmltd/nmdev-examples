@@ -15,11 +15,17 @@ while IFS=$'\t' read -r filename sha256 url; do
   [[ -z "$filename" || "$filename" == \#* ]] && continue
   destination="$benchmark_root/target/lib/$filename"
   if [[ ! -f "$destination" ]]; then
-    curl --fail --location --silent --show-error --retry 2 "$url" --output "$destination"
+    if [[ "$url" == source:parallelcolt-0.11.4 ]]; then
+      python3 "$benchmark_root/scripts/build-parallelcolt.py" "$destination"
+    else
+      curl --fail --location --silent --show-error --retry 2 "$url" --output "$destination"
+    fi
   fi
   printf '%s  %s\n' "$sha256" "$destination" | sha256sum --check --status
 done < "$benchmark_root/dependencies.lock.tsv"
-cp "$NMDEV_JAR" "$benchmark_root/target/lib/nmdev-dist-1.2.6-SNAPSHOT.jar"
+if [[ ! "$NMDEV_JAR" -ef "$benchmark_root/target/lib/nmdev-1.2.6.jar" ]]; then
+  cp "$NMDEV_JAR" "$benchmark_root/target/lib/nmdev-1.2.6.jar"
+fi
 classpath=""
 for dependency in "$benchmark_root"/target/lib/*.jar; do
   classpath="${classpath:+$classpath:}$dependency"

@@ -13,7 +13,8 @@ final class F2jLapackAdapter implements Adapter {
  static void ok(intW info){if(info.val!=0)throw new IllegalStateException("LAPACK info="+info.val);}
  M matrix(double[] x){return new M(n,n,x);}
  M diagonal(double[] values){double[] d=new double[n*n];for(int i=0;i<n;i++)d[i+i*n]=values[i];return matrix(d);}
- public Object run(String op){intW info=new intW(0);double[] x;int[] piv=new int[n];switch(op){
+ public Object[] inputs(){return new Object[]{matrix(a),matrix(b),matrix(spd),new M(n,1,rhs)};}
+    public Object run(String op){intW info=new intW(0);double[] x;int[] piv=new int[n];switch(op){
  case "transpose":{x=new double[n*n];for(int i=0;i<n;i++)for(int j=0;j<n;j++)x[i+j*n]=a[j+i*n];return matrix(x);}
  case "addition":case "scale":{x=new double[n*n];for(int i=0;i<x.length;i++)x[i]=op.equals("addition")?a[i]+b[i]:a[i]*1.5;return matrix(x);}
  case "multiplication":{x=new double[n*n];Dgemm.dgemm("N","N",n,n,n,1,a,0,n,b,0,n,0,x,0,n);return matrix(x);}

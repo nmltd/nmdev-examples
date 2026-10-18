@@ -2,17 +2,19 @@
 
 [Suite](../../README.md) · [Methodology](../../METHODOLOGY.md) · [Library coverage](../../LIBRARY-COVERAGE.md)
 
+> Historical run: ojAlgo scalar multiplication returned a deferred expression. Its scaling timings are invalid for completed-work comparisons. Raw measurements are preserved. See the [fairness audit](../2026-10-18-fairness-audit/README.md).
+
 **13 operations × 11 libraries × 2 sizes = 286 measured cases**, containing 2,860 measured iteration means. Lower milliseconds per operation is faster. These are observations on a shared VM, not universal performance rankings.
 
 **[Interactive charts with tooltips](charts.html)** — download and open the self-contained HTML in a browser. Hover, tap or keyboard-focus a point for its version/backend, timing, confidence interval and ratio to NM Dev. GitHub inline image previews do not expose point tooltips. Standalone SVGs also contain native tooltip titles.
 
 ## Environment
 
-AMD EPYC 9V74 80-Core Processor; Linux-6.18.55-x86_64-with-glibc2.39. Visible CPUs: 9; container CPU quota: `800000 100000`. JVM 17.0.20. No exclusive CPU reservation or affinity pinning.
+AMD EPYC 9V74 80-Core Processor; Linux-6.18.55-x86_64-with-glibc2.39. Visible CPUs: 9; container CPU quota: `800000 100000`. JVM 17.0.20. No exclusive CPU reservation; any requested affinity is recorded below.
 
-2 JVM forks per case; 3 warmup iterations of 300 ms; 5 measurement iterations of 500 ms. One JMH worker. The fork options fix a 1 GiB heap and one active processor.
+2 JVM forks per case; 3 warmup iterations of 300 ms; 5 measurement iterations of 500 ms. One JMH worker. The fork options fix a 1 GiB heap. Requested computational threads: 1; requested CPU affinity: unrecorded. Affinity does not reserve a CPU exclusively.
 
-Native thread environment variables request one thread. Parallel Colt, ojAlgo and UJMP also receive explicit library thread limits; MTJ uses an explicitly forced pure-Java F2J backend. Native jblas thread counts are not independently audited. See the environment and backend records below.
+Native thread environment variables request the recorded computational thread count. Parallel Colt, ojAlgo and UJMP also receive explicit library thread limits; MTJ uses an explicitly forced pure-Java F2J backend. Native jblas thread counts are not independently audited. See the environment and backend records below.
 
 ## Versions and backends
 
@@ -38,7 +40,7 @@ All **66 targeted row-swap/row-cycle cases** also passed. These check determinan
 
 Tables show **mean ± JMH 99.9% confidence half-width**, in ms/op. These error bars are not standard deviations. Overlapping intervals or high uncertainty make fine rankings unreliable. Chart ratios are ratios of means and do not show ratio uncertainty.
 
-Native input conversion is outside timing; necessary copies, allocations and full factor output materialization are timed. This compares public API tasks, not identical algorithms. NM Dev uses a general inverse routine on SPD inputs; other adapters may use Cholesky-based inversion. F2J transpose/addition/scaling use adapter-owned Java loops because LAPACK does not define those matrix convenience APIs.
+Native input conversion is outside timing; necessary copies, allocations and full factor output materialization are timed. This compares public API tasks, not identical algorithms. NM Dev Inverse detects symmetry and attempts Cholesky on SPD inputs, falling back to LU if that path raises a runtime exception. The exact measured JAR was verified separately by bytecode and runtime constructor-breakpoint tracing; see the [fairness audit](../2026-10-18-fairness-audit/README.md). F2J transpose/addition/scaling use adapter-owned Java loops because LAPACK does not define those matrix convenience APIs.
 
 ## 64 × 64 matrices
 

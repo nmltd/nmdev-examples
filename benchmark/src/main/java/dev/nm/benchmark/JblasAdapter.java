@@ -5,7 +5,8 @@ import org.jblas.*;
 final class JblasAdapter implements Adapter {
  final DoubleMatrix a,b,spd,rhs;
  JblasAdapter(Inputs in){a=new DoubleMatrix(in.a);b=new DoubleMatrix(in.b);spd=new DoubleMatrix(in.spd);rhs=new DoubleMatrix(in.rhs);}
- public Object run(String op){switch(op){
+ public Object[] inputs(){return new Object[]{a,b,spd,rhs};}
+    public Object run(String op){switch(op){
  case "transpose":return a.transpose();case "addition":return a.add(b);case "scale":return a.mul(1.5);case "multiplication":return a.mmul(b);
  case "determinant":{Decompose.LUDecomposition<DoubleMatrix> f=Decompose.lu(a);double d=f.u.diag().prod();int[] pivot=new int[a.rows];for(int i=0;i<a.rows;i++)for(int j=0;j<a.rows;j++)if(f.p.get(i,j)>0.5)pivot[i]=j;int inversions=0;for(int i=0;i<pivot.length;i++)for(int j=i+1;j<pivot.length;j++)if(pivot[i]>pivot[j])inversions++;return inversions%2==0?d:-d;}
  case "inverse":return Solve.solve(a,DoubleMatrix.eye(a.rows));case "inverseSPD":return Solve.solvePositive(spd,DoubleMatrix.eye(a.rows));

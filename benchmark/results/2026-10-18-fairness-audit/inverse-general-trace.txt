@@ -1,0 +1,8 @@
+dev.nm.algebra.linear.matrix.doubles.factorization.triangle.LU(Ldev/nm/algebra/linear/matrix/doubles/Matrix;D)V
+  dev.nm.algebra.linear.matrix.doubles.factorization.triangle.LU.<init>
+  dev.nm.algebra.linear.matrix.doubles.operation.Inverse.a
+  dev.nm.algebra.linear.matrix.doubles.operation.Inverse.m
+  dev.nm.algebra.linear.matrix.doubles.operation.Inverse.<init>
+  dev.nm.benchmark.InversePathProbe.main
+inverse residual=1.5543122344752192E-15
+Chol constructors=0, LU constructors=1, exit=0

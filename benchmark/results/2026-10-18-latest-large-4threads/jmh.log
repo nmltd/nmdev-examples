@@ -1,0 +1,3346 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = NMDEV, operation = multiplication, size = 512)
+
+# Run progress: 0.00% complete, ETA 00:01:04
+# Fork: 1 of 2
+# Warmup Iteration   1: 62.970 ms/op
+# Warmup Iteration   2: 64.055 ms/op
+Iteration   1: 52.009 ms/op
+                 gc.alloc.rate:      306.835 MB/sec
+                 gc.alloc.rate.norm: 16792846.400 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   2: 49.136 ms/op
+                 gc.alloc.rate:      325.402 MB/sec
+                 gc.alloc.rate.norm: 16792865.600 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   3: 48.423 ms/op
+                 gc.alloc.rate:      330.185 MB/sec
+                 gc.alloc.rate.norm: 16792852.800 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 1.25% complete, ETA 00:02:27
+# Fork: 2 of 2
+# Warmup Iteration   1: 44.135 ms/op
+# Warmup Iteration   2: 44.674 ms/op
+Iteration   1: 34.530 ms/op
+                 gc.alloc.rate:      461.076 MB/sec
+                 gc.alloc.rate.norm: 16792665.333 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 44.405 ms/op
+                 gc.alloc.rate:      360.247 MB/sec
+                 gc.alloc.rate.norm: 16792872.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   3: 52.922 ms/op
+                 gc.alloc.rate:      302.332 MB/sec
+                 gc.alloc.rate.norm: 16793126.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  46.904 ±(99.9%) 18.974 ms/op [Average]
+  (min, avg, max) = (34.530, 46.904, 52.922), stdev = 6.766
+  CI (99.9%): [27.930, 65.878] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  347.679 ±(99.9%) 166.105 MB/sec [Average]
+  (min, avg, max) = (302.332, 347.679, 461.076), stdev = 59.235
+  CI (99.9%): [181.574, 513.785] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  16792871.356 ±(99.9%) 412.682 B/op [Average]
+  (min, avg, max) = (16792665.333, 16792871.356, 16793126.000), stdev = 147.166
+  CI (99.9%): [16792458.674, 16793284.037] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  3.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.500, 1.000), stdev = 0.548
+  CI (99.9%): [3.000, 3.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  3.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.500, 1.000), stdev = 0.548
+  CI (99.9%): [3.000, 3.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = NMDEV, operation = multiplication, size = 1024)
+
+# Run progress: 2.50% complete, ETA 00:02:20
+# Fork: 1 of 2
+# Warmup Iteration   1: 222.450 ms/op
+# Warmup Iteration   2: 237.088 ms/op
+Iteration   1: 222.622 ms/op
+                 gc.alloc.rate:      100.936 MB/sec
+                 gc.alloc.rate.norm: 23585096.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 227.161 ms/op
+                 gc.alloc.rate:      98.941 MB/sec
+                 gc.alloc.rate.norm: 23585120.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 222.993 ms/op
+                 gc.alloc.rate:      100.143 MB/sec
+                 gc.alloc.rate.norm: 23584936.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 3.75% complete, ETA 00:03:11
+# Fork: 2 of 2
+# Warmup Iteration   1: 218.493 ms/op
+# Warmup Iteration   2: 223.631 ms/op
+Iteration   1: 233.307 ms/op
+                 gc.alloc.rate:      96.314 MB/sec
+                 gc.alloc.rate.norm: 23585232.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 218.962 ms/op
+                 gc.alloc.rate:      102.460 MB/sec
+                 gc.alloc.rate.norm: 23585184.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 217.380 ms/op
+                 gc.alloc.rate:      101.976 MB/sec
+                 gc.alloc.rate.norm: 23585104.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  223.738 ±(99.9%) 16.270 ms/op [Average]
+  (min, avg, max) = (217.380, 223.738, 233.307), stdev = 5.802
+  CI (99.9%): [207.467, 240.008] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  100.128 ±(99.9%) 6.327 MB/sec [Average]
+  (min, avg, max) = (96.314, 100.128, 102.460), stdev = 2.256
+  CI (99.9%): [93.801, 106.456] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  23585112.000 ±(99.9%) 283.053 B/op [Average]
+  (min, avg, max) = (23584936.000, 23585112.000, 23585232.000), stdev = 100.940
+  CI (99.9%): [23584828.947, 23585395.053] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = NMDEV, operation = lu, size = 512)
+
+# Run progress: 5.00% complete, ETA 00:03:32
+# Fork: 1 of 2
+# Warmup Iteration   1: 25.242 ms/op
+# Warmup Iteration   2: 34.813 ms/op
+Iteration   1: 36.099 ms/op
+                 gc.alloc.rate:      285.684 MB/sec
+                 gc.alloc.rate.norm: 10856694.667 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 37.095 ms/op
+                 gc.alloc.rate:      277.889 MB/sec
+                 gc.alloc.rate.norm: 10855477.333 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   3: 27.920 ms/op
+                 gc.alloc.rate:      370.255 MB/sec
+                 gc.alloc.rate.norm: 10855445.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 6.25% complete, ETA 00:03:15
+# Fork: 2 of 2
+# Warmup Iteration   1: 30.220 ms/op
+# Warmup Iteration   2: 31.007 ms/op
+Iteration   1: 23.725 ms/op
+                 gc.alloc.rate:      436.079 MB/sec
+                 gc.alloc.rate.norm: 10863056.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   2: 22.904 ms/op
+                 gc.alloc.rate:      451.214 MB/sec
+                 gc.alloc.rate.norm: 10851291.556 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 22.576 ms/op
+                 gc.alloc.rate:      457.977 MB/sec
+                 gc.alloc.rate.norm: 10850669.333 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  28.387 ±(99.9%) 18.647 ms/op [Average]
+  (min, avg, max) = (22.576, 28.387, 37.095), stdev = 6.650
+  CI (99.9%): [9.740, 47.033] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  379.850 ±(99.9%) 230.263 MB/sec [Average]
+  (min, avg, max) = (277.889, 379.850, 457.977), stdev = 82.114
+  CI (99.9%): [149.586, 610.113] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  10855438.981 ±(99.9%) 12512.324 B/op [Average]
+  (min, avg, max) = (10850669.333, 10855438.981, 10863056.000), stdev = 4462.015
+  CI (99.9%): [10842926.657, 10867951.306] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  3.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.500, 1.000), stdev = 0.548
+  CI (99.9%): [3.000, 3.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  4.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.667, 2.000), stdev = 0.816
+  CI (99.9%): [4.000, 4.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = NMDEV, operation = lu, size = 1024)
+
+# Run progress: 7.50% complete, ETA 00:03:02
+# Fork: 1 of 2
+# Warmup Iteration   1: 120.540 ms/op
+# Warmup Iteration   2: 92.125 ms/op
+Iteration   1: 89.102 ms/op
+                 gc.alloc.rate:      456.946 MB/sec
+                 gc.alloc.rate.norm: 42749002.667 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 94.124 ms/op
+                 gc.alloc.rate:      432.642 MB/sec
+                 gc.alloc.rate.norm: 42742960.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 89.552 ms/op
+                 gc.alloc.rate:      452.989 MB/sec
+                 gc.alloc.rate.norm: 42750973.333 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 8.75% complete, ETA 00:03:21
+# Fork: 2 of 2
+# Warmup Iteration   1: 100.577 ms/op
+# Warmup Iteration   2: 154.714 ms/op
+Iteration   1: 203.612 ms/op
+                 gc.alloc.rate:      194.804 MB/sec
+                 gc.alloc.rate.norm: 42747584.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            6.000 ms
+
+Iteration   2: 158.427 ms/op
+                 gc.alloc.rate:      256.755 MB/sec
+                 gc.alloc.rate.norm: 42734656.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 113.461 ms/op
+                 gc.alloc.rate:      358.990 MB/sec
+                 gc.alloc.rate.norm: 42751980.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  124.713 ±(99.9%) 131.099 ms/op [Average]
+  (min, avg, max) = (89.102, 124.713, 203.612), stdev = 46.751
+  CI (99.9%): [≈ 0, 255.812] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  358.854 ±(99.9%) 310.404 MB/sec [Average]
+  (min, avg, max) = (194.804, 358.854, 456.946), stdev = 110.693
+  CI (99.9%): [48.450, 669.259] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  42746192.667 ±(99.9%) 18161.292 B/op [Average]
+  (min, avg, max) = (42734656.000, 42746192.667, 42751980.000), stdev = 6476.492
+  CI (99.9%): [42728031.375, 42764353.959] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.333, 1.000), stdev = 0.516
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  10.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 1.667, 6.000), stdev = 2.658
+  CI (99.9%): [10.000, 10.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = NMDEV, operation = cholesky, size = 512)
+
+# Run progress: 10.00% complete, ETA 00:03:34
+# Fork: 1 of 2
+# Warmup Iteration   1: 14.818 ms/op
+# Warmup Iteration   2: 12.123 ms/op
+Iteration   1: 12.194 ms/op
+                 gc.alloc.rate:      247.367 MB/sec
+                 gc.alloc.rate.norm: 3166940.706 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 10.095 ms/op
+                 gc.alloc.rate:      298.864 MB/sec
+                 gc.alloc.rate.norm: 3166865.600 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 12.797 ms/op
+                 gc.alloc.rate:      235.725 MB/sec
+                 gc.alloc.rate.norm: 3167001.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 11.25% complete, ETA 00:03:19
+# Fork: 2 of 2
+# Warmup Iteration   1: 11.819 ms/op
+# Warmup Iteration   2: 11.818 ms/op
+Iteration   1: 11.138 ms/op
+                 gc.alloc.rate:      270.892 MB/sec
+                 gc.alloc.rate.norm: 3166971.789 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 10.774 ms/op
+                 gc.alloc.rate:      279.984 MB/sec
+                 gc.alloc.rate.norm: 3166930.105 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 10.126 ms/op
+                 gc.alloc.rate:      294.769 MB/sec
+                 gc.alloc.rate.norm: 3167026.400 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  11.187 ±(99.9%) 3.097 ms/op [Average]
+  (min, avg, max) = (10.095, 11.187, 12.797), stdev = 1.104
+  CI (99.9%): [8.090, 14.285] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  271.267 ±(99.9%) 71.212 MB/sec [Average]
+  (min, avg, max) = (235.725, 271.267, 298.864), stdev = 25.395
+  CI (99.9%): [200.054, 342.479] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  3166955.933 ±(99.9%) 160.144 B/op [Average]
+  (min, avg, max) = (3166865.600, 3166955.933, 3167026.400), stdev = 57.109
+  CI (99.9%): [3166795.790, 3167116.077] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.333, 1.000), stdev = 0.516
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  7.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 1.167, 4.000), stdev = 1.835
+  CI (99.9%): [7.000, 7.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = NMDEV, operation = cholesky, size = 1024)
+
+# Run progress: 12.50% complete, ETA 00:03:08
+# Fork: 1 of 2
+# Warmup Iteration   1: 71.020 ms/op
+# Warmup Iteration   2: 71.873 ms/op
+Iteration   1: 67.545 ms/op
+                 gc.alloc.rate:      178.056 MB/sec
+                 gc.alloc.rate.norm: 12625870.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 64.097 ms/op
+                 gc.alloc.rate:      187.241 MB/sec
+                 gc.alloc.rate.norm: 12625794.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 60.217 ms/op
+                 gc.alloc.rate:      199.771 MB/sec
+                 gc.alloc.rate.norm: 12625826.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+
+# Run progress: 13.75% complete, ETA 00:03:10
+# Fork: 2 of 2
+# Warmup Iteration   1: 65.848 ms/op
+# Warmup Iteration   2: 65.525 ms/op
+Iteration   1: 68.739 ms/op
+                 gc.alloc.rate:      174.870 MB/sec
+                 gc.alloc.rate.norm: 12626362.667 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 69.264 ms/op
+                 gc.alloc.rate:      173.619 MB/sec
+                 gc.alloc.rate.norm: 12626296.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 63.083 ms/op
+                 gc.alloc.rate:      190.685 MB/sec
+                 gc.alloc.rate.norm: 12625722.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  65.491 ±(99.9%) 10.076 ms/op [Average]
+  (min, avg, max) = (60.217, 65.491, 69.264), stdev = 3.593
+  CI (99.9%): [55.415, 75.567] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  184.040 ±(99.9%) 28.881 MB/sec [Average]
+  (min, avg, max) = (173.619, 184.040, 199.771), stdev = 10.299
+  CI (99.9%): [155.159, 212.921] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  12625978.444 ±(99.9%) 776.361 B/op [Average]
+  (min, avg, max) = (12625722.000, 12625978.444, 12626362.667), stdev = 276.858
+  CI (99.9%): [12625202.083, 12626754.805] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.333, 1.000), stdev = 0.516
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  3.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.500, 2.000), stdev = 0.837
+  CI (99.9%): [3.000, 3.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = NMDEV, operation = qr, size = 512)
+
+# Run progress: 15.00% complete, ETA 00:03:09
+# Fork: 1 of 2
+# Warmup Iteration   1: 111.853 ms/op
+# Warmup Iteration   2: 127.314 ms/op
+Iteration   1: 114.411 ms/op
+                 gc.alloc.rate:      180.939 MB/sec
+                 gc.alloc.rate.norm: 21732968.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 97.273 ms/op
+                 gc.alloc.rate:      212.829 MB/sec
+                 gc.alloc.rate.norm: 21732976.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 114.938 ms/op
+                 gc.alloc.rate:      179.628 MB/sec
+                 gc.alloc.rate.norm: 21732556.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+
+# Run progress: 16.25% complete, ETA 00:03:03
+# Fork: 2 of 2
+# Warmup Iteration   1: 128.107 ms/op
+# Warmup Iteration   2: 125.059 ms/op
+Iteration   1: 113.418 ms/op
+                 gc.alloc.rate:      182.509 MB/sec
+                 gc.alloc.rate.norm: 21735672.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 110.896 ms/op
+                 gc.alloc.rate:      186.660 MB/sec
+                 gc.alloc.rate.norm: 21736564.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 84.569 ms/op
+                 gc.alloc.rate:      244.764 MB/sec
+                 gc.alloc.rate.norm: 21736813.333 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  105.917 ±(99.9%) 34.687 ms/op [Average]
+  (min, avg, max) = (84.569, 105.917, 114.938), stdev = 12.370
+  CI (99.9%): [71.231, 140.604] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  197.888 ±(99.9%) 73.166 MB/sec [Average]
+  (min, avg, max) = (179.628, 197.888, 244.764), stdev = 26.092
+  CI (99.9%): [124.722, 271.054] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  21734591.556 ±(99.9%) 5521.277 B/op [Average]
+  (min, avg, max) = (21732556.000, 21734591.556, 21736813.333), stdev = 1968.940
+  CI (99.9%): [21729070.279, 21740112.832] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.333, 1.000), stdev = 0.516
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  2.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.333, 1.000), stdev = 0.516
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = NMDEV, operation = qr, size = 1024)
+
+# Run progress: 17.50% complete, ETA 00:02:57
+# Fork: 1 of 2
+# Warmup Iteration   1: 385.856 ms/op
+# Warmup Iteration   2: 613.867 ms/op
+Iteration   1: 411.883 ms/op
+                 gc.alloc.rate:      197.998 MB/sec
+                 gc.alloc.rate.norm: 85577128.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 394.251 ms/op
+                 gc.alloc.rate:      206.815 MB/sec
+                 gc.alloc.rate.norm: 85566232.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 544.164 ms/op
+                 gc.alloc.rate:      149.860 MB/sec
+                 gc.alloc.rate.norm: 85563832.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 18.75% complete, ETA 00:03:11
+# Fork: 2 of 2
+# Warmup Iteration   1: 462.245 ms/op
+# Warmup Iteration   2: 551.638 ms/op
+Iteration   1: 468.264 ms/op
+                 gc.alloc.rate:      174.171 MB/sec
+                 gc.alloc.rate.norm: 85575488.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 496.212 ms/op
+                 gc.alloc.rate:      164.349 MB/sec
+                 gc.alloc.rate.norm: 85573736.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 373.966 ms/op
+                 gc.alloc.rate:      218.058 MB/sec
+                 gc.alloc.rate.norm: 85571624.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  448.123 ±(99.9%) 184.553 ms/op [Average]
+  (min, avg, max) = (373.966, 448.123, 544.164), stdev = 65.813
+  CI (99.9%): [263.570, 632.676] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  185.209 ±(99.9%) 74.361 MB/sec [Average]
+  (min, avg, max) = (149.860, 185.209, 218.058), stdev = 26.518
+  CI (99.9%): [110.847, 259.570] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  85571340.000 ±(99.9%) 14784.743 B/op [Average]
+  (min, avg, max) = (85563832.000, 85571340.000, 85577128.000), stdev = 5272.382
+  CI (99.9%): [85556555.257, 85586124.743] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.333, 1.000), stdev = 0.516
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  5.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.833, 3.000), stdev = 1.329
+  CI (99.9%): [5.000, 5.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = NMDEV, operation = solve, size = 512)
+
+# Run progress: 20.00% complete, ETA 00:03:23
+# Fork: 1 of 2
+# Warmup Iteration   1: 35.985 ms/op
+# Warmup Iteration   2: 30.924 ms/op
+Iteration   1: 40.106 ms/op
+                 gc.alloc.rate:      260.112 MB/sec
+                 gc.alloc.rate.norm: 10957059.200 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 44.415 ms/op
+                 gc.alloc.rate:      234.365 MB/sec
+                 gc.alloc.rate.norm: 10957923.200 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 42.455 ms/op
+                 gc.alloc.rate:      245.404 MB/sec
+                 gc.alloc.rate.norm: 10956019.200 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+
+
+# Run progress: 21.25% complete, ETA 00:03:14
+# Fork: 2 of 2
+# Warmup Iteration   1: 45.493 ms/op
+# Warmup Iteration   2: 40.279 ms/op
+Iteration   1: 29.991 ms/op
+                 gc.alloc.rate:      347.719 MB/sec
+                 gc.alloc.rate.norm: 10951436.571 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 23.906 ms/op
+                 gc.alloc.rate:      436.453 MB/sec
+                 gc.alloc.rate.norm: 10951981.333 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   3: 24.304 ms/op
+                 gc.alloc.rate:      429.475 MB/sec
+                 gc.alloc.rate.norm: 10957207.111 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  34.196 ±(99.9%) 25.975 ms/op [Average]
+  (min, avg, max) = (23.906, 34.196, 44.415), stdev = 9.263
+  CI (99.9%): [8.221, 60.171] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  325.588 ±(99.9%) 258.872 MB/sec [Average]
+  (min, avg, max) = (234.365, 325.588, 436.453), stdev = 92.316
+  CI (99.9%): [66.716, 584.460] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  10955271.103 ±(99.9%) 7937.870 B/op [Average]
+  (min, avg, max) = (10951436.571, 10955271.103, 10957923.200), stdev = 2830.721
+  CI (99.9%): [10947333.233, 10963208.972] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  4.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.667, 1.000), stdev = 0.516
+  CI (99.9%): [4.000, 4.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  11.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 1.833, 4.000), stdev = 1.722
+  CI (99.9%): [11.000, 11.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = NMDEV, operation = solve, size = 1024)
+
+# Run progress: 22.50% complete, ETA 00:03:05
+# Fork: 1 of 2
+# Warmup Iteration   1: 118.962 ms/op
+# Warmup Iteration   2: 88.901 ms/op
+Iteration   1: 90.640 ms/op
+                 gc.alloc.rate:      451.488 MB/sec
+                 gc.alloc.rate.norm: 42953482.667 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 96.216 ms/op
+                 gc.alloc.rate:      425.215 MB/sec
+                 gc.alloc.rate.norm: 42952936.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 138.496 ms/op
+                 gc.alloc.rate:      295.636 MB/sec
+                 gc.alloc.rate.norm: 42967600.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 23.75% complete, ETA 00:03:01
+# Fork: 2 of 2
+# Warmup Iteration   1: 85.586 ms/op
+# Warmup Iteration   2: 93.198 ms/op
+Iteration   1: 88.737 ms/op
+                 gc.alloc.rate:      461.268 MB/sec
+                 gc.alloc.rate.norm: 42962368.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 92.508 ms/op
+                 gc.alloc.rate:      442.560 MB/sec
+                 gc.alloc.rate.norm: 42963266.667 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   3: 86.889 ms/op
+                 gc.alloc.rate:      469.907 MB/sec
+                 gc.alloc.rate.norm: 42965104.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  98.914 ±(99.9%) 55.117 ms/op [Average]
+  (min, avg, max) = (86.889, 98.914, 138.496), stdev = 19.655
+  CI (99.9%): [43.797, 154.032] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  424.346 ±(99.9%) 182.054 MB/sec [Average]
+  (min, avg, max) = (295.636, 424.346, 469.907), stdev = 64.922
+  CI (99.9%): [242.291, 606.400] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  42960792.889 ±(99.9%) 17226.612 B/op [Average]
+  (min, avg, max) = (42952936.000, 42960792.889, 42967600.000), stdev = 6143.176
+  CI (99.9%): [42943566.277, 42978019.501] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  3.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.500, 1.000), stdev = 0.548
+  CI (99.9%): [3.000, 3.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  9.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 1.500, 4.000), stdev = 1.761
+  CI (99.9%): [9.000, 9.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = EJML, operation = multiplication, size = 512)
+
+# Run progress: 25.00% complete, ETA 00:02:57
+# Fork: 1 of 2
+# Warmup Iteration   1: 41.975 ms/op
+# Warmup Iteration   2: 42.421 ms/op
+Iteration   1: 42.296 ms/op
+                 gc.alloc.rate:      47.255 MB/sec
+                 gc.alloc.rate.norm: 2098366.400 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 44.628 ms/op
+                 gc.alloc.rate:      44.766 MB/sec
+                 gc.alloc.rate.norm: 2098360.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 45.479 ms/op
+                 gc.alloc.rate:      43.944 MB/sec
+                 gc.alloc.rate.norm: 2098372.800 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 26.25% complete, ETA 00:02:50
+# Fork: 2 of 2
+# Warmup Iteration   1: 43.493 ms/op
+# Warmup Iteration   2: 43.276 ms/op
+Iteration   1: 44.486 ms/op
+                 gc.alloc.rate:      44.915 MB/sec
+                 gc.alloc.rate.norm: 2098372.800 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 44.875 ms/op
+                 gc.alloc.rate:      44.528 MB/sec
+                 gc.alloc.rate.norm: 2098360.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 43.408 ms/op
+                 gc.alloc.rate:      46.022 MB/sec
+                 gc.alloc.rate.norm: 2098372.800 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  44.195 ±(99.9%) 3.224 ms/op [Average]
+  (min, avg, max) = (42.296, 44.195, 45.479), stdev = 1.150
+  CI (99.9%): [40.971, 47.420] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  45.238 ±(99.9%) 3.362 MB/sec [Average]
+  (min, avg, max) = (43.944, 45.238, 47.255), stdev = 1.199
+  CI (99.9%): [41.876, 48.600] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  2098367.467 ±(99.9%) 17.645 B/op [Average]
+  (min, avg, max) = (2098360.000, 2098367.467, 2098372.800), stdev = 6.292
+  CI (99.9%): [2098349.822, 2098385.112] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = EJML, operation = multiplication, size = 1024)
+
+# Run progress: 27.50% complete, ETA 00:02:43
+# Fork: 1 of 2
+# Warmup Iteration   1: 346.371 ms/op
+# Warmup Iteration   2: 343.591 ms/op
+Iteration   1: 343.116 ms/op
+                 gc.alloc.rate:      23.310 MB/sec
+                 gc.alloc.rate.norm: 8394552.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 338.847 ms/op
+                 gc.alloc.rate:      23.425 MB/sec
+                 gc.alloc.rate.norm: 8394552.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 343.428 ms/op
+                 gc.alloc.rate:      23.286 MB/sec
+                 gc.alloc.rate.norm: 8394552.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 28.75% complete, ETA 00:02:45
+# Fork: 2 of 2
+# Warmup Iteration   1: 341.984 ms/op
+# Warmup Iteration   2: 338.465 ms/op
+Iteration   1: 358.942 ms/op
+                 gc.alloc.rate:      22.279 MB/sec
+                 gc.alloc.rate.norm: 8394552.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 362.413 ms/op
+                 gc.alloc.rate:      21.969 MB/sec
+                 gc.alloc.rate.norm: 8394552.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 334.286 ms/op
+                 gc.alloc.rate:      23.907 MB/sec
+                 gc.alloc.rate.norm: 8394552.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  346.839 ±(99.9%) 31.626 ms/op [Average]
+  (min, avg, max) = (334.286, 346.839, 362.413), stdev = 11.278
+  CI (99.9%): [315.213, 378.464] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  23.029 ±(99.9%) 2.082 MB/sec [Average]
+  (min, avg, max) = (21.969, 23.029, 23.907), stdev = 0.743
+  CI (99.9%): [20.947, 25.112] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  8394552.000 ±(99.9%) 0.001 B/op [Average]
+  (min, avg, max) = (8394552.000, 8394552.000, 8394552.000), stdev = 0.001
+  CI (99.9%): [8394552.000, 8394552.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = EJML, operation = lu, size = 512)
+
+# Run progress: 30.00% complete, ETA 00:02:45
+# Fork: 1 of 2
+# Warmup Iteration   1: 40.989 ms/op
+# Warmup Iteration   2: 39.582 ms/op
+Iteration   1: 39.022 ms/op
+                 gc.alloc.rate:      205.019 MB/sec
+                 gc.alloc.rate.norm: 8400216.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 38.332 ms/op
+                 gc.alloc.rate:      208.729 MB/sec
+                 gc.alloc.rate.norm: 8400216.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 38.207 ms/op
+                 gc.alloc.rate:      209.103 MB/sec
+                 gc.alloc.rate.norm: 8400216.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 31.25% complete, ETA 00:02:39
+# Fork: 2 of 2
+# Warmup Iteration   1: 38.420 ms/op
+# Warmup Iteration   2: 38.917 ms/op
+Iteration   1: 40.183 ms/op
+                 gc.alloc.rate:      199.111 MB/sec
+                 gc.alloc.rate.norm: 8400412.800 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 38.817 ms/op
+                 gc.alloc.rate:      204.056 MB/sec
+                 gc.alloc.rate.norm: 8400216.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 38.657 ms/op
+                 gc.alloc.rate:      206.882 MB/sec
+                 gc.alloc.rate.norm: 8400216.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  38.870 ±(99.9%) 1.993 ms/op [Average]
+  (min, avg, max) = (38.207, 38.870, 40.183), stdev = 0.711
+  CI (99.9%): [36.877, 40.863] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  205.483 ±(99.9%) 10.375 MB/sec [Average]
+  (min, avg, max) = (199.111, 205.483, 209.103), stdev = 3.700
+  CI (99.9%): [195.108, 215.859] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  8400248.800 ±(99.9%) 225.298 B/op [Average]
+  (min, avg, max) = (8400216.000, 8400248.800, 8400412.800), stdev = 80.343
+  CI (99.9%): [8400023.502, 8400474.098] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = EJML, operation = lu, size = 1024)
+
+# Run progress: 32.50% complete, ETA 00:02:34
+# Fork: 1 of 2
+# Warmup Iteration   1: 310.069 ms/op
+# Warmup Iteration   2: 320.826 ms/op
+Iteration   1: 313.606 ms/op
+                 gc.alloc.rate:      102.023 MB/sec
+                 gc.alloc.rate.norm: 33581200.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 311.532 ms/op
+                 gc.alloc.rate:      102.698 MB/sec
+                 gc.alloc.rate.norm: 33581200.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 321.495 ms/op
+                 gc.alloc.rate:      99.525 MB/sec
+                 gc.alloc.rate.norm: 33581200.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 33.75% complete, ETA 00:02:33
+# Fork: 2 of 2
+# Warmup Iteration   1: 307.493 ms/op
+# Warmup Iteration   2: 314.881 ms/op
+Iteration   1: 318.247 ms/op
+                 gc.alloc.rate:      100.487 MB/sec
+                 gc.alloc.rate.norm: 33581200.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 317.222 ms/op
+                 gc.alloc.rate:      100.849 MB/sec
+                 gc.alloc.rate.norm: 33581200.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 324.996 ms/op
+                 gc.alloc.rate:      98.360 MB/sec
+                 gc.alloc.rate.norm: 33581200.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  317.850 ±(99.9%) 13.899 ms/op [Average]
+  (min, avg, max) = (311.532, 317.850, 324.996), stdev = 4.956
+  CI (99.9%): [303.951, 331.749] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  100.657 ±(99.9%) 4.461 MB/sec [Average]
+  (min, avg, max) = (98.360, 100.657, 102.698), stdev = 1.591
+  CI (99.9%): [96.195, 105.118] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  33581200.000 ±(99.9%) 0.001 B/op [Average]
+  (min, avg, max) = (33581200.000, 33581200.000, 33581200.000), stdev = 0.001
+  CI (99.9%): [33581200.000, 33581200.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = EJML, operation = cholesky, size = 512)
+
+# Run progress: 35.00% complete, ETA 00:02:33
+# Fork: 1 of 2
+# Warmup Iteration   1: 18.498 ms/op
+# Warmup Iteration   2: 17.801 ms/op
+Iteration   1: 17.913 ms/op
+                 gc.alloc.rate:      223.267 MB/sec
+                 gc.alloc.rate.norm: 4199060.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 17.983 ms/op
+                 gc.alloc.rate:      222.295 MB/sec
+                 gc.alloc.rate.norm: 4199060.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 18.014 ms/op
+                 gc.alloc.rate:      221.968 MB/sec
+                 gc.alloc.rate.norm: 4199060.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 36.25% complete, ETA 00:02:27
+# Fork: 2 of 2
+# Warmup Iteration   1: 18.563 ms/op
+# Warmup Iteration   2: 17.631 ms/op
+Iteration   1: 17.307 ms/op
+                 gc.alloc.rate:      231.028 MB/sec
+                 gc.alloc.rate.norm: 4199057.333 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 17.251 ms/op
+                 gc.alloc.rate:      231.840 MB/sec
+                 gc.alloc.rate.norm: 4199057.333 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 16.919 ms/op
+                 gc.alloc.rate:      236.432 MB/sec
+                 gc.alloc.rate.norm: 4199019.692 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  17.564 ±(99.9%) 1.303 ms/op [Average]
+  (min, avg, max) = (16.919, 17.564, 18.014), stdev = 0.465
+  CI (99.9%): [16.261, 18.868] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  227.805 ±(99.9%) 17.108 MB/sec [Average]
+  (min, avg, max) = (221.968, 227.805, 236.432), stdev = 6.101
+  CI (99.9%): [210.697, 244.913] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  4199052.393 ±(99.9%) 45.072 B/op [Average]
+  (min, avg, max) = (4199019.692, 4199052.393, 4199060.000), stdev = 16.073
+  CI (99.9%): [4199007.321, 4199097.466] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = EJML, operation = cholesky, size = 1024)
+
+# Run progress: 37.50% complete, ETA 00:02:22
+# Fork: 1 of 2
+# Warmup Iteration   1: 58.762 ms/op
+# Warmup Iteration   2: 57.084 ms/op
+Iteration   1: 55.922 ms/op
+                 gc.alloc.rate:      294.105 MB/sec
+                 gc.alloc.rate.norm: 17270642.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 55.784 ms/op
+                 gc.alloc.rate:      294.813 MB/sec
+                 gc.alloc.rate.norm: 17270622.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 54.295 ms/op
+                 gc.alloc.rate:      302.945 MB/sec
+                 gc.alloc.rate.norm: 17270580.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 38.75% complete, ETA 00:02:20
+# Fork: 2 of 2
+# Warmup Iteration   1: 60.884 ms/op
+# Warmup Iteration   2: 63.478 ms/op
+Iteration   1: 58.118 ms/op
+                 gc.alloc.rate:      282.982 MB/sec
+                 gc.alloc.rate.norm: 17270658.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 57.556 ms/op
+                 gc.alloc.rate:      285.759 MB/sec
+                 gc.alloc.rate.norm: 17270622.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 57.189 ms/op
+                 gc.alloc.rate:      287.592 MB/sec
+                 gc.alloc.rate.norm: 17270580.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  56.477 ±(99.9%) 3.948 ms/op [Average]
+  (min, avg, max) = (54.295, 56.477, 58.118), stdev = 1.408
+  CI (99.9%): [52.529, 60.426] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  291.366 ±(99.9%) 20.585 MB/sec [Average]
+  (min, avg, max) = (282.982, 291.366, 302.945), stdev = 7.341
+  CI (99.9%): [270.781, 311.951] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  17270617.333 ±(99.9%) 89.500 B/op [Average]
+  (min, avg, max) = (17270580.000, 17270617.333, 17270658.000), stdev = 31.917
+  CI (99.9%): [17270527.833, 17270706.833] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = EJML, operation = qr, size = 512)
+
+# Run progress: 40.00% complete, ETA 00:02:17
+# Fork: 1 of 2
+# Warmup Iteration   1: 78.605 ms/op
+# Warmup Iteration   2: 76.998 ms/op
+Iteration   1: 77.617 ms/op
+                 gc.alloc.rate:      103.188 MB/sec
+                 gc.alloc.rate.norm: 8409256.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 78.139 ms/op
+                 gc.alloc.rate:      102.492 MB/sec
+                 gc.alloc.rate.norm: 8409256.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 77.677 ms/op
+                 gc.alloc.rate:      103.087 MB/sec
+                 gc.alloc.rate.norm: 8409256.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 41.25% complete, ETA 00:02:13
+# Fork: 2 of 2
+# Warmup Iteration   1: 77.898 ms/op
+# Warmup Iteration   2: 78.635 ms/op
+Iteration   1: 79.372 ms/op
+                 gc.alloc.rate:      100.912 MB/sec
+                 gc.alloc.rate.norm: 8409245.333 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 81.483 ms/op
+                 gc.alloc.rate:      98.287 MB/sec
+                 gc.alloc.rate.norm: 8409256.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 82.847 ms/op
+                 gc.alloc.rate:      96.675 MB/sec
+                 gc.alloc.rate.norm: 8409256.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  79.522 ±(99.9%) 6.127 ms/op [Average]
+  (min, avg, max) = (77.617, 79.522, 82.847), stdev = 2.185
+  CI (99.9%): [73.396, 85.649] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  100.774 ±(99.9%) 7.641 MB/sec [Average]
+  (min, avg, max) = (96.675, 100.774, 103.188), stdev = 2.725
+  CI (99.9%): [93.132, 108.415] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  8409254.222 ±(99.9%) 12.211 B/op [Average]
+  (min, avg, max) = (8409245.333, 8409254.222, 8409256.000), stdev = 4.355
+  CI (99.9%): [8409242.011, 8409266.433] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = EJML, operation = qr, size = 1024)
+
+# Run progress: 42.50% complete, ETA 00:02:09
+# Fork: 1 of 2
+# Warmup Iteration   1: 654.879 ms/op
+# Warmup Iteration   2: 649.054 ms/op
+Iteration   1: 632.937 ms/op
+                 gc.alloc.rate:      50.599 MB/sec
+                 gc.alloc.rate.norm: 33597448.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 662.496 ms/op
+                 gc.alloc.rate:      48.336 MB/sec
+                 gc.alloc.rate.norm: 33597448.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 669.133 ms/op
+                 gc.alloc.rate:      47.861 MB/sec
+                 gc.alloc.rate.norm: 33597448.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 43.75% complete, ETA 00:02:12
+# Fork: 2 of 2
+# Warmup Iteration   1: 624.555 ms/op
+# Warmup Iteration   2: 631.313 ms/op
+Iteration   1: 626.196 ms/op
+                 gc.alloc.rate:      51.141 MB/sec
+                 gc.alloc.rate.norm: 33597448.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 630.358 ms/op
+                 gc.alloc.rate:      50.803 MB/sec
+                 gc.alloc.rate.norm: 33597384.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 621.984 ms/op
+                 gc.alloc.rate:      51.486 MB/sec
+                 gc.alloc.rate.norm: 33597448.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  640.517 ±(99.9%) 56.241 ms/op [Average]
+  (min, avg, max) = (621.984, 640.517, 669.133), stdev = 20.056
+  CI (99.9%): [584.277, 696.758] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  50.038 ±(99.9%) 4.316 MB/sec [Average]
+  (min, avg, max) = (47.861, 50.038, 51.486), stdev = 1.539
+  CI (99.9%): [45.722, 54.354] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  33597437.333 ±(99.9%) 73.267 B/op [Average]
+  (min, avg, max) = (33597384.000, 33597437.333, 33597448.000), stdev = 26.128
+  CI (99.9%): [33597364.066, 33597510.601] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = EJML, operation = solve, size = 512)
+
+# Run progress: 45.00% complete, ETA 00:02:15
+# Fork: 1 of 2
+# Warmup Iteration   1: 38.559 ms/op
+# Warmup Iteration   2: 37.791 ms/op
+Iteration   1: 37.588 ms/op
+                 gc.alloc.rate:      106.599 MB/sec
+                 gc.alloc.rate.norm: 4207864.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 37.137 ms/op
+                 gc.alloc.rate:      107.903 MB/sec
+                 gc.alloc.rate.norm: 4207864.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 37.432 ms/op
+                 gc.alloc.rate:      107.050 MB/sec
+                 gc.alloc.rate.norm: 4207864.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 46.25% complete, ETA 00:02:10
+# Fork: 2 of 2
+# Warmup Iteration   1: 40.509 ms/op
+# Warmup Iteration   2: 39.663 ms/op
+Iteration   1: 39.373 ms/op
+                 gc.alloc.rate:      101.793 MB/sec
+                 gc.alloc.rate.norm: 4207864.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 37.898 ms/op
+                 gc.alloc.rate:      105.714 MB/sec
+                 gc.alloc.rate.norm: 4207864.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 38.680 ms/op
+                 gc.alloc.rate:      103.620 MB/sec
+                 gc.alloc.rate.norm: 4207864.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  38.018 ±(99.9%) 2.377 ms/op [Average]
+  (min, avg, max) = (37.137, 38.018, 39.373), stdev = 0.848
+  CI (99.9%): [35.641, 40.395] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  105.447 ±(99.9%) 6.479 MB/sec [Average]
+  (min, avg, max) = (101.793, 105.447, 107.903), stdev = 2.310
+  CI (99.9%): [98.968, 111.926] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  4207864.000 ±(99.9%) 0.001 B/op [Average]
+  (min, avg, max) = (4207864.000, 4207864.000, 4207864.000), stdev = 0.001
+  CI (99.9%): [4207864.000, 4207864.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = EJML, operation = solve, size = 1024)
+
+# Run progress: 47.50% complete, ETA 00:02:05
+# Fork: 1 of 2
+# Warmup Iteration   1: 303.364 ms/op
+# Warmup Iteration   2: 302.732 ms/op
+Iteration   1: 313.652 ms/op
+                 gc.alloc.rate:      51.043 MB/sec
+                 gc.alloc.rate.norm: 16807920.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 303.202 ms/op
+                 gc.alloc.rate:      52.796 MB/sec
+                 gc.alloc.rate.norm: 16807920.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 303.113 ms/op
+                 gc.alloc.rate:      52.813 MB/sec
+                 gc.alloc.rate.norm: 16807920.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 48.75% complete, ETA 00:02:02
+# Fork: 2 of 2
+# Warmup Iteration   1: 314.882 ms/op
+# Warmup Iteration   2: 313.565 ms/op
+Iteration   1: 321.158 ms/op
+                 gc.alloc.rate:      49.805 MB/sec
+                 gc.alloc.rate.norm: 16807984.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 314.436 ms/op
+                 gc.alloc.rate:      50.923 MB/sec
+                 gc.alloc.rate.norm: 16807984.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 344.677 ms/op
+                 gc.alloc.rate:      46.048 MB/sec
+                 gc.alloc.rate.norm: 16807984.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  316.707 ±(99.9%) 43.148 ms/op [Average]
+  (min, avg, max) = (303.113, 316.707, 344.677), stdev = 15.387
+  CI (99.9%): [273.559, 359.855] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  50.571 ±(99.9%) 7.024 MB/sec [Average]
+  (min, avg, max) = (46.048, 50.571, 52.813), stdev = 2.505
+  CI (99.9%): [43.547, 57.595] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  16807952.000 ±(99.9%) 98.299 B/op [Average]
+  (min, avg, max) = (16807920.000, 16807952.000, 16807984.000), stdev = 35.054
+  CI (99.9%): [16807853.701, 16808050.299] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = OJALGO, operation = multiplication, size = 512)
+
+# Run progress: 50.00% complete, ETA 00:02:00
+# Fork: 1 of 2
+# Warmup Iteration   1: 17.152 ms/op
+# Warmup Iteration   2: 21.265 ms/op
+Iteration   1: 20.916 ms/op
+                 gc.alloc.rate:      95.569 MB/sec
+                 gc.alloc.rate.norm: 2098390.400 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 22.406 ms/op
+                 gc.alloc.rate:      89.233 MB/sec
+                 gc.alloc.rate.norm: 2098397.600 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 16.867 ms/op
+                 gc.alloc.rate:      113.903 MB/sec
+                 gc.alloc.rate.norm: 2098300.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 51.25% complete, ETA 00:01:55
+# Fork: 2 of 2
+# Warmup Iteration   1: 21.070 ms/op
+# Warmup Iteration   2: 13.382 ms/op
+Iteration   1: 14.750 ms/op
+                 gc.alloc.rate:      135.460 MB/sec
+                 gc.alloc.rate.norm: 2098227.429 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 18.489 ms/op
+                 gc.alloc.rate:      108.056 MB/sec
+                 gc.alloc.rate.norm: 2098294.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 13.211 ms/op
+                 gc.alloc.rate:      150.992 MB/sec
+                 gc.alloc.rate.norm: 2098199.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  17.773 ±(99.9%) 9.925 ms/op [Average]
+  (min, avg, max) = (13.211, 17.773, 22.406), stdev = 3.539
+  CI (99.9%): [7.848, 27.698] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  115.535 ±(99.9%) 66.398 MB/sec [Average]
+  (min, avg, max) = (89.233, 115.535, 150.992), stdev = 23.678
+  CI (99.9%): [49.137, 181.933] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  2098301.405 ±(99.9%) 228.467 B/op [Average]
+  (min, avg, max) = (2098199.000, 2098301.405, 2098397.600), stdev = 81.474
+  CI (99.9%): [2098072.938, 2098529.872] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = OJALGO, operation = multiplication, size = 1024)
+
+# Run progress: 52.50% complete, ETA 00:01:51
+# Fork: 1 of 2
+# Warmup Iteration   1: 146.556 ms/op
+# Warmup Iteration   2: 114.277 ms/op
+Iteration   1: 94.874 ms/op
+                 gc.alloc.rate:      82.599 MB/sec
+                 gc.alloc.rate.norm: 8391224.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 113.540 ms/op
+                 gc.alloc.rate:      70.247 MB/sec
+                 gc.alloc.rate.norm: 8392200.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 92.953 ms/op
+                 gc.alloc.rate:      86.011 MB/sec
+                 gc.alloc.rate.norm: 8391200.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 53.75% complete, ETA 00:01:49
+# Fork: 2 of 2
+# Warmup Iteration   1: 187.886 ms/op
+# Warmup Iteration   2: 193.273 ms/op
+Iteration   1: 160.890 ms/op
+                 gc.alloc.rate:      49.698 MB/sec
+                 gc.alloc.rate.norm: 8392216.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 135.136 ms/op
+                 gc.alloc.rate:      59.168 MB/sec
+                 gc.alloc.rate.norm: 8392172.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 140.854 ms/op
+                 gc.alloc.rate:      56.765 MB/sec
+                 gc.alloc.rate.norm: 8392168.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  123.041 ±(99.9%) 76.128 ms/op [Average]
+  (min, avg, max) = (92.953, 123.041, 160.890), stdev = 27.148
+  CI (99.9%): [46.913, 199.169] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  67.415 ±(99.9%) 41.208 MB/sec [Average]
+  (min, avg, max) = (49.698, 67.415, 86.011), stdev = 14.695
+  CI (99.9%): [26.207, 108.623] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  8391863.333 ±(99.9%) 1415.808 B/op [Average]
+  (min, avg, max) = (8391200.000, 8391863.333, 8392216.000), stdev = 504.891
+  CI (99.9%): [8390447.525, 8393279.141] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = OJALGO, operation = lu, size = 512)
+
+# Run progress: 55.00% complete, ETA 00:01:47
+# Fork: 1 of 2
+# Warmup Iteration   1: 14.016 ms/op
+# Warmup Iteration   2: 12.102 ms/op
+Iteration   1: 10.578 ms/op
+                 gc.alloc.rate:      567.709 MB/sec
+                 gc.alloc.rate.norm: 6305128.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 10.487 ms/op
+                 gc.alloc.rate:      567.770 MB/sec
+                 gc.alloc.rate.norm: 6305112.800 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   3: 11.076 ms/op
+                 gc.alloc.rate:      542.267 MB/sec
+                 gc.alloc.rate.norm: 6305130.526 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 56.25% complete, ETA 00:01:43
+# Fork: 2 of 2
+# Warmup Iteration   1: 11.396 ms/op
+# Warmup Iteration   2: 11.447 ms/op
+Iteration   1: 10.551 ms/op
+                 gc.alloc.rate:      569.291 MB/sec
+                 gc.alloc.rate.norm: 6305108.800 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 10.112 ms/op
+                 gc.alloc.rate:      593.946 MB/sec
+                 gc.alloc.rate.norm: 6305113.600 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            ≈ 0 ms
+
+Iteration   3: 11.185 ms/op
+                 gc.alloc.rate:      536.889 MB/sec
+                 gc.alloc.rate.norm: 6305126.737 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  10.665 ±(99.9%) 1.120 ms/op [Average]
+  (min, avg, max) = (10.112, 10.665, 11.185), stdev = 0.399
+  CI (99.9%): [9.545, 11.785] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  562.979 ±(99.9%) 58.200 MB/sec [Average]
+  (min, avg, max) = (536.889, 562.979, 593.946), stdev = 20.755
+  CI (99.9%): [504.779, 621.179] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  6305120.077 ±(99.9%) 26.258 B/op [Average]
+  (min, avg, max) = (6305108.800, 6305120.077, 6305130.526), stdev = 9.364
+  CI (99.9%): [6305093.820, 6305146.335] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.333, 1.000), stdev = 0.516
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  1.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.167, 1.000), stdev = 0.408
+  CI (99.9%): [1.000, 1.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = OJALGO, operation = lu, size = 1024)
+
+# Run progress: 57.50% complete, ETA 00:01:39
+# Fork: 1 of 2
+# Warmup Iteration   1: 128.584 ms/op
+# Warmup Iteration   2: 143.547 ms/op
+Iteration   1: 113.310 ms/op
+                 gc.alloc.rate:      214.540 MB/sec
+                 gc.alloc.rate.norm: 25538536.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 111.517 ms/op
+                 gc.alloc.rate:      217.938 MB/sec
+                 gc.alloc.rate.norm: 25527188.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 106.938 ms/op
+                 gc.alloc.rate:      226.037 MB/sec
+                 gc.alloc.rate.norm: 25523252.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 58.75% complete, ETA 00:01:36
+# Fork: 2 of 2
+# Warmup Iteration   1: 108.845 ms/op
+# Warmup Iteration   2: 125.749 ms/op
+Iteration   1: 99.188 ms/op
+                 gc.alloc.rate:      245.193 MB/sec
+                 gc.alloc.rate.norm: 25528869.333 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 105.732 ms/op
+                 gc.alloc.rate:      229.677 MB/sec
+                 gc.alloc.rate.norm: 25520576.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 79.820 ms/op
+                 gc.alloc.rate:      303.142 MB/sec
+                 gc.alloc.rate.norm: 25534576.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  102.751 ±(99.9%) 34.419 ms/op [Average]
+  (min, avg, max) = (79.820, 102.751, 113.310), stdev = 12.274
+  CI (99.9%): [68.332, 137.170] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  239.421 ±(99.9%) 92.566 MB/sec [Average]
+  (min, avg, max) = (214.540, 239.421, 303.142), stdev = 33.010
+  CI (99.9%): [146.855, 331.987] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  25528832.889 ±(99.9%) 18984.291 B/op [Average]
+  (min, avg, max) = (25520576.000, 25528832.889, 25538536.000), stdev = 6769.981
+  CI (99.9%): [25509848.598, 25547817.180] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = OJALGO, operation = cholesky, size = 512)
+
+# Run progress: 60.00% complete, ETA 00:01:33
+# Fork: 1 of 2
+# Warmup Iteration   1: 28.803 ms/op
+# Warmup Iteration   2: 25.856 ms/op
+Iteration   1: 23.567 ms/op
+                 gc.alloc.rate:      176.502 MB/sec
+                 gc.alloc.rate.norm: 4377528.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 18.759 ms/op
+                 gc.alloc.rate:      222.260 MB/sec
+                 gc.alloc.rate.norm: 4378066.182 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 19.087 ms/op
+                 gc.alloc.rate:      218.435 MB/sec
+                 gc.alloc.rate.norm: 4377739.636 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 61.25% complete, ETA 00:01:30
+# Fork: 2 of 2
+# Warmup Iteration   1: 20.394 ms/op
+# Warmup Iteration   2: 20.197 ms/op
+Iteration   1: 18.004 ms/op
+                 gc.alloc.rate:      231.262 MB/sec
+                 gc.alloc.rate.norm: 4376289.333 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 18.944 ms/op
+                 gc.alloc.rate:      219.757 MB/sec
+                 gc.alloc.rate.norm: 4377587.636 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 21.188 ms/op
+                 gc.alloc.rate:      196.744 MB/sec
+                 gc.alloc.rate.norm: 4377110.400 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  19.925 ±(99.9%) 5.825 ms/op [Average]
+  (min, avg, max) = (18.004, 19.925, 23.567), stdev = 2.077
+  CI (99.9%): [14.100, 25.750] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  210.827 ±(99.9%) 56.953 MB/sec [Average]
+  (min, avg, max) = (176.502, 210.827, 231.262), stdev = 20.310
+  CI (99.9%): [153.874, 267.779] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  4377386.865 ±(99.9%) 1740.926 B/op [Average]
+  (min, avg, max) = (4376289.333, 4377386.865, 4378066.182), stdev = 620.831
+  CI (99.9%): [4375645.939, 4379127.791] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = OJALGO, operation = cholesky, size = 1024)
+
+# Run progress: 62.50% complete, ETA 00:01:26
+# Fork: 1 of 2
+# Warmup Iteration   1: 108.221 ms/op
+# Warmup Iteration   2: 91.603 ms/op
+Iteration   1: 80.864 ms/op
+                 gc.alloc.rate:      203.352 MB/sec
+                 gc.alloc.rate.norm: 17267592.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 86.556 ms/op
+                 gc.alloc.rate:      189.950 MB/sec
+                 gc.alloc.rate.norm: 17266645.333 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 102.027 ms/op
+                 gc.alloc.rate:      161.123 MB/sec
+                 gc.alloc.rate.norm: 17266928.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 63.75% complete, ETA 00:01:23
+# Fork: 2 of 2
+# Warmup Iteration   1: 150.656 ms/op
+# Warmup Iteration   2: 118.493 ms/op
+Iteration   1: 113.759 ms/op
+                 gc.alloc.rate:      144.512 MB/sec
+                 gc.alloc.rate.norm: 17270936.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 113.873 ms/op
+                 gc.alloc.rate:      144.284 MB/sec
+                 gc.alloc.rate.norm: 17269008.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 116.482 ms/op
+                 gc.alloc.rate:      139.937 MB/sec
+                 gc.alloc.rate.norm: 17269216.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  102.260 ±(99.9%) 42.965 ms/op [Average]
+  (min, avg, max) = (80.864, 102.260, 116.482), stdev = 15.322
+  CI (99.9%): [59.295, 145.226] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  163.860 ±(99.9%) 75.011 MB/sec [Average]
+  (min, avg, max) = (139.937, 163.860, 203.352), stdev = 26.750
+  CI (99.9%): [88.849, 238.870] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  17268387.556 ±(99.9%) 4584.548 B/op [Average]
+  (min, avg, max) = (17266645.333, 17268387.556, 17270936.000), stdev = 1634.894
+  CI (99.9%): [17263803.008, 17272972.103] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = OJALGO, operation = qr, size = 512)
+
+# Run progress: 65.00% complete, ETA 00:01:21
+# Fork: 1 of 2
+# Warmup Iteration   1: 54.849 ms/op
+# Warmup Iteration   2: 46.329 ms/op
+Iteration   1: 40.971 ms/op
+                 gc.alloc.rate:      248.912 MB/sec
+                 gc.alloc.rate.norm: 10709059.200 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   2: 45.874 ms/op
+                 gc.alloc.rate:      222.288 MB/sec
+                 gc.alloc.rate.norm: 10709000.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 46.957 ms/op
+                 gc.alloc.rate:      216.930 MB/sec
+                 gc.alloc.rate.norm: 10704595.200 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            19.000 ms
+
+
+# Run progress: 66.25% complete, ETA 00:01:17
+# Fork: 2 of 2
+# Warmup Iteration   1: 43.900 ms/op
+# Warmup Iteration   2: 50.916 ms/op
+Iteration   1: 51.587 ms/op
+                 gc.alloc.rate:      197.719 MB/sec
+                 gc.alloc.rate.norm: 10710664.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            6.000 ms
+
+Iteration   2: 45.091 ms/op
+                 gc.alloc.rate:      226.047 MB/sec
+                 gc.alloc.rate.norm: 10706616.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 38.510 ms/op
+                 gc.alloc.rate:      264.688 MB/sec
+                 gc.alloc.rate.norm: 10704521.333 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  44.832 ±(99.9%) 12.922 ms/op [Average]
+  (min, avg, max) = (38.510, 44.832, 51.587), stdev = 4.608
+  CI (99.9%): [31.910, 57.754] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  229.431 ±(99.9%) 66.914 MB/sec [Average]
+  (min, avg, max) = (197.719, 229.431, 264.688), stdev = 23.862
+  CI (99.9%): [162.517, 296.345] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  10707409.289 ±(99.9%) 7175.037 B/op [Average]
+  (min, avg, max) = (10704521.333, 10707409.289, 10710664.000), stdev = 2558.687
+  CI (99.9%): [10700234.252, 10714584.326] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  4.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.667, 1.000), stdev = 0.516
+  CI (99.9%): [4.000, 4.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  27.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 4.500, 19.000), stdev = 7.450
+  CI (99.9%): [27.000, 27.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = OJALGO, operation = qr, size = 1024)
+
+# Run progress: 67.50% complete, ETA 00:01:14
+# Fork: 1 of 2
+# Warmup Iteration   1: 261.999 ms/op
+# Warmup Iteration   2: 249.647 ms/op
+Iteration   1: 240.590 ms/op
+                 gc.alloc.rate:      168.178 MB/sec
+                 gc.alloc.rate.norm: 42488800.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 263.066 ms/op
+                 gc.alloc.rate:      153.836 MB/sec
+                 gc.alloc.rate.norm: 42494272.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 237.086 ms/op
+                 gc.alloc.rate:      170.679 MB/sec
+                 gc.alloc.rate.norm: 42487608.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 68.75% complete, ETA 00:01:12
+# Fork: 2 of 2
+# Warmup Iteration   1: 299.870 ms/op
+# Warmup Iteration   2: 286.144 ms/op
+Iteration   1: 276.708 ms/op
+                 gc.alloc.rate:      146.337 MB/sec
+                 gc.alloc.rate.norm: 42504352.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 286.099 ms/op
+                 gc.alloc.rate:      141.495 MB/sec
+                 gc.alloc.rate.norm: 42500936.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 266.182 ms/op
+                 gc.alloc.rate:      152.031 MB/sec
+                 gc.alloc.rate.norm: 42504648.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  261.622 ±(99.9%) 54.576 ms/op [Average]
+  (min, avg, max) = (237.086, 261.622, 286.099), stdev = 19.462
+  CI (99.9%): [207.046, 316.198] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  155.426 ±(99.9%) 32.847 MB/sec [Average]
+  (min, avg, max) = (141.495, 155.426, 170.679), stdev = 11.713
+  CI (99.9%): [122.579, 188.273] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  42496769.333 ±(99.9%) 21378.437 B/op [Average]
+  (min, avg, max) = (42487608.000, 42496769.333, 42504648.000), stdev = 7623.756
+  CI (99.9%): [42475390.897, 42518147.770] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = OJALGO, operation = solve, size = 512)
+
+# Run progress: 70.00% complete, ETA 00:01:10
+# Fork: 1 of 2
+# Warmup Iteration   1: 10.517 ms/op
+# Warmup Iteration   2: 9.926 ms/op
+Iteration   1: 10.001 ms/op
+                 gc.alloc.rate:      201.813 MB/sec
+                 gc.alloc.rate.norm: 2122339.810 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            4.000 ms
+
+Iteration   2: 10.086 ms/op
+                 gc.alloc.rate:      199.838 MB/sec
+                 gc.alloc.rate.norm: 2122351.200 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 10.493 ms/op
+                 gc.alloc.rate:      192.493 MB/sec
+                 gc.alloc.rate.norm: 2122348.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 71.25% complete, ETA 00:01:07
+# Fork: 2 of 2
+# Warmup Iteration   1: 10.113 ms/op
+# Warmup Iteration   2: 9.065 ms/op
+Iteration   1: 9.224 ms/op
+                 gc.alloc.rate:      219.098 MB/sec
+                 gc.alloc.rate.norm: 2122326.909 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 10.376 ms/op
+                 gc.alloc.rate:      194.729 MB/sec
+                 gc.alloc.rate.norm: 2122351.200 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 10.429 ms/op
+                 gc.alloc.rate:      193.743 MB/sec
+                 gc.alloc.rate.norm: 2122351.200 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  10.102 ±(99.9%) 1.325 ms/op [Average]
+  (min, avg, max) = (9.224, 10.102, 10.493), stdev = 0.473
+  CI (99.9%): [8.776, 11.427] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  200.286 ±(99.9%) 27.784 MB/sec [Average]
+  (min, avg, max) = (192.493, 200.286, 219.098), stdev = 9.908
+  CI (99.9%): [172.501, 228.070] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  2122344.720 ±(99.9%) 27.420 B/op [Average]
+  (min, avg, max) = (2122326.909, 2122344.720, 2122351.200), stdev = 9.778
+  CI (99.9%): [2122317.300, 2122372.140] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.333, 1.000), stdev = 0.516
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  7.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 1.167, 4.000), stdev = 1.835
+  CI (99.9%): [7.000, 7.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = OJALGO, operation = solve, size = 1024)
+
+# Run progress: 72.50% complete, ETA 00:01:03
+# Fork: 1 of 2
+# Warmup Iteration   1: 138.587 ms/op
+# Warmup Iteration   2: 129.928 ms/op
+Iteration   1: 136.374 ms/op
+                 gc.alloc.rate:      61.369 MB/sec
+                 gc.alloc.rate.norm: 8785148.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 115.032 ms/op
+                 gc.alloc.rate:      72.635 MB/sec
+                 gc.alloc.rate.norm: 8781480.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 89.285 ms/op
+                 gc.alloc.rate:      93.516 MB/sec
+                 gc.alloc.rate.norm: 8766546.667 B/op
+                 gc.count:           ≈ 0 counts
+
+
+# Run progress: 73.75% complete, ETA 00:01:00
+# Fork: 2 of 2
+# Warmup Iteration   1: 134.767 ms/op
+# Warmup Iteration   2: 162.337 ms/op
+Iteration   1: 104.038 ms/op
+                 gc.alloc.rate:      80.159 MB/sec
+                 gc.alloc.rate.norm: 8775960.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 112.752 ms/op
+                 gc.alloc.rate:      74.178 MB/sec
+                 gc.alloc.rate.norm: 8781528.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 103.526 ms/op
+                 gc.alloc.rate:      80.704 MB/sec
+                 gc.alloc.rate.norm: 8779188.000 B/op
+                 gc.count:           ≈ 0 counts
+
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  110.168 ±(99.9%) 44.069 ms/op [Average]
+  (min, avg, max) = (89.285, 110.168, 136.374), stdev = 15.716
+  CI (99.9%): [66.098, 154.237] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  77.093 ±(99.9%) 29.882 MB/sec [Average]
+  (min, avg, max) = (61.369, 77.093, 93.516), stdev = 10.656
+  CI (99.9%): [47.212, 106.975] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  8778308.444 ±(99.9%) 18252.307 B/op [Average]
+  (min, avg, max) = (8766546.667, 8778308.444, 8785148.000), stdev = 6508.948
+  CI (99.9%): [8760056.138, 8796560.751] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = JBLAS, operation = multiplication, size = 512)
+
+# Run progress: 75.00% complete, ETA 00:00:57
+# Fork: 1 of 2
+# Warmup Iteration   1: 15.020 ms/op
+# Warmup Iteration   2: 15.039 ms/op
+Iteration   1: 16.317 ms/op
+                 gc.alloc.rate:      122.422 MB/sec
+                 gc.alloc.rate.norm: 2097654.154 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 16.229 ms/op
+                 gc.alloc.rate:      122.714 MB/sec
+                 gc.alloc.rate.norm: 2097654.154 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 17.137 ms/op
+                 gc.alloc.rate:      115.882 MB/sec
+                 gc.alloc.rate.norm: 2097692.000 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas11286618172300517725/libjblas.so
+
+# Run progress: 76.25% complete, ETA 00:00:54
+# Fork: 2 of 2
+# Warmup Iteration   1: 15.414 ms/op
+# Warmup Iteration   2: 15.276 ms/op
+Iteration   1: 16.084 ms/op
+                 gc.alloc.rate:      124.142 MB/sec
+                 gc.alloc.rate.norm: 2097654.154 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 15.940 ms/op
+                 gc.alloc.rate:      125.274 MB/sec
+                 gc.alloc.rate.norm: 2097654.154 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 16.062 ms/op
+                 gc.alloc.rate:      124.052 MB/sec
+                 gc.alloc.rate.norm: 2097654.154 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas2706487166200046584/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas2706487166200046584/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas2706487166200046584/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas2706487166200046584/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas2706487166200046584
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  16.295 ±(99.9%) 1.215 ms/op [Average]
+  (min, avg, max) = (15.940, 16.295, 17.137), stdev = 0.433
+  CI (99.9%): [15.080, 17.510] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  122.414 ±(99.9%) 9.435 MB/sec [Average]
+  (min, avg, max) = (115.882, 122.414, 125.274), stdev = 3.365
+  CI (99.9%): [112.980, 131.849] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  2097660.462 ±(99.9%) 43.326 B/op [Average]
+  (min, avg, max) = (2097654.154, 2097660.462, 2097692.000), stdev = 15.451
+  CI (99.9%): [2097617.135, 2097703.788] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = JBLAS, operation = multiplication, size = 1024)
+
+# Run progress: 77.50% complete, ETA 00:00:51
+# Fork: 1 of 2
+# Warmup Iteration   1: 128.289 ms/op
+# Warmup Iteration   2: 125.072 ms/op
+Iteration   1: 122.638 ms/op
+                 gc.alloc.rate:      65.117 MB/sec
+                 gc.alloc.rate.norm: 8391576.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 130.522 ms/op
+                 gc.alloc.rate:      61.225 MB/sec
+                 gc.alloc.rate.norm: 8391576.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 127.495 ms/op
+                 gc.alloc.rate:      62.654 MB/sec
+                 gc.alloc.rate.norm: 8391608.000 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas1746478757550491593/libjblas.so
+
+# Run progress: 78.75% complete, ETA 00:00:48
+# Fork: 2 of 2
+# Warmup Iteration   1: 112.590 ms/op
+# Warmup Iteration   2: 128.643 ms/op
+Iteration   1: 127.023 ms/op
+                 gc.alloc.rate:      62.938 MB/sec
+                 gc.alloc.rate.norm: 8391544.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 132.328 ms/op
+                 gc.alloc.rate:      60.391 MB/sec
+                 gc.alloc.rate.norm: 8391576.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 129.418 ms/op
+                 gc.alloc.rate:      61.737 MB/sec
+                 gc.alloc.rate.norm: 8391608.000 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas11601305245869605399/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas11601305245869605399/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas11601305245869605399/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas11601305245869605399/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas11601305245869605399
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  128.237 ±(99.9%) 9.445 ms/op [Average]
+  (min, avg, max) = (122.638, 128.237, 132.328), stdev = 3.368
+  CI (99.9%): [118.793, 137.682] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  62.344 ±(99.9%) 4.620 MB/sec [Average]
+  (min, avg, max) = (60.391, 62.344, 65.117), stdev = 1.648
+  CI (99.9%): [57.724, 66.964] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  8391581.333 ±(99.9%) 67.549 B/op [Average]
+  (min, avg, max) = (8391544.000, 8391581.333, 8391608.000), stdev = 24.089
+  CI (99.9%): [8391513.784, 8391648.883] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = JBLAS, operation = lu, size = 512)
+
+# Run progress: 80.00% complete, ETA 00:00:45
+# Fork: 1 of 2
+# Warmup Iteration   1: 11.839 ms/op
+# Warmup Iteration   2: 12.032 ms/op
+Iteration   1: 10.929 ms/op
+                 gc.alloc.rate:      913.478 MB/sec
+                 gc.alloc.rate.norm: 10490497.684 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 9.192 ms/op
+                 gc.alloc.rate:      1086.773 MB/sec
+                 gc.alloc.rate.norm: 10490454.909 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   3: 9.145 ms/op
+                 gc.alloc.rate:      1092.446 MB/sec
+                 gc.alloc.rate.norm: 10490452.364 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas16394349430351378478/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas16394349430351378478/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas16394349430351378478/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas16394349430351378478/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas16394349430351378478
+
+# Run progress: 81.25% complete, ETA 00:00:42
+# Fork: 2 of 2
+# Warmup Iteration   1: 11.458 ms/op
+# Warmup Iteration   2: 12.364 ms/op
+Iteration   1: 10.779 ms/op
+                 gc.alloc.rate:      926.983 MB/sec
+                 gc.alloc.rate.norm: 10490497.684 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 8.958 ms/op
+                 gc.alloc.rate:      1115.315 MB/sec
+                 gc.alloc.rate.norm: 10490443.130 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   3: 9.047 ms/op
+                 gc.alloc.rate:      1104.097 MB/sec
+                 gc.alloc.rate.norm: 10490440.696 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas6377915038646445682/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas6377915038646445682/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas6377915038646445682/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas6377915038646445682/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas6377915038646445682
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  9.675 ±(99.9%) 2.574 ms/op [Average]
+  (min, avg, max) = (8.958, 9.675, 10.929), stdev = 0.918
+  CI (99.9%): [7.101, 12.249] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  1039.849 ±(99.9%) 261.556 MB/sec [Average]
+  (min, avg, max) = (913.478, 1039.849, 1115.315), stdev = 93.273
+  CI (99.9%): [778.293, 1301.405] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  10490464.411 ±(99.9%) 73.819 B/op [Average]
+  (min, avg, max) = (10490440.696, 10490464.411, 10490497.684), stdev = 26.325
+  CI (99.9%): [10490390.592, 10490538.230] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  4.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.667, 1.000), stdev = 0.516
+  CI (99.9%): [4.000, 4.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  8.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 1.333, 3.000), stdev = 1.366
+  CI (99.9%): [8.000, 8.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = JBLAS, operation = lu, size = 1024)
+
+# Run progress: 82.50% complete, ETA 00:00:39
+# Fork: 1 of 2
+# Warmup Iteration   1: 67.522 ms/op
+# Warmup Iteration   2: 70.247 ms/op
+Iteration   1: 84.250 ms/op
+                 gc.alloc.rate:      474.290 MB/sec
+                 gc.alloc.rate.norm: 41953528.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 67.469 ms/op
+                 gc.alloc.rate:      592.014 MB/sec
+                 gc.alloc.rate.norm: 41953546.667 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+Iteration   3: 53.316 ms/op
+                 gc.alloc.rate:      749.186 MB/sec
+                 gc.alloc.rate.norm: 41953036.000 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas17540025493327198348/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas17540025493327198348/libgfortran-4.so
+
+# Run progress: 83.75% complete, ETA 00:00:36
+# Fork: 2 of 2
+# Warmup Iteration   1: 64.638 ms/op
+# Warmup Iteration   2: 68.212 ms/op
+Iteration   1: 68.593 ms/op
+                 gc.alloc.rate:      582.541 MB/sec
+                 gc.alloc.rate.norm: 41953528.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 57.894 ms/op
+                 gc.alloc.rate:      690.095 MB/sec
+                 gc.alloc.rate.norm: 41953034.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 59.086 ms/op
+                 gc.alloc.rate:      675.635 MB/sec
+                 gc.alloc.rate.norm: 41953050.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+-- org.jblas INFO Deleting /tmp/jblas10293144135173596142/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas10293144135173596142/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas10293144135173596142/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas10293144135173596142/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas10293144135173596142
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  65.102 ±(99.9%) 31.011 ms/op [Average]
+  (min, avg, max) = (53.316, 65.102, 84.250), stdev = 11.059
+  CI (99.9%): [34.091, 96.112] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  627.293 ±(99.9%) 274.169 MB/sec [Average]
+  (min, avg, max) = (474.290, 627.293, 749.186), stdev = 97.771
+  CI (99.9%): [353.124, 901.463] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  41953287.111 ±(99.9%) 759.482 B/op [Average]
+  (min, avg, max) = (41953034.000, 41953287.111, 41953546.667), stdev = 270.839
+  CI (99.9%): [41952527.629, 41954046.593] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  3.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.500, 1.000), stdev = 0.548
+  CI (99.9%): [3.000, 3.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  4.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.667, 2.000), stdev = 0.816
+  CI (99.9%): [4.000, 4.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = JBLAS, operation = cholesky, size = 512)
+
+# Run progress: 85.00% complete, ETA 00:00:34
+# Fork: 1 of 2
+# Warmup Iteration   1: 6.394 ms/op
+# Warmup Iteration   2: 5.335 ms/op
+Iteration   1: 4.812 ms/op
+                 gc.alloc.rate:      829.937 MB/sec
+                 gc.alloc.rate.norm: 4194544.571 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 3.666 ms/op
+                 gc.alloc.rate:      1089.297 MB/sec
+                 gc.alloc.rate.norm: 4194507.345 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 3.745 ms/op
+                 gc.alloc.rate:      1066.025 MB/sec
+                 gc.alloc.rate.norm: 4194510.370 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+-- org.jblas INFO Deleting /tmp/jblas1541141232175583114/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas1541141232175583114/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas1541141232175583114/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas1541141232175583114/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas1541141232175583114
+
+# Run progress: 86.25% complete, ETA 00:00:31
+# Fork: 2 of 2
+# Warmup Iteration   1: 4.824 ms/op
+# Warmup Iteration   2: 5.145 ms/op
+Iteration   1: 5.286 ms/op
+                 gc.alloc.rate:      755.386 MB/sec
+                 gc.alloc.rate.norm: 4194559.789 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   2: 4.072 ms/op
+                 gc.alloc.rate:      980.328 MB/sec
+                 gc.alloc.rate.norm: 4194516.800 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 4.042 ms/op
+                 gc.alloc.rate:      987.124 MB/sec
+                 gc.alloc.rate.norm: 4194519.200 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            1.000 ms
+
+-- org.jblas INFO Deleting /tmp/jblas4062068249098566539/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas4062068249098566539/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas4062068249098566539/libjblas_arch_flavor.so
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  4.271 ±(99.9%) 1.799 ms/op [Average]
+  (min, avg, max) = (3.666, 4.271, 5.286), stdev = 0.641
+  CI (99.9%): [2.472, 6.069] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  951.349 ±(99.9%) 370.837 MB/sec [Average]
+  (min, avg, max) = (755.386, 951.349, 1089.297), stdev = 132.244
+  CI (99.9%): [580.513, 1322.186] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  4194526.346 ±(99.9%) 58.942 B/op [Average]
+  (min, avg, max) = (4194507.345, 4194526.346, 4194559.789), stdev = 21.019
+  CI (99.9%): [4194467.404, 4194585.288] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  4.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.667, 1.000), stdev = 0.516
+  CI (99.9%): [4.000, 4.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  9.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 1.500, 3.000), stdev = 1.378
+  CI (99.9%): [9.000, 9.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = JBLAS, operation = cholesky, size = 1024)
+
+# Run progress: 87.50% complete, ETA 00:00:28
+# Fork: 1 of 2
+# Warmup Iteration   1: 27.114 ms/op
+# Warmup Iteration   2: 27.019 ms/op
+Iteration   1: 27.780 ms/op
+                 gc.alloc.rate:      575.063 MB/sec
+                 gc.alloc.rate.norm: 16778050.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 28.852 ms/op
+                 gc.alloc.rate:      553.597 MB/sec
+                 gc.alloc.rate.norm: 16778163.429 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            2.000 ms
+
+Iteration   3: 26.188 ms/op
+                 gc.alloc.rate:      609.874 MB/sec
+                 gc.alloc.rate.norm: 16778050.000 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas5321042029592159730/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas5321042029592159730/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas5321042029592159730/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas5321042029592159730/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas5321042029592159730
+
+# Run progress: 88.75% complete, ETA 00:00:25
+# Fork: 2 of 2
+# Warmup Iteration   1: 32.208 ms/op
+# Warmup Iteration   2: 31.649 ms/op
+Iteration   1: 30.244 ms/op
+                 gc.alloc.rate:      528.162 MB/sec
+                 gc.alloc.rate.norm: 16778155.429 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 27.296 ms/op
+                 gc.alloc.rate:      585.385 MB/sec
+                 gc.alloc.rate.norm: 16778057.000 B/op
+                 gc.count:           1.000 counts
+                 gc.time:            3.000 ms
+
+Iteration   3: 24.906 ms/op
+                 gc.alloc.rate:      641.525 MB/sec
+                 gc.alloc.rate.norm: 16777960.889 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas17907956019390577711/libjblas.so
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  27.545 ±(99.9%) 5.308 ms/op [Average]
+  (min, avg, max) = (24.906, 27.545, 30.244), stdev = 1.893
+  CI (99.9%): [22.237, 32.852] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  582.268 ±(99.9%) 112.760 MB/sec [Average]
+  (min, avg, max) = (528.162, 582.268, 641.525), stdev = 40.211
+  CI (99.9%): [469.508, 695.027] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  16778072.791 ±(99.9%) 213.024 B/op [Average]
+  (min, avg, max) = (16777960.889, 16778072.791, 16778163.429), stdev = 75.966
+  CI (99.9%): [16777859.767, 16778285.815] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  2.000 ±(99.9%) 0.001 counts [Sum]
+  (min, avg, max) = (≈ 0, 0.333, 1.000), stdev = 0.516
+  CI (99.9%): [2.000, 2.000] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.time":
+  5.000 ±(99.9%) 0.001 ms [Sum]
+  (min, avg, max) = (≈ 0, 0.833, 3.000), stdev = 1.329
+  CI (99.9%): [5.000, 5.000] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = JBLAS, operation = qr, size = 512)
+
+# Run progress: 90.00% complete, ETA 00:00:22
+# Fork: 1 of 2
+# Warmup Iteration   1: 38.677 ms/op
+# Warmup Iteration   2: 41.262 ms/op
+Iteration   1: 39.049 ms/op
+                 gc.alloc.rate:      160.781 MB/sec
+                 gc.alloc.rate.norm: 6592280.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 40.604 ms/op
+                 gc.alloc.rate:      154.584 MB/sec
+                 gc.alloc.rate.norm: 6592464.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 39.389 ms/op
+                 gc.alloc.rate:      159.364 MB/sec
+                 gc.alloc.rate.norm: 6592285.333 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas17363451779819462591/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas17363451779819462591/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas17363451779819462591/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas17363451779819462591/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas17363451779819462591
+
+# Run progress: 91.25% complete, ETA 00:00:19
+# Fork: 2 of 2
+# Warmup Iteration   1: 40.001 ms/op
+# Warmup Iteration   2: 41.745 ms/op
+Iteration   1: 40.985 ms/op
+                 gc.alloc.rate:      153.188 MB/sec
+                 gc.alloc.rate.norm: 6592476.800 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 39.821 ms/op
+                 gc.alloc.rate:      157.647 MB/sec
+                 gc.alloc.rate.norm: 6592280.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 41.877 ms/op
+                 gc.alloc.rate:      149.883 MB/sec
+                 gc.alloc.rate.norm: 6592476.800 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas1886136816001812808/libjblas.so
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  40.287 ±(99.9%) 2.987 ms/op [Average]
+  (min, avg, max) = (39.049, 40.287, 41.877), stdev = 1.065
+  CI (99.9%): [37.300, 43.275] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  155.908 ±(99.9%) 11.505 MB/sec [Average]
+  (min, avg, max) = (149.883, 155.908, 160.781), stdev = 4.103
+  CI (99.9%): [144.403, 167.413] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  6592377.156 ±(99.9%) 293.328 B/op [Average]
+  (min, avg, max) = (6592280.000, 6592377.156, 6592476.800), stdev = 104.604
+  CI (99.9%): [6592083.827, 6592670.484] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = JBLAS, operation = qr, size = 1024)
+
+# Run progress: 92.50% complete, ETA 00:00:16
+# Fork: 1 of 2
+# Warmup Iteration   1: 280.803 ms/op
+# Warmup Iteration   2: 285.560 ms/op
+Iteration   1: 307.540 ms/op
+                 gc.alloc.rate:      79.673 MB/sec
+                 gc.alloc.rate.norm: 25737744.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 280.752 ms/op
+                 gc.alloc.rate:      87.306 MB/sec
+                 gc.alloc.rate.norm: 25737808.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 324.321 ms/op
+                 gc.alloc.rate:      75.597 MB/sec
+                 gc.alloc.rate.norm: 25737808.000 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas9888509954375017510/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas9888509954375017510/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas9888509954375017510/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas9888509954375017510/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas9888509954375017510
+
+# Run progress: 93.75% complete, ETA 00:00:14
+# Fork: 2 of 2
+# Warmup Iteration   1: 274.888 ms/op
+# Warmup Iteration   2: 273.329 ms/op
+Iteration   1: 287.486 ms/op
+                 gc.alloc.rate:      85.293 MB/sec
+                 gc.alloc.rate.norm: 25737808.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 270.550 ms/op
+                 gc.alloc.rate:      90.593 MB/sec
+                 gc.alloc.rate.norm: 25737808.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 289.206 ms/op
+                 gc.alloc.rate:      84.417 MB/sec
+                 gc.alloc.rate.norm: 25737808.000 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas7967660822929413979/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas7967660822929413979/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas7967660822929413979/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas7967660822929413979/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas7967660822929413979
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  293.309 ±(99.9%) 54.529 ms/op [Average]
+  (min, avg, max) = (270.550, 293.309, 324.321), stdev = 19.446
+  CI (99.9%): [238.780, 347.838] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  83.813 ±(99.9%) 15.121 MB/sec [Average]
+  (min, avg, max) = (75.597, 83.813, 90.593), stdev = 5.392
+  CI (99.9%): [68.693, 98.934] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  25737797.333 ±(99.9%) 73.267 B/op [Average]
+  (min, avg, max) = (25737744.000, 25737797.333, 25737808.000), stdev = 26.128
+  CI (99.9%): [25737724.066, 25737870.601] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = JBLAS, operation = solve, size = 512)
+
+# Run progress: 95.00% complete, ETA 00:00:11
+# Fork: 1 of 2
+# Warmup Iteration   1: 6.944 ms/op
+# Warmup Iteration   2: 5.933 ms/op
+Iteration   1: 5.657 ms/op
+                 gc.alloc.rate:      354.242 MB/sec
+                 gc.alloc.rate.norm: 2103571.111 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 5.989 ms/op
+                 gc.alloc.rate:      334.436 MB/sec
+                 gc.alloc.rate.norm: 2103581.647 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 5.969 ms/op
+                 gc.alloc.rate:      335.466 MB/sec
+                 gc.alloc.rate.norm: 2103581.647 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas791509120134291414/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas791509120134291414/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas791509120134291414/libjblas_arch_flavor.so
+
+# Run progress: 96.25% complete, ETA 00:00:08
+# Fork: 2 of 2
+# Warmup Iteration   1: 6.432 ms/op
+# Warmup Iteration   2: 6.311 ms/op
+Iteration   1: 6.282 ms/op
+                 gc.alloc.rate:      318.909 MB/sec
+                 gc.alloc.rate.norm: 2103592.500 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 7.003 ms/op
+                 gc.alloc.rate:      284.985 MB/sec
+                 gc.alloc.rate.norm: 2103609.379 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 6.391 ms/op
+                 gc.alloc.rate:      313.260 MB/sec
+                 gc.alloc.rate.norm: 2103592.500 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas340834085396159383/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas340834085396159383/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas340834085396159383/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas340834085396159383/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas340834085396159383
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  6.215 ±(99.9%) 1.303 ms/op [Average]
+  (min, avg, max) = (5.657, 6.215, 7.003), stdev = 0.465
+  CI (99.9%): [4.912, 7.518] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  323.550 ±(99.9%) 66.562 MB/sec [Average]
+  (min, avg, max) = (284.985, 323.550, 354.242), stdev = 23.737
+  CI (99.9%): [256.987, 390.112] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  2103588.131 ±(99.9%) 36.850 B/op [Average]
+  (min, avg, max) = (2103571.111, 2103588.131, 2103609.379), stdev = 13.141
+  CI (99.9%): [2103551.281, 2103624.981] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.20, OpenJDK 64-Bit Server VM, 17.0.20+8-1-24.04-Ubuntu
+# VM invoker: /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+# VM options: -Xms1g -Xmx1g -XX:ActiveProcessorCount=4 -Dbenchmark.threads=4 -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 100 ms each
+# Measurement: 3 iterations, 200 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: dev.nm.benchmark.MatrixBenchmark.compute
+# Parameters: (library = JBLAS, operation = solve, size = 1024)
+
+# Run progress: 97.50% complete, ETA 00:00:05
+# Fork: 1 of 2
+# Warmup Iteration   1: 45.429 ms/op
+# Warmup Iteration   2: 52.717 ms/op
+Iteration   1: 47.049 ms/op
+                 gc.alloc.rate:      169.945 MB/sec
+                 gc.alloc.rate.norm: 8402176.000 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 47.032 ms/op
+                 gc.alloc.rate:      170.088 MB/sec
+                 gc.alloc.rate.norm: 8402188.800 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 39.586 ms/op
+                 gc.alloc.rate:      202.121 MB/sec
+                 gc.alloc.rate.norm: 8401992.000 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas11737334030704020857/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas11737334030704020857/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas11737334030704020857/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas11737334030704020857/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas11737334030704020857
+
+# Run progress: 98.75% complete, ETA 00:00:02
+# Fork: 2 of 2
+# Warmup Iteration   1: 42.216 ms/op
+# Warmup Iteration   2: 47.624 ms/op
+Iteration   1: 47.016 ms/op
+                 gc.alloc.rate:      170.185 MB/sec
+                 gc.alloc.rate.norm: 8402188.800 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   2: 40.687 ms/op
+                 gc.alloc.rate:      196.657 MB/sec
+                 gc.alloc.rate.norm: 8402188.800 B/op
+                 gc.count:           ≈ 0 counts
+
+Iteration   3: 45.969 ms/op
+                 gc.alloc.rate:      174.037 MB/sec
+                 gc.alloc.rate.norm: 8402188.800 B/op
+                 gc.count:           ≈ 0 counts
+
+-- org.jblas INFO Deleting /tmp/jblas12402955892632545929/libjblas.so
+-- org.jblas INFO Deleting /tmp/jblas12402955892632545929/libgfortran-4.so
+-- org.jblas INFO Deleting /tmp/jblas12402955892632545929/libjblas_arch_flavor.so
+-- org.jblas INFO Deleting /tmp/jblas12402955892632545929/libquadmath-0.so
+-- org.jblas INFO Deleting /tmp/jblas12402955892632545929
+
+
+Result "dev.nm.benchmark.MatrixBenchmark.compute":
+  44.556 ±(99.9%) 9.719 ms/op [Average]
+  (min, avg, max) = (39.586, 44.556, 47.049), stdev = 3.466
+  CI (99.9%): [34.838, 54.275] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate":
+  180.506 ±(99.9%) 41.527 MB/sec [Average]
+  (min, avg, max) = (169.945, 180.506, 202.121), stdev = 14.809
+  CI (99.9%): [138.979, 222.032] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.alloc.rate.norm":
+  8402153.867 ±(99.9%) 222.830 B/op [Average]
+  (min, avg, max) = (8401992.000, 8402153.867, 8402188.800), stdev = 79.463
+  CI (99.9%): [8401931.037, 8402376.697] (assumes normal distribution)
+
+Secondary result "dev.nm.benchmark.MatrixBenchmark.compute:gc.count":
+  ≈ 0 counts
+
+
+# Run complete. Total time: 00:03:44
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                   (library)     (operation)  (size)  Mode  Cnt         Score       Error   Units
+MatrixBenchmark.compute                         NMDEV  multiplication     512  avgt    6        46.904 ±    18.974   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           NMDEV  multiplication     512  avgt    6       347.679 ±   166.105  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      NMDEV  multiplication     512  avgt    6  16792871.356 ±   412.682    B/op
+MatrixBenchmark.compute:gc.count                NMDEV  multiplication     512  avgt    6         3.000              counts
+MatrixBenchmark.compute:gc.time                 NMDEV  multiplication     512  avgt    6         3.000                  ms
+MatrixBenchmark.compute                         NMDEV  multiplication    1024  avgt    6       223.738 ±    16.270   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           NMDEV  multiplication    1024  avgt    6       100.128 ±     6.327  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      NMDEV  multiplication    1024  avgt    6  23585112.000 ±   283.053    B/op
+MatrixBenchmark.compute:gc.count                NMDEV  multiplication    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                         NMDEV              lu     512  avgt    6        28.387 ±    18.647   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           NMDEV              lu     512  avgt    6       379.850 ±   230.263  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      NMDEV              lu     512  avgt    6  10855438.981 ± 12512.324    B/op
+MatrixBenchmark.compute:gc.count                NMDEV              lu     512  avgt    6         3.000              counts
+MatrixBenchmark.compute:gc.time                 NMDEV              lu     512  avgt    6         4.000                  ms
+MatrixBenchmark.compute                         NMDEV              lu    1024  avgt    6       124.713 ±   131.099   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           NMDEV              lu    1024  avgt    6       358.854 ±   310.404  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      NMDEV              lu    1024  avgt    6  42746192.667 ± 18161.292    B/op
+MatrixBenchmark.compute:gc.count                NMDEV              lu    1024  avgt    6         2.000              counts
+MatrixBenchmark.compute:gc.time                 NMDEV              lu    1024  avgt    6        10.000                  ms
+MatrixBenchmark.compute                         NMDEV        cholesky     512  avgt    6        11.187 ±     3.097   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           NMDEV        cholesky     512  avgt    6       271.267 ±    71.212  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      NMDEV        cholesky     512  avgt    6   3166955.933 ±   160.144    B/op
+MatrixBenchmark.compute:gc.count                NMDEV        cholesky     512  avgt    6         2.000              counts
+MatrixBenchmark.compute:gc.time                 NMDEV        cholesky     512  avgt    6         7.000                  ms
+MatrixBenchmark.compute                         NMDEV        cholesky    1024  avgt    6        65.491 ±    10.076   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           NMDEV        cholesky    1024  avgt    6       184.040 ±    28.881  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      NMDEV        cholesky    1024  avgt    6  12625978.444 ±   776.361    B/op
+MatrixBenchmark.compute:gc.count                NMDEV        cholesky    1024  avgt    6         2.000              counts
+MatrixBenchmark.compute:gc.time                 NMDEV        cholesky    1024  avgt    6         3.000                  ms
+MatrixBenchmark.compute                         NMDEV              qr     512  avgt    6       105.917 ±    34.687   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           NMDEV              qr     512  avgt    6       197.888 ±    73.166  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      NMDEV              qr     512  avgt    6  21734591.556 ±  5521.277    B/op
+MatrixBenchmark.compute:gc.count                NMDEV              qr     512  avgt    6         2.000              counts
+MatrixBenchmark.compute:gc.time                 NMDEV              qr     512  avgt    6         2.000                  ms
+MatrixBenchmark.compute                         NMDEV              qr    1024  avgt    6       448.123 ±   184.553   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           NMDEV              qr    1024  avgt    6       185.209 ±    74.361  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      NMDEV              qr    1024  avgt    6  85571340.000 ± 14784.743    B/op
+MatrixBenchmark.compute:gc.count                NMDEV              qr    1024  avgt    6         2.000              counts
+MatrixBenchmark.compute:gc.time                 NMDEV              qr    1024  avgt    6         5.000                  ms
+MatrixBenchmark.compute                         NMDEV           solve     512  avgt    6        34.196 ±    25.975   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           NMDEV           solve     512  avgt    6       325.588 ±   258.872  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      NMDEV           solve     512  avgt    6  10955271.103 ±  7937.870    B/op
+MatrixBenchmark.compute:gc.count                NMDEV           solve     512  avgt    6         4.000              counts
+MatrixBenchmark.compute:gc.time                 NMDEV           solve     512  avgt    6        11.000                  ms
+MatrixBenchmark.compute                         NMDEV           solve    1024  avgt    6        98.914 ±    55.117   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           NMDEV           solve    1024  avgt    6       424.346 ±   182.054  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      NMDEV           solve    1024  avgt    6  42960792.889 ± 17226.612    B/op
+MatrixBenchmark.compute:gc.count                NMDEV           solve    1024  avgt    6         3.000              counts
+MatrixBenchmark.compute:gc.time                 NMDEV           solve    1024  avgt    6         9.000                  ms
+MatrixBenchmark.compute                          EJML  multiplication     512  avgt    6        44.195 ±     3.224   ms/op
+MatrixBenchmark.compute:gc.alloc.rate            EJML  multiplication     512  avgt    6        45.238 ±     3.362  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm       EJML  multiplication     512  avgt    6   2098367.467 ±    17.645    B/op
+MatrixBenchmark.compute:gc.count                 EJML  multiplication     512  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                          EJML  multiplication    1024  avgt    6       346.839 ±    31.626   ms/op
+MatrixBenchmark.compute:gc.alloc.rate            EJML  multiplication    1024  avgt    6        23.029 ±     2.082  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm       EJML  multiplication    1024  avgt    6   8394552.000 ±     0.001    B/op
+MatrixBenchmark.compute:gc.count                 EJML  multiplication    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                          EJML              lu     512  avgt    6        38.870 ±     1.993   ms/op
+MatrixBenchmark.compute:gc.alloc.rate            EJML              lu     512  avgt    6       205.483 ±    10.375  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm       EJML              lu     512  avgt    6   8400248.800 ±   225.298    B/op
+MatrixBenchmark.compute:gc.count                 EJML              lu     512  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                          EJML              lu    1024  avgt    6       317.850 ±    13.899   ms/op
+MatrixBenchmark.compute:gc.alloc.rate            EJML              lu    1024  avgt    6       100.657 ±     4.461  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm       EJML              lu    1024  avgt    6  33581200.000 ±     0.001    B/op
+MatrixBenchmark.compute:gc.count                 EJML              lu    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                          EJML        cholesky     512  avgt    6        17.564 ±     1.303   ms/op
+MatrixBenchmark.compute:gc.alloc.rate            EJML        cholesky     512  avgt    6       227.805 ±    17.108  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm       EJML        cholesky     512  avgt    6   4199052.393 ±    45.072    B/op
+MatrixBenchmark.compute:gc.count                 EJML        cholesky     512  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                          EJML        cholesky    1024  avgt    6        56.477 ±     3.948   ms/op
+MatrixBenchmark.compute:gc.alloc.rate            EJML        cholesky    1024  avgt    6       291.366 ±    20.585  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm       EJML        cholesky    1024  avgt    6  17270617.333 ±    89.500    B/op
+MatrixBenchmark.compute:gc.count                 EJML        cholesky    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                          EJML              qr     512  avgt    6        79.522 ±     6.127   ms/op
+MatrixBenchmark.compute:gc.alloc.rate            EJML              qr     512  avgt    6       100.774 ±     7.641  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm       EJML              qr     512  avgt    6   8409254.222 ±    12.211    B/op
+MatrixBenchmark.compute:gc.count                 EJML              qr     512  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                          EJML              qr    1024  avgt    6       640.517 ±    56.241   ms/op
+MatrixBenchmark.compute:gc.alloc.rate            EJML              qr    1024  avgt    6        50.038 ±     4.316  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm       EJML              qr    1024  avgt    6  33597437.333 ±    73.267    B/op
+MatrixBenchmark.compute:gc.count                 EJML              qr    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                          EJML           solve     512  avgt    6        38.018 ±     2.377   ms/op
+MatrixBenchmark.compute:gc.alloc.rate            EJML           solve     512  avgt    6       105.447 ±     6.479  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm       EJML           solve     512  avgt    6   4207864.000 ±     0.001    B/op
+MatrixBenchmark.compute:gc.count                 EJML           solve     512  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                          EJML           solve    1024  avgt    6       316.707 ±    43.148   ms/op
+MatrixBenchmark.compute:gc.alloc.rate            EJML           solve    1024  avgt    6        50.571 ±     7.024  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm       EJML           solve    1024  avgt    6  16807952.000 ±    98.299    B/op
+MatrixBenchmark.compute:gc.count                 EJML           solve    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                        OJALGO  multiplication     512  avgt    6        17.773 ±     9.925   ms/op
+MatrixBenchmark.compute:gc.alloc.rate          OJALGO  multiplication     512  avgt    6       115.535 ±    66.398  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm     OJALGO  multiplication     512  avgt    6   2098301.405 ±   228.467    B/op
+MatrixBenchmark.compute:gc.count               OJALGO  multiplication     512  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                        OJALGO  multiplication    1024  avgt    6       123.041 ±    76.128   ms/op
+MatrixBenchmark.compute:gc.alloc.rate          OJALGO  multiplication    1024  avgt    6        67.415 ±    41.208  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm     OJALGO  multiplication    1024  avgt    6   8391863.333 ±  1415.808    B/op
+MatrixBenchmark.compute:gc.count               OJALGO  multiplication    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                        OJALGO              lu     512  avgt    6        10.665 ±     1.120   ms/op
+MatrixBenchmark.compute:gc.alloc.rate          OJALGO              lu     512  avgt    6       562.979 ±    58.200  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm     OJALGO              lu     512  avgt    6   6305120.077 ±    26.258    B/op
+MatrixBenchmark.compute:gc.count               OJALGO              lu     512  avgt    6         2.000              counts
+MatrixBenchmark.compute:gc.time                OJALGO              lu     512  avgt    6         1.000                  ms
+MatrixBenchmark.compute                        OJALGO              lu    1024  avgt    6       102.751 ±    34.419   ms/op
+MatrixBenchmark.compute:gc.alloc.rate          OJALGO              lu    1024  avgt    6       239.421 ±    92.566  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm     OJALGO              lu    1024  avgt    6  25528832.889 ± 18984.291    B/op
+MatrixBenchmark.compute:gc.count               OJALGO              lu    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                        OJALGO        cholesky     512  avgt    6        19.925 ±     5.825   ms/op
+MatrixBenchmark.compute:gc.alloc.rate          OJALGO        cholesky     512  avgt    6       210.827 ±    56.953  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm     OJALGO        cholesky     512  avgt    6   4377386.865 ±  1740.926    B/op
+MatrixBenchmark.compute:gc.count               OJALGO        cholesky     512  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                        OJALGO        cholesky    1024  avgt    6       102.260 ±    42.965   ms/op
+MatrixBenchmark.compute:gc.alloc.rate          OJALGO        cholesky    1024  avgt    6       163.860 ±    75.011  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm     OJALGO        cholesky    1024  avgt    6  17268387.556 ±  4584.548    B/op
+MatrixBenchmark.compute:gc.count               OJALGO        cholesky    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                        OJALGO              qr     512  avgt    6        44.832 ±    12.922   ms/op
+MatrixBenchmark.compute:gc.alloc.rate          OJALGO              qr     512  avgt    6       229.431 ±    66.914  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm     OJALGO              qr     512  avgt    6  10707409.289 ±  7175.037    B/op
+MatrixBenchmark.compute:gc.count               OJALGO              qr     512  avgt    6         4.000              counts
+MatrixBenchmark.compute:gc.time                OJALGO              qr     512  avgt    6        27.000                  ms
+MatrixBenchmark.compute                        OJALGO              qr    1024  avgt    6       261.622 ±    54.576   ms/op
+MatrixBenchmark.compute:gc.alloc.rate          OJALGO              qr    1024  avgt    6       155.426 ±    32.847  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm     OJALGO              qr    1024  avgt    6  42496769.333 ± 21378.437    B/op
+MatrixBenchmark.compute:gc.count               OJALGO              qr    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                        OJALGO           solve     512  avgt    6        10.102 ±     1.325   ms/op
+MatrixBenchmark.compute:gc.alloc.rate          OJALGO           solve     512  avgt    6       200.286 ±    27.784  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm     OJALGO           solve     512  avgt    6   2122344.720 ±    27.420    B/op
+MatrixBenchmark.compute:gc.count               OJALGO           solve     512  avgt    6         2.000              counts
+MatrixBenchmark.compute:gc.time                OJALGO           solve     512  avgt    6         7.000                  ms
+MatrixBenchmark.compute                        OJALGO           solve    1024  avgt    6       110.168 ±    44.069   ms/op
+MatrixBenchmark.compute:gc.alloc.rate          OJALGO           solve    1024  avgt    6        77.093 ±    29.882  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm     OJALGO           solve    1024  avgt    6   8778308.444 ± 18252.307    B/op
+MatrixBenchmark.compute:gc.count               OJALGO           solve    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                         JBLAS  multiplication     512  avgt    6        16.295 ±     1.215   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           JBLAS  multiplication     512  avgt    6       122.414 ±     9.435  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      JBLAS  multiplication     512  avgt    6   2097660.462 ±    43.326    B/op
+MatrixBenchmark.compute:gc.count                JBLAS  multiplication     512  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                         JBLAS  multiplication    1024  avgt    6       128.237 ±     9.445   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           JBLAS  multiplication    1024  avgt    6        62.344 ±     4.620  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      JBLAS  multiplication    1024  avgt    6   8391581.333 ±    67.549    B/op
+MatrixBenchmark.compute:gc.count                JBLAS  multiplication    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                         JBLAS              lu     512  avgt    6         9.675 ±     2.574   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           JBLAS              lu     512  avgt    6      1039.849 ±   261.556  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      JBLAS              lu     512  avgt    6  10490464.411 ±    73.819    B/op
+MatrixBenchmark.compute:gc.count                JBLAS              lu     512  avgt    6         4.000              counts
+MatrixBenchmark.compute:gc.time                 JBLAS              lu     512  avgt    6         8.000                  ms
+MatrixBenchmark.compute                         JBLAS              lu    1024  avgt    6        65.102 ±    31.011   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           JBLAS              lu    1024  avgt    6       627.293 ±   274.169  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      JBLAS              lu    1024  avgt    6  41953287.111 ±   759.482    B/op
+MatrixBenchmark.compute:gc.count                JBLAS              lu    1024  avgt    6         3.000              counts
+MatrixBenchmark.compute:gc.time                 JBLAS              lu    1024  avgt    6         4.000                  ms
+MatrixBenchmark.compute                         JBLAS        cholesky     512  avgt    6         4.271 ±     1.799   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           JBLAS        cholesky     512  avgt    6       951.349 ±   370.837  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      JBLAS        cholesky     512  avgt    6   4194526.346 ±    58.942    B/op
+MatrixBenchmark.compute:gc.count                JBLAS        cholesky     512  avgt    6         4.000              counts
+MatrixBenchmark.compute:gc.time                 JBLAS        cholesky     512  avgt    6         9.000                  ms
+MatrixBenchmark.compute                         JBLAS        cholesky    1024  avgt    6        27.545 ±     5.308   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           JBLAS        cholesky    1024  avgt    6       582.268 ±   112.760  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      JBLAS        cholesky    1024  avgt    6  16778072.791 ±   213.024    B/op
+MatrixBenchmark.compute:gc.count                JBLAS        cholesky    1024  avgt    6         2.000              counts
+MatrixBenchmark.compute:gc.time                 JBLAS        cholesky    1024  avgt    6         5.000                  ms
+MatrixBenchmark.compute                         JBLAS              qr     512  avgt    6        40.287 ±     2.987   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           JBLAS              qr     512  avgt    6       155.908 ±    11.505  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      JBLAS              qr     512  avgt    6   6592377.156 ±   293.328    B/op
+MatrixBenchmark.compute:gc.count                JBLAS              qr     512  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                         JBLAS              qr    1024  avgt    6       293.309 ±    54.529   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           JBLAS              qr    1024  avgt    6        83.813 ±    15.121  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      JBLAS              qr    1024  avgt    6  25737797.333 ±    73.267    B/op
+MatrixBenchmark.compute:gc.count                JBLAS              qr    1024  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                         JBLAS           solve     512  avgt    6         6.215 ±     1.303   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           JBLAS           solve     512  avgt    6       323.550 ±    66.562  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      JBLAS           solve     512  avgt    6   2103588.131 ±    36.850    B/op
+MatrixBenchmark.compute:gc.count                JBLAS           solve     512  avgt    6           ≈ 0              counts
+MatrixBenchmark.compute                         JBLAS           solve    1024  avgt    6        44.556 ±     9.719   ms/op
+MatrixBenchmark.compute:gc.alloc.rate           JBLAS           solve    1024  avgt    6       180.506 ±    41.527  MB/sec
+MatrixBenchmark.compute:gc.alloc.rate.norm      JBLAS           solve    1024  avgt    6   8402153.867 ±   222.830    B/op
+MatrixBenchmark.compute:gc.count                JBLAS           solve    1024  avgt    6           ≈ 0              counts
+
+Benchmark result is saved to benchmark/results/2026-10-18-latest-large-4threads/jmh.json

@@ -1,0 +1,5 @@
+fixture,method,residual,status
+scaled-pivot,GOLUB_KAHAN,4.534438470812616E-14,PASS
+scaled-pivot,MR3,0.18466065025474654,FAIL
+clustered-spd,GOLUB_KAHAN,4.2854608750402477E-13,PASS
+clustered-spd,MR3,2.9507696979211193E-5,FAIL

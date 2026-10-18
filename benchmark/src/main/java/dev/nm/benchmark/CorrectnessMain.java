@@ -15,9 +15,7 @@ public final class CorrectnessMain {
         for(int size:new int[]{4,64,256})for(String library:libraries)for(String op:operations){
             try {
             Inputs inputs=new Inputs(size);Adapter adapter=MatrixBenchmark.create(library,inputs);
-            double residual=Validation.check(op,inputs,adapter,adapter.run(op));
-            // A second invocation checks that repeat execution remains valid.
-            Validation.check(op,inputs,adapter,adapter.run(op));
+            double residual=Validation.checkRepeated(op, inputs, adapter);
             csv.printf(Locale.ROOT,"%s,%d,%s,%.12g,PASS%n",library,size,op,residual);
             } catch(Throwable error) { failures++; csv.printf("%s,%d,%s,,FAIL%n",library,size,op); System.err.println(library+"/"+size+"/"+op);error.printStackTrace(); }
         }

@@ -11,6 +11,7 @@ import org.ejml.interfaces.linsol.LinearSolverDense;
 final class EjmlAdapter implements Adapter {
     final DMatrixRMaj a,b,spd,rhs; final int n;
     EjmlAdapter(Inputs in){a=new DMatrixRMaj(in.a);b=new DMatrixRMaj(in.b);spd=new DMatrixRMaj(in.spd);rhs=new DMatrixRMaj(in.rhs);n=a.numRows;}
+    public Object[] inputs(){return new Object[]{a,b,spd,rhs};}
     public Object run(String op) {
         switch(op) {
             case "transpose": return CommonOps_DDRM.transpose(a,null);

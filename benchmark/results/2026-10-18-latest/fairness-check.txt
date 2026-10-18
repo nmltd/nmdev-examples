@@ -1,0 +1,1 @@
+Deferred-output guard and materialized scaling: PASS

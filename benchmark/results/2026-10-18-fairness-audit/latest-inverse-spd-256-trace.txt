@@ -1,0 +1,8 @@
+dev.nm.algebra.linear.matrix.doubles.factorization.triangle.cholesky.Chol(Ldev/nm/algebra/linear/matrix/doubles/Matrix;D)V
+  dev.nm.algebra.linear.matrix.doubles.factorization.triangle.cholesky.Chol.<init>
+  dev.nm.algebra.linear.matrix.doubles.operation.Inverse.k
+  dev.nm.algebra.linear.matrix.doubles.operation.Inverse.d
+  dev.nm.algebra.linear.matrix.doubles.operation.Inverse.<init>
+  dev.nm.benchmark.InversePathProbe.main
+inverse residual=2.55351295663786E-15
+Chol constructors=1, LU constructors=0, exit=0
