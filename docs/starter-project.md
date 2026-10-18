@@ -22,7 +22,7 @@ Set those environment variables locally. Never commit a token.
 
 ## License, build and run
 
-A license is not included. Obtain a trial or commercial license from NM Dev and save it as `nm.lic` in the repository root. The runtime loads this external file from the current working directory; run the commands below from the repository root. Trial validity and entitlements are enforced by NMDEV. Replace it with your own valid license when the trial expires. The license is not embedded in the application JAR. Run these commands from the repository root:
+The original starter's public trial license is included as `nm.lic` in the repository root. Obtain a replacement trial or commercial license from NM Dev when needed. The runtime loads this external file from the current working directory; run the commands below from the repository root. Trial validity and entitlements are enforced by NMDEV. Replace it with your own valid license when the trial expires. The license is not embedded in the application JAR. Run these commands from the repository root:
 ```bash
 mvn -U clean verify
 java -jar target/nmdev-examples-1.0.0-SNAPSHOT.jar

@@ -1,6 +1,6 @@
 # Source provenance
 
-Starter copied from `nmltd/numerical-methods-java` at commit `d941c30553488363a5a5258a7c85f49082df70fb`, directory `samples/new-nmdev-project`. HelloWorld, Graph and HelloWorldTest are retained; nm.lic is excluded from publication; root README is replaced, its original guide is adapted under docs/starter-project.md, and Maven identity/exec configuration and ignore rules are updated.
+Starter copied from `nmltd/numerical-methods-java` at commit `d941c30553488363a5a5258a7c85f49082df70fb`, directory `samples/new-nmdev-project`. HelloWorld, Graph and HelloWorldTest are retained; the public trial nm.lic was initially excluded and is now copied unchanged from source commit `b6d096f8e3dd29d57ec07e10c76188ca82943d09`; root README is replaced, its original guide is adapted under docs/starter-project.md, and Maven identity/exec configuration and ignore rules are updated.
 
 Tutorials adapt these tests from `nmltd/nmdev` at commit `fa2904ccec99820798ef7760425daf1d629d83c1`:
 

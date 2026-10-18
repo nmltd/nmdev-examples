@@ -8,3 +8,5 @@ settings.xml
 *.lic
 __pycache__/
 *.pyc
+# The distributed public trial is intentionally tracked; private replacements must not be committed.
+!/nm.lic

@@ -33,9 +33,9 @@ Set both environment variables in your terminal using your normal secret-managem
 
 ## 3. Keep the license in the working directory
 
-Obtain a trial or commercial license from [NM Dev](https://nm.dev/products/nmdev) and save it as `nm.lic` in the repository root. The license itself is not included in this repository. The NM Dev runtime loads it as an external file from the current working directory. Run commands from the repository root. If the trial expires or lacks a required module, obtain an appropriate license from [NM Dev](https://nm.dev/products/nmdev).
+A public trial license is included as `nm.lic` in the repository root, copied unchanged from the original starter. The NM Dev runtime loads it as an external file from the current working directory. Run commands from the repository root. If the trial expires or lacks a required module, obtain an appropriate license from [NM Dev](https://nm.dev/products/nmdev).
 
-The license is deliberately excluded from the application JAR. Do not commit your license. The ignore rules exclude `*.lic` files; keep them outside version control.
+The license is deliberately excluded from the application JAR. The root `nm.lic` is the distributed public trial; other license files remain ignored. If you replace it with a private license, do not commit that replacement.
 
 ## 4. Build and run
 
@@ -166,7 +166,7 @@ the private parent POM, nmutils/nmlicense dependencies, or an obfuscation plugin
 - On macOS/Linux use `~/.m2/settings.xml`; on Windows use
   `%USERPROFILE%\\.m2\\settings.xml`. Create the directory/file if absent and
   merge the server entry without deleting other configured servers.
-- Obtain a trial or commercial license through [NM Dev](https://nm.dev/products/nmdev).
+- The starter includes a public trial license. Obtain a replacement trial or commercial license through [NM Dev](https://nm.dev/products/nmdev) when needed.
   Request the modules used by your application and replace expired trials.
 - Package authentication happens during Maven download. License validation
   happens when Java executes. Fix the failing stage independently.
