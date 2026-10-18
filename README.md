@@ -28,7 +28,7 @@ Each tutorial has detailed explanations, complete source, expected results and e
 
 ## Benchmarks
 
-The [benchmark suite](benchmark/README.md) compares 13 dense linear-algebra operations across NM Dev, EJML, Apache Commons Math and JAMA, with JMH timings, correctness checks and published raw results.
+The [benchmark suite](benchmark/README.md) compares 13 dense linear-algebra operations across eleven libraries/distributions, including NM Dev, EJML, Apache Commons Math, JAMA, Colt, Parallel Colt, jblas, F2J LAPACK, MTJ, ojAlgo and UJMP, with JMH timings, correctness checks and published raw results.
 
 ## Original starter
 

@@ -14,6 +14,14 @@ if [[ ! -f nm.lic ]]; then
 fi
 mkdir -p "$output"
 classpath='benchmark/target/classes:benchmark/target/lib/*'
+# Request single-thread native execution and explicitly select MTJ's Java backend.
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 BLIS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1
+backend_flags=(
+  -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS
+  -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.F2jLAPACK
+  -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.F2jARPACK
+)
+
 {
   date -u
   uname -a
@@ -23,8 +31,10 @@ classpath='benchmark/target/classes:benchmark/target/lib/*'
   if [[ -r /sys/fs/cgroup/memory.max ]]; then cat /sys/fs/cgroup/memory.max; fi
 } > "$output/environment.txt" 2>&1
 sha256sum benchmark/target/lib/*.jar > "$output/artifact-checksums.txt"
-java -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 -cp "$classpath" \
+java -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 "${backend_flags[@]}" -cp "$classpath" \
   dev.nm.benchmark.CorrectnessMain > "$output/correctness.csv"
+java -Xms1g -Xmx1g -XX:ActiveProcessorCount=1 "${backend_flags[@]}" -cp "$classpath" \
+  dev.nm.benchmark.PivotValidationMain > "$output/pivot-correctness.csv"
 echo "Running JMH; follow progress in $output/jmh.log"
 java -cp "$classpath" org.openjdk.jmh.Main \
   dev.nm.benchmark.MatrixBenchmark.compute -foe true -rf json -rff "$output/jmh.json" \

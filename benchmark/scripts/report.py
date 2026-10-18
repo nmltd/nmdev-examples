@@ -1,127 +1,104 @@
 #!/usr/bin/env python3
-"""Summarize completed JMH JSON; never performs timing or changes measurements."""
+"""Generate benchmark tables, SVG/HTML charts and tooltips from completed JMH JSON."""
 import argparse
 import csv
 import json
 from pathlib import Path
 from chart_tooltips import annotate_svg, write_html
 
+OPERATIONS = ["transpose", "addition", "scale", "multiplication", "determinant", "inverse", "inverseSPD", "cholesky", "lu", "qr", "eigenSymmetric", "svd", "solve"]
+LIBRARIES = ["NMDEV", "EJML", "COMMONS", "JAMA", "COLT", "PARALLEL_COLT", "JBLAS", "F2J_LAPACK", "MTJ", "OJALGO", "UJMP"]
+VERSIONS = {"NMDEV":"NM Dev 1.2.6-SNAPSHOT", "EJML":"EJML 0.46.1", "COMMONS":"Commons Math 3.6.1", "JAMA":"JAMA 1.0.3", "COLT":"Colt 1.2.0", "PARALLEL_COLT":"Parallel Colt 0.10.1", "JBLAS":"jblas 1.2.5 (native)", "F2J_LAPACK":"F2J LAPACK/BLAS 0.1", "MTJ":"MTJ 1.0.4 (F2J)", "OJALGO":"ojAlgo 57.5.0", "UJMP":"UJMP 0.3.0 (core)"}
+COLORS = dict(zip(LIBRARIES,["#126c78","#4678ba","#d18829","#9d608e","#6b8c31","#b8493a","#6750a4","#4d8794","#b77265","#7a756e","#aa8a25"]))
 
-OPERATIONS = ["transpose", "addition", "scale", "multiplication", "determinant",
-              "inverse", "inverseSPD", "cholesky", "lu", "qr", "eigenSymmetric", "svd", "solve"]
-LIBRARIES = ["NMDEV", "EJML", "COMMONS", "JAMA"]
-VERSIONS = {"NMDEV": "NM Dev 1.2.6-SNAPSHOT", "EJML": "EJML 0.46.1",
-            "COMMONS": "Commons Math 3.6.1", "JAMA": "JAMA 1.0.3"}
-
+def table(rows):
+    return "\n".join("| " + " | ".join(map(str,row)) + " |" for row in rows)
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("directory", type=Path)
-    args = parser.parse_args()
-    root = args.directory
-    rows = json.loads((root / "jmh.json").read_text())
-    index = {(r["params"]["library"], int(r["params"]["size"]), r["params"]["operation"]): r for r in rows}
-    sizes = sorted({int(r["params"]["size"]) for r in rows})
-    assert sizes == [64, 256] and len(rows) == 104, "Expected the complete published configuration"
-    if len(index) != len(rows):
-        raise ValueError("Duplicate benchmark cases")
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument("directory",type=Path);root=parser.parse_args().directory
+    rows=json.loads((root/"jmh.json").read_text())
+    index={(r["params"]["library"],int(r["params"]["size"]),r["params"]["operation"]):r for r in rows}
+    libraries=[lib for lib in LIBRARIES if any(r["params"]["library"]==lib for r in rows)]
+    sizes=sorted({int(r["params"]["size"]) for r in rows})
+    expected=len(libraries)*len(sizes)*len(OPERATIONS)
+    assert len(index)==len(rows)==expected, "Incomplete or duplicate benchmark matrix"
+    assert "NMDEV" in libraries
     for size in sizes:
-        for operation in OPERATIONS:
-            for library in LIBRARIES:
-                r = index[library, size, operation]
-                assert r["primaryMetric"]["scoreUnit"] == "ms/op"
-                assert len(r["primaryMetric"]["rawData"]) == 2
-                assert all(len(fork) == 5 for fork in r["primaryMetric"]["rawData"])
-                assert r["primaryMetric"]["score"] > 0
-    with (root / "summary.csv").open("w", newline="") as output:
-        writer = csv.writer(output)
-        writer.writerow(["size", "operation", "library", "version", "mean_ms_per_op", "jmh_99_9_error_ms", "ratio_to_nmdev", "measurement_iterations"])
+        for op in OPERATIONS:
+            for lib in libraries:
+                r=index[lib,size,op];metric=r["primaryMetric"]
+                assert metric["scoreUnit"]=="ms/op" and metric["score"]>0
+                assert len(metric["rawData"])==r["forks"]
+                assert all(len(fork)==r["measurementIterations"] for fork in metric["rawData"])
+    iterations=sum(len(fork) for r in rows for fork in r["primaryMetric"]["rawData"])
+    with (root/"summary.csv").open("w",newline="") as output:
+        writer=csv.writer(output);writer.writerow(["size","operation","library","version","mean_ms_per_op","jmh_99_9_error_ms","ratio_to_nmdev","measurement_iterations"])
         for size in sizes:
-            for operation in OPERATIONS:
-                baseline = index["NMDEV", size, operation]["primaryMetric"]["score"]
-                for library in LIBRARIES:
-                    metric = index[library, size, operation]["primaryMetric"]
-                    writer.writerow([size, operation, library, VERSIONS[library], metric["score"], metric["scoreError"], metric["score"] / baseline, 10])
-
-    environment_path = root / "environment.json"
-    environment = json.loads(environment_path.read_text()) if environment_path.exists() else {}
-    environment_description = (f"{environment.get('cpu_model', 'Unrecorded CPU')}; {environment.get('os', 'Unrecorded OS')}. "
-                               f"CPU quota: `{environment.get('cpu_quota', 'unrecorded')}`; visible CPUs: {environment.get('visible_cpus', 'unrecorded')}. "
-                               "See the recorded environment files for JVM details. No exclusive CPU reservation or affinity pinning is claimed.")
-    sections = [f"# Linear algebra benchmark results — {root.name}",
-                "[Suite and reproduction instructions](../../README.md) · [Methodology](../../METHODOLOGY.md)",
-                "**[Interactive charts with tooltips](charts.html)** — download and open the HTML file in a browser. Hover, tap or keyboard-focus a point for its timing, 99.9% confidence interval and ratio to NM Dev. GitHub inline image previews do not expose these tooltips; the standalone SVGs also include native tooltip titles.",
-                "Measured here: **13 operations × four libraries × two sizes = 104 cases**, with two JVM forks and ten measured iteration means per case. Lower milliseconds per operation is faster. These are observations on a shared virtual machine, not universal performance rankings.",
-                "## Environment",
-                environment_description,
-                "Three 300 ms warmup iterations and five 500 ms measurement iterations per fork; two forks. Matrices are deterministic, dense and well-conditioned. Native input construction is outside timing; result allocation, needed input copies and factor materialization are timed.",
-                "## Checks and interpretation",
-                "All 156 correctness cases (including size 4) passed twice. Each measured fork also validates its selected result before timing. See [correctness.csv](correctness.csv).",
-                "Tables show **mean ± JMH 99.9% confidence half-width**, in milliseconds per operation. This is not standard deviation. Very small differences or overlapping intervals should not be treated as established rankings. Normalized charts use ratios of means and do not display ratio uncertainty.",
-                "The adapters use different public APIs and sometimes different algorithms. In particular NM Dev uses its general inverse routine on the SPD task, while the other adapters use Cholesky-based inversion. Consult the [methodology](../../METHODOLOGY.md) and adapter source before interpreting any timing difference."]
+            for op in OPERATIONS:
+                baseline=index["NMDEV",size,op]["primaryMetric"]["score"]
+                for lib in libraries:
+                    metric=index[lib,size,op]["primaryMetric"]
+                    writer.writerow([size,op,lib,VERSIONS[lib],metric["score"],metric["scoreError"],metric["score"]/baseline,sum(map(len,metric["rawData"]))])
+    environment=json.loads((root/"environment.json").read_text()) if (root/"environment.json").exists() else {}
+    first=rows[0]
+    sections=[f"# Linear algebra benchmark results — {root.name}",
+        "[Suite](../../README.md) · [Methodology](../../METHODOLOGY.md) · [Library coverage](../../LIBRARY-COVERAGE.md)",
+        f"**{len(OPERATIONS)} operations × {len(libraries)} libraries × {len(sizes)} sizes = {len(rows)} measured cases**, containing {iterations:,} measured iteration means. Lower milliseconds per operation is faster. These are observations on a shared VM, not universal performance rankings.",
+        "**[Interactive charts with tooltips](charts.html)** — download and open the self-contained HTML in a browser. Hover, tap or keyboard-focus a point for its version/backend, timing, confidence interval and ratio to NM Dev. GitHub inline image previews do not expose point tooltips. Standalone SVGs also contain native tooltip titles.",
+        "## Environment",
+        f"{environment.get('cpu_model','Unrecorded CPU')}; {environment.get('os','Unrecorded OS')}. Visible CPUs: {environment.get('visible_cpus','unrecorded')}; container CPU quota: `{environment.get('cpu_quota','unrecorded')}`. JVM {first['jdkVersion']}. No exclusive CPU reservation or affinity pinning.",
+        f"{first['forks']} JVM forks per case; {first['warmupIterations']} warmup iterations of {first['warmupTime']}; {first['measurementIterations']} measurement iterations of {first['measurementTime']}. One JMH worker. The fork options fix a 1 GiB heap and one active processor.",
+        "Native thread environment variables request one thread. Parallel Colt, ojAlgo and UJMP also receive explicit library thread limits; MTJ uses an explicitly forced pure-Java F2J backend. Native jblas thread counts are not independently audited. See the environment and backend records below.",
+        "## Versions and backends"]
+    backend=json.loads((root/"backends.json").read_text()) if (root/"backends.json").exists() else {}
+    sections.append(table([["Library","Measured version / backend"],["---","---"]]+[[lib,VERSIONS[lib]+(" — "+backend[lib] if lib in backend else "")] for lib in libraries]))
+    correctness=list(csv.DictReader((root/"correctness.csv").open()))
+    assert all(r["status"]=="PASS" for r in correctness), "Correctness failure in published evidence"
+    sections += ["## Correctness and interpretation",f"All **{len(correctness)} baseline correctness cases passed twice**. Every measured fork also checks its selected result before timing. Reference arithmetic and residual checks are outside timing."]
+    if (root/"pivot-correctness.csv").exists():
+        pivot=list(csv.DictReader((root/"pivot-correctness.csv").open()));assert all(r["status"]=="PASS" for r in pivot)
+        sections.append(f"All **{len(pivot)} targeted row-swap/row-cycle cases** also passed. These check determinant signs, LU permutation orientation and solves on pivoting inputs.")
+    sections += ["Tables show **mean ± JMH 99.9% confidence half-width**, in ms/op. These error bars are not standard deviations. Overlapping intervals or high uncertainty make fine rankings unreliable. Chart ratios are ratios of means and do not show ratio uncertainty.",
+        "Native input conversion is outside timing; necessary copies, allocations and full factor output materialization are timed. This compares public API tasks, not identical algorithms. NM Dev uses a general inverse routine on SPD inputs; other adapters may use Cholesky-based inversion. F2J transpose/addition/scaling use adapter-owned Java loops because LAPACK does not define those matrix convenience APIs."]
     for size in sizes:
-        sections += [f"## {size} × {size} matrices"]
-        table = ["| Operation | NM Dev | EJML | Commons Math | JAMA |", "|---|---:|---:|---:|---:|"]
-        for operation in OPERATIONS:
-            values = []
-            for library in LIBRARIES:
-                metric = index[library, size, operation]["primaryMetric"]
-                values.append(f"{metric['score']:.5g} ± {metric['scoreError']:.2g}")
-            table.append("| " + " | ".join([operation] + values) + " |")
-        sections.append("\n".join(table))
-        sections += [f"![Timing ratios relative to NM Dev at size {size}](relative-times-{size}.svg)",
-                     "The NM Dev reference is 1×. Below 1× means less time than NM Dev; above 1× means more time. Logarithmic scale. These are task-level API measurements on this input family."]
-    sections += ["## Reading the results", "No single aggregate speedup is reported: averaging operation ratios would impose an arbitrary workload weighting. Choose the operations and sizes relevant to your application, then reproduce them on your hardware. The small-size results are especially sensitive to allocation and dispatch overhead.",
-                 "This run does not measure sparse matrices, conic optimization, native BLAS, large matrices, parallel scaling or numerical stability on difficult inputs. It does not compare the removed legacy adapters.",
-                 "## Raw evidence", "- [JMH JSON, including raw per-fork iterations and confidence intervals](jmh.json)\n- [Complete JMH output](jmh.log)\n- [Summary CSV](summary.csv)\n- [Correctness residuals](correctness.csv)\n- [Environment](environment.json)\n- [Artifact versions and SHA-256 checksums](artifacts.json)\n- [Measured source checksums](source-checksums.json)",
-                 "Regenerate the summary with `python3 benchmark/scripts/report.py benchmark/results/2026-10-18` from the repository root. Python is used only for reporting; every measured operation runs in Java under JMH. Matplotlib is optional for regenerating the SVG charts."]
-    (root / "README.md").write_text("\n\n".join(sections) + "\n")
-
-    try:
-        import matplotlib
-        matplotlib.use("Agg")
-        import matplotlib.pyplot as plt
-    except ImportError:
-        print("Summary generated; install matplotlib to regenerate SVG charts.")
-        return
-    plt.rcParams.update({"font.size": 10, "svg.fonttype": "none"})
-    colors = {"NMDEV": "#126c78", "EJML": "#4678ba", "COMMONS": "#d18829", "JAMA": "#9d608e"}
+        sections.append(f"## {size} × {size} matrices")
+        data=[["Operation"]+libraries,["---"]+["---:"]*len(libraries)]
+        for op in OPERATIONS:
+            data.append([op]+[f"{index[lib,size,op]['primaryMetric']['score']:.5g} ± {index[lib,size,op]['primaryMetric']['scoreError']:.2g}" for lib in libraries])
+        sections += [table(data),f"![Timing ratios relative to NM Dev at size {size}](relative-times-{size}.svg)","NM Dev is 1×. Below 1× means less time than NM Dev; above 1× means more time. Logarithmic scale. Use the interactive HTML for exact point details."]
+    sections += ["## Limits", "No aggregate speedup is reported because averaging operation ratios imposes an arbitrary workload weighting. This run uses one deterministic family of well-conditioned square matrices. It does not measure sparse matrices, conic optimization, parallel scaling, very large inputs or stability on difficult problems. Parameter order is deterministic, and the VM is shared. Reproduce your own workload on dedicated hardware before making broad performance claims.","## Raw evidence"]
+    evidence=[("jmh.json","JMH JSON and per-fork iteration means"),("jmh.log","Complete JMH log"),("summary.csv","Summary CSV"),("correctness.csv","Baseline correctness residuals"),("pivot-correctness.csv","Targeted pivot/sign checks"),("environment.json","Environment and requested thread settings"),("backends.json","Backend records"),("artifacts.json","Artifact versions and SHA-256 checksums"),("source-checksums.json","Measured source checksums"),("dependency-metadata.json","Dependency release metadata")]
+    sections.append("\n".join(f"- [{label}]({name})" for name,label in evidence if (root/name).exists()))
+    sections.append(f"Regenerate with `python3 benchmark/scripts/report.py benchmark/results/{root.name}`. Python only summarizes measurements and renders charts; all measured calculations run in Java/JMH. Matplotlib is required to regenerate charts and the self-contained HTML.")
+    (root/"README.md").write_text("\n\n".join(sections)+"\n")
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    plt.rcParams.update({"font.size":10,"svg.fonttype":"none"})
     for size in sizes:
-        fig, ax = plt.subplots(figsize=(12, 8))
-        tooltips = {}
-        for j, library in enumerate(LIBRARIES):
-            values = [index[library, size, op]["primaryMetric"]["score"] / index["NMDEV", size, op]["primaryMetric"]["score"] for op in OPERATIONS]
-            positions = [i + (j - 1.5) * 0.19 for i in range(len(OPERATIONS))]
-            for i, operation in enumerate(OPERATIONS):
-                point = ax.scatter([values[i]], [positions[i]], s=36, color=colors[library],
-                                   label=VERSIONS[library] if i == 0 else None, zorder=3)
-                key = f"point-{size}-{library}-{operation}"
-                point.set_gid(key)
-                metric = index[library, size, operation]["primaryMetric"]
-                low, high = metric["scoreConfidence"]
-                tooltips[key] = (f"{VERSIONS[library]} · {operation} · {size} × {size}\n"
-                                 f"Mean: {metric['score']:.6g} ms/op\n"
-                                 f"99.9% confidence interval: [{low:.6g}, {high:.6g}] ms/op\n"
-                                 f"JMH error half-width: ±{metric['scoreError']:.3g} ms/op\n"
-                                 f"Time / NM Dev: {values[i]:.4f}× (lower is faster)\n"
-                                 "2 JVM forks · 10 measured iteration means")
-        ax.set_yticks(range(len(OPERATIONS)), OPERATIONS)
-        ax.invert_yaxis()
-        ax.set_xscale("log")
-        ax.axvline(1, color="#333333", linewidth=1, linestyle="--")
-        ax.set_xlabel("Time / NM Dev time (log scale; lower is faster)")
-        ax.set_title(f"Dense linear algebra — {size} × {size}\nRatios of measured means on a shared VM", loc="left", fontweight="bold", pad=15)
-        ax.grid(axis="x", alpha=0.2)
-        ax.set_axisbelow(True)
-        ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.11), ncol=2, frameon=False)
-        fig.text(0.01, 0.01, f"2 JVM forks · 10 measured iterations/case · JVM {rows[0]['jdkVersion']} · 1 worker · See report for confidence intervals", fontsize=9, color="#555555")
-        fig.tight_layout(rect=(0, 0.05, 1, 1))
-        fig.savefig(root / f"relative-times-{size}.svg", metadata={"Date": None})
-        plt.close(fig)
-        annotate_svg(root / f"relative-times-{size}.svg", tooltips)
-    write_html(root, sizes)
-    print(f"Summarized {len(rows)} measured cases")
+        fig,ax=plt.subplots(figsize=(13,12 if len(libraries)>4 else 8));tooltips={}
+        for j,lib in enumerate(libraries):
+            for i,op in enumerate(OPERATIONS):
+                metric=index[lib,size,op]["primaryMetric"];ratio=metric["score"]/index["NMDEV",size,op]["primaryMetric"]["score"]
+                y=i+(j-(len(libraries)-1)/2)*(.78/len(libraries))
+                point=ax.scatter([ratio],[y],s=28,color=COLORS[lib],label=VERSIONS[lib] if i==0 else None,zorder=3)
+                key=f"point-{size}-{lib}-{op}";point.set_gid(key)
+                low,high=metric["scoreConfidence"]
+                tooltips[key]=(f"{VERSIONS[lib]} · {op} · {size} × {size}\n"
+                    f"Mean: {metric['score']:.6g} ms/op\n"
+                    f"99.9% confidence interval: [{low:.6g}, {high:.6g}] ms/op\n"
+                    f"JMH error half-width: ±{metric['scoreError']:.3g} ms/op\n"
+                    f"Time / NM Dev: {ratio:.4f}× (lower is faster)\n"
+                    f"{first['forks']} JVM forks · {first['forks']*first['measurementIterations']} measured iteration means")
+        ax.set_yticks(range(len(OPERATIONS)),OPERATIONS);ax.invert_yaxis();ax.set_xscale("log")
+        ax.axvline(1,color="#333333",linewidth=1,linestyle="--");ax.set_xlabel("Time / NM Dev time (log scale; lower is faster)")
+        ax.set_title(f"Dense linear algebra — {size} × {size}\n{len(libraries)} libraries · ratios of measured means on a shared VM",loc="left",fontweight="bold",pad=15)
+        ax.grid(axis="x",alpha=.2);ax.set_axisbelow(True)
+        ax.legend(loc="upper center",bbox_to_anchor=(.5,-.07 if len(libraries)>4 else -.11),ncol=3 if len(libraries)>4 else 2,frameon=False,fontsize=9)
+        fig.text(.01,.01,f"{first['forks']} JVM forks · JVM {first['jdkVersion']} · 1 worker · See report for backend details and confidence intervals",fontsize=9,color="#555555")
+        fig.tight_layout(rect=(0,.04,1,1));fig.savefig(root/f"relative-times-{size}.svg",metadata={"Date":None});plt.close(fig)
+        annotate_svg(root/f"relative-times-{size}.svg",tooltips)
+    write_html(root,sizes)
+    print(f"Summarized {len(rows)} cases and {iterations} iteration means; generated {len(rows)} tooltip points")
 
-
-if __name__ == "__main__":
-    main()
+if __name__=="__main__":main()

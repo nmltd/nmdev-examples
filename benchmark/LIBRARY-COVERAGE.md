@@ -1,29 +1,27 @@
-# Library coverage and outstanding integration work
+# Library coverage
 
-The initial measured run contains NM Dev plus Apache Commons Math, EJML and JAMA. **No other library in the list below has been demonstrated to be impossible to include.** A missing adapter is not a failed benchmark, and old release dates are not grounds for excluding a library.
+All eleven adapters below compile and have passed 429 baseline correctness cases twice plus 66 targeted pivot/sign cases. The expanded JMH comparison reruns all adapters with identical harness settings. See [run status](results/2026-10-18-expanded/RUNNING.md).
 
-Release metadata checked on 2026-10-18. “Latest” here means the available release in the listed Maven artifact line, not an assertion about every fork or unpublished development branch.
+| Library | Version | Integration result |
+|---|---|---|
+| NM Dev | 1.2.6-SNAPSHOT | Passed; combined binary checksum recorded |
+| Apache Commons Math | 3.6.1 | Passed |
+| Colt | 1.2.0 | Passed |
+| Parallel Colt | 0.10.1 | Passed; added JPLASMA/core-lapack dependencies and one-thread setting |
+| EJML | 0.46.1 | Passed |
+| JAMA | 1.0.3 | Passed |
+| jblas | 1.2.5 | Passed; bundled native libraries loaded on this Linux x86-64 environment |
+| F2J LAPACK/BLAS | arpack_combined_all 0.1 | Passed; direct translated routines replace the unavailable legacy JLAPACK distribution |
+| MTJ | 1.0.4 | Passed; forced pure-Java F2J backend |
+| ojAlgo | 57.5.0 | Passed; ported to current R064Store/decomposition APIs |
+| UJMP | 0.3.0 | Passed; core algorithms, external backends disabled |
 
-| Library | Available version / distribution | Initial-run status | Actual outstanding work or constraint |
-|---|---|---|---|
-| Apache Commons Math | 3.6.1 | Measured | Adapter and correctness checks completed. |
-| Colt | 1.2.0 | Not ported | Migrate the old adapter to JMH and validate it. No incompatibility has been established. |
-| Parallel Colt | 0.10.1 | Not ported | Migrate and validate the adapter; explicitly configure its concurrency rather than assuming a single JMH worker limits all internal threads. |
-| EJML | 0.46.1 | Measured | Updated dense API adapter; correctness checks completed. |
-| JAMA (listed as AMA) | 1.0.3 | Measured | Adapter and correctness checks completed. |
-| jblas | 1.2.5 | Native runtime not tested | Check native-library loading on the actual OS/architecture and record BLAS thread configuration. A runtime failure has not been demonstrated. |
-| JLAPACK | Old `org.netlib:jlapack:0.8` coordinate unresolved from Maven Central | Dependency migration needed | The old POM noted that this artifact was available only in the old private repository. Check an obtainable F2J/LAPACK distribution and its API compatibility; label its actual distribution/version. Do not treat this as evidence that LAPACK itself cannot be measured. |
-| MTJ | 1.0.4 | Not ported | Integrate and explicitly identify the netlib backend. Its native and pure-Java fallback configurations must not be reported under an ambiguous shared label. |
-| ojAlgo | 57.5.0 | Not ported | Rewrite the old `PrimitiveMatrix` adapter for the current API and validate equivalent outputs. No exclusion is justified solely by the old adapter being outdated. |
-| UJMP | 0.3.0 | Not ported | Integrate, specify its backend/settings and validate materialized results. It supports the relevant matrix operations. |
+## Distribution and backend distinctions
 
-## Evidence
+- The old `org.netlib:jlapack:0.8` dependency remains unavailable from Maven Central. The included replacement is explicitly identified as `net.sourceforge.f2j:arpack_combined_all:0.1`, using `Dgemm` and translated LAPACK routines. It is not presented as the same artifact or release.
+- MTJ is measured with `F2jBLAS`, `F2jLAPACK` and `F2jARPACK` forced by JVM properties. It is not a native-accelerated MTJ result.
+- jblas loads its bundled native implementation successfully. Native thread environment variables request one thread, but native worker counts have not been independently audited.
+- UJMP's optional external Commons Math, EJML, jblas, MTJ, ojAlgo and Parallel Colt backends are disabled, preventing silent delegation to a different measured library.
+- Parallel Colt, ojAlgo and UJMP receive explicit one-thread settings, in addition to the common one-worker JMH configuration.
 
-- [Checked Maven Central metadata](results/2026-10-18/extra-library-metadata.json). Colt's older metadata lists versions without a release field; its available versions include 1.0.3 and 1.2.0.
-- [jblas installation and native loading](https://github.com/jblas-project/jblas#install).
-- [MTJ backend documentation](https://github.com/fommil/matrix-toolkits-java) and [netlib backend selection](https://github.com/fommil/netlib-java#customisation).
-- [ojAlgo current project](https://github.com/optimatika/ojAlgo).
-- [UJMP operations and decompositions](https://github.com/ujmp/universal-java-matrix-package).
-- The original benchmark POM and adapters are identified by the commit in [Source-Provenance.md](Source-Provenance.md).
-
-Only the explicitly measured adapters have passed this project's current correctness and timed-run checks. Availability of an artifact alone does not establish successful integration. Further adapters should be included after compiling, validating equivalent operations and recording any native backend and thread settings.
+The original four-library report remains available as a separate historical run. Its omissions were integration scope decisions, not evidence that other libraries could not run.

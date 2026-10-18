@@ -6,3 +6,17 @@ jama-1.0.3.jar	c7325ee29be1aac1287ddac690f73671f1cd911ca9eca7c619990e86310556fd	
 jmh-core-1.37.jar	dc0eaf2bbf0036a70b60798c785d6e03a9daf06b68b8edb0f1ba9eb3421baeb3	https://repo.maven.apache.org/maven2/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar
 jmh-generator-annprocess-1.37.jar	6a5604b5b804e0daca1145df1077609321687734a8b49387e49f10557c186c77	https://repo.maven.apache.org/maven2/org/openjdk/jmh/jmh-generator-annprocess/1.37/jmh-generator-annprocess-1.37.jar
 jopt-simple-5.0.4.jar	df26cc58f235f477db07f753ba5a3ab243ebe5789d9f89ecf68dd62ea9a66c28	https://repo.maven.apache.org/maven2/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar
+colt-1.2.0.jar	e1fcbfbdd0d0caedadfb59febace5a62812db3b9425f3a03ef4c4cbba3ed0ee3	https://repo.maven.apache.org/maven2/colt/colt/1.2.0/colt-1.2.0.jar
+concurrent-1.3.4.jar	12639def9a5b5ebf56040ab764bd42b7e662523d3b983e5d5da04bf37be152f9	https://repo.maven.apache.org/maven2/concurrent/concurrent/1.3.4/concurrent-1.3.4.jar
+parallelcolt-0.10.1.jar	55ef7949dc2728af53caa0f40a036458c8c860dee905dde7b13a5e7819dec907	https://repo.maven.apache.org/maven2/net/sourceforge/parallelcolt/parallelcolt/0.10.1/parallelcolt-0.10.1.jar
+jplasma-1.2.0.jar	31de1ab886374d86bd263b2aef4f5791413a131b9c8cb66f3e4fae7eb3489906	https://repo.maven.apache.org/maven2/net/sourceforge/jplasma/jplasma/1.2.0/jplasma-1.2.0.jar
+core-lapack-0.1.jar	eaa3dd33fdd0fc73aa24c8de9b8f920a7c47454b47282d857ca943498cbbc4b3	https://repo.maven.apache.org/maven2/net/sourceforge/jplasma/core-lapack/0.1/core-lapack-0.1.jar
+jtransforms-2.4.0.jar	c8f03216c2d07e4b349ab6ae4407025a4e52469e206c12108042a170a05fd527	https://repo.maven.apache.org/maven2/net/sourceforge/jtransforms/jtransforms/2.4.0/jtransforms-2.4.0.jar
+jblas-1.2.5.jar	4e7d41d8ac3be1a3510dbe6b2e324556c9e15b921914185f49854f9a35a418eb	https://repo.maven.apache.org/maven2/org/jblas/jblas/1.2.5/jblas-1.2.5.jar
+arpack_combined_all-0.1.jar	9964fb948ef213548a79b23dd480af9d72f1450824fa006bbfea211ac1ffa6dc	https://repo.maven.apache.org/maven2/net/sourceforge/f2j/arpack_combined_all/0.1/arpack_combined_all-0.1.jar
+mtj-1.0.4.jar	27a53db335bc6af524b30f97ec3fb4b6df65e7648d70e752447c7dd9bc4697c8	https://repo.maven.apache.org/maven2/com/googlecode/matrix-toolkits-java/mtj/1.0.4/mtj-1.0.4.jar
+core-1.1.2.jar	5ffaddee0a3f8d09a56064aa05feb95837ddad9d42d9dcc37479c66e869aa139	https://repo.maven.apache.org/maven2/com/github/fommil/netlib/core/1.1.2/core-1.1.2.jar
+netlib-java-0.9.3.jar	f997d8f84de8de6fbf38b25a2b0ad7cd317f9245f47144557d6aaf415ac24b55	https://repo.maven.apache.org/maven2/com/googlecode/netlib-java/netlib-java/0.9.3/netlib-java-0.9.3.jar
+ojalgo-57.5.0.jar	603dbc26c8d625699ab631b6d56240fd6c488260e3d5db498f9ac71944cb9b3f	https://repo.maven.apache.org/maven2/org/ojalgo/ojalgo/57.5.0/ojalgo-57.5.0.jar
+ujmp-core-0.3.0.jar	e5cf6dbb7b7ebc6b4eb088a6f6f76162fd8c1ad8d222bf5777b59de8ea7e47a7	https://repo.maven.apache.org/maven2/org/ujmp/ujmp-core/0.3.0/ujmp-core-0.3.0.jar
+json-20141113.jar	87bbe48a7e93d6bcfe91c36f4e73a4a670b3843e0cc10aaf48a23ba40a99671b	https://repo.maven.apache.org/maven2/org/json/json/20141113/json-20141113.jar

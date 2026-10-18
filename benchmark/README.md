@@ -1,43 +1,43 @@
 # NM Dev linear algebra benchmarks
 
-A maintained replacement for the [original benchmark suite](https://github.com/nmltd/numerical-methods-java/tree/main/benchmark), covering its 13 linear-algebra operations with current, runnable adapters.
+Reproducible Java/JMH comparisons derived from the original numerical-methods-java benchmark suite. The maintained adapters cover 13 dense linear-algebra tasks across eleven libraries/distributions.
 
-**[Published results](results/2026-10-18/README.md) · [Methodology](METHODOLOGY.md) · [Library coverage](LIBRARY-COVERAGE.md) · [Source provenance](Source-Provenance.md)**
+**[Initial completed report](results/2026-10-18/README.md) · [Expanded run](results/2026-10-18-expanded/RUNNING.md) · [Methodology](METHODOLOGY.md) · [Coverage](LIBRARY-COVERAGE.md)**
 
-## Included libraries
+## Included versions
 
-| Library | Version pinned for this run | Artifact |
+| Library / distribution | Version | Selected backend |
 |---|---|---|
-| NM Dev | 1.2.6-SNAPSHOT | `dev.nm:nmdev-dist` — exact binary SHA-256 is recorded |
-| EJML | 0.46.1 | `org.ejml:ejml-ddense` and `ejml-core` |
-| Apache Commons Math | 3.6.1 | `org.apache.commons:commons-math3` |
-| JAMA | 1.0.3 | `gov.nist.math:jama` |
-| JMH harness | 1.37 | `org.openjdk.jmh:jmh-core` |
+| NM Dev | 1.2.6-SNAPSHOT | Combined obfuscated binary; exact checksum recorded |
+| Apache Commons Math | 3.6.1 | Array2DRowRealMatrix / Java |
+| Colt | 1.2.0 | Java dense matrices |
+| Parallel Colt | 0.10.1 | Java dense / JPLASMA; one configured thread |
+| EJML | 0.46.1 | ejml-ddense / Java |
+| JAMA | 1.0.3 | Java |
+| jblas | 1.2.5 | Bundled native libjblas |
+| F2J LAPACK/BLAS | arpack_combined_all 0.1 | Direct translated Java LAPACK/BLAS; replacement for unavailable legacy JLAPACK artifact |
+| MTJ | 1.0.4 | F2jBLAS/F2jLAPACK/F2jARPACK explicitly selected |
+| ojAlgo | 57.5.0 | R064Store / Java; one configured thread |
+| UJMP | 0.3.0 | Core algorithms, external backends disabled; one configured thread |
 
-Third-party versions were checked against Maven Central release metadata on 2026-10-18. These are the latest stable releases in the listed artifact lines at that check; the age of a release does not change its version. NM Dev's snapshot is identified by checksum rather than treated as an immutable release.
+Release availability was checked against Maven Central metadata on 2026-10-18. Old release dates are not grounds for exclusion. Versions refer to the listed artifact lines, not every fork. The original `org.netlib:jlapack:0.8` coordinate is not relabelled as the F2J distribution; the replacement's actual coordinate and version are reported.
 
-The maintained scope is these four libraries. Unmeasured legacy adapters, their dependencies, obsolete R/JRI/Windows installation notes and historical web reports are removed. Their absence is not evidence that those libraries cannot run in another environment. The conic-optimization benchmarks are not part of this linear-algebra run.
+## Tasks and configuration
 
-## Operations
+Transpose, addition, scaling, multiplication, determinant, general inverse, SPD inverse, Cholesky, LU, QR, symmetric eigendecomposition, SVD and a linear solve with one RHS. Timed square matrix sizes: 64 and 256. These differ from the historical benchmark's large defaults.
 
-Transpose, addition, scaling, multiplication, determinant, inverse, inverse of an SPD matrix, Cholesky, LU, QR, symmetric eigendecomposition, SVD and solving a linear system. Matrices are square, at sizes 64 and 256; the right-hand side has one column. These sizes differ from the historical benchmark's much larger defaults.
+The full eleven-library matrix has **286 timed cases**. Each uses two JVM forks, three 300 ms warmup iterations and five 500 ms measurement iterations per fork. One JMH worker, one JVM-visible processor and a fixed 1 GiB heap. Native thread environment variables request one thread; native thread counts are not independently audited. See methodology for API and algorithm differences.
 
-## Build with Maven
+## Build and run
 
-Requires a **JDK 11 or later**. The measured run uses JDK 17. See the repository's [package authentication instructions](../docs/Getting-Started.md). Keep your valid `nm.lic` at the repository root; it is never bundled or committed.
-
-From the repository root:
+Requires **JDK 11+**; the measured runs use JDK 17. Configure [GitHub Packages credentials](../docs/Getting-Started.md) and place your valid external `nm.lic` in the repository root. No binary or license is committed.
 
 ```bash
 mvn -f benchmark/pom.xml clean package
 bash benchmark/scripts/run.sh benchmark/results/my-run
 ```
 
-This is an independent Maven project and does not change the Java 8 requirement of the basic tutorials. Its source and dependencies are not added to the main tutorial application.
-
-## Alternative direct build
-
-If Maven cannot access repositories, use the checked dependency lockfile and an existing published combined NM Dev JAR:
+Alternatively use an existing published combined NM Dev JAR and the checked dependency lockfile:
 
 ```bash
 export NMDEV_JAR=/absolute/path/to/nmdev-dist-1.2.6-SNAPSHOT.jar
@@ -45,26 +45,18 @@ bash benchmark/scripts/build-direct.sh
 bash benchmark/scripts/run.sh benchmark/results/my-run
 ```
 
-The direct build verifies third-party checksums, uses the JMH annotation processor, and copies dependencies only into the ignored `target/` directory. It does not download NM Dev or a license. The published run was compiled this way because the execution environment's JVM could not resolve Maven Central, while HTTPS downloads were available.
+The direct build is the validated route used in this environment. It verifies third-party checksums and invokes the JMH annotation processor. The Maven project is independent of the Java 8 tutorial application. Runtime dependencies are copied only into ignored `target/` directories.
 
-Defaults: one JMH worker; two independent JVM forks per case; three 300 ms warmup iterations; five 500 ms measurement iterations; fixed 1 GiB heap and `ActiveProcessorCount=1` in each fork. Allow roughly 12–15 minutes for a full run on similar hardware. Additional JMH options can follow the output-directory argument. Label any changed configuration in the results you publish.
+Allow roughly 35–45 minutes for the complete expanded run on similar hardware. Follow progress in your output directory's `jmh.log`. Pass optional JMH arguments after the output-directory argument and record any changed settings.
 
-## Interactive charts
+## Checks and report generation
 
-Download and open [charts.html](results/2026-10-18/charts.html) in a browser to inspect timings, confidence intervals and ratios by hovering, tapping or focusing chart points. Standalone SVGs also contain native titles. GitHub inline image previews do not expose point-level tooltips.
-
-## Regenerate the report
-
-After a complete run:
+`CorrectnessMain` verifies **429 baseline cases twice** (eleven libraries, thirteen tasks, sizes 4/64/256). `PivotValidationMain` adds **66 cases** for determinant signs, LU permutation orientation and solves under row swaps and row cycles. The benchmark also validates its selected calculation before every timed fork. Failed checks stop the run; missing data is never filled with zero or fabricated timings.
 
 ```bash
 python3 benchmark/scripts/report.py benchmark/results/my-run
 ```
 
-The report script uses Python only for summarizing JMH output. Install Matplotlib if you also want to regenerate the SVG charts. Its published-report configuration expects the default two sizes, two forks and five measured iterations. Preserve environment details and binary checksums with any new published run.
+Python only summarizes JMH measurements. Matplotlib renders the SVGs and self-contained HTML with hover, focus and tap tooltips. Download/open `charts.html` in a browser; GitHub inline image previews do not expose point tooltips. Raw timing JSON, logs, CSV, environment, backends, checksums and correctness evidence accompany each published run.
 
-## Correctness and results
-
-`CorrectnessMain` checks all operations at sizes 4, 64 and 256, twice each. JMH setup repeats the selected correctness check before timing. Results are returned to JMH so calculations are consumed. Matrix conversion and verification are outside timing, while allocations required by an operation are included.
-
-Never infer production performance solely from this shared-machine run. Inspect absolute timings, uncertainty, raw iterations and your own workload. See [methodology](METHODOLOGY.md) for algorithm and fairness details.
+Results on a shared VM are a workload-specific baseline. Native BLAS and pure-Java paths are explicitly labelled; performance claims should reflect these differences and the recorded uncertainty.

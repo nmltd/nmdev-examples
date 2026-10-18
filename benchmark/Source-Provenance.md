@@ -4,7 +4,7 @@ The source benchmark directory was inspected and copied from [`nmltd/numerical-m
 
 The maintained code adapts the original 13 linear-algebra operations and the NM Dev, Apache Commons, EJML and JAMA calling patterns. It replaces the legacy stopwatch/framework with JMH, updates dependency coordinates and APIs, preserves returned values, adds independent validation and separates input conversion from timing. Package names move from `com.numericalmethod.benchmark` to `dev.nm.benchmark`.
 
-Per the user's instruction, the copied archival suite was removed rather than publishing unused adapters. Colt, Parallel Colt, JBLAS, JLAPACK, LA4J, MTJ, ojAlgo, UJMP and R/JRI adapters are not in the maintained project or measured report. Their removal is a scope decision, not a demonstration that their latest releases are unavailable or unusable. Obsolete dependency declarations, Windows/R setup notes, optimization harnesses and 2015 chart assets were also removed.
+The initial migrated run covered four libraries. The expanded rerun adds Colt, Parallel Colt, jblas, MTJ, ojAlgo and UJMP adapters using the original calling patterns with current APIs and correctness checks. A direct F2J adapter replaces the unavailable legacy JLAPACK distribution and is named separately. The obsolete archival framework, historical web reports, LA4J and R/JRI are not part of the current requested eleven-library comparison.
 
 Original operation mapping:
 

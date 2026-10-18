@@ -6,15 +6,21 @@ import java.util.Locale;
 /** Produces a CSV correctness record independently of JMH measurement. */
 public final class CorrectnessMain {
     public static void main(String[] args){
-        String[] libraries={"NMDEV","EJML","COMMONS","JAMA"};
+        String[] libraries=args.length>0?args[0].split(","):new String[]{"NMDEV","EJML","COMMONS","JAMA","COLT","PARALLEL_COLT","JBLAS","F2J_LAPACK","MTJ","OJALGO","UJMP"};
         String[] operations={"transpose","addition","scale","multiplication","determinant","inverse","inverseSPD","cholesky","lu","qr","eigenSymmetric","svd","solve"};
-        System.out.println("library,size,operation,relative_residual,status");
+        java.io.PrintStream csv=System.out;
+        System.setOut(System.err); // Keep library diagnostics out of the CSV.
+        int failures=0;
+        csv.println("library,size,operation,relative_residual,status");
         for(int size:new int[]{4,64,256})for(String library:libraries)for(String op:operations){
+            try {
             Inputs inputs=new Inputs(size);Adapter adapter=MatrixBenchmark.create(library,inputs);
             double residual=Validation.check(op,inputs,adapter,adapter.run(op));
             // A second invocation checks that repeat execution remains valid.
             Validation.check(op,inputs,adapter,adapter.run(op));
-            System.out.printf(Locale.ROOT,"%s,%d,%s,%.12g,PASS%n",library,size,op,residual);
+            csv.printf(Locale.ROOT,"%s,%d,%s,%.12g,PASS%n",library,size,op,residual);
+            } catch(Throwable error) { failures++; csv.printf("%s,%d,%s,,FAIL%n",library,size,op); System.err.println(library+"/"+size+"/"+op);error.printStackTrace(); }
         }
+        if(failures>0)throw new IllegalStateException(failures+" correctness cases failed");
     }
 }
