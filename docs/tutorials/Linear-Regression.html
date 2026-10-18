@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ordinary least squares regression in Java — NM Dev examples</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}.math-display{overflow-x:auto}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main><nav aria-label="Site navigation"><a href="../getting-started.html">Getting Started</a><a href="../tutorials.html">Tutorials</a><a href="../index.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>Ordinary least squares regression in Java</h1>
+<p><a href="../tutorials.html">Tutorial index</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/src/main/java/dev/nm/examples/LinearRegressionExample.java">Java source</a></p>
+<h2>Run this example</h2>
+<p>Complete <a href="../getting-started.html">Getting Started</a>, then run from the repository root:</p>
+<pre><code class="language-bash">mvn exec:java -Dexec.mainClass=dev.nm.examples.LinearRegressionExample
+</code></pre>
+<h2>Problem and mathematics</h2>
+<p>Fit four observations: x = <code>[1,2,3,4]</code>, y = <code>[6,5,7,10]</code>. Ordinary least squares chooses slope and intercept to minimize</p>
+<div class="math-display">\[
+\sum_i\left(y_i-\beta_1x_i-\beta_0\right)^2.
+\]</div>
+
+<p>This is a deliberately small teaching dataset from the test suite. It illustrates the API and diagnostics; it is not evidence of a useful forecasting relationship.</p>
+<h2>Walk through the API</h2>
+<p><code>LMProblem</code> takes the response vector, a design matrix and an intercept flag. Each row is an observation; each column is a predictor. Setting the flag to <code>true</code> asks the library to append an intercept. Do not append a constant column as well.</p>
+<p>Construct <code>OLSRegression(problem)</code>. Retrieve coefficients through <code>beta().betaHat()</code>, predictions through <code>residuals().fitted()</code> and errors through <code>residuals().residuals()</code>. For this API, predictor coefficients come first and the intercept comes last.</p>
+<h2>Expected result and validation</h2>
+<div class="math-display">\[
+\hat y=1.4x+3.5.
+\]</div>
+
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coefficients</td>
+<td><code>[1.4, 3.5]</code> — slope, then intercept</td>
+</tr>
+<tr>
+<td>Fitted values</td>
+<td><code>[4.9, 6.3, 7.7, 9.1]</code></td>
+</tr>
+<tr>
+<td>Residuals, y minus fitted</td>
+<td><code>[1.1, -1.3, -0.7, 0.9]</code></td>
+</tr>
+<tr>
+<td>Residual sum of squares</td>
+<td><code>4.2</code></td>
+</tr>
+<tr>
+<td>R squared</td>
+<td><code>0.7</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>The executable checks the coefficients, RSS and R squared to <code>1e-12</code>. The slope can also be verified by computing centered cross-products divided by centered squared x values; the intercept follows from the sample means.</p>
+<h2>Assumptions and mistakes to avoid</h2>
+<p>A good in-sample R squared does not establish predictive accuracy or causality. Collinear columns can make the design rank deficient. Statistical inference needs assumptions about the errors beyond the least-squares minimization itself.</p>
+<p>With only four observations and two fitted coefficients, inference is especially fragile. Use representative held-out data for prediction assessment.</p>
+<h2>Try it</h2>
+<p>Set the intercept flag to <code>false</code> and compare the fitted line and RSS. Explain why forcing the line through zero changes the question. Do not directly compare centered and uncentered R squared as if their definitions were identical.</p>
+<h2>Source and API reference</h2>
+<p>Adapted from <code>OLSRegressionTest.java</code>, <code>test_0020</code>. See <a href="../Source-Provenance.html">source provenance</a> for the exact NM Dev commit and test path. The full runnable Java source linked above includes imports, construction steps and checks. Browse the <a href="https://nmltd.github.io/nmdev/">NM Dev Javadoc</a> for the classes used here.</p><footer><a href="../tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/tutorials/Linear-Regression.md">Edit this page</a></footer></main></body></html>

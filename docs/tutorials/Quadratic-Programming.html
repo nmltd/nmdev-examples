@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Constrained quadratic programming in Java — NM Dev examples</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}.math-display{overflow-x:auto}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main><nav aria-label="Site navigation"><a href="../getting-started.html">Getting Started</a><a href="../tutorials.html">Tutorials</a><a href="../index.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>Constrained quadratic programming in Java</h1>
+<p><a href="../tutorials.html">Tutorial index</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/src/main/java/dev/nm/examples/QuadraticProgrammingExample.java">Java source</a></p>
+<h2>Run this example</h2>
+<p>Complete <a href="../getting-started.html">Getting Started</a>, then run from the repository root:</p>
+<pre><code class="language-bash">mvn exec:java -Dexec.mainClass=dev.nm.examples.QuadraticProgrammingExample
+</code></pre>
+<h2>Problem and mathematics</h2>
+<p>Minimize</p>
+<div class="math-display">\[
+f(x)=\tfrac12x^THx+p^Tx=x_1^2+x_2^2-2x_1-5x_2
+\]</div>
+
+<p>subject to</p>
+<div class="math-display">\[
+x_1-2x_2\ge-2,\quad -x_1-2x_2\ge-6,\quad -x_1+2x_2\ge-2,\quad x_1\ge0,\quad x_2\ge0.
+\]</div>
+
+<p>Here H = diag(2,2), so the objective is strictly convex and a feasible optimum is unique. This problem is adapted from the NM Dev test identified as example 16.4 in Nocedal and Wright's <em>Numerical Optimization</em>.</p>
+<h2>Walk through the API</h2>
+<ol>
+<li>Construct H and the linear coefficient vector p.</li>
+<li>Create <code>QuadraticFunction(H,p)</code>. The factor <strong>one half</strong> is part of the API's convention.</li>
+<li>Put each inequality's coefficients in one row of A and its right-hand side in b.</li>
+<li>Use <code>LinearGreaterThanConstraints(A,b)</code>: the convention is <strong>A*x &gt;= b</strong>.</li>
+<li>Create <code>QPProblem(objective, null, constraints)</code>. The null argument means no equality constraints.</li>
+<li>Call <code>solve(problem).search()</code> on <code>QPDualActiveSetMinimizer</code>, then <code>minimizer()</code>.</li>
+</ol>
+<p>The example uses a tolerance of <code>1e-10</code> and an iteration cap of 1,000, rather than the effectively unbounded cap in the test.</p>
+<h2>Expected result and independent validation</h2>
+<div class="math-display">\[
+x^{\ast}=(1.4,1.7),\qquad f(x^{\ast})=-6.45.
+\]</div>
+
+<p>The constraint slacks A*x-b are <code>[0,1.2,4,1.4,1.7]</code>; only the first constraint is active. The executable checks the reference point, objective, every constraint and stationarity.</p>
+<p>For the convention A<em>x &gt;= b, the Lagrangian is f(x) minus lambda-transpose times (A</em>x-b). At the solution:</p>
+<div class="math-display">\[
+Hx^{\ast}+p=(0.8,-1.6)^T=A^T\lambda,\qquad\lambda=(0.8,0,0,0,0)^T.
+\]</div>
+
+<p>Nonnegative multipliers, feasibility, stationarity and complementary slackness certify optimality for this convex problem. This gives stronger evidence than simply comparing a printed vector to another solver's output.</p>
+<h2>Assumptions and mistakes to avoid</h2>
+<p>Do not reverse inequality signs without negating both sides. Do not drop the one-half convention when translating a mathematical objective. This example has a positive-definite Hessian; it does not demonstrate that the solver can handle every indefinite, singular or badly scaled problem.</p>
+<p>Check feasibility even when the solver returns a point, and make solver failures visible. Tolerances should reflect data scale and application needs.</p>
+<h2>Try it</h2>
+<p>Remove the first inequality and solve again. The unconstrained minimizer is <code>(1,2.5)</code> and satisfies the remaining constraints. Explain how the original first constraint moved the optimum.</p>
+<h2>Source and API reference</h2>
+<p>Adapted from <code>QPDualActiveSetMinimizerTest.java</code>, <code>test_0030</code>. See <a href="../Source-Provenance.html">source provenance</a> for the exact NM Dev commit and test path. The full runnable Java source linked above includes imports, construction steps and checks. Browse the <a href="https://nmltd.github.io/nmdev/">NM Dev Javadoc</a> for the classes used here.</p><footer><a href="../tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/tutorials/Quadratic-Programming.md">Edit this page</a></footer></main></body></html>

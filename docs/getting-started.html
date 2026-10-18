@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Getting started — NM Dev examples</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}.math-display{overflow-x:auto}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main><nav aria-label="Site navigation"><a href="getting-started.html">Getting Started</a><a href="tutorials.html">Tutorials</a><a href="index.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>Getting started</h1>
+<h2>1. Prerequisites</h2>
+<p>Install a JDK (Java 8 or later), Maven and Git. Check <code>java -version</code> and <code>mvn -version</code>; Maven should use the intended JDK.</p>
+<p>Clone the repository and enter its root:</p>
+<pre><code class="language-bash">git clone https://github.com/nmltd/nmdev-examples.git
+cd nmdev-examples
+</code></pre>
+<h2>2. Configure package authentication</h2>
+<p>The starter uses <code>dev.nm:nmdev-dist:1.2.6-SNAPSHOT</code> from <code>https://maven.pkg.github.com/nmltd/maven-packages</code>. Follow the <a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry">GitHub Maven registry instructions</a> and create a personal access token (classic) with <code>read:packages</code>. Access to the private NM Dev implementation repository is not required for the public distribution package.</p>
+<p>Merge this server entry into your local <code>~/.m2/settings.xml</code>. The server ID must match the repository ID in <code>pom.xml</code>:</p>
+<pre><code class="language-xml">&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.2.0&quot;&gt;
+  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;github-nmdev&lt;/id&gt;
+      &lt;username&gt;${env.GITHUB_USERNAME}&lt;/username&gt;
+      &lt;password&gt;${env.GITHUB_PACKAGES_TOKEN}&lt;/password&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;
+&lt;/settings&gt;
+</code></pre>
+<p>Set both environment variables in your terminal using your normal secret-management method. Do not paste a token into source code, the POM, screenshots or an issue. A 401/403 during dependency resolution is a package-access problem, not a license error.</p>
+<h2>3. Keep the license in the working directory</h2>
+<p>Obtain a trial or commercial license from <a href="https://nm.dev/products/nmdev">NM Dev</a> and save it as <code>nm.lic</code> in the repository root. The license itself is not included in this repository. The NM Dev runtime loads it as an external file from the current working directory. Run commands from the repository root. If the trial expires or lacks a required module, obtain an appropriate license from <a href="https://nm.dev/products/nmdev">NM Dev</a>.</p>
+<p>The license is deliberately excluded from the application JAR. Do not commit your license. The ignore rules exclude <code>*.lic</code> files; keep them outside version control.</p>
+<h2>4. Build and run</h2>
+<pre><code class="language-bash">mvn -U clean verify
+mvn exec:java
+mvn exec:java -Dexec.mainClass=dev.nm.examples.RunAllExamples
+</code></pre>
+<p>The default main class remains the starter's <code>dev.nm.HelloWorld</code>. The second command prints <code>A number of columns = 2</code>; the third runs the six numerical tutorials. <code>mvn verify</code> executes the original test and each tutorial's numerical checks.</p>
+<p>To select one tutorial:</p>
+<pre><code class="language-bash">mvn exec:java -Dexec.mainClass=dev.nm.examples.QuadraticProgrammingExample
+</code></pre>
+<p>Packaging copies runtime dependencies into <code>target/lib/</code>. You can also run without Maven after packaging:</p>
+<pre><code class="language-bash">java -jar target/nmdev-examples-1.0.0-SNAPSHOT.jar
+java -cp &quot;target/nmdev-examples-1.0.0-SNAPSHOT.jar:target/lib/*&quot; dev.nm.examples.RunAllExamples
+</code></pre>
+<p>On Windows use <code>;</code> instead of <code>:</code> inside the Java classpath. Maven commands work with the same class names on both platforms.</p>
+<h2>5. Troubleshooting</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Package download returns 401/403</td>
+<td>Matching server ID, username, token and package access</td>
+</tr>
+<tr>
+<td>License rejected</td>
+<td>Working directory, trial validity and module entitlements</td>
+</tr>
+<tr>
+<td>Main class not found</td>
+<td>Run <code>mvn compile</code> and check the fully qualified class name</td>
+</tr>
+<tr>
+<td>Numerical check fails</td>
+<td>Record the exact resolved snapshot, JVM and error; do not simply loosen the tolerance</td>
+</tr>
+</tbody>
+</table></div>
+<p>The dependency is a SNAPSHOT and can change. Record the resolved binary checksum when reporting numerical differences or reproducing a result.</p><footer><a href="tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/Getting-Started.md">Edit this page</a></footer></main></body></html>

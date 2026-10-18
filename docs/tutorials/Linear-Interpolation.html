@@ -1,0 +1,51 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linear interpolation in Java — NM Dev examples</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}.math-display{overflow-x:auto}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main><nav aria-label="Site navigation"><a href="../getting-started.html">Getting Started</a><a href="../tutorials.html">Tutorials</a><a href="../index.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>Linear interpolation in Java</h1>
+<p><a href="../tutorials.html">Tutorial index</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/src/main/java/dev/nm/examples/InterpolationExample.java">Java source</a></p>
+<h2>Run this example</h2>
+<p>Complete <a href="../getting-started.html">Getting Started</a>, then run from the repository root:</p>
+<pre><code class="language-bash">mvn exec:java -Dexec.mainClass=dev.nm.examples.InterpolationExample
+</code></pre>
+<h2>Problem and mathematics</h2>
+<p>Estimate values between observations <code>(0,0)</code> and <code>(1,4)</code>. Between any two adjacent observations, linear interpolation uses</p>
+<div class="math-display">\[
+f(x)=y_0+\frac{x-x_0}{x_1-x_0}(y_1-y_0).
+\]</div>
+
+<p>For these observations the line is <code>f(x)=4x</code>. This tiny case makes the result independently verifiable before using a larger calibration table.</p>
+<h2>Walk through the API</h2>
+<p><code>PartialFunction</code> associates the x array with the y array. <code>new LinearInterpolation().fit(points)</code> returns a <code>UnivariateRealFunction</code>. Call <code>evaluate(x)</code> on that function for each query.</p>
+<p>The example checks two interior values and an exterior value. It explicitly labels the exterior calculation as extrapolation so that a caller does not confuse it with an estimate supported by surrounding observations.</p>
+<h2>Expected result and validation</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Query</th>
+<th style="text-align: right;">Result</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0.5</code></td>
+<td style="text-align: right;"><code>2.0</code></td>
+<td>Interpolation</td>
+</tr>
+<tr>
+<td><code>0.75</code></td>
+<td style="text-align: right;"><code>3.0</code></td>
+<td>Interpolation</td>
+</tr>
+<tr>
+<td><code>2.0</code></td>
+<td style="text-align: right;"><code>8.0</code></td>
+<td>Extrapolation</td>
+</tr>
+</tbody>
+</table></div>
+<p>The library extends the endpoint segment outside the observed interval, as demonstrated by the source test. The sample checks each value to <code>1e-12</code>.</p>
+<h2>Assumptions and mistakes to avoid</h2>
+<p>Provide matching coordinate lengths and distinct, ordered x values. Interpolation reproduces observations; it does not fit a noise-reducing regression model. Piecewise-linear curves also have corners, so their derivatives are not generally continuous.</p>
+<p>For a bounded physical calibration, reject exterior queries in your application even though the library can evaluate them. Extrapolation is a modelling decision.</p>
+<h2>Try it</h2>
+<p>Use observations <code>(0,0)</code>, <code>(1,1)</code>, <code>(2,4)</code>. At <code>1.5</code> the interpolant is <code>2.5</code>, whereas the quadratic <code>x*x</code> gives <code>2.25</code>. Explain why both observations can lie on a quadratic while a linear interpolant differs between them.</p>
+<h2>Source and API reference</h2>
+<p>Adapted from <code>LinearInterpolationTest.java</code>, <code>test_0010</code>. See <a href="../Source-Provenance.html">source provenance</a> for the exact NM Dev commit and test path. The full runnable Java source linked above includes imports, construction steps and checks. Browse the <a href="https://nmltd.github.io/nmdev/">NM Dev Javadoc</a> for the classes used here.</p><footer><a href="../tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/tutorials/Linear-Interpolation.md">Edit this page</a></footer></main></body></html>

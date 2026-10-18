@@ -1,5 +1,5 @@
-# Wiki publishing
+# Wiki directory
 
-Home links the versioned Java tutorials and the benchmark website. Benchmark-Results is a short forwarding page; keep it free of duplicated benchmark explanations. The canonical benchmark guide sources are in `benchmark/site/`, and `benchmark/scripts/publish-pages.py` generates the Pages website under `docs/`.
+The live wiki is a short directory linking to GitHub Pages. Tutorial content is maintained once in `docs/*.md` and `docs/tutorials/*.md`; no wiki tutorial copies are maintained. The live wiki is a separate Git repository; committing this directory does not update it automatically.
 
-The live wiki is a separate Git repository. Committing files here does not publish them automatically. Other Markdown files are wiki-ready tutorial copies.
+Build the website with `python3 benchmark/scripts/publish-pages.py benchmark/results/2026-10-18-expanded`. This generates the tutorial pages and benchmark pages together.

@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Root finding by bisection in Java — NM Dev examples</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}.math-display{overflow-x:auto}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main><nav aria-label="Site navigation"><a href="../getting-started.html">Getting Started</a><a href="../tutorials.html">Tutorials</a><a href="../index.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>Root finding by bisection in Java</h1>
+<p><a href="../tutorials.html">Tutorial index</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/src/main/java/dev/nm/examples/RootFindingExample.java">Java source</a></p>
+<h2>Run this example</h2>
+<p>Complete <a href="../getting-started.html">Getting Started</a>, then run from the repository root:</p>
+<pre><code class="language-bash">mvn exec:java -Dexec.mainClass=dev.nm.examples.RootFindingExample
+</code></pre>
+<h2>Problem and mathematics</h2>
+<p>Find a root in <code>[0.4, 1.0]</code> of</p>
+<div class="math-display">\[
+f(x)=x^4-\sin(x)\cos(x).
+\]</div>
+
+<p>Bisection repeatedly halves a bracket. For a continuous function, opposite signs at the endpoints establish that at least one root lies inside. The chosen interval matters: this example is not a search for every root of the equation.</p>
+<h2>Walk through the API</h2>
+<p>Create an anonymous <code>AbstractUnivariateRealFunction</code> and implement <code>evaluate(double)</code>. Construct <code>BisectionRoot</code> with tolerance <code>1e-10</code> and a maximum of 10,000 iterations, matching the source test. Call <code>solve(f, lower, upper)</code>.</p>
+<p>The example checks the endpoint signs before calling the solver. It leaves <code>NoRootFoundException</code> visible to the caller. A production application should report convergence failure with the input interval and model context.</p>
+<h2>Expected result and validation</h2>
+<div class="math-display">\[
+x\approx0.8396570801734923.
+\]</div>
+
+<p>The executable checks the distance to this reference and the function residual <code>abs(f(root))</code>, both to <code>1e-10</code>. These checks answer different questions: a small residual does not always mean a small error in x, especially near a flat root.</p>
+<h2>Assumptions and mistakes to avoid</h2>
+<p>Opposite signs across a discontinuity do not establish a root. A bracket whose endpoints have the same sign may contain roots but is unsuitable for this bisection setup. In particular, <code>[0.4, 0.8]</code> does not bracket the root used here; the upstream tests cover that invalid interval.</p>
+<p>Use function units and variable scale when choosing tolerances. Avoid requesting precision beyond what double arithmetic and the model can support.</p>
+<h2>Try it</h2>
+<p>Replace the function with <code>x*x - 2</code> on <code>[1, 2]</code> and compare against <code>Math.sqrt(2)</code>. Then deliberately choose <code>[2, 3]</code> and observe the bracket validation.</p>
+<h2>Source and API reference</h2>
+<p>Adapted from <code>BisectionRootTest.java</code>, <code>test_solve_0010</code>. See <a href="../Source-Provenance.html">source provenance</a> for the exact NM Dev commit and test path. The full runnable Java source linked above includes imports, construction steps and checks. Browse the <a href="https://nmltd.github.io/nmdev/">NM Dev Javadoc</a> for the classes used here.</p><footer><a href="../tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/tutorials/Root-Finding.md">Edit this page</a></footer></main></body></html>

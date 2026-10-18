@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Normal probabilities and quantiles in Java — NM Dev examples</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}.math-display{overflow-x:auto}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main><nav aria-label="Site navigation"><a href="../getting-started.html">Getting Started</a><a href="../tutorials.html">Tutorials</a><a href="../index.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>Normal probabilities and quantiles in Java</h1>
+<p><a href="../tutorials.html">Tutorial index</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/src/main/java/dev/nm/examples/NormalProbabilityExample.java">Java source</a></p>
+<h2>Run this example</h2>
+<p>Complete <a href="../getting-started.html">Getting Started</a>, then run from the repository root:</p>
+<pre><code class="language-bash">mvn exec:java -Dexec.mainClass=dev.nm.examples.NormalProbabilityExample
+</code></pre>
+<h2>Problem and mathematics</h2>
+<p>For a standard-normal random variable Z, compute a cumulative probability, a right-tail probability and the 97.5th percentile:</p>
+<div class="math-display">\[
+\Phi(z)=P(Z\le z),\qquad q=\Phi^{-1}(0.975).
+\]</div>
+
+<p>These operations arise in statistical thresholds and uncertainty calculations. Their validity depends on whether a normal model is appropriate for the data.</p>
+<h2>Walk through the API</h2>
+<p>The no-argument <code>NormalDistribution</code> constructor creates a distribution with mean zero and variance one. <code>cdf(z)</code> gives cumulative probability, <code>density(z)</code> would give a density, and <code>quantile(p)</code> maps a probability to a value.</p>
+<p>The example uses symmetry, <code>normal.cdf(-2)</code>, for the right-tail probability at 2. In extreme positive tails, subtracting <code>cdf(z)</code> from one can lose significant digits or round to zero.</p>
+<h2>Expected result and validation</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th style="text-align: right;">Approximate value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P(Z &lt;= 2)</code></td>
+<td style="text-align: right;"><code>0.977249868052</code></td>
+</tr>
+<tr>
+<td><code>P(Z &gt; 2)</code></td>
+<td style="text-align: right;"><code>0.022750131948</code></td>
+</tr>
+<tr>
+<td>97.5th percentile</td>
+<td style="text-align: right;"><code>1.959963985</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>The CDF reference values are taken from the source test. The executable also checks <code>cdf(quantile(0.975))</code> against <code>0.975</code>, to <code>1e-9</code>, as a functional consistency check. A round trip alone is not an independent accuracy benchmark, which is why reference probabilities are checked too.</p>
+<h2>Assumptions and mistakes to avoid</h2>
+<p>A density at one point is not the probability of that point. Quantile inputs are probabilities, not percentages: pass <code>0.975</code>, not <code>97.5</code>. For a general normal variable X, standardize with <code>(x-mu)/sigma</code>, where sigma is the standard deviation, not the variance.</p>
+<h2>Try it</h2>
+<p>Compute <code>cdf(1.96)-cdf(-1.96)</code> and interpret the resulting central probability. Then examine a far-tail value and compare the symmetry calculation with subtraction from one.</p>
+<h2>Source and API reference</h2>
+<p>Adapted from <code>NormalDistributionTest.java</code>, <code>testNormal_0010 and testNormal_0020</code>. See <a href="../Source-Provenance.html">source provenance</a> for the exact NM Dev commit and test path. The full runnable Java source linked above includes imports, construction steps and checks. Browse the <a href="https://nmltd.github.io/nmdev/">NM Dev Javadoc</a> for the classes used here.</p><footer><a href="../tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/tutorials/Normal-Probabilities.md">Edit this page</a></footer></main></body></html>

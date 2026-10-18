@@ -2,11 +2,11 @@
 
 Learn numerical programming in Java with runnable NM Dev examples: linear algebra, root finding, interpolation, probability, regression and constrained optimization.
 
-**[Get started](docs/Getting-Started.md) · [Tutorials](docs/README.md) · [API reference](https://nmltd.github.io/nmdev/) · [NM Dev](https://nm.dev/products/nmdev)**
+**[Get started](https://nmltd.github.io/nmdev-examples/getting-started.html) · [Tutorials](https://nmltd.github.io/nmdev-examples/tutorials.html) · [API reference](https://nmltd.github.io/nmdev/) · [NM Dev](https://nm.dev/products/nmdev)**
 
 ## Run your first example
 
-Requires Java 8 or later, Maven, GitHub Packages credentials and a valid NM Dev license. Obtain a valid NM Dev trial or commercial license and save it as `nm.lic` in the repository root; its validity and module entitlements are enforced by NM Dev. See [setup instructions](docs/Getting-Started.md) before running:
+Requires Java 8 or later, Maven, GitHub Packages credentials and a valid NM Dev license. Obtain a valid NM Dev trial or commercial license and save it as `nm.lic` in the repository root; its validity and module entitlements are enforced by NM Dev. See [setup instructions](https://nmltd.github.io/nmdev-examples/getting-started.html) before running:
 
 ```bash
 mvn -U clean verify
@@ -17,12 +17,12 @@ mvn exec:java -Dexec.mainClass=dev.nm.examples.RunAllExamples
 
 | Tutorial | Runnable class in `dev.nm.examples` |
 |---|---|
-| [Cholesky factorization in Java](docs/tutorials/Cholesky-Factorization.md) | `CholeskyExample` |
-| [Root finding by bisection in Java](docs/tutorials/Root-Finding.md) | `RootFindingExample` |
-| [Linear interpolation in Java](docs/tutorials/Linear-Interpolation.md) | `InterpolationExample` |
-| [Normal probabilities and quantiles in Java](docs/tutorials/Normal-Probabilities.md) | `NormalProbabilityExample` |
-| [Ordinary least squares regression in Java](docs/tutorials/Linear-Regression.md) | `LinearRegressionExample` |
-| [Constrained quadratic programming in Java](docs/tutorials/Quadratic-Programming.md) | `QuadraticProgrammingExample` |
+| [Cholesky factorization in Java](https://nmltd.github.io/nmdev-examples/tutorials/Cholesky-Factorization.html) | `CholeskyExample` |
+| [Root finding by bisection in Java](https://nmltd.github.io/nmdev-examples/tutorials/Root-Finding.html) | `RootFindingExample` |
+| [Linear interpolation in Java](https://nmltd.github.io/nmdev-examples/tutorials/Linear-Interpolation.html) | `InterpolationExample` |
+| [Normal probabilities and quantiles in Java](https://nmltd.github.io/nmdev-examples/tutorials/Normal-Probabilities.html) | `NormalProbabilityExample` |
+| [Ordinary least squares regression in Java](https://nmltd.github.io/nmdev-examples/tutorials/Linear-Regression.html) | `LinearRegressionExample` |
+| [Constrained quadratic programming in Java](https://nmltd.github.io/nmdev-examples/tutorials/Quadratic-Programming.html) | `QuadraticProgrammingExample` |
 
 Each tutorial has detailed explanations, complete source, expected results and executable numerical checks. No market data, external API keys or network calls are needed while running the calculations.
 

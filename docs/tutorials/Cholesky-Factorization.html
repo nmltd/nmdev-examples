@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cholesky factorization in Java — NM Dev examples</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}.math-display{overflow-x:auto}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main><nav aria-label="Site navigation"><a href="../getting-started.html">Getting Started</a><a href="../tutorials.html">Tutorials</a><a href="../index.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>Cholesky factorization in Java</h1>
+<p><a href="../tutorials.html">Tutorial index</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/src/main/java/dev/nm/examples/CholeskyExample.java">Java source</a></p>
+<h2>Run this example</h2>
+<p>Complete <a href="../getting-started.html">Getting Started</a>, then run from the repository root:</p>
+<pre><code class="language-bash">mvn exec:java -Dexec.mainClass=dev.nm.examples.CholeskyExample
+</code></pre>
+<h2>Problem and mathematics</h2>
+<p>Factor the symmetric positive-definite matrix</p>
+<div class="math-display">\[
+A=\begin{bmatrix}2&amp;1&amp;1\\1&amp;2&amp;1\\1&amp;1&amp;2\end{bmatrix}=LL^T.
+\]</div>
+
+<p>Cholesky factorization is useful when working with covariance matrices or solving positive-definite linear systems. It produces a lower-triangular factor. It does not compute an inverse, and an inverse is usually unnecessary when solving a system.</p>
+<h2>Walk through the API</h2>
+<ol>
+<li>Construct <code>DenseMatrix</code> from a row-major <code>double[][]</code>.</li>
+<li>Pass the matrix to <code>CholeskyBanachiewicz</code>.</li>
+<li>Retrieve the lower-triangular factor with <code>L()</code>.</li>
+<li>Use <code>l.multiply(l.t())</code> to reconstruct the original matrix.</li>
+<li>Loop from <strong>1</strong>, not 0: NM Dev matrix access is one-based.</li>
+</ol>
+<p>The Java source prints the factor and checks the largest absolute reconstruction error. Matrix multiplication and transpose are essential; multiplying corresponding entries would not reconstruct the matrix.</p>
+<h2>Expected result and validation</h2>
+<p>The lower-triangular factor is approximately</p>
+<div class="math-display">\[
+L=\begin{bmatrix}1.414214&amp;0&amp;0\\0.707107&amp;1.224745&amp;0\\0.707107&amp;0.408248&amp;1.154701\end{bmatrix}.
+\]</div>
+
+<p>The reconstruction error should be below <code>1e-12</code>. Exact formatting and last-bit rounding may differ across runtimes. This check tests the defining factorization identity rather than a particular printed representation.</p>
+<h2>Assumptions and mistakes to avoid</h2>
+<p>The matrix must be symmetric and positive definite. Positive semidefinite matrices can be singular, so a sample covariance matrix is not automatically suitable. Do not silently add a diagonal adjustment just to make the calculation succeed: that changes the model. Poor conditioning also requires a scale-aware tolerance in production.</p>
+<h2>Try it</h2>
+<p>Construct a lower-triangular matrix with positive diagonal, form <code>L*L^T</code>, then factor the product. Check that the recovered factor matches your original. Next use a singular matrix and inspect the library's failure rather than swallowing it.</p>
+<h2>Source and API reference</h2>
+<p>Adapted from <code>CholeskyBanachiewiczTest.java</code>, <code>test_0010</code>. See <a href="../Source-Provenance.html">source provenance</a> for the exact NM Dev commit and test path. The full runnable Java source linked above includes imports, construction steps and checks. Browse the <a href="https://nmltd.github.io/nmdev/">NM Dev Javadoc</a> for the classes used here.</p><footer><a href="../tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/tutorials/Cholesky-Factorization.md">Edit this page</a></footer></main></body></html>

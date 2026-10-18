@@ -21,8 +21,43 @@ def render(text):
     body = body.replace('<table>', '<div class="table-scroll"><table>').replace('</table>', '</table></div>')
     return body
 
+def site_nav(prefix=''):
+    return '<nav aria-label="Site navigation">'+''.join(f'<a href="{prefix}{url}">{label}</a>' for url,label in [('getting-started.html','Getting Started'),('tutorials.html','Tutorials'),('index.html','Benchmarks')])+f'<a href="{REPO_URL}">Source</a></nav>'
+
 def page(title, text, current):
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} — NM Dev benchmarks</title><style>{CSS}</style></head><body><main>{nav(current)}{render(text)}<footer><a href="{REPO_URL}/tree/main/benchmark">Benchmark source and run archives</a> · <a href="{REPO_URL}/blob/main/docs/README.md">Java tutorials</a></footer></main></body></html>'''
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} — NM Dev benchmarks</title><style>{CSS}</style></head><body><main>{site_nav()}{nav(current)}{render(text)}<footer><a href="{REPO_URL}/tree/main/benchmark">Benchmark source and run archives</a> · <a href="tutorials.html">Java tutorials</a></footer></main></body></html>'''
+
+def build_tutorials(repo, output):
+    sources = [repo/'docs/README.md', repo/'docs/Getting-Started.md',
+               repo/'docs/starter-project.md', repo/'docs/Source-Provenance.md', repo/'docs/Validation.md']
+    sources += sorted((repo/'docs/tutorials').glob('*.md'))
+    destinations = {source: ('tutorials.html' if source.name == 'README.md' else
+                   'getting-started.html' if source.name == 'Getting-Started.md' else
+                   source.relative_to(repo/'docs').with_suffix('.html').as_posix()) for source in sources}
+    import posixpath
+    for source, destination in destinations.items():
+        target = output/destination
+        prefix = '../' if '/' in destination else ''
+        text = source.read_text()
+        def rewrite(match):
+            label, href = match.groups()
+            if re.match(r'https?://|#|mailto:', href): return match.group(0)
+            path, _, anchor = href.partition('#')
+            resolved = (source.parent/path).resolve()
+            if resolved in destinations:
+                href = posixpath.relpath(destinations[resolved], posixpath.dirname(destination) or '.')
+                if anchor: href += '#'+anchor
+            else:
+                href = REPO_URL+'/blob/main/'+resolved.relative_to(repo).as_posix()
+                if anchor: href += '#'+anchor
+            return f'[{label}]({href})'
+        text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', rewrite, text)
+        # GitHub math fences become display equations for MathJax on Pages.
+        text = re.sub(r'```math\s*\n(.*?)\n```', lambda m: '<div class="math-display">\\[\n'+html.escape(m.group(1))+'\n\\]</div>', text, flags=re.S)
+        body = render(text)
+        title = re.search(r'^# (.+)', text).group(1)
+        target.write_text(f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} — NM Dev examples</title><style>{CSS}.math-display{{overflow-x:auto}}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main>{site_nav(prefix)}{body}<footer><a href="{prefix}tutorials.html">All tutorials</a> · <a href="{REPO_URL}/blob/main/{source.relative_to(repo).as_posix()}">Edit this page</a></footer></main></body></html>')
+    print(f'Generated {len(sources)} tutorial and setup pages from docs Markdown.')
 
 def add_library_filters(chart, rows):
     """Add one accessible selection shared by both inline SVG charts."""
@@ -116,14 +151,15 @@ def main():
     for name,(title,text) in pages.items(): (output/name).write_text(page(title,text,name))
     chart = (source/'charts.html').read_text()
     chart = chart.replace('</style>',CSS+'</style>')
-    chart = chart.replace('<h1>NM Dev benchmark charts</h1>',nav('index.html')+'<h1>NM Dev benchmark charts</h1>')
+    chart = chart.replace('<h1>NM Dev benchmark charts</h1>',site_nav()+nav('index.html')+'<h1>NM Dev benchmark charts</h1>')
     chart = chart.replace('Full report and raw measurements','Raw measurements and archived report')
     chart = chart.replace('<p>Hover, tap or keyboard-focus any point to inspect its measurements.</p>',
         f'<p class="note">Run: {html.escape(source.name)} · {len(rows)} measured cases. <a href="results.html">Results tables</a> · <a href="libraries.html">Versions and backends</a></p><p>Hover, tap or keyboard-focus any point to inspect its measurements. Press Escape to dismiss.</p>')
-    chart = chart.replace('</main>', '<footer><a href="reproduce.html">Reproduce and publish</a> · <a href="'+REPO_URL+'/blob/main/docs/README.md">Java tutorials</a></footer></main>')
+    chart = chart.replace('</main>', '<footer><a href="reproduce.html">Reproduce and publish</a> · <a href="tutorials.html">Java tutorials</a></footer></main>')
     chart = add_library_filters(chart, rows)
     (output/'index.html').write_text(chart)
     (output/'.nojekyll').write_text('')
+    build_tutorials(repo, output)
     print(f'Generated six benchmark Pages from {source.name}; raw measurements unchanged.')
 
 if __name__ == '__main__': main()
