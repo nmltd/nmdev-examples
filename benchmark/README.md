@@ -60,3 +60,15 @@ python3 benchmark/scripts/report.py benchmark/results/my-run
 Python only summarizes JMH measurements. Matplotlib renders the SVGs and self-contained HTML with hover, focus and tap tooltips. Download/open `charts.html` in a browser; GitHub inline image previews do not expose point tooltips. Raw timing JSON, logs, CSV, environment, backends, checksums and correctness evidence accompany each published run.
 
 Results on a shared VM are a workload-specific baseline. Native BLAS and pure-Java paths are explicitly labelled; performance claims should reflect these differences and the recorded uncertainty.
+
+## Published dashboard
+
+[Open the GitHub Pages dashboard](https://nmltd.github.io/nmdev-examples/) for browser tooltips without downloading HTML. The [wiki guide](https://github.com/nmltd/nmdev-examples/wiki/Benchmark-Results) explains the charts.
+
+After generating a completed report, rebuild the Pages artifact from the repository root:
+
+```bash
+python benchmark/scripts/publish-pages.py benchmark/results/2026-10-18-expanded
+```
+
+Commit `docs/index.html` and `docs/.nojekyll`. Pages publishes `main` → `/docs`; no benchmark is rerun during publication. Raw measurements remain in `benchmark/results/`.
