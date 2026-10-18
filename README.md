@@ -6,7 +6,7 @@ Learn numerical programming in Java with runnable NM Dev examples: linear algebr
 
 ## Run your first example
 
-Requires Java 8 or later, Maven, GitHub Packages credentials and a valid NM Dev license. The starter's trial license is included as `nm.lic`; its validity and module entitlements are enforced by NM Dev. See [setup instructions](docs/Getting-Started.md) before running:
+Requires Java 8 or later, Maven, GitHub Packages credentials and a valid NM Dev license. Obtain a valid NM Dev trial or commercial license and save it as `nm.lic` in the repository root; its validity and module entitlements are enforced by NM Dev. See [setup instructions](docs/Getting-Started.md) before running:
 
 ```bash
 mvn -U clean verify
@@ -28,7 +28,7 @@ Each tutorial has detailed explanations, complete source, expected results and e
 
 ## Original starter
 
-The project began as a copy of [`samples/new-nmdev-project`](https://github.com/nmltd/numerical-methods-java/tree/main/samples/new-nmdev-project). Its `HelloWorld`, `Graph`, existing JUnit test and external trial license are retained. The Maven project name and artifact ID are updated for this repository. See [the starter guide](docs/starter-project.md).
+The project began as a copy of [`samples/new-nmdev-project`](https://github.com/nmltd/numerical-methods-java/tree/main/samples/new-nmdev-project). Its `HelloWorld`, `Graph` and existing JUnit test are retained. License credentials are not redistributed here. The Maven project name and artifact ID are updated for this repository. See [the starter guide](docs/starter-project.md).
 
 ## Library and licensing
 
