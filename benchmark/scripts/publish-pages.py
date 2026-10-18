@@ -116,6 +116,24 @@ def main():
         notice='<p role="note"><strong>Historical harness issue:</strong> ojAlgo scaling returned deferred work. Its scaling points are invalid for completed-work comparisons. <a href="fairness-audit.html">Read the audit</a>.</p>'
     chart=chart.replace('<h1>NM Dev benchmark explorer</h1>','<h1>NM Dev benchmark explorer</h1>'+notice)
     (output/'benchmarks.html').write_text(chart)
+    # Publish completed 2000-square profiles separately; never mix thread settings.
+    large_links=[]
+    for threads in [1,4]:
+        large=repo/f'benchmark/results/2026-10-18-2000-{threads}thread'
+        if not (large/'completed-utc.txt').exists(): continue
+        large_rows=json.loads((large/'jmh.json').read_text())
+        name=f'benchmarks-2000-{threads}thread.html'
+        large_chart=write_explorer(large,large_rows,site_nav()+nav('benchmarks.html'),CSS)
+        note=f'<p role="note"><strong>2000 × 2000 · {threads} requested compute thread(s).</strong> Four libraries; multiplication, LU, Cholesky, QR and solve. Two JVM forks; two 100 ms warmups and three 200 ms measurements per fork. One JMH worker. Each fork validates 2000-square outputs before timing. Native worker counts are not independently audited. <a href="results-2000-{threads}thread.html">Timing tables and evidence</a>.</p>'
+        large_chart=large_chart.replace('<h1>NM Dev benchmark explorer</h1>','<h1>NM Dev benchmark explorer</h1>'+note)
+        (output/name).write_text(large_chart)
+        report=archive_links((large/'README.md').read_text(),large)
+        (output/f'results-2000-{threads}thread.html').write_text(page(f'2000 × 2000 · {threads} threads',report,'results.html'))
+        large_links.append(f'<a href="{name}">2000 × 2000 · {threads} thread(s)</a>')
+    if large_links:
+        links='<p><strong>Large-matrix comparisons:</strong> '+' · '.join(large_links)+'</p>'
+        for name in ['benchmarks.html']+[f'benchmarks-2000-{t}thread.html' for t in [1,4] if (output/f'benchmarks-2000-{t}thread.html').exists()]:
+            p=output/name;p.write_text(p.read_text().replace('<h1>NM Dev benchmark explorer</h1>','<h1>NM Dev benchmark explorer</h1>'+links))
     (output/'.nojekyll').write_text('')
     build_tutorials(repo, output)
     print(f'Generated {len(pages)+1} benchmark Pages from {source.name}; raw measurements unchanged.')

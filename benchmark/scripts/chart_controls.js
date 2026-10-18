@@ -107,7 +107,7 @@ $('show-all').addEventListener('click',()=>setLibraries(true));$('hide-all').add
 $('all-operations').addEventListener('click',()=>{state.operations=[...operationIds];apply();render()});
 $('no-operations').addEventListener('click',()=>{state.operations=[];apply();render()});
 const groups={all:operationIds,basic:['transpose','addition','scale','multiplication'],decomposition:['cholesky','lu','qr','eigenSymmetric','svd'],systems:['determinant','inverse','inverseSPD','solve']};
-$('operation-group').addEventListener('change',()=>{const name=$('operation-group').value;if(groups[name]){state.operations=[...groups[name]];operationBoxes.forEach(b=>b.checked=state.operations.includes(b.value));render()}});
+$('operation-group').addEventListener('change',()=>{const name=$('operation-group').value;if(groups[name]){state.operations=operationIds.filter(op=>groups[name].includes(op));operationBoxes.forEach(b=>b.checked=state.operations.includes(b.value));render()}});
 operationBoxes.forEach(box=>box.addEventListener('change',()=>{$('operation-group').value='custom'}));
 $('reset').addEventListener('click',()=>{state=defaults();apply();render();$('action-status').textContent='Default settings restored.'});
 $('share').addEventListener('click',async()=>{const url=comparisonUrl();try{await navigator.clipboard.writeText(url);$('action-status').textContent='Comparison link copied.'}catch(_){$('share-url').focus();$('share-url').select();$('action-status').textContent='Copy the selected comparison link with Ctrl+C (Command+C on Mac).'}});

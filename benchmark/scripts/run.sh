@@ -13,9 +13,10 @@ threads="${BENCH_THREADS:-1}"
 profile="${BENCH_PROFILE:-baseline}"
 case "$profile" in
   baseline) benchmark='dev.nm.benchmark.MatrixBenchmark.compute'; parameters=(-p size=64,256) ;;
-  large) benchmark='dev.nm.benchmark.MatrixBenchmark.compute'; parameters=(-p size=512,1024 -p library=NMDEV,EJML,OJALGO,JBLAS -p operation=multiplication,lu,cholesky,qr,solve) ;;
+  large) benchmark='dev.nm.benchmark.MatrixBenchmark.compute'; parameters=(-p size=512,1024,2000 -p library=NMDEV,EJML,OJALGO,JBLAS -p operation=multiplication,lu,cholesky,qr,solve) ;;
+  size2000) benchmark='dev.nm.benchmark.MatrixBenchmark.compute'; parameters=(-p size=2000 -p library=NMDEV,EJML,OJALGO,JBLAS -p operation=multiplication,lu,cholesky,qr,solve) ;;
   rectangular) benchmark='dev.nm.benchmark.RectangularBenchmark.compute'; parameters=() ;;
-  *) echo 'BENCH_PROFILE must be baseline, large or rectangular' >&2; exit 1 ;;
+  *) echo 'BENCH_PROFILE must be baseline, large, size2000 or rectangular' >&2; exit 1 ;;
 esac
 NMDEV_JAR="$repo_root/benchmark/target/lib/nmdev-1.2.6.jar" bash benchmark/scripts/build-direct.sh
 mkdir -p "$output"

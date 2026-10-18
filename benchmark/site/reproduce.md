@@ -52,7 +52,7 @@ The defaults remain two forks, three 300 ms warmups and five 500 ms measurements
 # Pin a single computational worker; affinity is optional and must be valid on your host.
 BENCH_CPUSET=0 BENCH_THREADS=1 bash benchmark/scripts/run.sh benchmark/results/my-fair-baseline
 
-# Larger square matrices: four libraries, sizes 512/1024, five operations.
+# Larger square matrices: four libraries, sizes 512/1024/2000, five operations.
 BENCH_CPUSET=0 BENCH_PROFILE=large bash benchmark/scripts/run.sh benchmark/results/my-large
 
 # Tall, wide and odd-sized multiplication, with four explicitly supported adapters.
@@ -66,7 +66,7 @@ java -XX:ActiveProcessorCount=1 -cp 'benchmark/target/classes:benchmark/target/l
   dev.nm.benchmark.DifficultValidationMain > difficult-correctness.csv
 ```
 
-The large profile intentionally avoids automatically scheduling every decomposition at historical 5,000×5,000 sizes. Use explicit JMH `-p size=... -p operation=... -p library=...` overrides when resources permit. Historical-sized tests are a separate experiment, not implied by the 512/1024 track.
+The large profile intentionally avoids automatically scheduling every decomposition at historical 5,000×5,000 sizes. Use explicit JMH `-p size=... -p operation=... -p library=...` overrides when resources permit. Historical-sized tests are a separate experiment, not implied by the 512/1024/2000 track.
 
 `run.sh` rebuilds the harness against the local combined JAR, verifies locked third-party artifacts, runs all baseline guards, and records allocation metrics with `-prof gc`. Use new directories for each profile; previous JSON/logs are never overwritten. If your Maven build uses a differently named NM Dev JAR, run the direct build first with `NMDEV_JAR` pointing at that file.
 
@@ -98,3 +98,14 @@ mvn -f benchmark/pom.xml package
 ```
 
 The direct route is the validated build used for these measurements. Per-run `versions.json` and `validated-nmdev-artifact.json` preserve labels and proof of the tested customer JAR. Current version labels do not replace the labels of historical archives.
+
+## 2000-square comparison
+
+Run the same four-library, five-operation profile at size 2000 only, keeping one-thread and four-thread results separate:
+
+```bash
+BENCH_CPUSET=0 BENCH_THREADS=1 BENCH_PROFILE=size2000 bash benchmark/scripts/run.sh benchmark/results/my-2000-one -wi 2 -w 100ms -i 3 -r 200ms
+BENCH_CPUSET=0-3 BENCH_THREADS=4 BENCH_PROFILE=size2000 bash benchmark/scripts/run.sh benchmark/results/my-2000-four -wi 2 -w 100ms -i 3 -r 200ms
+```
+
+The short iteration targets are diagnostic: an iteration still completes a full operation even when it takes longer than its target. Every fork runs full-size correctness and input-preservation checks before timing. Setup and reference checks can dominate wall-clock runtime. This profile does not include every baseline library/operation.
