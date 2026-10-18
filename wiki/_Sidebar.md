@@ -4,4 +4,4 @@
 
 [Tutorials](https://nmltd.github.io/nmdev-examples/tutorials.html)
 
-[Benchmarks](https://nmltd.github.io/nmdev-examples/)
+[Benchmarks](https://nmltd.github.io/nmdev-examples/benchmarks.html)

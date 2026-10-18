@@ -1,6 +1,6 @@
 # Benchmarks
 
-**[Open the NM Dev benchmark website](https://nmltd.github.io/nmdev-examples/)**
+**[Open the NM Dev benchmark website](https://nmltd.github.io/nmdev-examples/benchmarks.html)**
 
 The website contains interactive charts, results tables, methodology, library/backend details, validation and reproduction instructions. Benchmark documentation is maintained there.
 
