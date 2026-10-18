@@ -1,0 +1,8 @@
+# filename	sha256	url
+commons-math3-3.6.1.jar	1e56d7b058d28b65abd256b8458e3885b674c1d588fa43cd7d1cbb9c7ef2b308	https://repo.maven.apache.org/maven2/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar
+ejml-core-0.46.1.jar	60e239ad8ad7b255542cab56986edec88f14feecdf86468b1ad37a7a7afe52e2	https://repo.maven.apache.org/maven2/org/ejml/ejml-core/0.46.1/ejml-core-0.46.1.jar
+ejml-ddense-0.46.1.jar	5e056bb27c1f39e612e8d05b3467bf1f05d0dc6c73f6b73a85fddf73127f901f	https://repo.maven.apache.org/maven2/org/ejml/ejml-ddense/0.46.1/ejml-ddense-0.46.1.jar
+jama-1.0.3.jar	c7325ee29be1aac1287ddac690f73671f1cd911ca9eca7c619990e86310556fd	https://repo.maven.apache.org/maven2/gov/nist/math/jama/1.0.3/jama-1.0.3.jar
+jmh-core-1.37.jar	dc0eaf2bbf0036a70b60798c785d6e03a9daf06b68b8edb0f1ba9eb3421baeb3	https://repo.maven.apache.org/maven2/org/openjdk/jmh/jmh-core/1.37/jmh-core-1.37.jar
+jmh-generator-annprocess-1.37.jar	6a5604b5b804e0daca1145df1077609321687734a8b49387e49f10557c186c77	https://repo.maven.apache.org/maven2/org/openjdk/jmh/jmh-generator-annprocess/1.37/jmh-generator-annprocess-1.37.jar
+jopt-simple-5.0.4.jar	df26cc58f235f477db07f753ba5a3ab243ebe5789d9f89ecf68dd62ea9a66c28	https://repo.maven.apache.org/maven2/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar

@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>dev.nm</groupId><artifactId>nmdev-benchmark</artifactId><version>1.0.0-SNAPSHOT</version>
+  <name>NM Dev reproducible linear algebra benchmarks</name>
+  <properties><maven.compiler.release>11</maven.compiler.release><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding></properties>
+  <repositories><repository><id>github-nmdev</id><url>https://maven.pkg.github.com/nmltd/maven-packages</url><snapshots><enabled>true</enabled></snapshots></repository></repositories>
+  <dependencies>
+    <dependency><groupId>dev.nm</groupId><artifactId>nmdev-dist</artifactId><version>1.2.6-SNAPSHOT</version></dependency>
+    <dependency><groupId>org.ejml</groupId><artifactId>ejml-ddense</artifactId><version>0.46.1</version></dependency>
+    <dependency><groupId>org.apache.commons</groupId><artifactId>commons-math3</artifactId><version>3.6.1</version></dependency>
+    <dependency><groupId>gov.nist.math</groupId><artifactId>jama</artifactId><version>1.0.3</version></dependency>
+    <dependency><groupId>org.openjdk.jmh</groupId><artifactId>jmh-core</artifactId><version>1.37</version></dependency>
+    <dependency><groupId>org.openjdk.jmh</groupId><artifactId>jmh-generator-annprocess</artifactId><version>1.37</version><scope>provided</scope></dependency>
+  </dependencies>
+  <build><plugins>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.14.1</version><configuration><annotationProcessorPaths><path><groupId>org.openjdk.jmh</groupId><artifactId>jmh-generator-annprocess</artifactId><version>1.37</version></path></annotationProcessorPaths></configuration></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-dependency-plugin</artifactId><version>3.8.1</version><executions><execution><phase>package</phase><goals><goal>copy-dependencies</goal></goals><configuration><includeScope>runtime</includeScope><outputDirectory>${project.build.directory}/lib</outputDirectory><useBaseVersion>true</useBaseVersion></configuration></execution></executions></plugin>
+  </plugins></build>
+</project>

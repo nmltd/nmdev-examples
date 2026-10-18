@@ -6,3 +6,5 @@ target/
 settings.xml
 *.key
 *.lic
+__pycache__/
+*.pyc

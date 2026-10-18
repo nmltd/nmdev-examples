@@ -26,6 +26,10 @@ mvn exec:java -Dexec.mainClass=dev.nm.examples.RunAllExamples
 
 Each tutorial has detailed explanations, complete source, expected results and executable numerical checks. No market data, external API keys or network calls are needed while running the calculations.
 
+## Benchmarks
+
+The [benchmark suite](benchmark/README.md) compares 13 dense linear-algebra operations across NM Dev, EJML, Apache Commons Math and JAMA, with JMH timings, correctness checks and published raw results.
+
 ## Original starter
 
 The project began as a copy of [`samples/new-nmdev-project`](https://github.com/nmltd/numerical-methods-java/tree/main/samples/new-nmdev-project). Its `HelloWorld`, `Graph` and existing JUnit test are retained. License credentials are not redistributed here. The Maven project name and artifact ID are updated for this repository. See [the starter guide](docs/starter-project.md).
