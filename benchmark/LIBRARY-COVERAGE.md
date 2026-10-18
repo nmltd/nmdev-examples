@@ -1,6 +1,6 @@
 # Library coverage
 
-All eleven adapters below compile and have passed 429 baseline correctness cases twice plus 66 targeted pivot/sign cases. The expanded JMH comparison reruns all adapters with identical harness settings. See [run status](results/2026-10-18-expanded/RUNNING.md).
+All eleven adapters below compile and have passed 429 baseline correctness cases twice plus 66 targeted pivot/sign cases. The expanded JMH comparison reruns all adapters with identical harness settings. See [completed results](results/2026-10-18-expanded/README.md).
 
 | Library | Version | Integration result |
 |---|---|---|

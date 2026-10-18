@@ -2,7 +2,7 @@
 
 Reproducible Java/JMH comparisons derived from the original numerical-methods-java benchmark suite. The maintained adapters cover 13 dense linear-algebra tasks across eleven libraries/distributions.
 
-**[Initial completed report](results/2026-10-18/README.md) · [Expanded run](results/2026-10-18-expanded/RUNNING.md) · [Methodology](METHODOLOGY.md) · [Coverage](LIBRARY-COVERAGE.md)**
+**[Initial completed report](results/2026-10-18/README.md) · [Expanded completed report](results/2026-10-18-expanded/README.md) · [Methodology](METHODOLOGY.md) · [Coverage](LIBRARY-COVERAGE.md)**
 
 ## Included versions
 

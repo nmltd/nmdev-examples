@@ -1,0 +1,11 @@
+Post-run backend probe using the measured JAR versions and configuration.
+MTJ BLAS implementation: com.github.fommil.netlib.F2jBLAS
+MTJ LAPACK implementation: com.github.fommil.netlib.F2jLAPACK
+Parallel Colt netlib BLAS implementation: org.netlib.blas.JBLAS
+Parallel Colt netlib LAPACK implementation: org.netlib.lapack.JLAPACK
+Parallel Colt configured threads: 1
+ojAlgo configured environment: 1GB/1thread x86_64 [8GB/1thread, 256kB/1thread, 32kB/1thread]
+UJMP configured threads: 1
+UJMP external backends enabled: Commons=false, EJML=false, jblas=false, MTJ=false, ojAlgo=false, ParallelColt=false
+jblas native multiplication: PASS
+Native worker counts were not independently audited.
