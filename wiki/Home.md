@@ -9,8 +9,8 @@ Start with [Getting Started](https://github.com/nmltd/nmdev-examples/blob/main/d
 - [Ordinary least squares regression in Java](https://github.com/nmltd/nmdev-examples/blob/main/docs/tutorials/Linear-Regression.md)
 - [Constrained quadratic programming in Java](https://github.com/nmltd/nmdev-examples/blob/main/docs/tutorials/Quadratic-Programming.md)
 
-The canonical, versioned documentation is [docs/](https://github.com/nmltd/nmdev-examples/tree/main/docs). Wiki-ready copies are kept in this repository so the tutorial content remains available even if the separate GitHub Wiki is not enabled.
+The canonical, versioned documentation is [docs/](https://github.com/nmltd/nmdev-examples/tree/main/docs). Tutorial sources are versioned in this repository.
 
 ## Benchmarks
 
-[Benchmark Results](Benchmark-Results) explains the 11-library comparison, with static previews, reproducibility evidence and a link to the [interactive dashboard](https://nmltd.github.io/nmdev-examples/).
+[Open the benchmark website](https://nmltd.github.io/nmdev-examples/) for interactive results and the complete benchmark guide.

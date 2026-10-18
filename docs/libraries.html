@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Libraries — NM Dev benchmarks</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}</style></head><body><main><nav aria-label="Benchmark navigation"><a href="index.html">Charts</a><a href="results.html">Results</a><a href="methodology.html">Methodology</a><a href="libraries.html" aria-current="page">Libraries</a><a href="validation.html">Validation</a><a href="reproduce.html">Reproduce</a></nav><h1>Library coverage</h1>
+<p>All eleven adapters below compile and have passed 429 baseline correctness cases twice plus 66 targeted pivot/sign cases. The expanded JMH comparison reruns all adapters with identical harness settings. See <a href="results.html">completed results</a>.</p>
+<h2>Distribution and backend distinctions</h2>
+<ul>
+<li>The old <code>org.netlib:jlapack:0.8</code> dependency remains unavailable from Maven Central. The included replacement is explicitly identified as <code>net.sourceforge.f2j:arpack_combined_all:0.1</code>, using <code>Dgemm</code> and translated LAPACK routines. It is not presented as the same artifact or release.</li>
+<li>MTJ is measured with <code>F2jBLAS</code>, <code>F2jLAPACK</code> and <code>F2jARPACK</code> forced by JVM properties. It is not a native-accelerated MTJ result.</li>
+<li>jblas loads its bundled native implementation successfully. Native thread environment variables request one thread, but native worker counts have not been independently audited.</li>
+<li>UJMP's optional external Commons Math, EJML, jblas, MTJ, ojAlgo and Parallel Colt backends are disabled, preventing silent delegation to a different measured library.</li>
+<li>Parallel Colt, ojAlgo and UJMP receive explicit one-thread settings, in addition to the common one-worker JMH configuration.</li>
+</ul>
+<p>The original four-library report remains available as a separate historical run. Its omissions were integration scope decisions, not evidence that other libraries could not run.</p>
+<h2>Measured backend records</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Library</th>
+<th>Measured version / backend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NMDEV</td>
+<td>NM Dev 1.2.6-SNAPSHOT — Combined obfuscated 1.2.6-SNAPSHOT binary; checksum in artifacts.json</td>
+</tr>
+<tr>
+<td>EJML</td>
+<td>EJML 0.46.1 — ejml-ddense 0.46.1 Java implementation</td>
+</tr>
+<tr>
+<td>COMMONS</td>
+<td>Commons Math 3.6.1 — Array2DRowRealMatrix / Java implementation</td>
+</tr>
+<tr>
+<td>JAMA</td>
+<td>JAMA 1.0.3 — Jama.Matrix / Java implementation</td>
+</tr>
+<tr>
+<td>COLT</td>
+<td>Colt 1.2.0 — cern.colt.matrix / Java implementation</td>
+</tr>
+<tr>
+<td>PARALLEL_COLT</td>
+<td>Parallel Colt 0.10.1 — DenseDoubleMatrix2D / Java JPLASMA and netlib-java F2J dependencies; ConcurrencyUtils threads=1</td>
+</tr>
+<tr>
+<td>JBLAS</td>
+<td>jblas 1.2.5 (native) — 1.2.5 bundled native libjblas; successful native loading in correctness run; requested native thread environment recorded, native thread count not independently audited</td>
+</tr>
+<tr>
+<td>F2J_LAPACK</td>
+<td>F2J LAPACK/BLAS 0.1 — net.sourceforge.f2j:arpack_combined_all:0.1; direct Dgemm and LAPACK translated Java routines. Replacement distribution, not org.netlib:jlapack:0.8</td>
+</tr>
+<tr>
+<td>MTJ</td>
+<td>MTJ 1.0.4 (F2J) — 1.0.4 with com.github.fommil.netlib F2jBLAS/F2jLAPACK/F2jARPACK explicitly forced by JVM properties</td>
+</tr>
+<tr>
+<td>OJALGO</td>
+<td>ojAlgo 57.5.0 — 57.5.0 R064Store/decomposition factories; OjAlgoUtils.limitThreadsTo(1)</td>
+</tr>
+<tr>
+<td>UJMP</td>
+<td>UJMP 0.3.0 (core) — 0.3.0 core algorithms; external Commons Math, EJML, jblas, MTJ, ojAlgo and Parallel Colt backends explicitly disabled; threads=1</td>
+</tr>
+</tbody>
+</table></div><footer><a href="https://github.com/nmltd/nmdev-examples/tree/main/benchmark">Benchmark source and run archives</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/README.md">Java tutorials</a></footer></main></body></html>

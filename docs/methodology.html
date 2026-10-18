@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Methodology — NM Dev benchmarks</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}</style></head><body><main><nav aria-label="Benchmark navigation"><a href="index.html">Charts</a><a href="results.html">Results</a><a href="methodology.html" aria-current="page">Methodology</a><a href="libraries.html">Libraries</a><a href="validation.html">Validation</a><a href="reproduce.html">Reproduce</a></nav><h1>Benchmark methodology</h1>
+<h2>What is measured</h2>
+<p>JMH 1.37 measures average milliseconds per completed operation. Each library receives the same seeded input values and uses its native matrix representation. The benchmark returns the resulting matrix, scalar or array of factor objects to JMH's generated consumer. No network requests or random generation occur in timed operations.</p>
+<p>Inputs are created and converted in trial setup. Outputs are allocated inside the operation, as required by the selected APIs. EJML decomposition APIs receive a fresh copy when the adapter uses an in-place decomposition, protecting repeated inputs; that copy is timed. Other APIs may make internal copies. This measures the cost of the documented adapter calls, not a lower-level allocation-free kernel.</p>
+<p>Each operation includes a string switch and the adapter invocation. This common dispatch overhead can matter for the smallest, fastest operations.</p>
+<h2>Input data</h2>
+<p><code>java.util.Random</code> uses seed <code>20261018 + n</code> for each matrix size. A has bounded off-diagonal entries <code>(uniform[0,1)-0.5)/n</code>, with <code>1+i/n</code> added to diagonal entry i. B has similarly bounded entries without the diagonal addition. The SPD matrix is <code>A^T A</code>; the right-hand side has n rows and one column.</p>
+<p>These deterministic dense inputs are well-conditioned and intentionally avoid near-singularity. Results say nothing about sparse, ill-conditioned, rectangular, low-rank or highly structured inputs. QR and SVD use square matrices in this run, unlike some historical defaults. A single seed is not a workload distribution.</p>
+<h2>Equivalent mathematical tasks and API differences</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Returned work / validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transpose, addition, scale, multiplication</td>
+<td>Materialized result; independent reference arithmetic</td>
+</tr>
+<tr>
+<td>Determinant</td>
+<td>Scalar; independent partial-pivot elimination reference</td>
+</tr>
+<tr>
+<td>Inverse / SPD inverse</td>
+<td>Full inverse; product with input compared to identity</td>
+</tr>
+<tr>
+<td>Cholesky</td>
+<td>Lower factor; <code>L L^T</code> compared to SPD input</td>
+</tr>
+<tr>
+<td>LU</td>
+<td>L, U and row pivot information; <code>P A</code> compared to <code>L U</code></td>
+</tr>
+<tr>
+<td>QR</td>
+<td>Q and R; reconstruction and Q orthogonality</td>
+</tr>
+<tr>
+<td>Symmetric eigen</td>
+<td>Full eigenvectors and diagonal eigenvalues; eigen equation and orthogonality</td>
+</tr>
+<tr>
+<td>SVD</td>
+<td>Full U, diagonal singular values, V; reconstruction and both orthogonality checks</td>
+</tr>
+<tr>
+<td>Solve</td>
+<td>New factorization plus solve for one RHS; residual against RHS</td>
+</tr>
+</tbody>
+</table></div>
+<p>NM Dev uses <code>Inverse</code> for both general and SPD inverse, matching the original adapter. EJML, Commons Math and JAMA use Cholesky-based paths for the SPD inverse. General inversion paths can also differ by library. These are task-level API comparisons; a result is not a controlled comparison of identical algorithms.</p>
+<p>Factor retrieval and any required materialization are timed. Libraries differ in pivot representation and factor storage. EJML's symmetric-eigen adapter assembles dense Q and D from the returned eigenpairs so it returns the same mathematical outputs. No attempt is made to tune each library beyond the adapters shown in source. Review the adapter source before drawing conclusions about API choices.</p>
+<h2>Correctness checks</h2>
+<p>The independent reference code uses ordinary Java loops, not another measured adapter. The initial run checked 156 combinations. The expanded run checks all 429 combinations (13 operations, eleven libraries, sizes 4/64/256) twice, plus 66 targeted row-swap/row-cycle checks for determinant signs, LU permutations and solves. For matrices, the reported residual is the maximum absolute entry error divided by the larger of 1 and the maximum absolute entry of the expected matrix. Determinants use relative scalar error. Orthogonality tests are included for QR, eigen and SVD. Any nonfinite output or residual above <code>1e-8</code> fails the run.</p>
+<p>These are numerical sanity checks on the chosen inputs, not a comprehensive numerical-accuracy or stability study. Setup validation is excluded from timing. A failed check stops execution instead of silently suppressing a library or reporting its time as zero.</p>
+<h2>Timing and interpretation</h2>
+<p>Every case uses two fresh JVM forks, three 300 ms warmup iterations and five 500 ms measurement iterations per fork. One worker is used. JVM options set a 1 GiB fixed heap and one active processor. This constrains JVM-visible parallelism but is not CPU affinity pinning and does not audit every possible native thread. The expanded run includes native jblas, explicitly labelled, alongside Java implementations. MTJ uses explicitly forced F2J backends; UJMP external backends are disabled. Native thread environment variables request one thread, but native worker counts are not independently audited. Parallel Colt, ojAlgo and UJMP also receive library-specific one-thread settings.</p>
+<p>The JSON preserves all ten measured iteration means per case and JMH's 99.9% confidence interval. The report displays mean timings and their JMH error half-widths. Overlapping intervals or high relative errors make fine rankings unreliable; two forks are a baseline rather than an exhaustive variability study.</p>
+<p>No forced garbage collection is requested between invocations. Allocation, garbage collection, JIT behavior and API implementation costs can influence results. Benchmark cases run in JMH's deterministic parameter order, not randomized order. Environmental drift can therefore affect comparisons.</p>
+<p>The host is a shared virtual machine/container. CPU scheduling, unrelated work, frequency changes and thermal conditions are not controlled. This is a reproducible local baseline, not a claim of universal superiority. Larger inputs, more forks, longer warmup and dedicated hardware are appropriate for publication-quality performance claims.</p>
+<h2>Expanded adapter details</h2>
+<p>The expanded rerun preserves the initial harness timing settings and input seed. It reruns the original four libraries as well as the seven added adapters; their timing results are not spliced into the old measurements.</p>
+<ul>
+<li>Colt and Parallel Colt use native matrix objects. Copying precedes mutating addition/scaling APIs. Transpose is materialized. Parallel Colt includes the JPLASMA/core-lapack dependency required by its factorization routines.</li>
+<li>jblas uses its bundled native implementation. Its upper Cholesky factor is transposed into the common lower-factor output. LU permutation direction and determinant sign are checked on dedicated pivoting fixtures. SVD materializes the singular-value diagonal matrix for equivalent outputs.</li>
+<li>F2J calls translated BLAS/LAPACK directly on column-major arrays. Transpose, addition and scaling are wrapper-owned Java loops, because those convenience APIs are not defined by LAPACK. Necessary copies, workspaces, pivot conversion and dense factor extraction are timed. This is the named replacement distribution, not the old JLAPACK binary.</li>
+<li>MTJ copies inputs for mutating operations, converts its swap sequence to a row order, and uses an LU-based determinant rather than the old adapter's eigendecomposition. Its upper Cholesky factor and SVD V-transpose output are materialized in the common orientation.</li>
+<li>ojAlgo uses current R064Store and decomposition factories; lazy factor views are materialized before returning timed outputs.</li>
+<li>UJMP uses only its core algorithms, with optional external backends disabled. Its results pass independent arithmetic and factorization checks.</li>
+</ul>
+<p>These choices are visible in source and are part of the measured API workload. They should not be interpreted as a claim that every adapter is optimally tuned for its library.</p><footer><a href="https://github.com/nmltd/nmdev-examples/tree/main/benchmark">Benchmark source and run archives</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/README.md">Java tutorials</a></footer></main></body></html>

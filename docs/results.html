@@ -1,0 +1,433 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Results — NM Dev benchmarks</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}</style></head><body><main><nav aria-label="Benchmark navigation"><a href="index.html">Charts</a><a href="results.html" aria-current="page">Results</a><a href="methodology.html">Methodology</a><a href="libraries.html">Libraries</a><a href="validation.html">Validation</a><a href="reproduce.html">Reproduce</a></nav><h1>Benchmark results — 2026-10-18-expanded</h1>
+<p>286 measured cases across 11 libraries. <a href="index.html">Open interactive charts</a>. Tables show mean ± JMH 99.9% confidence half-width in ms/op.</p>
+<h2>Environment</h2>
+<p>AMD EPYC 9V74 80-Core Processor; Linux-6.18.55-x86_64-with-glibc2.39. Visible CPUs: 9; container CPU quota: <code>800000 100000</code>. JVM 17.0.20. No exclusive CPU reservation or affinity pinning.</p>
+<p>2 JVM forks per case; 3 warmup iterations of 300 ms; 5 measurement iterations of 500 ms. One JMH worker. The fork options fix a 1 GiB heap and one active processor.</p>
+<p>Native thread environment variables request one thread. Parallel Colt, ojAlgo and UJMP also receive explicit library thread limits; MTJ uses an explicitly forced pure-Java F2J backend. Native jblas thread counts are not independently audited. See the environment and backend records below.</p>
+<h2>64 × 64 matrices</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Operation</th>
+<th style="text-align: right;">NMDEV</th>
+<th style="text-align: right;">EJML</th>
+<th style="text-align: right;">COMMONS</th>
+<th style="text-align: right;">JAMA</th>
+<th style="text-align: right;">COLT</th>
+<th style="text-align: right;">PARALLEL_COLT</th>
+<th style="text-align: right;">JBLAS</th>
+<th style="text-align: right;">F2J_LAPACK</th>
+<th style="text-align: right;">MTJ</th>
+<th style="text-align: right;">OJALGO</th>
+<th style="text-align: right;">UJMP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transpose</td>
+<td style="text-align: right;">0.0039702 ± 0.00019</td>
+<td style="text-align: right;">0.0032517 ± 0.00014</td>
+<td style="text-align: right;">0.0047412 ± 0.00021</td>
+<td style="text-align: right;">0.0045587 ± 0.00029</td>
+<td style="text-align: right;">0.0039691 ± 0.00071</td>
+<td style="text-align: right;">0.0038187 ± 0.00032</td>
+<td style="text-align: right;">0.0044554 ± 0.00017</td>
+<td style="text-align: right;">0.0048602 ± 0.00021</td>
+<td style="text-align: right;">0.010694 ± 0.0012</td>
+<td style="text-align: right;">0.0052099 ± 0.00025</td>
+<td style="text-align: right;">0.024113 ± 0.0012</td>
+</tr>
+<tr>
+<td>addition</td>
+<td style="text-align: right;">0.0027391 ± 0.00028</td>
+<td style="text-align: right;">0.002455 ± 9.2e-05</td>
+<td style="text-align: right;">0.0042159 ± 0.00037</td>
+<td style="text-align: right;">0.0033434 ± 0.00011</td>
+<td style="text-align: right;">0.0045049 ± 0.00032</td>
+<td style="text-align: right;">0.004329 ± 0.00019</td>
+<td style="text-align: right;">0.0025364 ± 0.00019</td>
+<td style="text-align: right;">0.012167 ± 0.00065</td>
+<td style="text-align: right;">0.016577 ± 0.00046</td>
+<td style="text-align: right;">0.0028027 ± 0.00013</td>
+<td style="text-align: right;">0.0061402 ± 0.00031</td>
+</tr>
+<tr>
+<td>scale</td>
+<td style="text-align: right;">0.0021898 ± 5.4e-05</td>
+<td style="text-align: right;">0.0021311 ± 7.4e-05</td>
+<td style="text-align: right;">0.0037556 ± 0.00016</td>
+<td style="text-align: right;">0.002995 ± 0.00015</td>
+<td style="text-align: right;">0.0032758 ± 7.7e-05</td>
+<td style="text-align: right;">0.0038059 ± 0.0002</td>
+<td style="text-align: right;">0.0021535 ± 4.6e-05</td>
+<td style="text-align: right;">0.0021719 ± 0.00012</td>
+<td style="text-align: right;">0.013692 ± 0.00053</td>
+<td style="text-align: right;">4.9356e-05 ± 2.1e-06</td>
+<td style="text-align: right;">0.0054994 ± 0.00028</td>
+</tr>
+<tr>
+<td>multiplication</td>
+<td style="text-align: right;">0.17538 ± 0.026</td>
+<td style="text-align: right;">0.10412 ± 0.0047</td>
+<td style="text-align: right;">0.1622 ± 0.017</td>
+<td style="text-align: right;">0.15749 ± 0.01</td>
+<td style="text-align: right;">0.23193 ± 0.029</td>
+<td style="text-align: right;">0.20319 ± 0.013</td>
+<td style="text-align: right;">0.034223 ± 0.0013</td>
+<td style="text-align: right;">0.14991 ± 0.0078</td>
+<td style="text-align: right;">0.16235 ± 0.0077</td>
+<td style="text-align: right;">0.10386 ± 0.007</td>
+<td style="text-align: right;">0.15039 ± 0.013</td>
+</tr>
+<tr>
+<td>determinant</td>
+<td style="text-align: right;">0.036012 ± 0.0022</td>
+<td style="text-align: right;">0.050019 ± 0.0029</td>
+<td style="text-align: right;">0.05525 ± 0.0021</td>
+<td style="text-align: right;">0.050337 ± 0.0019</td>
+<td style="text-align: right;">0.078948 ± 0.0044</td>
+<td style="text-align: right;">0.18408 ± 0.05</td>
+<td style="text-align: right;">0.035901 ± 0.0015</td>
+<td style="text-align: right;">0.039635 ± 0.00077</td>
+<td style="text-align: right;">0.0497 ± 0.0027</td>
+<td style="text-align: right;">0.022511 ± 0.00089</td>
+<td style="text-align: right;">0.04942 ± 0.0024</td>
+</tr>
+<tr>
+<td>inverse</td>
+<td style="text-align: right;">0.34316 ± 0.016</td>
+<td style="text-align: right;">0.22919 ± 0.01</td>
+<td style="text-align: right;">0.10696 ± 0.011</td>
+<td style="text-align: right;">0.17982 ± 0.012</td>
+<td style="text-align: right;">0.25285 ± 0.021</td>
+<td style="text-align: right;">0.48502 ± 0.042</td>
+<td style="text-align: right;">0.065254 ± 0.0026</td>
+<td style="text-align: right;">0.12296 ± 0.0065</td>
+<td style="text-align: right;">0.20096 ± 0.028</td>
+<td style="text-align: right;">0.13219 ± 0.015</td>
+<td style="text-align: right;">0.18728 ± 0.0085</td>
+</tr>
+<tr>
+<td>inverseSPD</td>
+<td style="text-align: right;">0.42303 ± 0.058</td>
+<td style="text-align: right;">0.10585 ± 0.005</td>
+<td style="text-align: right;">0.088603 ± 0.0036</td>
+<td style="text-align: right;">0.25861 ± 0.016</td>
+<td style="text-align: right;">0.33323 ± 0.0098</td>
+<td style="text-align: right;">0.51264 ± 0.053</td>
+<td style="text-align: right;">0.054212 ± 0.004</td>
+<td style="text-align: right;">0.09072 ± 0.0086</td>
+<td style="text-align: right;">0.2739 ± 0.0088</td>
+<td style="text-align: right;">0.073997 ± 0.0014</td>
+<td style="text-align: right;">0.26409 ± 0.017</td>
+</tr>
+<tr>
+<td>cholesky</td>
+<td style="text-align: right;">0.032253 ± 0.0015</td>
+<td style="text-align: right;">0.032082 ± 0.0017</td>
+<td style="text-align: right;">0.040351 ± 0.0041</td>
+<td style="text-align: right;">0.029985 ± 0.00083</td>
+<td style="text-align: right;">0.03757 ± 0.0021</td>
+<td style="text-align: right;">0.12533 ± 0.0063</td>
+<td style="text-align: right;">0.018944 ± 0.00097</td>
+<td style="text-align: right;">0.028358 ± 0.0017</td>
+<td style="text-align: right;">0.080125 ± 0.0052</td>
+<td style="text-align: right;">0.02463 ± 0.0018</td>
+<td style="text-align: right;">0.032786 ± 0.0018</td>
+</tr>
+<tr>
+<td>lu</td>
+<td style="text-align: right;">0.037204 ± 0.0031</td>
+<td style="text-align: right;">0.057429 ± 0.0028</td>
+<td style="text-align: right;">0.065733 ± 0.0057</td>
+<td style="text-align: right;">0.058106 ± 0.0013</td>
+<td style="text-align: right;">0.093769 ± 0.0089</td>
+<td style="text-align: right;">0.19382 ± 0.048</td>
+<td style="text-align: right;">0.037949 ± 0.0014</td>
+<td style="text-align: right;">0.048994 ± 0.0037</td>
+<td style="text-align: right;">0.048585 ± 0.001</td>
+<td style="text-align: right;">0.038802 ± 0.0063</td>
+<td style="text-align: right;">0.057779 ± 0.0034</td>
+</tr>
+<tr>
+<td>qr</td>
+<td style="text-align: right;">0.27939 ± 0.0095</td>
+<td style="text-align: right;">0.17481 ± 0.017</td>
+<td style="text-align: right;">0.20312 ± 0.017</td>
+<td style="text-align: right;">0.3032 ± 0.014</td>
+<td style="text-align: right;">0.40277 ± 0.046</td>
+<td style="text-align: right;">0.63006 ± 0.16</td>
+<td style="text-align: right;">0.12243 ± 0.007</td>
+<td style="text-align: right;">0.20297 ± 0.018</td>
+<td style="text-align: right;">0.2022 ± 0.0065</td>
+<td style="text-align: right;">0.19007 ± 0.016</td>
+<td style="text-align: right;">0.31405 ± 0.0083</td>
+</tr>
+<tr>
+<td>eigenSymmetric</td>
+<td style="text-align: right;">2.3953 ± 0.46</td>
+<td style="text-align: right;">0.55533 ± 0.045</td>
+<td style="text-align: right;">0.64099 ± 0.021</td>
+<td style="text-align: right;">0.62118 ± 0.044</td>
+<td style="text-align: right;">0.61765 ± 0.039</td>
+<td style="text-align: right;">0.70196 ± 0.1</td>
+<td style="text-align: right;">0.39466 ± 0.017</td>
+<td style="text-align: right;">0.81831 ± 0.044</td>
+<td style="text-align: right;">0.6614 ± 0.085</td>
+<td style="text-align: right;">0.26877 ± 0.01</td>
+<td style="text-align: right;">0.62125 ± 0.034</td>
+</tr>
+<tr>
+<td>svd</td>
+<td style="text-align: right;">1.8857 ± 0.14</td>
+<td style="text-align: right;">1.1353 ± 0.089</td>
+<td style="text-align: right;">1.5958 ± 0.09</td>
+<td style="text-align: right;">1.4657 ± 0.056</td>
+<td style="text-align: right;">1.4493 ± 0.053</td>
+<td style="text-align: right;">1.9584 ± 0.88</td>
+<td style="text-align: right;">1.0531 ± 0.04</td>
+<td style="text-align: right;">1.6287 ± 0.12</td>
+<td style="text-align: right;">1.8445 ± 0.74</td>
+<td style="text-align: right;">0.63153 ± 0.059</td>
+<td style="text-align: right;">1.5561 ± 0.17</td>
+</tr>
+<tr>
+<td>solve</td>
+<td style="text-align: right;">0.093838 ± 0.011</td>
+<td style="text-align: right;">0.056686 ± 0.0023</td>
+<td style="text-align: right;">0.062741 ± 0.0018</td>
+<td style="text-align: right;">0.05779 ± 0.0048</td>
+<td style="text-align: right;">0.10242 ± 0.011</td>
+<td style="text-align: right;">0.19474 ± 0.025</td>
+<td style="text-align: right;">0.023493 ± 0.0008</td>
+<td style="text-align: right;">0.045697 ± 0.0029</td>
+<td style="text-align: right;">0.043814 ± 0.00058</td>
+<td style="text-align: right;">0.032291 ± 0.0057</td>
+<td style="text-align: right;">0.060152 ± 0.0045</td>
+</tr>
+</tbody>
+</table></div>
+<p><a href="index.html">Inspect this matrix size on the interactive charts</a></p>
+<p>NM Dev is 1×. Below 1× means less time than NM Dev; above 1× means more time. Logarithmic scale. Use the interactive HTML for exact point details.</p>
+<h2>256 × 256 matrices</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Operation</th>
+<th style="text-align: right;">NMDEV</th>
+<th style="text-align: right;">EJML</th>
+<th style="text-align: right;">COMMONS</th>
+<th style="text-align: right;">JAMA</th>
+<th style="text-align: right;">COLT</th>
+<th style="text-align: right;">PARALLEL_COLT</th>
+<th style="text-align: right;">JBLAS</th>
+<th style="text-align: right;">F2J_LAPACK</th>
+<th style="text-align: right;">MTJ</th>
+<th style="text-align: right;">OJALGO</th>
+<th style="text-align: right;">UJMP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transpose</td>
+<td style="text-align: right;">0.19332 ± 0.016</td>
+<td style="text-align: right;">0.17368 ± 0.0091</td>
+<td style="text-align: right;">0.077141 ± 0.0062</td>
+<td style="text-align: right;">0.074084 ± 0.0064</td>
+<td style="text-align: right;">0.15751 ± 0.012</td>
+<td style="text-align: right;">0.15233 ± 0.0084</td>
+<td style="text-align: right;">0.13016 ± 0.014</td>
+<td style="text-align: right;">0.16199 ± 0.0083</td>
+<td style="text-align: right;">0.15389 ± 0.0091</td>
+<td style="text-align: right;">0.094234 ± 0.0056</td>
+<td style="text-align: right;">0.49752 ± 0.074</td>
+</tr>
+<tr>
+<td>addition</td>
+<td style="text-align: right;">0.06149 ± 0.014</td>
+<td style="text-align: right;">0.040887 ± 0.0085</td>
+<td style="text-align: right;">0.052559 ± 0.0024</td>
+<td style="text-align: right;">0.042799 ± 0.0008</td>
+<td style="text-align: right;">0.09396 ± 0.003</td>
+<td style="text-align: right;">0.074378 ± 0.0025</td>
+<td style="text-align: right;">0.040655 ± 0.0037</td>
+<td style="text-align: right;">0.21861 ± 0.0048</td>
+<td style="text-align: right;">0.26488 ± 0.012</td>
+<td style="text-align: right;">0.046558 ± 0.0022</td>
+<td style="text-align: right;">0.22469 ± 0.0092</td>
+</tr>
+<tr>
+<td>scale</td>
+<td style="text-align: right;">0.086961 ± 0.1</td>
+<td style="text-align: right;">0.03437 ± 0.0016</td>
+<td style="text-align: right;">0.04621 ± 0.0024</td>
+<td style="text-align: right;">0.039061 ± 0.0018</td>
+<td style="text-align: right;">0.053651 ± 0.0048</td>
+<td style="text-align: right;">0.05713 ± 0.002</td>
+<td style="text-align: right;">0.03463 ± 0.0015</td>
+<td style="text-align: right;">0.035533 ± 0.0011</td>
+<td style="text-align: right;">0.22593 ± 0.026</td>
+<td style="text-align: right;">4.8922e-05 ± 1.7e-06</td>
+<td style="text-align: right;">0.21976 ± 0.0082</td>
+</tr>
+<tr>
+<td>multiplication</td>
+<td style="text-align: right;">16.719 ± 4.1</td>
+<td style="text-align: right;">5.5781 ± 0.33</td>
+<td style="text-align: right;">13.731 ± 0.54</td>
+<td style="text-align: right;">12.832 ± 0.39</td>
+<td style="text-align: right;">33.579 ± 2.9</td>
+<td style="text-align: right;">33.427 ± 1</td>
+<td style="text-align: right;">2.1841 ± 0.14</td>
+<td style="text-align: right;">9.4675 ± 1.1</td>
+<td style="text-align: right;">10.204 ± 0.32</td>
+<td style="text-align: right;">5.613 ± 0.43</td>
+<td style="text-align: right;">15.755 ± 1.1</td>
+</tr>
+<tr>
+<td>determinant</td>
+<td style="text-align: right;">5.4998 ± 2.4</td>
+<td style="text-align: right;">3.8443 ± 0.14</td>
+<td style="text-align: right;">4.1 ± 0.14</td>
+<td style="text-align: right;">3.6442 ± 0.16</td>
+<td style="text-align: right;">3.3745 ± 0.3</td>
+<td style="text-align: right;">8.1931 ± 0.32</td>
+<td style="text-align: right;">1.1133 ± 0.046</td>
+<td style="text-align: right;">3.4104 ± 0.2</td>
+<td style="text-align: right;">3.6801 ± 0.23</td>
+<td style="text-align: right;">1.4085 ± 0.077</td>
+<td style="text-align: right;">3.6871 ± 0.18</td>
+</tr>
+<tr>
+<td>inverse</td>
+<td style="text-align: right;">20.146 ± 2.7</td>
+<td style="text-align: right;">13.934 ± 0.53</td>
+<td style="text-align: right;">6.3744 ± 0.22</td>
+<td style="text-align: right;">11.748 ± 0.63</td>
+<td style="text-align: right;">12.85 ± 0.42</td>
+<td style="text-align: right;">44.587 ± 2.9</td>
+<td style="text-align: right;">2.7953 ± 0.24</td>
+<td style="text-align: right;">11.516 ± 0.46</td>
+<td style="text-align: right;">12.682 ± 0.51</td>
+<td style="text-align: right;">9.7189 ± 1.1</td>
+<td style="text-align: right;">11.707 ± 0.79</td>
+</tr>
+<tr>
+<td>inverseSPD</td>
+<td style="text-align: right;">17.328 ± 1</td>
+<td style="text-align: right;">10.084 ± 0.47</td>
+<td style="text-align: right;">4.0338 ± 0.13</td>
+<td style="text-align: right;">24.83 ± 0.57</td>
+<td style="text-align: right;">34.788 ± 3.1</td>
+<td style="text-align: right;">15.583 ± 0.79</td>
+<td style="text-align: right;">2.3234 ± 0.17</td>
+<td style="text-align: right;">5.5125 ± 0.11</td>
+<td style="text-align: right;">14.889 ± 1.5</td>
+<td style="text-align: right;">4.7229 ± 0.26</td>
+<td style="text-align: right;">26.343 ± 0.77</td>
+</tr>
+<tr>
+<td>cholesky</td>
+<td style="text-align: right;">1.9637 ± 0.18</td>
+<td style="text-align: right;">1.7963 ± 0.069</td>
+<td style="text-align: right;">1.6736 ± 0.12</td>
+<td style="text-align: right;">1.9308 ± 0.13</td>
+<td style="text-align: right;">1.5852 ± 0.18</td>
+<td style="text-align: right;">2.4259 ± 0.15</td>
+<td style="text-align: right;">0.54789 ± 0.07</td>
+<td style="text-align: right;">1.9576 ± 0.25</td>
+<td style="text-align: right;">2.5483 ± 0.15</td>
+<td style="text-align: right;">1.0415 ± 0.048</td>
+<td style="text-align: right;">1.8761 ± 0.038</td>
+</tr>
+<tr>
+<td>lu</td>
+<td style="text-align: right;">6.0058 ± 3.2</td>
+<td style="text-align: right;">4.3437 ± 0.24</td>
+<td style="text-align: right;">4.4804 ± 0.41</td>
+<td style="text-align: right;">3.9795 ± 0.41</td>
+<td style="text-align: right;">3.6049 ± 0.34</td>
+<td style="text-align: right;">8.1745 ± 0.32</td>
+<td style="text-align: right;">1.153 ± 0.043</td>
+<td style="text-align: right;">3.5978 ± 0.097</td>
+<td style="text-align: right;">3.3639 ± 0.12</td>
+<td style="text-align: right;">1.6198 ± 0.065</td>
+<td style="text-align: right;">3.7744 ± 0.19</td>
+</tr>
+<tr>
+<td>qr</td>
+<td style="text-align: right;">21.663 ± 1.9</td>
+<td style="text-align: right;">10.268 ± 0.59</td>
+<td style="text-align: right;">12.205 ± 0.62</td>
+<td style="text-align: right;">39.652 ± 2.6</td>
+<td style="text-align: right;">106.57 ± 4.7</td>
+<td style="text-align: right;">20.957 ± 2.2</td>
+<td style="text-align: right;">5.1835 ± 0.25</td>
+<td style="text-align: right;">15.034 ± 0.48</td>
+<td style="text-align: right;">14.855 ± 0.5</td>
+<td style="text-align: right;">4.86 ± 0.26</td>
+<td style="text-align: right;">38.356 ± 1.2</td>
+</tr>
+<tr>
+<td>eigenSymmetric</td>
+<td style="text-align: right;">56.84 ± 10</td>
+<td style="text-align: right;">25.388 ± 1.1</td>
+<td style="text-align: right;">45.923 ± 2.8</td>
+<td style="text-align: right;">46.41 ± 1.5</td>
+<td style="text-align: right;">45.421 ± 1.6</td>
+<td style="text-align: right;">50.14 ± 2</td>
+<td style="text-align: right;">9.3937 ± 0.58</td>
+<td style="text-align: right;">30.596 ± 1.8</td>
+<td style="text-align: right;">26.309 ± 2.5</td>
+<td style="text-align: right;">11.455 ± 0.73</td>
+<td style="text-align: right;">46.693 ± 2.4</td>
+</tr>
+<tr>
+<td>svd</td>
+<td style="text-align: right;">104.1 ± 3</td>
+<td style="text-align: right;">50.607 ± 0.68</td>
+<td style="text-align: right;">143.99 ± 6.7</td>
+<td style="text-align: right;">136.87 ± 17</td>
+<td style="text-align: right;">132.58 ± 7.1</td>
+<td style="text-align: right;">58.843 ± 5</td>
+<td style="text-align: right;">117.72 ± 2.6</td>
+<td style="text-align: right;">148.85 ± 7</td>
+<td style="text-align: right;">60.094 ± 4.8</td>
+<td style="text-align: right;">22.938 ± 0.92</td>
+<td style="text-align: right;">132.69 ± 5.1</td>
+</tr>
+<tr>
+<td>solve</td>
+<td style="text-align: right;">5.4006 ± 2</td>
+<td style="text-align: right;">4.1918 ± 0.32</td>
+<td style="text-align: right;">4.0269 ± 0.12</td>
+<td style="text-align: right;">3.9355 ± 0.3</td>
+<td style="text-align: right;">3.7064 ± 0.14</td>
+<td style="text-align: right;">11.322 ± 4.4</td>
+<td style="text-align: right;">0.78152 ± 0.077</td>
+<td style="text-align: right;">3.3853 ± 0.25</td>
+<td style="text-align: right;">3.5278 ± 0.25</td>
+<td style="text-align: right;">1.508 ± 0.066</td>
+<td style="text-align: right;">3.7623 ± 0.19</td>
+</tr>
+</tbody>
+</table></div>
+<p><a href="index.html">Inspect this matrix size on the interactive charts</a></p>
+<p>NM Dev is 1×. Below 1× means less time than NM Dev; above 1× means more time. Logarithmic scale. Use the interactive HTML for exact point details.</p>
+<h2>Limits</h2>
+<p>No aggregate speedup is reported because averaging operation ratios imposes an arbitrary workload weighting. This run uses one deterministic family of well-conditioned square matrices. It does not measure sparse matrices, conic optimization, parallel scaling, very large inputs or stability on difficult problems. Parameter order is deterministic, and the VM is shared. Reproduce your own workload on dedicated hardware before making broad performance claims.</p>
+<h2>Raw evidence</h2>
+<ul>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-expanded/jmh.json">JMH JSON and per-fork iteration means</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-expanded/jmh.log">Complete JMH log</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-expanded/summary.csv">Summary CSV</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-expanded/correctness.csv">Baseline correctness residuals</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-expanded/pivot-correctness.csv">Targeted pivot/sign checks</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-expanded/environment.json">Environment and requested thread settings</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-expanded/backends.json">Backend records</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-expanded/backend-observation.txt">Post-run backend configuration probe</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-expanded/artifacts.json">Artifact versions and SHA-256 checksums</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-expanded/source-checksums.json">Measured source checksums</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-expanded/dependency-metadata.json">Dependency release metadata</a></li>
+</ul>
+<p>Regenerate with <code>python3 benchmark/scripts/report.py benchmark/results/2026-10-18-expanded</code>. Python only summarizes measurements and renders charts; all measured calculations run in Java/JMH. Matplotlib is required to regenerate charts and the self-contained HTML.</p><footer><a href="https://github.com/nmltd/nmdev-examples/tree/main/benchmark">Benchmark source and run archives</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/README.md">Java tutorials</a></footer></main></body></html>

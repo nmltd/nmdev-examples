@@ -1,5 +1,5 @@
 # Wiki publishing
 
-`Home.md` and `Benchmark-Results.md` are published in the separate GitHub Wiki. Keep their repository copies synchronized when editing the live wiki. Home links the versioned tutorials in `docs/`; the other Markdown files remain wiki-ready tutorial copies. The live wiki is a separate Git repository and committing this folder does not publish it automatically.
+Home links the versioned Java tutorials and the benchmark website. Benchmark-Results is a short forwarding page; keep it free of duplicated benchmark explanations. The canonical benchmark guide sources are in `benchmark/site/`, and `benchmark/scripts/publish-pages.py` generates the Pages website under `docs/`.
 
-The benchmark dashboard is generated in `docs/index.html` and published by GitHub Pages from `main` → `/docs`. See [benchmark publishing instructions](../benchmark/README.md#published-dashboard).
+The live wiki is a separate Git repository. Committing files here does not publish them automatically. Other Markdown files are wiki-ready tutorial copies.

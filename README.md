@@ -28,9 +28,7 @@ Each tutorial has detailed explanations, complete source, expected results and e
 
 ## Benchmarks
 
-**[Interactive dashboard](https://nmltd.github.io/nmdev-examples/) · [Benchmark guide](https://github.com/nmltd/nmdev-examples/wiki/Benchmark-Results)**
-
-The [benchmark suite](benchmark/README.md) compares 13 dense linear-algebra operations across eleven libraries/distributions, including NM Dev, EJML, Apache Commons Math, JAMA, Colt, Parallel Colt, jblas, F2J LAPACK, MTJ, ojAlgo and UJMP, with JMH timings, correctness checks and published raw results.
+[Explore the benchmark website](https://nmltd.github.io/nmdev-examples/) for interactive charts, results, methodology and reproduction instructions. [Source code and raw measurements](benchmark/README.md) remain in this repository.
 
 ## Original starter
 
