@@ -13,21 +13,21 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <exec.mainClass>dev.nm.HelloWorld</exec.mainClass>
-        <nmdev.version>1.2.6-SNAPSHOT</nmdev.version>
+        <nmdev.version>1.2.6</nmdev.version>
     </properties>
     <repositories>
         <repository>
             <id>github-nmdev</id>
             <name>NMDEV GitHub Packages</name>
-            <url>https://maven.pkg.github.com/nmltd/maven-packages</url>
+            <url>https://maven.pkg.github.com/nmltd/nmdev</url>
             <releases><enabled>true</enabled></releases>
-            <snapshots><enabled>true</enabled></snapshots>
+            <snapshots><enabled>false</enabled></snapshots>
         </repository>
     </repositories>
     <dependencies>
         <dependency>
             <groupId>dev.nm</groupId>
-            <artifactId>nmdev-dist</artifactId>
+            <artifactId>nmdev</artifactId>
             <version>${nmdev.version}</version>
         </dependency>
         <dependency>

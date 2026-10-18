@@ -41,7 +41,7 @@ The project began as a copy of [`samples/new-nmdev-project`](https://github.com/
 
 ## Library and licensing
 
-The application depends on the published combined `dev.nm:nmdev-dist:1.2.6-SNAPSHOT` binary. Library implementation source and binaries are not included. These examples do not grant a new license to the commercial library. Existing source notices are retained; see [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).
+The application depends on the published combined `dev.nm:nmdev:1.2.6` binary. Library implementation source and binaries are not included. These examples do not grant a new license to the commercial library. Existing source notices are retained; see [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).
 
 ## Reporting problems
 
