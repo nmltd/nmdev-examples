@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Least squares with QR and SVD — NM Dev examples</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}.math-display{overflow-x:auto}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main><nav aria-label="Site navigation"><a href="../index.html">Home</a><a href="../getting-started.html">Getting Started</a><a href="../tutorials.html">Tutorials</a><a href="../benchmarks.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>Least squares with QR and SVD</h1>
+<p><a href="../tutorials.html">Tutorial index</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/src/main/java/dev/nm/examples/LeastSquaresExample.java">Java source</a></p>
+<h2>Run this example</h2>
+<p>Complete <a href="../getting-started.html">Getting Started</a>, then run from the repository root:</p>
+<pre><code class="language-bash">mvn exec:java -Dexec.mainClass=dev.nm.examples.LeastSquaresExample
+</code></pre>
+<h2>Problem and mathematics</h2>
+<div class="math-display">\[
+\min_\beta\|A\beta-b\|_2^2,\quad A=\begin{bmatrix}1&amp;0\\1&amp;1\\1&amp;2\\1&amp;3\end{bmatrix},\quad b=\begin{bmatrix}1\\2\\2\\4\end{bmatrix}.
+\]</div>
+
+<h2>Walk through the API</h2>
+<p>Fit an intercept and slope to four observations. The columns of A are independent. The residual need not be zero; at the least-squares optimum it is orthogonal to every column of A.</p>
+<p>For QR, <code>HouseholderQR(a, 1e-12)</code> supplies the thin Q and triangular R. Project with <code>qr.Q().t().multiply(b)</code>, then solve R beta = Q-transpose b using <code>BackwardSubstitution</code>. This avoids explicitly forming the normal equations, which can square the condition number.</p>
+<p>For SVD, the example explicitly selects <code>SVD.Method.MR3</code> and computes the sum of v_k times (u_k-transpose b) divided by each retained singular value. The cutoff is 1e-12 times the largest singular value. This is a pedagogical relative cutoff, not a universal choice for noisy data. Both paths must recover the same coefficients on this full-rank problem.</p>
+<p><strong>Published-binary limitation:</strong> a separate rank-deficient check using identical columns failed during development against the combined 1.2.6-SNAPSHOT binary. This tutorial does not claim verified minimum-norm behavior for rank-deficient inputs. Validate reconstruction and residuals on your own problem before relying on that path.</p>
+<h2>Expected result and validation</h2>
+<pre><code class="language-text">QR fit: intercept=0.900000, slope=0.900000
+SVD fit: rank=2, x1=0.900000, x2=0.900000
+</code></pre>
+<p>The fitted values are (0.9, 1.8, 2.7, 3.6). Their residual sum of squares is 0.7. Both paths check the known coefficients and A-transpose(A beta-b)=0 at tolerance 1e-10. A nonzero residual is expected; stationarity, not exact interpolation, is the relevant check.</p>
+<h2>Exercise</h2>
+<p>Add a fifth observation, rerun both methods, and compare their coefficients and residual sum of squares.</p><footer><a href="../tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/tutorials/Least-Squares-QR-SVD.md">Edit this page</a></footer></main></body></html>

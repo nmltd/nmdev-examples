@@ -13,3 +13,7 @@ Tutorials adapt these tests from `nmltd/nmdev` at commit `fa2904ccec99820798ef77
 
 Original test cases are not republished wholesale. Tutorial programs retain selected input datasets, API calls and reference values, adding explanations and runnable checks. The library implementation is not copied. For exact test source, authorized maintainers can browse https://github.com/nmltd/nmdev/tree/fa2904ccec99820798ef7760425daf1d629d83c1. This private-source link may be inaccessible to public readers; tutorials are self-contained.
 
+
+## Additional worked examples
+
+LinearSolveExample, LeastSquaresExample, PCAExample, IntegrationExample and UnconstrainedOptimizationExample are new educational examples using NM Dev public APIs and analytically checkable inputs. They are not copied NM Dev test cases. Their runnable checks execute through RunAllExamples.

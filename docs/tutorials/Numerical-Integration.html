@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Numerical integration with Simpson quadrature — NM Dev examples</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}.math-display{overflow-x:auto}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main><nav aria-label="Site navigation"><a href="../index.html">Home</a><a href="../getting-started.html">Getting Started</a><a href="../tutorials.html">Tutorials</a><a href="../benchmarks.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>Numerical integration with Simpson quadrature</h1>
+<p><a href="../tutorials.html">Tutorial index</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/src/main/java/dev/nm/examples/IntegrationExample.java">Java source</a></p>
+<h2>Run this example</h2>
+<p>Complete <a href="../getting-started.html">Getting Started</a>, then run from the repository root:</p>
+<pre><code class="language-bash">mvn exec:java -Dexec.mainClass=dev.nm.examples.IntegrationExample
+</code></pre>
+<h2>Problem and mathematics</h2>
+<div class="math-display">\[
+\int_0^\pi\sin(x)\,dx=[-\cos(x)]_0^\pi=2.
+\]</div>
+
+<h2>Walk through the API</h2>
+<p>Quadrature approximates an integral from function evaluations. Simpson quadrature is appropriate here because sine is smooth on a finite interval.</p>
+<p>Define an <code>AbstractUnivariateRealFunction</code> whose <code>evaluate(double)</code> returns <code>Math.sin(x)</code>. Construct <code>new Simpson(1e-10, 20)</code> and call <code>integrate(sine, 0, Math.PI)</code>. The precision and maximum iteration count bound refinement; they do not guarantee accuracy for arbitrary functions.</p>
+<p>Discontinuities, singularities, highly oscillatory functions and infinite intervals need different treatment or interval splitting. A small change between refinements is not an independent error certificate.</p>
+<h2>Expected result and validation</h2>
+<pre><code class="language-text">Integral of sin(x) on [0,pi]: 2.0000000000
+</code></pre>
+<p>The executable compares the numerical value with the analytic integral 2 at tolerance 1e-8, independently of the integrator's stopping precision. When no antiderivative is known, compare refinements and an independent quadrature method.</p>
+<h2>Exercise</h2>
+<p>Integrate x squared over [0,1] and check 1/3. Then compare results for a function with a sharp peak as you vary the precision and iteration budget.</p><footer><a href="../tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/tutorials/Numerical-Integration.md">Edit this page</a></footer></main></body></html>

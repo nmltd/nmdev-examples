@@ -14,3 +14,7 @@ The available validation binary's recorded source commit is `17af535be23bcf93166
 
 Maven is not installed in the execution environment, so Maven dependency resolution, the packaged manifest and `mvn clean verify` were not executed here. They remain the documented user workflow inherited from the starter. No CI run or live GitHub Wiki publication is claimed by these local checks.
 
+
+## Additional tutorial validation (2026-10-18)
+
+The five new examples were compiled for Java 8 and executed against the combined NM Dev 1.2.6-SNAPSHOT binary on Java 17. All eleven runnable examples passed their numerical checks. Checks include linear-system residuals, QR/SVD least-squares stationarity, PCA reconstruction and sign-invariant directions, an analytic integral, and an analytic optimizer/gradient. These are example-level checks, not comprehensive library validation. A separate rank-deficient SVD check failed against this binary; the full-rank SVD tutorial documents that limitation.

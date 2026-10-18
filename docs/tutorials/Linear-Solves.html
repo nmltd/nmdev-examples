@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Solve a linear system without an inverse — NM Dev examples</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}.math-display{overflow-x:auto}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main><nav aria-label="Site navigation"><a href="../index.html">Home</a><a href="../getting-started.html">Getting Started</a><a href="../tutorials.html">Tutorials</a><a href="../benchmarks.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>Solve a linear system without an inverse</h1>
+<p><a href="../tutorials.html">Tutorial index</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/src/main/java/dev/nm/examples/LinearSolveExample.java">Java source</a></p>
+<h2>Run this example</h2>
+<p>Complete <a href="../getting-started.html">Getting Started</a>, then run from the repository root:</p>
+<pre><code class="language-bash">mvn exec:java -Dexec.mainClass=dev.nm.examples.LinearSolveExample
+</code></pre>
+<h2>Problem and mathematics</h2>
+<div class="math-display">\[
+A x=b,\quad A=\begin{bmatrix}3&amp;1\\1&amp;2\end{bmatrix},\quad b=\begin{bmatrix}9\\8\end{bmatrix}.
+\]</div>
+
+<h2>Walk through the API</h2>
+<p>A linear system arises in calibration, physical models and numerical algorithms. Solve directly instead of constructing an inverse: it avoids unnecessary work and an extra source of rounding error. Here the determinant is 5, so the solution is unique.</p>
+<p>Create <code>DenseMatrix</code> and <code>DenseVector</code>, then call <code>new LinearSystemSolver(1e-12).solve(a).getParticularSolution(b)</code>. The tolerance controls numerical zero decisions; choose it with the data scale in mind. Indices start at 1. A singular system may have no solution or a family of solutions; this example deliberately uses a nonsingular system.</p>
+<h2>Expected result and validation</h2>
+<pre><code class="language-text">Solution: x1=2.000000, x2=3.000000
+</code></pre>
+<p>Substitution gives 3(2)+3=9 and 2+2(3)=8. The executable checks both coordinates and every entry of <code>a.multiply(x).minus(b)</code> at absolute tolerance 1e-10. For real data, also inspect a scaled backward error relative to the magnitudes of A, x and b.</p>
+<h2>Exercise</h2>
+<p>Change b to (7, 9), solve again, and check the equations. Then make two rows identical and study how the solver reports inconsistency.</p><footer><a href="../tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/tutorials/Linear-Solves.md">Edit this page</a></footer></main></body></html>

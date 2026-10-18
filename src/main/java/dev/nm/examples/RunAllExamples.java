@@ -7,7 +7,7 @@
 package dev.nm.examples;
 
 
-/** Runs the six tutorials and their numerical checks without a JUnit dependency. */
+/** Runs the eleven tutorials and their numerical checks without a JUnit dependency. */
 public final class RunAllExamples {
     private RunAllExamples() { }
     /** Runs every tutorial in learning order.
@@ -21,6 +21,11 @@ public final class RunAllExamples {
         NormalProbabilityExample.main(args);
         LinearRegressionExample.main(args);
         QuadraticProgrammingExample.main(args);
-        System.out.println("All six tutorials passed their numerical checks.");
+        LinearSolveExample.main(args);
+        LeastSquaresExample.main(args);
+        PCAExample.main(args);
+        IntegrationExample.main(args);
+        UnconstrainedOptimizationExample.main(args);
+        System.out.println("All eleven tutorials passed their numerical checks.");
     }
 }

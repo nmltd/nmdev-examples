@@ -8,7 +8,7 @@ from pathlib import Path
 import markdown
 
 REPO_URL = 'https://github.com/nmltd/nmdev-examples'
-NAV = [('index.html', 'Charts'), ('results.html', 'Results'), ('methodology.html', 'Methodology'),
+NAV = [('benchmarks.html', 'Charts'), ('results.html', 'Results'), ('methodology.html', 'Methodology'),
        ('libraries.html', 'Libraries'), ('validation.html', 'Validation'), ('reproduce.html', 'Reproduce')]
 CSS = '''body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}'''
 
@@ -22,16 +22,17 @@ def render(text):
     return body
 
 def site_nav(prefix=''):
-    return '<nav aria-label="Site navigation">'+''.join(f'<a href="{prefix}{url}">{label}</a>' for url,label in [('getting-started.html','Getting Started'),('tutorials.html','Tutorials'),('index.html','Benchmarks')])+f'<a href="{REPO_URL}">Source</a></nav>'
+    return '<nav aria-label="Site navigation">'+''.join(f'<a href="{prefix}{url}">{label}</a>' for url,label in [('index.html','Home'),('getting-started.html','Getting Started'),('tutorials.html','Tutorials'),('benchmarks.html','Benchmarks')])+f'<a href="{REPO_URL}">Source</a></nav>'
 
 def page(title, text, current):
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} — NM Dev benchmarks</title><style>{CSS}</style></head><body><main>{site_nav()}{nav(current)}{render(text)}<footer><a href="{REPO_URL}/tree/main/benchmark">Benchmark source and run archives</a> · <a href="tutorials.html">Java tutorials</a></footer></main></body></html>'''
 
 def build_tutorials(repo, output):
-    sources = [repo/'docs/README.md', repo/'docs/Getting-Started.md',
+    sources = [repo/'docs/Home.md', repo/'docs/README.md', repo/'docs/Getting-Started.md',
                repo/'docs/starter-project.md', repo/'docs/Source-Provenance.md', repo/'docs/Validation.md']
     sources += sorted((repo/'docs/tutorials').glob('*.md'))
-    destinations = {source: ('tutorials.html' if source.name == 'README.md' else
+    destinations = {source: ('index.html' if source.name == 'Home.md' else
+                   'tutorials.html' if source.name == 'README.md' else
                    'getting-started.html' if source.name == 'Getting-Started.md' else
                    source.relative_to(repo/'docs').with_suffix('.html').as_posix()) for source in sources}
     import posixpath
@@ -41,7 +42,7 @@ def build_tutorials(repo, output):
         text = source.read_text()
         def rewrite(match):
             label, href = match.groups()
-            if re.match(r'https?://|#|mailto:', href): return match.group(0)
+            if re.match(r'https?://|#|mailto:', href) or href.endswith('.html'): return match.group(0)
             path, _, anchor = href.partition('#')
             resolved = (source.parent/path).resolve()
             if resolved in destinations:
@@ -131,12 +132,12 @@ def main():
         groups[heading] = content.strip()
     intro = (f'# Benchmark results — {source.name}\n\n'
              f'{len(rows)} measured cases across {len({r["params"]["library"] for r in rows})} libraries. '
-             '[Open interactive charts](index.html). Tables show mean ± JMH 99.9% confidence half-width in ms/op.\n\n')
+             '[Open interactive charts](benchmarks.html). Tables show mean ± JMH 99.9% confidence half-width in ms/op.\n\n')
     result = intro + '\n\n'.join('## '+h+'\n\n'+c for h,c in groups.items()
         if h not in ['Versions and backends', 'Correctness and interpretation'])
-    result = archive_links(result).replace(REPO_URL+'/blob/main/docs/index.html','index.html')
+    result = archive_links(result).replace(REPO_URL+'/blob/main/docs/benchmarks.html','benchmarks.html')
     # Static chart previews duplicate the interactive figures, so tables link to Charts instead.
-    result = re.sub(r'!\[[^\]]*\]\([^)]*\)', '[Inspect this matrix size on the interactive charts](index.html)', result)
+    result = re.sub(r'!\[[^\]]*\]\([^)]*\)', '[Inspect this matrix size on the interactive charts](benchmarks.html)', result)
     libraries = (guide/'libraries.md').read_text()
     libraries = re.sub(r'(?ms)^\| Library \|.*?(?=^## )', '', libraries)
     if 'Versions and backends' in groups:
@@ -151,13 +152,13 @@ def main():
     for name,(title,text) in pages.items(): (output/name).write_text(page(title,text,name))
     chart = (source/'charts.html').read_text()
     chart = chart.replace('</style>',CSS+'</style>')
-    chart = chart.replace('<h1>NM Dev benchmark charts</h1>',site_nav()+nav('index.html')+'<h1>NM Dev benchmark charts</h1>')
+    chart = chart.replace('<h1>NM Dev benchmark charts</h1>',site_nav()+nav('benchmarks.html')+'<h1>NM Dev benchmark charts</h1>')
     chart = chart.replace('Full report and raw measurements','Raw measurements and archived report')
     chart = chart.replace('<p>Hover, tap or keyboard-focus any point to inspect its measurements.</p>',
         f'<p class="note">Run: {html.escape(source.name)} · {len(rows)} measured cases. <a href="results.html">Results tables</a> · <a href="libraries.html">Versions and backends</a></p><p>Hover, tap or keyboard-focus any point to inspect its measurements. Press Escape to dismiss.</p>')
     chart = chart.replace('</main>', '<footer><a href="reproduce.html">Reproduce and publish</a> · <a href="tutorials.html">Java tutorials</a></footer></main>')
     chart = add_library_filters(chart, rows)
-    (output/'index.html').write_text(chart)
+    (output/'benchmarks.html').write_text(chart)
     (output/'.nojekyll').write_text('')
     build_tutorials(repo, output)
     print(f'Generated six benchmark Pages from {source.name}; raw measurements unchanged.')

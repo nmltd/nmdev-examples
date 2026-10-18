@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unconstrained optimization with BFGS — NM Dev examples</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}.math-display{overflow-x:auto}</style><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script></head><body><main><nav aria-label="Site navigation"><a href="../index.html">Home</a><a href="../getting-started.html">Getting Started</a><a href="../tutorials.html">Tutorials</a><a href="../benchmarks.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>Unconstrained optimization with BFGS</h1>
+<p><a href="../tutorials.html">Tutorial index</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/src/main/java/dev/nm/examples/UnconstrainedOptimizationExample.java">Java source</a></p>
+<h2>Run this example</h2>
+<p>Complete <a href="../getting-started.html">Getting Started</a>, then run from the repository root:</p>
+<pre><code class="language-bash">mvn exec:java -Dexec.mainClass=dev.nm.examples.UnconstrainedOptimizationExample
+</code></pre>
+<h2>Problem and mathematics</h2>
+<div class="math-display">\[
+f(x)=\tfrac12x^THx+p^Tx+6=(x_1-2)^2+2(x_2+1)^2.
+\]</div>
+
+<h2>Walk through the API</h2>
+<p>BFGS iteratively approximates curvature to minimize a smooth objective. This deliberately simple convex objective has a known global minimum, letting us verify solver usage independently.</p>
+<p>Create <code>QuadraticFunction</code> with H=diag(2,4), p=(-4,4) and constant 6. Note the one-half convention in the quadratic term. Wrap it in <code>C2OptimProblemImpl</code>, then call <code>new BFGSMinimizer(false, 1e-9, 500).solve(problem).search(initial)</code> from (0,0).</p>
+<p>This problem overload estimates derivatives numerically. Production callers can supply gradient and Hessian functions where available. Scale variables and objectives sensibly, use finite iteration limits, and check convergence. BFGS on a general nonconvex function finds a local candidate, not a guaranteed global minimum. Use a constrained solver for bounds or inequalities.</p>
+<h2>Expected result and validation</h2>
+<pre><code class="language-text">BFGS optimum: x1=2.000000, x2=-1.000000, objective=0.000e+00
+</code></pre>
+<p>The Hessian is positive definite, so the stationary point (2,-1) is the unique global minimum. The executable checks the coordinates at tolerance 1e-5, the objective at 1e-9, and the analytic gradient Hx+p at 1e-5. This avoids relying only on the optimizer's stopping flag.</p>
+<h2>Exercise</h2>
+<p>Change the initial guess to (10,-10), then alter H to give very different curvature along each coordinate. Compare convergence before and after rescaling variables.</p><footer><a href="../tutorials.html">All tutorials</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/tutorials/Unconstrained-Optimization.md">Edit this page</a></footer></main></body></html>

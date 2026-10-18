@@ -42,4 +42,4 @@ python3 benchmark/scripts/report.py benchmark/results/my-run
 python3 benchmark/scripts/publish-pages.py benchmark/results/my-run
 ```
 
-Commit the generated `docs/*.html` and `docs/.nojekyll` together with the result archive. GitHub Pages publishes `main` → `/docs`. Publishing the site does not rerun the Java benchmarks. Edit shared benchmark guide content in `benchmark/site/*.md`; the HTML pages are generated.
+Commit the generated `docs/*.html` and `docs/.nojekyll` together with the result archive. The Documentation workflow builds from Markdown, checks internal links, uploads the generated site and publishes it through GitHub Pages on pushes to `main`. Pull requests build and check without deployment. Publishing the site does not rerun the Java benchmarks. Edit shared benchmark guide content in `benchmark/site/*.md`; the HTML pages are generated.

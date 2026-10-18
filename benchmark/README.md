@@ -1,6 +1,6 @@
 # NM Dev benchmarks
 
-**[Open the benchmark website](https://nmltd.github.io/nmdev-examples/)**
+**[Open the benchmark website](https://nmltd.github.io/nmdev-examples/benchmarks.html)**
 
 - [Interactive charts and results](https://nmltd.github.io/nmdev-examples/results.html)
 - [Methodology](https://nmltd.github.io/nmdev-examples/methodology.html)

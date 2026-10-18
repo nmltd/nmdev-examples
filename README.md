@@ -2,7 +2,7 @@
 
 Learn numerical programming in Java with runnable NM Dev examples: linear algebra, root finding, interpolation, probability, regression and constrained optimization.
 
-**[Get started](https://nmltd.github.io/nmdev-examples/getting-started.html) · [Tutorials](https://nmltd.github.io/nmdev-examples/tutorials.html) · [API reference](https://nmltd.github.io/nmdev/) · [NM Dev](https://nm.dev/products/nmdev)**
+**[Website](https://nmltd.github.io/nmdev-examples/) · [Get started](https://nmltd.github.io/nmdev-examples/getting-started.html) · [Tutorials](https://nmltd.github.io/nmdev-examples/tutorials.html) · [API reference](https://nmltd.github.io/nmdev/) · [NM Dev](https://nm.dev/products/nmdev)**
 
 ## Run your first example
 
@@ -23,12 +23,17 @@ mvn exec:java -Dexec.mainClass=dev.nm.examples.RunAllExamples
 | [Normal probabilities and quantiles in Java](https://nmltd.github.io/nmdev-examples/tutorials/Normal-Probabilities.html) | `NormalProbabilityExample` |
 | [Ordinary least squares regression in Java](https://nmltd.github.io/nmdev-examples/tutorials/Linear-Regression.html) | `LinearRegressionExample` |
 | [Constrained quadratic programming in Java](https://nmltd.github.io/nmdev-examples/tutorials/Quadratic-Programming.html) | `QuadraticProgrammingExample` |
+| [Linear systems](https://nmltd.github.io/nmdev-examples/tutorials/Linear-Solves.html) | `LinearSolveExample` |
+| [QR/SVD least squares](https://nmltd.github.io/nmdev-examples/tutorials/Least-Squares-QR-SVD.html) | `LeastSquaresExample` |
+| [Principal component analysis](https://nmltd.github.io/nmdev-examples/tutorials/Principal-Component-Analysis.html) | `PCAExample` |
+| [Numerical integration](https://nmltd.github.io/nmdev-examples/tutorials/Numerical-Integration.html) | `IntegrationExample` |
+| [BFGS optimization](https://nmltd.github.io/nmdev-examples/tutorials/Unconstrained-Optimization.html) | `UnconstrainedOptimizationExample` |
 
 Each tutorial has detailed explanations, complete source, expected results and executable numerical checks. No market data, external API keys or network calls are needed while running the calculations.
 
 ## Benchmarks
 
-[Explore the benchmark website](https://nmltd.github.io/nmdev-examples/) for interactive charts, results, methodology and reproduction instructions. [Source code and raw measurements](benchmark/README.md) remain in this repository.
+[Explore the benchmark website](https://nmltd.github.io/nmdev-examples/benchmarks.html) for interactive charts, results, methodology and reproduction instructions. [Source code and raw measurements](benchmark/README.md) remain in this repository.
 
 ## Original starter
 
