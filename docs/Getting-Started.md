@@ -13,7 +13,7 @@ cd nmdev-examples
 
 ## 2. Configure package authentication
 
-The starter uses `dev.nm:nmdev:1.2.6` from `https://maven.pkg.github.com/nmltd/nmdev`. Follow the [GitHub Maven registry instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry) and create a personal access token (classic) with `read:packages`. Your GitHub account and token must have access to this package; contact NM Dev if access is denied.
+The starter uses `dev.nm:nmdev-dist:1.2.6` from `https://maven.pkg.github.com/nmltd/maven-packages`. Follow the [GitHub Maven registry instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry) and create a personal access token (classic) with `read:packages`. The binary package is public; no access to the private source repository is required. GitHub still requires authentication for Maven downloads.
 
 Merge this server entry into your local `~/.m2/settings.xml`. The server ID must match the repository ID in `pom.xml`:
 
@@ -21,7 +21,7 @@ Merge this server entry into your local `~/.m2/settings.xml`. The server ID must
 <settings xmlns="http://maven.apache.org/SETTINGS/1.2.0">
   <servers>
     <server>
-      <id>github-nmdev</id>
+      <id>github-nm-packages</id>
       <username>${env.GITHUB_USERNAME}</username>
       <password>${env.GITHUB_PACKAGES_TOKEN}</password>
     </server>
@@ -93,8 +93,8 @@ license as `nm.lic` in that directory. Keep the settings.xml server from step 2.
   </properties>
   <repositories>
     <repository>
-      <id>github-nmdev</id>
-      <url>https://maven.pkg.github.com/nmltd/nmdev</url>
+      <id>github-nm-packages</id>
+      <url>https://maven.pkg.github.com/nmltd/maven-packages</url>
       <releases><enabled>true</enabled></releases>
       <snapshots><enabled>false</enabled></snapshots>
     </repository>
@@ -102,7 +102,7 @@ license as `nm.lic` in that directory. Keep the settings.xml server from step 2.
   <dependencies>
     <dependency>
       <groupId>dev.nm</groupId>
-      <artifactId>nmdev</artifactId>
+      <artifactId>nmdev-dist</artifactId>
       <version>1.2.6</version>
     </dependency>
   </dependencies>
@@ -159,8 +159,7 @@ the private parent POM, nmutils/nmlicense dependencies, or an obfuscation plugin
 
 ## 7. Customer setup checklist
 
-- Obtain package access for the GitHub account that owns your token. A token
-  alone does not grant access to a package your account cannot read.
+- The binary package is public. You do not need access to the private NMDEV source repository.
 - Create a classic token with `read:packages`; authorize organization SSO when
   your organization requires it. Keep it in your local secret manager/environment.
 - On macOS/Linux use `~/.m2/settings.xml`; on Windows use
@@ -170,11 +169,10 @@ the private parent POM, nmutils/nmlicense dependencies, or an obfuscation plugin
   Request the modules used by your application and replace expired trials.
 - Package authentication happens during Maven download. License validation
   happens when Java executes. Fix the failing stage independently.
-- A 404 can also indicate inaccessible private packages. Check the exact
-  `dev.nm:nmdev:1.2.6` coordinates and account permissions before changing code.
+- For a 404, check the exact `dev.nm:nmdev-dist:1.2.6` coordinates and public repository URL before changing code.
 - Verify the first matrix example, then run the tutorials relevant to your task.
 - When requesting help, include Java/Maven/OS versions, exact dependency version,
   working directory, command and error text. Remove tokens and license contents.
 
 Public API reference: https://nmltd.github.io/nmdev/. Release notes:
-https://github.com/nmltd/nmdev/releases/tag/v1.2.6 (repository access may be required).
+https://github.com/nmltd/maven-packages/releases/tag/nmdev-1.2.6-validated.

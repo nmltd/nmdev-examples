@@ -15,14 +15,21 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      NM_PACKAGES_USERNAME: ${{ vars.NM_PACKAGES_USERNAME || github.actor }}
+      NM_PACKAGES_USERNAME: ${{ github.actor }}
     steps:
+      - name: Confirm this token cannot read private NMDEV source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          status=$(curl --silent --output /dev/null --write-out '%{http_code}' -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/repos/nmltd/nmdev/contents/pom.xml)
+          test "$status" = 404
+          echo 'PASS: customer CI token cannot access private NMDEV source'
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: Verify package-read access before building
         env:
-          NM_PACKAGES_TOKEN: ${{ secrets.NM_PACKAGES_TOKEN || secrets.NM_REPOSITORIES_TOKEN || github.token }}
+          NM_PACKAGES_TOKEN: ${{ github.token }}
         run: |
           python3 - <<'PY'
           import base64, os, urllib.request, urllib.error, xml.etree.ElementTree as E
@@ -30,21 +37,21 @@ jobs:
           version=root.findtext('m:properties/m:nmdev.version',namespaces=ns)
           if not version or not all(c.isalnum() or c in '.-' for c in version):
               raise SystemExit('Invalid nmdev.version in pom.xml')
-          url='https://maven.pkg.github.com/nmltd/nmdev/dev/nm/nmdev/'+version+'/nmdev-'+version+'.pom'
+          url='https://maven.pkg.github.com/nmltd/maven-packages/dev/nm/nmdev-dist/'+version+'/nmdev-dist-'+version+'.pom'
           credentials=os.environ['NM_PACKAGES_USERNAME']+':'+os.environ['NM_PACKAGES_TOKEN']
           auth=base64.b64encode(credentials.encode()).decode()
           try:
               with urllib.request.urlopen(urllib.request.Request(url,headers={'Authorization':'Basic '+auth}),timeout=45) as response:
                   E.fromstring(response.read())
           except urllib.error.HTTPError as error:
-              raise SystemExit('Package-read access failed (HTTP '+str(error.code)+'). Configure NM_PACKAGES_TOKEN or grant the existing NM_REPOSITORIES_TOKEN secret to nmdev-examples. The token owner needs access to the private NMDEV package. See docs/ci-setup.md. No build or license test has run yet.')
-          print('PASS: authenticated download of dev.nm:nmdev:'+version+' POM')
+              raise SystemExit('Package-read access failed (HTTP '+str(error.code)+'). Check the public package coordinates and repository-token package read permission. See docs/ci-setup.md. No build or license test has run yet.')
+          print('PASS: authenticated download of dev.nm:nmdev-dist:'+version+' POM')
           PY
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '8'
-          server-id: github-nmdev
+          server-id: github-nm-packages
           server-username: NM_PACKAGES_USERNAME
           server-password: NM_PACKAGES_TOKEN
       - name: Set up Maven 3.9.9
@@ -55,11 +62,11 @@ jobs:
           echo "$RUNNER_TEMP/apache-maven-3.9.9/bin" >> "$GITHUB_PATH"
       - name: Fresh-cache build and tests with the distributed trial
         env:
-          NM_PACKAGES_TOKEN: ${{ secrets.NM_PACKAGES_TOKEN || secrets.NM_REPOSITORIES_TOKEN || github.token }}
+          NM_PACKAGES_TOKEN: ${{ github.token }}
         run: mvn -B -ntp -U -Dmaven.repo.local="$RUNNER_TEMP/m2" clean verify exec:java
       - name: Run all tutorials and packaged starter
         env:
-          NM_PACKAGES_TOKEN: ${{ secrets.NM_PACKAGES_TOKEN || secrets.NM_REPOSITORIES_TOKEN || github.token }}
+          NM_PACKAGES_TOKEN: ${{ github.token }}
         run: |
           mvn -B -ntp -Dmaven.repo.local="$RUNNER_TEMP/m2" exec:java -Dexec.mainClass=dev.nm.examples.RunAllExamples
           java -jar target/nmdev-examples-1.0.0-SNAPSHOT.jar
