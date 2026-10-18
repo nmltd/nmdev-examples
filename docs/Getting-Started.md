@@ -13,7 +13,7 @@ cd nmdev-examples
 
 ## 2. Configure package authentication
 
-The starter uses `dev.nm:nmdev-dist:1.2.6-SNAPSHOT` from `https://maven.pkg.github.com/nmltd/maven-packages`. Follow the [GitHub Maven registry instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry) and create a personal access token (classic) with `read:packages`. Access to the private NM Dev implementation repository is not required for the public distribution package.
+The starter uses `dev.nm:nmdev:1.2.6` from `https://maven.pkg.github.com/nmltd/nmdev`. Follow the [GitHub Maven registry instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry) and create a personal access token (classic) with `read:packages`. Your GitHub account and token must have access to this package; contact NM Dev if access is denied.
 
 Merge this server entry into your local `~/.m2/settings.xml`. The server ID must match the repository ID in `pom.xml`:
 
@@ -45,7 +45,7 @@ mvn exec:java
 mvn exec:java -Dexec.mainClass=dev.nm.examples.RunAllExamples
 ```
 
-The default main class remains the starter's `dev.nm.HelloWorld`. The second command prints `A number of columns = 2`; the third runs the six numerical tutorials. `mvn verify` executes the original test and each tutorial's numerical checks.
+The default main class remains the starter's `dev.nm.HelloWorld`. The second command prints `A number of columns = 2`; the third runs the numerical tutorials. `mvn verify` executes the original test and each tutorial's numerical checks.
 
 To select one tutorial:
 
@@ -69,6 +69,6 @@ On Windows use `;` instead of `:` inside the Java classpath. Maven commands work
 | Package download returns 401/403 | Matching server ID, username, token and package access |
 | License rejected | Working directory, trial validity and module entitlements |
 | Main class not found | Run `mvn compile` and check the fully qualified class name |
-| Numerical check fails | Record the exact resolved snapshot, JVM and error; do not simply loosen the tolerance |
+| Numerical check fails | Record the exact resolved version, JVM and error; do not simply loosen the tolerance |
 
-The dependency is a SNAPSHOT and can change. Record the resolved binary checksum when reporting numerical differences or reproducing a result.
+The dependency is pinned to stable 1.2.6. Record the resolved binary checksum when reporting numerical differences or reproducing a result.
