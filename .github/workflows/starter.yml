@@ -1,0 +1,83 @@
+name: Verify public NMDEV starter and tutorials
+on:
+  push:
+    branches: [main]
+    paths: ['pom.xml', 'nm.lic', 'src/**', '.github/workflows/starter.yml']
+  pull_request:
+    paths: ['pom.xml', 'nm.lic', 'src/**', '.github/workflows/starter.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: read
+jobs:
+  verify:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NM_PACKAGES_USERNAME: ${{ vars.NM_PACKAGES_USERNAME || github.actor }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify package-read access before building
+        env:
+          NM_PACKAGES_TOKEN: ${{ secrets.NM_PACKAGES_TOKEN || secrets.NM_REPOSITORIES_TOKEN || github.token }}
+        run: |
+          python3 - <<'PY'
+          import base64, os, urllib.request, urllib.error, xml.etree.ElementTree as E
+          root=E.parse('pom.xml').getroot(); ns={'m':'http://maven.apache.org/POM/4.0.0'}
+          version=root.findtext('m:properties/m:nmdev.version',namespaces=ns)
+          if not version or not all(c.isalnum() or c in '.-' for c in version):
+              raise SystemExit('Invalid nmdev.version in pom.xml')
+          url='https://maven.pkg.github.com/nmltd/nmdev/dev/nm/nmdev/'+version+'/nmdev-'+version+'.pom'
+          credentials=os.environ['NM_PACKAGES_USERNAME']+':'+os.environ['NM_PACKAGES_TOKEN']
+          auth=base64.b64encode(credentials.encode()).decode()
+          try:
+              with urllib.request.urlopen(urllib.request.Request(url,headers={'Authorization':'Basic '+auth}),timeout=45) as response:
+                  E.fromstring(response.read())
+          except urllib.error.HTTPError as error:
+              raise SystemExit('Package-read access failed (HTTP '+str(error.code)+'). Configure NM_PACKAGES_TOKEN or grant the existing NM_REPOSITORIES_TOKEN secret to nmdev-examples. The token owner needs access to the private NMDEV package. See docs/ci-setup.md. No build or license test has run yet.')
+          print('PASS: authenticated download of dev.nm:nmdev:'+version+' POM')
+          PY
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '8'
+          server-id: github-nmdev
+          server-username: NM_PACKAGES_USERNAME
+          server-password: NM_PACKAGES_TOKEN
+      - name: Set up Maven 3.9.9
+        run: |
+          curl -fsSL https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.9/apache-maven-3.9.9-bin.tar.gz -o "$RUNNER_TEMP/maven.tar.gz"
+          echo "a555254d6b53d267965a3404ecb14e53c3827c09c3b94b5678835887ab404556bfaf78dcfe03ba76fa2508649dca8531c74bca4d5846513522404d48e8c4ac8b  $RUNNER_TEMP/maven.tar.gz" | sha512sum --check
+          tar -xzf "$RUNNER_TEMP/maven.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/apache-maven-3.9.9/bin" >> "$GITHUB_PATH"
+      - name: Fresh-cache build and tests with the distributed trial
+        env:
+          NM_PACKAGES_TOKEN: ${{ secrets.NM_PACKAGES_TOKEN || secrets.NM_REPOSITORIES_TOKEN || github.token }}
+        run: mvn -B -ntp -U -Dmaven.repo.local="$RUNNER_TEMP/m2" clean verify exec:java
+      - name: Run all tutorials and packaged starter
+        env:
+          NM_PACKAGES_TOKEN: ${{ secrets.NM_PACKAGES_TOKEN || secrets.NM_REPOSITORIES_TOKEN || github.token }}
+        run: |
+          mvn -B -ntp -Dmaven.repo.local="$RUNNER_TEMP/m2" exec:java -Dexec.mainClass=dev.nm.examples.RunAllExamples
+          java -jar target/nmdev-examples-1.0.0-SNAPSHOT.jar
+          java -cp 'target/nmdev-examples-1.0.0-SNAPSHOT.jar:target/lib/*' dev.nm.Graph
+      - name: Confirm licenses remain external
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile
+          for path in [Path('target/nmdev-examples-1.0.0-SNAPSHOT.jar'), *Path('target/lib').glob('*.jar')]:
+              with zipfile.ZipFile(path) as jar:
+                  assert not any(name.endswith(('.lic', '.key')) for name in jar.namelist()), path
+          print('PASS: license/key files are not embedded in the application or runtime JARs')
+          PY
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-starter-test-reports
+          path: target/surefire-reports/
+          if-no-files-found: ignore
