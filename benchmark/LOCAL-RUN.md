@@ -5,7 +5,7 @@ Requires a **full JDK 17 or newer**, Maven to build, and Internet access on the 
 From a downloaded/cloned `nmdev-examples` project:
 
 ```text
-mvn -f benchmark/pom.xml package
+mvn -s benchmark/settings.xml -gs benchmark/settings.xml -f benchmark/pom.xml package
 java -jar benchmark/target/nmdev-benchmark-1.1.0.jar
 ```
 
@@ -56,3 +56,13 @@ java -jar benchmark/target/nmdev-benchmark-1.1.0.jar --smoke --output smoke-resu
 ```
 
 Smoke mode exercises every library across all profile types using tiny matrices and 10 ms iteration targets. Its metadata explicitly says `SMOKE-NOT-FOR-PUBLICATION`. Internal test options `--libraries NMDEV,EJML` and `--max-cases 2` allow narrow recovery checks. Ordinary users need no options.
+
+## Legacy repositories in local Maven settings
+
+Both project POMs contain no legacy NM repository URLs. If Maven nevertheless prints
+`nm-public` or `nm-private`, inspect your user settings (`~/.m2/settings.xml`) and
+Maven installation settings (`conf/settings.xml`) for active repository profiles or
+mirrors. The command above supplies this project's empty settings file as both user
+and global settings, bypassing those local profiles without changing them. It also
+bypasses any custom proxy, credentials, mirrors or local-repository settings; networks
+that require a proxy should use their own reviewed settings instead.
