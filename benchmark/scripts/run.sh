@@ -69,6 +69,19 @@ fi
 date -u +%FT%TZ > "$output/preflight-completed-utc.txt"
 fi
 echo "Running JMH; follow progress in $output/jmh.log"
-python3 benchmark/scripts/checkpoint-jmh.py "$output" -- "${runner[@]}" java -cp "$classpath" org.openjdk.jmh.Main "$benchmark" "${parameters[@]}" -jvmArgsAppend "$fork_flags" -prof gc -foe true -rf json -rff "$output/jmh.json" "$@" >> "$output/jmh.log" 2>&1
+checkpoint_pid=''
+stop_checkpoint() {
+  trap - HUP INT TERM
+  if [[ -n "$checkpoint_pid" ]]; then
+    kill -TERM "$checkpoint_pid" 2>/dev/null || true
+    wait "$checkpoint_pid" || true
+  fi
+  exit 143
+}
+trap stop_checkpoint HUP INT TERM
+python3 benchmark/scripts/checkpoint-jmh.py "$output" -- "${runner[@]}" java -cp "$classpath" org.openjdk.jmh.Main "$benchmark" "${parameters[@]}" -jvmArgsAppend "$fork_flags" -prof gc -foe true -rf json -rff "$output/jmh.json" "$@" >> "$output/jmh.log" 2>&1 &
+checkpoint_pid=$!
+wait "$checkpoint_pid"
+trap - HUP INT TERM
 date -u +%FT%TZ > "$output/completed-utc.txt"
 echo "Raw results written to $output"

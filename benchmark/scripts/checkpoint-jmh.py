@@ -6,6 +6,7 @@ The command, Java sources and dependency hashes must match before resuming.
 """
 import datetime
 import hashlib
+import fcntl
 import itertools
 import json
 import math
@@ -25,6 +26,11 @@ def atomic_json(path, value):
         stream.flush()
         os.fsync(stream.fileno())
     temporary.replace(path)
+    directory_fd = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        os.fsync(directory_fd)
+    finally:
+        os.close(directory_fd)
 
 
 def valid_case(path, params, expected):
@@ -48,6 +54,11 @@ def valid_case(path, params, expected):
 
 def main():
     output = Path(sys.argv[1])
+    lock = (output / '.checkpoint.lock').open('a')
+    try:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        raise SystemExit('Another checkpoint runner is using this output directory')
     command = sys.argv[2:]
     if command[:1] == ['--']:
         command.pop(0)
@@ -88,7 +99,10 @@ def main():
     for name, expected_hash in checks.items():
         if name.endswith('.java') and hashlib.sha256(Path(name).read_bytes()).hexdigest() != expected_hash:
             raise ValueError('Java source changed since run preparation: ' + name)
-    for item in json.loads((output / 'artifacts.json').read_text()):
+    artifacts = json.loads((output / 'artifacts.json').read_text())
+    if {p.name for p in Path('benchmark/target/lib').glob('*.jar')} != {item['file'] for item in artifacts}:
+        raise ValueError('Dependency JAR set changed since run preparation')
+    for item in artifacts:
         path = Path('benchmark/target/lib') / item['file']
         if hashlib.sha256(path.read_bytes()).hexdigest() != item['sha256']:
             raise ValueError('Dependency changed: ' + str(path))
@@ -104,6 +118,17 @@ def main():
     if manifest.exists() and json.loads(manifest.read_text()) != specification:
         raise ValueError('Checkpoint request differs; use a new output directory')
     atomic_json(manifest, specification)
+    (output / 'completed-utc.txt').unlink(missing_ok=True)
+    previous = json.loads((output / 'active.json').read_text()) if (output / 'active.json').exists() else None
+    attempt = {'started_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        'runner_pid': os.getpid(), 'previous_status': previous,
+        'runner_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        'resource_events': {name: (Path('/sys/fs/cgroup') / name).read_text()
+            for name in ('memory.events', 'pids.events') if (Path('/sys/fs/cgroup') / name).exists()}}
+    with (output / 'resume-history.jsonl').open('a') as history:
+        history.write(json.dumps(attempt) + '\n')
+        history.flush()
+        os.fsync(history.fileno())
     keys = sorted(parameters)
     cases = [dict(zip(keys, values)) for values in itertools.product(*(parameters[k] for k in keys))]
     aggregate = []
@@ -124,8 +149,12 @@ def main():
                 def interrupted(signum, frame):
                     active.update(status='interrupted', signal=signal.Signals(signum).name)
                     atomic_json(output / 'active.json', active)
-                    os.killpg(child.pid, signum)
+                    try:
+                        os.killpg(child.pid, signum)
+                    except ProcessLookupError:
+                        pass
                     raise SystemExit(128 + signum)
+                signal.signal(signal.SIGHUP, interrupted)
                 signal.signal(signal.SIGTERM, interrupted)
                 signal.signal(signal.SIGINT, interrupted)
                 while True:
@@ -149,6 +178,11 @@ def main():
             if not valid_case(staging, params, expected):
                 raise ValueError('Incomplete or invalid case: ' + name)
             staging.replace(path)
+            directory_fd = os.open(checkpoint_dir, os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                os.fsync(directory_fd)
+            finally:
+                os.close(directory_fd)
             temporary.unlink()
             print(f'CHECKPOINT {index}/{len(cases)} committed {params}', flush=True)
         aggregate.extend(json.loads(path.read_text())['results'])

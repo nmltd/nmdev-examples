@@ -12,6 +12,7 @@ A case is one library, operation and matrix size (or rectangular shape), includi
 
 - `jmh.log`: overall progress, retained checkpoints and committed cases.
 - `progress.json`: number of completed cases and total requested cases.
+- `resume-history.jsonl`: append-only attempt history, previous heartbeat/status, runner hash and resource-limit counters.
 - `active.json`: current case, process IDs, heartbeat and termination status when observable. An abrupt host termination can leave a stale heartbeat.
 - `checkpoints/*.log`: per-case JMH output, including both forks and pre-timing validation failures.
 - `checkpoints/*.json`: checksummed envelopes containing the original JMH result rows.
@@ -22,7 +23,7 @@ Do not publish a partial `jmh.json` as a complete run. The existing report forma
 
 Resume checks cover requested parameters, iteration counts, thread configuration, CPU affinity, JVM version, Java source hashes, compiled classes and dependency JAR hashes. Corrupt or incomplete case checkpoints are repeated. Timing still reflects a shared host; these checks do not guarantee identical background load between resumed segments. Requested native thread counts are not independently audited.
 
-A checkpoint protects completed results; it does not keep a process alive after its execution environment ends. Use a persistent machine/job runner for unattended runs. For an intentional interruption, send SIGINT or SIGTERM to the checkpoint runner: it records the signal and forwards it to the active JMH process group. SIGKILL or host cleanup cannot be recorded by the killed process.
+A checkpoint protects completed results; it does not keep a process alive after its execution environment ends. Use a persistent machine/job runner for unattended runs. For an intentional interruption, send SIGHUP, SIGINT or SIGTERM to the checkpoint runner: it records the signal and forwards it to the active JMH process group. Launcher termination is also forwarded to the checkpoint runner. SIGKILL or host cleanup cannot be recorded by the killed process.
 
 ## Earlier interrupted runs
 

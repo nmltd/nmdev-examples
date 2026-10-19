@@ -48,6 +48,12 @@ Path(args[args.index('-rff')+1]).write_text(json.dumps([row]))
         return subprocess.run(self.command + list(extra), cwd=self.root, capture_output=True, text=True, check=check)
 
     def test_interrupt_and_resume(self):
+        self.interrupt_and_resume(signal.SIGTERM)
+
+    def test_hangup_and_resume(self):
+        self.interrupt_and_resume(signal.SIGHUP)
+
+    def interrupt_and_resume(self, stop_signal):
         (self.root / 'pause').touch()
         process = subprocess.Popen(self.command, cwd=self.root, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         try:
@@ -61,7 +67,7 @@ Path(args[args.index('-rff')+1]).write_text(json.dumps([row]))
             checkpoint = next((self.output / 'checkpoints').glob('*size-1.json'))
             original = checkpoint.read_bytes()
             stamp = checkpoint.stat().st_mtime_ns
-            process.send_signal(signal.SIGTERM)
+            process.send_signal(stop_signal)
             process.wait(timeout=5)
             self.assertEqual(json.loads((self.output / 'active.json').read_text())['status'], 'interrupted')
             (self.root / 'pause').unlink()
@@ -102,6 +108,39 @@ Path(args[args.index('-rff')+1]).write_text(json.dumps([row]))
         result = self.run_runner(check=False)
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('Java source changed', result.stderr)
+
+    def test_changed_dependency_set_rejected(self):
+        self.run_runner()
+        lib = self.root / 'benchmark/target/lib'
+        lib.mkdir(parents=True)
+        (lib / 'unexpected.jar').write_bytes(b'extra classpath entry')
+        result = self.run_runner(check=False)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Dependency JAR set changed', result.stderr)
+
+    def test_stale_completion_marker_removed(self):
+        self.run_runner()
+        marker = self.output / 'completed-utc.txt'
+        marker.write_text('stale')
+        self.run_runner()
+        self.assertFalse(marker.exists())
+        history = [json.loads(line) for line in (self.output / 'resume-history.jsonl').read_text().splitlines()]
+        self.assertEqual(len(history), 2)
+        self.assertEqual(history[-1]['previous_status']['status'], 'finished')
+
+    def test_concurrent_runner_rejected(self):
+        (self.root / 'pause').touch()
+        process = subprocess.Popen(self.command, cwd=self.root, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        try:
+            deadline = time.monotonic() + 10
+            while not (self.output / 'active.json').exists() and time.monotonic() < deadline:
+                time.sleep(.02)
+            result = self.run_runner(check=False)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('Another checkpoint runner', result.stderr)
+        finally:
+            process.terminate()
+            process.wait(timeout=5)
 
 
 if __name__ == '__main__':
