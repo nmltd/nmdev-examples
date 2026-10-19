@@ -56,6 +56,19 @@ class LauncherTest {
         Storage.bundle(output);
         try(ZipFile zip=new ZipFile(target.toFile())) {assertNotNull(zip.getEntry("fork-checkpoint.json"));}
     }
+    @Test void packagingUpgradeRejectsAnyMeasurementChange() throws Exception {
+        Path original=temporary.resolve("old.jar"),patched=temporary.resolve("new.jar"),changed=temporary.resolve("changed.jar");
+        writeTestJar(original,"same","old");writeTestJar(patched,"same","fixed");writeTestJar(changed,"different","fixed");
+        assertDoesNotThrow(()->PackagingResume.verifyPackagingOnly(original,patched));
+        assertThrows(java.io.IOException.class,()->PackagingResume.verifyPackagingOnly(original,changed));
+    }
+    private void writeTestJar(Path path,String harness,String storage) throws Exception {
+        try(var zip=new java.util.jar.JarOutputStream(Files.newOutputStream(path))) {
+            for(var e:Map.of("harness-src/MatrixBenchmark.java",harness,"dev/nm/benchmark/launcher/Storage.class",storage).entrySet()) {
+                zip.putNextEntry(new java.util.jar.JarEntry(e.getKey()));zip.write(e.getValue().getBytes(java.nio.charset.StandardCharsets.UTF_8));zip.closeEntry();
+            }
+        }
+    }
     @Test void machineIdentityDoesNotChangeWithFreeMemoryOrTimestamp() {
         var first=MachineInfo.collect();var second=new LinkedHashMap<>(first);second.put("recorded_utc","later");second.put("free_physical_memory_bytes_at_start",0);
         assertEquals(MachineInfo.identity(first),MachineInfo.identity(second));assertNotNull(first.get("cpu_model"));assertNotNull(first.get("available_processors"));assertNotNull(first.get("physical_memory_bytes"));

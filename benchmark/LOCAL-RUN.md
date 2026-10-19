@@ -72,3 +72,17 @@ that require a proxy should use their own reviewed settings instead.
 Close Explorer ZIP previews, archive viewers or other readers of the results ZIP. New launcher builds retry a blocked ZIP replacement and retain a separate complete `*-results.zip-pending-*.zip` bundle if replacement remains blocked, continuing measurements. The next refresh retries the usual destination. A pending bundle is a snapshot, not a completion marker.
 
 If an older launcher stops with `AccessDeniedException` while replacing the ZIP, close its readers and rerun the same existing JAR from the same directory. Verified fork checkpoints are reused. Do not rebuild or replace the JAR mid-experiment: application hashes are part of resume validation. The packaging fix applies to newly built applications; existing runs can continue with their original JAR once the lock is released.
+
+### Upgrade a stopped original run to the ZIP fix
+
+First preserve the original application JAR before pulling/building. From PowerShell:
+
+```powershell
+Copy-Item benchmark/target/nmdev-benchmark-1.1.0.jar benchmark/nmdev-benchmark-original.jar -ErrorAction Stop
+git pull
+mvn -s benchmark/settings.xml -gs benchmark/settings.xml -f benchmark/pom.xml package
+java -cp benchmark/target/nmdev-benchmark-1.1.0.jar dev.nm.benchmark.launcher.PackagingResume benchmark/nmdev-benchmark-original.jar
+java -jar benchmark/target/nmdev-benchmark-1.1.0.jar
+```
+
+Do not overwrite an existing original-JAR backup. The one-time helper requires its SHA-256 to match the saved request and compares every non-directory JAR entry byte-for-byte, permitting differences only in Storage.class and the added PackagingResume.class. Changed measurement sources, other launcher classes, dependencies or metadata are rejected. The original request is backed up, upgrade provenance is recorded, and only the application's request hash is updated. The normal launcher still checks machine/configuration/dependency compatibility and each saved fork's checksums. No saved fork is modified. If comparison fails, retain the backup and output directory and investigate; do not edit request hashes manually. For a custom output directory, supply its path as the helper's second argument and use the matching --output when running.
