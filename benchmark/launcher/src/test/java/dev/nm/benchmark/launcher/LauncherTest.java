@@ -69,6 +69,37 @@ class LauncherTest {
             }
         }
     }
+    @Test void disappearingSnapshotFileDoesNotAbortOrReplacePreviousZip() throws Exception {
+        Path output=temporary.resolve("vanishing");Files.createDirectories(output);
+        Storage.json(output.resolve("machine.json"),Map.of("test",true));
+        Path source=output.resolve("fork-2.json");Files.writeString(source,"saved fork");
+        Storage.bundle(output);
+        Path target=temporary.resolve("vanishing-results.zip");
+        byte[] previous=Files.readAllBytes(target);
+        assertDoesNotThrow(()->Storage.bundle(output,()->{
+            try { Files.delete(source); } catch(java.io.IOException ex) { throw new java.io.UncheckedIOException(ex); }
+        }));
+        assertArrayEquals(previous,Files.readAllBytes(target));
+        assertTrue(Files.readString(output.resolve("packaging-failure.json")).contains("NoSuchFileException"));
+        try(var files=Files.list(temporary)) {
+            assertFalse(files.anyMatch(p->p.getFileName().toString().endsWith(".partial")));
+        }
+        Files.writeString(source,"recovered fork");Storage.bundle(output);
+        try(ZipFile zip=new ZipFile(target.toFile())) {
+            assertNotNull(zip.getEntry("packaging-failure.json"));
+            assertNotNull(zip.getEntry("fork-2.json"));
+        }
+    }
+    @Test void packagingIoFailureDoesNotStopCheckpointWork() throws Exception {
+        Path output=temporary.resolve("absent-output");
+        assertDoesNotThrow(()->Storage.bundle(output));
+        assertTrue(Files.exists(output.resolve("packaging-failure.json")));
+        Path checkpoint=output.resolve("next-checkpoint.json");
+        Storage.json(checkpoint,Map.of("saved",true));Storage.bundle(output);
+        try(ZipFile zip=new ZipFile(temporary.resolve("absent-output-results.zip").toFile())) {
+            assertNotNull(zip.getEntry("next-checkpoint.json"));
+        }
+    }
     @Test void machineIdentityDoesNotChangeWithFreeMemoryOrTimestamp() {
         var first=MachineInfo.collect();var second=new LinkedHashMap<>(first);second.put("recorded_utc","later");second.put("free_physical_memory_bytes_at_start",0);
         assertEquals(MachineInfo.identity(first),MachineInfo.identity(second));assertNotNull(first.get("cpu_model"));assertNotNull(first.get("available_processors"));assertNotNull(first.get("physical_memory_bytes"));

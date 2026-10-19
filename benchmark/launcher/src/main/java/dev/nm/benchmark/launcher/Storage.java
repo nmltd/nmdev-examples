@@ -43,13 +43,38 @@ final class Storage {
             || name.endsWith(".log") || name.endsWith(".md") || name.endsWith(".txt") || name.equals("harness-source.zip");
     }
     static synchronized void bundle(Path output) throws IOException {
+        bundle(output, null);
+    }
+    // Snapshot callback enables deterministic tests of disappearing source files.
+    static synchronized void bundle(Path output, Runnable afterSnapshot) throws IOException {
+        try { bundleSnapshot(output, afterSnapshot); }
+        catch (IOException | java.io.UncheckedIOException | SecurityException ex) {
+            System.err.println("WARNING: Results ZIP refresh failed: " + ex
+                + ". Saved checkpoints remain authoritative; benchmark continues and retries packaging at the next refresh.");
+            try {
+                json(output.resolve("packaging-failure.json"), Map.of(
+                    "utc", java.time.Instant.now().toString(), "error", ex.toString(),
+                    "status", "ZIP refresh failed; previous ZIP may be stale; local checkpoints retained"));
+            } catch (IOException | SecurityException reportError) {
+                System.err.println("WARNING: Could not save packaging failure report: " + reportError);
+            }
+        }
+    }
+    private static void bundleSnapshot(Path output, Runnable afterSnapshot) throws IOException {
         Path target = output.resolveSibling(output.getFileName() + "-results.zip");
-        Path temporary = Files.createTempFile(target.toAbsolutePath().getParent(), target.getFileName() + "-pending-", ".zip");
+        Path temporary = Files.createTempFile(target.toAbsolutePath().getParent(), target.getFileName() + "-pending-", ".partial");
+        boolean complete = false;
+        try {
         List<Path> files;
         try (var walk = Files.walk(output)) { files = walk.filter(Files::isRegularFile).filter(p -> shareable(output.relativize(p))).sorted().toList(); }
+        if (afterSnapshot != null) afterSnapshot.run();
         try (ZipOutputStream zip = new ZipOutputStream(Files.newOutputStream(temporary))) {
             for (Path file : files) { zip.putNextEntry(new ZipEntry(output.relativize(file).toString().replace('\\', '/'))); Files.copy(file, zip); zip.closeEntry(); }
         }
+        Path ready = temporary.resolveSibling(temporary.getFileName().toString().replace(".partial", ".zip"));
+        move(temporary, ready);
+        temporary = ready;
+        complete = true;
         // Windows readers (Explorer, antivirus, sync clients) can deny replacement.
         // The complete staged ZIP is already closed; retain it rather than aborting
         // measurements or deleting the last published bundle.
@@ -68,6 +93,13 @@ final class Storage {
                     System.err.println("WARNING: ZIP refresh interrupted; complete bundle retained at " + temporary);
                     return;
                 }
+            }
+        }
+        } finally {
+            // An unsuccessful snapshot must not look like an uploadable ZIP.
+            if (!complete) {
+                try { Files.deleteIfExists(temporary); }
+                catch (IOException cleanupError) { System.err.println("WARNING: Incomplete staging file remains: " + temporary); }
             }
         }
     }
