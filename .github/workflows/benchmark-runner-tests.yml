@@ -1,0 +1,30 @@
+name: Benchmark runner tests
+on:
+  push:
+    paths:
+      - 'benchmark/scripts/checkpoint-jmh.py'
+      - 'benchmark/scripts/run.sh'
+      - 'benchmark/tests/**'
+      - '.github/workflows/benchmark-runner-tests.yml'
+  pull_request:
+    paths:
+      - 'benchmark/scripts/checkpoint-jmh.py'
+      - 'benchmark/scripts/run.sh'
+      - 'benchmark/tests/**'
+      - '.github/workflows/benchmark-runner-tests.yml'
+permissions:
+  contents: read
+jobs:
+  checkpoints:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: bash -n benchmark/scripts/run.sh
+      - run: python -m unittest discover -s benchmark/tests -v

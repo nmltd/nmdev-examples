@@ -4,21 +4,28 @@ repo_root="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$repo_root"
 output="${1:?Supply a new output directory}"
 shift
-if [[ -e "$output/jmh.json" || -e "$output/jmh.log" ]]; then
-  echo 'Choose a new output directory to preserve earlier results' >&2; exit 1
+mkdir -p "$output"
+exec 9> "$output/.run.lock"
+flock -n 9 || { echo 'This output directory already has an active runner' >&2; exit 1; }
+if [[ ( -e "$output/jmh.json" || -e "$output/jmh.log" ) && ! -f "$output/checkpoint-format.txt" ]]; then
+  echo 'Legacy output has no checkpoints. Preserve it and choose a new output directory.' >&2; exit 1
 fi
+echo "Per-case checkpoint format 1" > "$output/checkpoint-format.txt"
 [[ -f nm.lic ]] || { echo 'Place your valid NM Dev license at the repository root as nm.lic' >&2; exit 1; }
 threads="${BENCH_THREADS:-1}"
 [[ "$threads" =~ ^[1-9][0-9]*$ ]] || { echo 'BENCH_THREADS must be a positive integer' >&2; exit 1; }
 profile="${BENCH_PROFILE:-baseline}"
 case "$profile" in
   baseline) benchmark='dev.nm.benchmark.MatrixBenchmark.compute'; parameters=(-p size=64,256) ;;
-  large) benchmark='dev.nm.benchmark.MatrixBenchmark.compute'; parameters=(-p size=512,1024,2000 -p library=NMDEV,EJML,OJALGO,JBLAS -p operation=multiplication,lu,cholesky,qr,solve) ;;
-  size2000) benchmark='dev.nm.benchmark.MatrixBenchmark.compute'; parameters=(-p size=2000 -p library=NMDEV,EJML,OJALGO,JBLAS -p operation=multiplication,lu,cholesky,qr,solve) ;;
-  rectangular) benchmark='dev.nm.benchmark.RectangularBenchmark.compute'; parameters=() ;;
-  *) echo 'BENCH_PROFILE must be baseline, large, size2000 or rectangular' >&2; exit 1 ;;
+  large) benchmark='dev.nm.benchmark.MatrixBenchmark.compute'; parameters=(-p size=512,1024,2000 -p operation=multiplication,lu,cholesky,qr,solve) ;;
+  size2000) benchmark='dev.nm.benchmark.MatrixBenchmark.compute'; parameters=(-p size=2000 -p operation=multiplication,lu,cholesky,qr,solve) ;;
+  large-missing) benchmark='dev.nm.benchmark.MatrixBenchmark.compute'; parameters=(-p size=512,1024,2000 -p library=COMMONS,JAMA,COLT,PARALLEL_COLT,F2J_LAPACK,MTJ,UJMP -p operation=multiplication,lu,cholesky,qr,solve) ;;
+  rectangular) benchmark='dev.nm.benchmark.ExpandedRectangularBenchmark.compute'; parameters=() ;;
+  *) echo 'BENCH_PROFILE must be baseline, large, large-missing, size2000 or rectangular' >&2; exit 1 ;;
 esac
+if [[ ! -f "$output/environment.json" ]]; then
 NMDEV_JAR="$repo_root/benchmark/target/lib/nmdev-1.2.6.jar" bash benchmark/scripts/build-direct.sh
+fi
 mkdir -p "$output"
 classpath='benchmark/target/classes:benchmark/target/lib/*'
 export OPENBLAS_NUM_THREADS="$threads" OMP_NUM_THREADS="$threads" MKL_NUM_THREADS="$threads" BLIS_NUM_THREADS="$threads" VECLIB_MAXIMUM_THREADS="$threads"
@@ -33,6 +40,15 @@ if [[ -n "${BENCH_CPUSET:-}" ]]; then
   command -v taskset >/dev/null || { echo 'taskset is required for BENCH_CPUSET' >&2; exit 1; }
   runner=(taskset -c "$BENCH_CPUSET")
 fi
+if [[ -f "$output/environment.json" ]]; then
+  python3 - "$output/environment.json" "$threads" "$profile" "${BENCH_CPUSET:-}" <<'PY_CHECK'
+import json,sys
+e=json.load(open(sys.argv[1]))
+assert e["requested_compute_threads"]==int(sys.argv[2]), "Thread setting differs from original run"
+assert e["profile"]==sys.argv[3], "Profile differs from original run"
+assert (e["requested_affinity"] or "")==sys.argv[4], "CPU affinity differs from original run"
+PY_CHECK
+else
 {
   date -u; uname -a; java -version
   if command -v lscpu >/dev/null; then lscpu; fi
@@ -41,11 +57,18 @@ fi
 } > "$output/environment.txt" 2>&1
 sha256sum benchmark/target/lib/*.jar > "$output/artifact-checksums.txt"
 python3 benchmark/scripts/record-environment.py "$output" "$threads" "$profile" "$benchmark" "${parameters[@]}" "$@"
+fi
+if [[ ! -f "$output/preflight-completed-utc.txt" ]]; then
 "${runner[@]}" java -cp "$classpath" dev.nm.benchmark.OriginValidationMain > "$output/class-origins.csv"
 "${runner[@]}" java -Xms1g -Xmx1g -XX:ActiveProcessorCount="$threads" -Dbenchmark.threads="$threads" "${backend_flags[@]}" -cp "$classpath" dev.nm.benchmark.FairnessValidationMain > "$output/fairness-check.txt" 2> "$output/fairness-check.log"
 "${runner[@]}" java -Xms1g -Xmx1g -XX:ActiveProcessorCount="$threads" -Dbenchmark.threads="$threads" "${backend_flags[@]}" -cp "$classpath" dev.nm.benchmark.CorrectnessMain > "$output/correctness.csv" 2> "$output/correctness.log"
 "${runner[@]}" java -Xms1g -Xmx1g -XX:ActiveProcessorCount="$threads" -Dbenchmark.threads="$threads" "${backend_flags[@]}" -cp "$classpath" dev.nm.benchmark.PivotValidationMain > "$output/pivot-correctness.csv" 2> "$output/pivot-correctness.log"
+if [[ "$profile" == rectangular ]]; then
+  "${runner[@]}" java -Xms1g -Xmx1g -XX:ActiveProcessorCount="$threads" -Dbenchmark.threads="$threads" "${backend_flags[@]}" -cp "$classpath" dev.nm.benchmark.ExpandedRectangularValidationMain > "$output/rectangular-correctness.csv" 2> "$output/rectangular-correctness.log"
+fi
+date -u +%FT%TZ > "$output/preflight-completed-utc.txt"
+fi
 echo "Running JMH; follow progress in $output/jmh.log"
-"${runner[@]}" java -cp "$classpath" org.openjdk.jmh.Main "$benchmark" "${parameters[@]}" -jvmArgsAppend "$fork_flags" -prof gc -foe true -rf json -rff "$output/jmh.json" "$@" > "$output/jmh.log" 2>&1
+python3 benchmark/scripts/checkpoint-jmh.py "$output" -- "${runner[@]}" java -cp "$classpath" org.openjdk.jmh.Main "$benchmark" "${parameters[@]}" -jvmArgsAppend "$fork_flags" -prof gc -foe true -rf json -rff "$output/jmh.json" "$@" >> "$output/jmh.log" 2>&1
 date -u +%FT%TZ > "$output/completed-utc.txt"
 echo "Raw results written to $output"
