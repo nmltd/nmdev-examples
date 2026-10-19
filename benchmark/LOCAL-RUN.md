@@ -66,3 +66,9 @@ mirrors. The command above supplies this project's empty settings file as both u
 and global settings, bypassing those local profiles without changing them. It also
 bypasses any custom proxy, credentials, mirrors or local-repository settings; networks
 that require a proxy should use their own reviewed settings instead.
+
+## Windows ZIP replacement locks
+
+Close Explorer ZIP previews, archive viewers or other readers of the results ZIP. New launcher builds retry a blocked ZIP replacement and retain a separate complete `*-results.zip-pending-*.zip` bundle if replacement remains blocked, continuing measurements. The next refresh retries the usual destination. A pending bundle is a snapshot, not a completion marker.
+
+If an older launcher stops with `AccessDeniedException` while replacing the ZIP, close its readers and rerun the same existing JAR from the same directory. Verified fork checkpoints are reused. Do not rebuild or replace the JAR mid-experiment: application hashes are part of resume validation. The packaging fix applies to newly built applications; existing runs can continue with their original JAR once the lock is released.

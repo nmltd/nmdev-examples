@@ -38,6 +38,24 @@ class LauncherTest {
             assertTrue(Collections.list(zip.entries()).stream().noneMatch(e->e.getName().contains(".runtime")||e.getName().endsWith(".lic")||e.getName().endsWith(".jar")));
         }
     }
+    @Test void unavailableZipDestinationRetainsCompleteBundleAndCheckpoints() throws Exception {
+        Path output=temporary.resolve("locked");Files.createDirectories(output);
+        Storage.json(output.resolve("machine.json"),Map.of("test",true));
+        Path proof=output.resolve("fork-checkpoint.json");Storage.json(proof,Map.of("saved",true));
+        String before=Files.readString(proof);
+        // A nonempty directory deterministically denies replacement on Linux and Windows.
+        Path target=temporary.resolve("locked-results.zip");Files.createDirectories(target);
+        Files.writeString(target.resolve("reader"),"do not replace");
+        assertDoesNotThrow(()->Storage.bundle(output));
+        assertEquals(before,Files.readString(proof));
+        try(var files=Files.list(temporary)) {
+            Path pending=files.filter(f->f.getFileName().toString().startsWith("locked-results.zip-pending-")).findFirst().orElseThrow();
+            try(ZipFile zip=new ZipFile(pending.toFile())) {assertNotNull(zip.getEntry("machine.json"));}
+        }
+        Files.delete(target.resolve("reader"));Files.delete(target);
+        Storage.bundle(output);
+        try(ZipFile zip=new ZipFile(target.toFile())) {assertNotNull(zip.getEntry("fork-checkpoint.json"));}
+    }
     @Test void machineIdentityDoesNotChangeWithFreeMemoryOrTimestamp() {
         var first=MachineInfo.collect();var second=new LinkedHashMap<>(first);second.put("recorded_utc","later");second.put("free_physical_memory_bytes_at_start",0);
         assertEquals(MachineInfo.identity(first),MachineInfo.identity(second));assertNotNull(first.get("cpu_model"));assertNotNull(first.get("available_processors"));assertNotNull(first.get("physical_memory_bytes"));

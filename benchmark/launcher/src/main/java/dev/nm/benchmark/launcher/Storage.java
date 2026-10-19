@@ -44,13 +44,32 @@ final class Storage {
     }
     static synchronized void bundle(Path output) throws IOException {
         Path target = output.resolveSibling(output.getFileName() + "-results.zip");
-        Path temporary = target.resolveSibling(target.getFileName() + ".tmp");
+        Path temporary = Files.createTempFile(target.toAbsolutePath().getParent(), target.getFileName() + "-pending-", ".zip");
         List<Path> files;
         try (var walk = Files.walk(output)) { files = walk.filter(Files::isRegularFile).filter(p -> shareable(output.relativize(p))).sorted().toList(); }
         try (ZipOutputStream zip = new ZipOutputStream(Files.newOutputStream(temporary))) {
             for (Path file : files) { zip.putNextEntry(new ZipEntry(output.relativize(file).toString().replace('\\', '/'))); Files.copy(file, zip); zip.closeEntry(); }
         }
-        move(temporary, target);
+        // Windows readers (Explorer, antivirus, sync clients) can deny replacement.
+        // The complete staged ZIP is already closed; retain it rather than aborting
+        // measurements or deleting the last published bundle.
+        for (int attempt = 0; attempt < 4; attempt++) {
+            try { move(temporary, target); return; }
+            catch (FileSystemException ex) {
+                if (attempt == 3) {
+                    System.err.println("WARNING: Cannot replace results ZIP: " + ex.getMessage()
+                        + "; latest complete bundle retained at " + temporary
+                        + ". Benchmark continues; close ZIP readers to allow the next refresh.");
+                    return;
+                }
+                try { Thread.sleep(100L * (attempt + 1)); }
+                catch (InterruptedException interrupted) {
+                    Thread.currentThread().interrupt();
+                    System.err.println("WARNING: ZIP refresh interrupted; complete bundle retained at " + temporary);
+                    return;
+                }
+            }
+        }
     }
     private Storage() {}
 }
