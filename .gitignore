@@ -10,3 +10,11 @@ __pycache__/
 *.pyc
 # The distributed public trial is intentionally tracked; private replacements must not be committed.
 !/nm.lic
+
+# Local unattended benchmark checkpoints contain runtime binaries and licenses.
+/nmdev-benchmark-output/
+/nmdev-benchmark-output-results.zip
+/smoke-results/
+/smoke-results-results.zip
+**/.runtime/
+**/fork-*.bin

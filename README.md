@@ -35,6 +35,15 @@ Each tutorial has detailed explanations, complete source, expected results and e
 
 [Explore the benchmark website](https://nmltd.github.io/nmdev-examples/benchmarks.html) for interactive charts, results, methodology and reproduction instructions. [Source code and raw measurements](benchmark/README.md) remain in this repository.
 
+To run the entire comparison unattended on your computer (full JDK 17+ and Maven):
+
+```text
+mvn -f benchmark/pom.xml package
+java -jar benchmark/target/nmdev-benchmark-1.1.0.jar
+```
+
+The single entry point prepares dependencies automatically, runs all profiles, resumes saved JVM forks, collects CPU/memory/OS/JVM information and creates `nmdev-benchmark-output-results.zip`. See [local benchmark instructions](benchmark/LOCAL-RUN.md). No GitHub token, Python or manual profile selection is needed for this launcher.
+
 ## Original starter
 
 The project began as a copy of [`samples/new-nmdev-project`](https://github.com/nmltd/numerical-methods-java/tree/main/samples/new-nmdev-project). Its `HelloWorld`, `Graph` and existing JUnit test are retained. The same public trial `nm.lic` from that starter is included here. Private licenses and package tokens are not included. The Maven project name and artifact ID are updated for this repository. See [the starter guide](docs/starter-project.md).

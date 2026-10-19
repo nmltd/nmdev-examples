@@ -1,15 +1,19 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reproduce — NM Dev benchmarks</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}</style></head><body><main><nav aria-label="Site navigation"><a href="index.html">Home</a><a href="getting-started.html">Getting Started</a><a href="tutorials.html">Tutorials</a><a href="benchmarks.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><nav aria-label="Benchmark navigation"><a href="benchmarks.html">Charts</a><a href="results.html">Results</a><a href="methodology.html">Methodology</a><a href="libraries.html">Libraries</a><a href="validation.html">Validation</a><a href="fairness-audit.html">Audit</a><a href="reproduce.html" aria-current="page">Reproduce</a></nav><h1>Reproduce the benchmark</h1>
-<p>Requires <strong>JDK 11+</strong>; the measured runs use JDK 17. Configure <a href="https://github.com/nmltd/nmdev-examples/blob/main/docs/Getting-Started.md">GitHub Packages credentials</a> and place your valid external <code>nm.lic</code> in the repository root. No binary or license is committed.</p>
-<pre><code class="language-bash">mvn -f benchmark/pom.xml clean package
-bash benchmark/scripts/run.sh benchmark/results/my-run
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reproduce the benchmark — NM Dev benchmarks</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}</style></head><body><main><nav aria-label="Site navigation"><a href="index.html">Home</a><a href="getting-started.html">Getting Started</a><a href="tutorials.html">Tutorials</a><a href="benchmarks.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><nav aria-label="Benchmark navigation"><a href="benchmarks.html">Charts</a><a href="results.html">Results</a><a href="methodology.html">Methodology</a><a href="libraries.html">Libraries</a><a href="validation.html">Validation</a><a href="fairness-audit.html">Audit</a><a href="reproduce.html" aria-current="page">Reproduce</a></nav><h1>Reproduce the benchmark</h1>
+<h2>One-command application</h2>
+<p>Requires a <strong>full JDK 17+</strong> and Maven to build. Download or clone <a href="https://github.com/nmltd/nmdev-examples">nmdev-examples</a>, then run:</p>
+<pre><code class="language-text">mvn -f benchmark/pom.xml package
+java -jar benchmark/target/nmdev-benchmark-1.1.0.jar
 </code></pre>
-<p>Alternatively use an existing published combined NM Dev JAR and the checked dependency lockfile:</p>
+<p>The public entry point <code>dev.nm.benchmark.launcher.BenchmarkMain</code> prepares verified dependencies and the public trial license, builds Parallel Colt automatically, runs all eleven libraries across all profiles, records machine information, and packages the results. No Python, shell scripts, GitHub token or manual profile selection is required. First-run Internet access and a full JDK are needed for automatic compilation.</p>
+<p>The full run contains 660 cases and can take many hours. Run the same JAR/command again after an interruption to retain completed forks and repeat only unfinished ones. The shareable file is <code>nmdev-benchmark-output-results.zip</code>, beside its local checkpoint directory. It includes CPU, memory, OS, JVM, dependency hashes, logs, validation and full-precision measurements; it excludes licenses and private runtime files. <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/LOCAL-RUN.md">Complete local-run instructions</a>.</p>
+<p>The launcher pins the public NM Dev 1.2.6 release by its published checksum. Its binary hash differs from the older archived benchmark binary; measurements from different binaries or machines are separate experiments. Native-library availability depends on host architecture; failures are recorded explicitly instead of substituted results.</p>
+<h2>Historical shell-based runs</h2>
+<p>The commands below reproduce older archives and are optional. They require a valid local <code>nm.lic</code>, the previously measured NM Dev binary, Linux shell tools and Python. They are not needed for the unattended application.</p>
 <pre><code class="language-bash">export NMDEV_JAR=/absolute/path/to/nmdev-1.2.6.jar
 bash benchmark/scripts/build-direct.sh
 bash benchmark/scripts/run.sh benchmark/results/my-run
 </code></pre>
-<p>The direct build is the validated route used in this environment. It verifies third-party checksums and invokes the JMH annotation processor. The Maven project is independent of the Java 8 tutorial application. Runtime dependencies are copied only into ignored <code>target/</code> directories.</p>
-<p>Allow roughly 35–45 minutes for the complete expanded run on similar hardware. Follow progress in your output directory's <code>jmh.log</code>. Pass optional JMH arguments after the output-directory argument and record any changed settings.</p>
+<p>The Java 8 tutorial application and the Java 17 benchmark launcher have independent Maven builds. Do not use the root tutorial POM to build the benchmark.</p>
 <h2>Checks and report generation</h2>
 <p>The run stops on failed baseline correctness, deferred-output or native-input-preservation checks. Difficult-input diagnostics are a separate command and deliberately retain failures. See <a href="validation.html">Validation</a> for the checks and evidence.</p>
 <pre><code class="language-bash">python3 benchmark/scripts/report.py benchmark/results/my-run
@@ -28,10 +32,10 @@ python3 benchmark/scripts/publish-pages.py benchmark/results/my-run
 <pre><code class="language-bash"># Pin a single computational worker; affinity is optional and must be valid on your host.
 BENCH_CPUSET=0 BENCH_THREADS=1 bash benchmark/scripts/run.sh benchmark/results/my-fair-baseline
 
-# Larger square matrices: four libraries, sizes 512/1024/2000, five operations.
+# Larger square matrices: all eleven libraries, sizes 512/1024/2000, five operations.
 BENCH_CPUSET=0 BENCH_PROFILE=large bash benchmark/scripts/run.sh benchmark/results/my-large
 
-# Tall, wide and odd-sized multiplication, with four explicitly supported adapters.
+# Tall, wide and odd-sized multiplication, with all eleven supported adapters.
 BENCH_CPUSET=0 BENCH_PROFILE=rectangular bash benchmark/scripts/run.sh benchmark/results/my-rectangular
 
 # Four-computational-thread comparison, one JMH client worker. Run serially after the one-thread track.
@@ -41,7 +45,7 @@ BENCH_CPUSET=0-3 BENCH_THREADS=4 BENCH_PROFILE=large bash benchmark/scripts/run.
 java -XX:ActiveProcessorCount=1 -cp 'benchmark/target/classes:benchmark/target/lib/*' \
   dev.nm.benchmark.DifficultValidationMain &gt; difficult-correctness.csv
 </code></pre>
-<p>The large profile intentionally avoids automatically scheduling every decomposition at historical 5,000×5,000 sizes. Use explicit JMH <code>-p size=... -p operation=... -p library=...</code> overrides when resources permit. Historical-sized tests are a separate experiment, not implied by the 512/1024/2000 track.</p>
+<p>The large profile intentionally avoids automatically scheduling every decomposition at historical 5,000×5,000 sizes. To change the parameter lists, edit or add a profile; do not append duplicate JMH <code>-p</code> declarations, which combine values. Historical-sized tests are a separate experiment, not implied by the 512/1024/2000 track.</p>
 <p><code>run.sh</code> rebuilds the harness against the local combined JAR, verifies locked third-party artifacts, runs all baseline guards, and records allocation metrics with <code>-prof gc</code>. Use new directories for each profile; previous JSON/logs are never overwritten. If your Maven build uses a differently named NM Dev JAR, run the direct build first with <code>NMDEV_JAR</code> pointing at that file.</p>
 <h2>Verify the measured binary's SPD inverse path</h2>
 <p>The JDI helper needs a full JDK with <code>jdk.jdi</code> and compiler modules. It sets constructor breakpoints only on Chol and LU, without modifying the JAR. The debug run is separate from timing.</p>
@@ -55,16 +59,17 @@ java com.sun.tools.javap.Main -p -c -classpath benchmark/target/lib/nmdev-1.2.6.
 <p>Expected: SPD calls Chol and not LU; the nonsymmetric control calls LU and not Chol. Verify the JAR's SHA-256 against the run's <code>artifacts.json</code> before interpreting the trace. The helper exits nonzero if the observed constructor counts disagree.</p>
 <h2>Current dependency versions</h2>
 <p>See the <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/dependency-audit/2026-10-18/README.md">version audit</a>. The current primary Commons adapter uses the pinned 4.0-SNAPSHOT build; its timestamped module URLs and checksums are in the lockfile. Parallel Colt 0.11.4 is built from the exact upstream release tag by the direct build script because its old Maven Central coordinate stops at 0.10.1. Use the direct build route with JDK 17.0.20 to reproduce this source-built dependency's pinned binary hash.</p>
-<p>If you use the Maven route, first run the direct builder and install the resulting source-built Parallel Colt artifact into your local Maven repository:</p>
-<pre><code class="language-bash">mvn install:install-file -Dfile=benchmark/target/lib/parallelcolt-0.11.4.jar \
-  -DpomFile=benchmark/target/parallelcolt-source/pom.xml
-mvn -f benchmark/pom.xml package
-</code></pre>
-<p>The direct route is the validated build used for these measurements. Per-run <code>versions.json</code> and <code>validated-nmdev-artifact.json</code> preserve labels and proof of the tested customer JAR. Current version labels do not replace the labels of historical archives.</p>
+<p>The unattended Maven application builds the pinned Parallel Colt source automatically. Historical direct-build commands preserve their original dependency hashes and metadata. Version labels alone do not establish binary equivalence.</p>
 <h2>2000-square comparison</h2>
-<p>Run the same four-library, five-operation profile at size 2000 only, keeping one-thread and four-thread results separate:</p>
+<p>Run the same eleven-library, five-operation profile at size 2000 only, keeping one-thread and four-thread results separate:</p>
 <pre><code class="language-bash">BENCH_CPUSET=0 BENCH_THREADS=1 BENCH_PROFILE=size2000 bash benchmark/scripts/run.sh benchmark/results/my-2000-one -wi 2 -w 100ms -i 3 -r 200ms
 BENCH_CPUSET=0-3 BENCH_THREADS=4 BENCH_PROFILE=size2000 bash benchmark/scripts/run.sh benchmark/results/my-2000-four -wi 2 -w 100ms -i 3 -r 200ms
 </code></pre>
 <p>The short iteration targets are diagnostic: an iteration still completes a full operation even when it takes longer than its target. Every fork runs full-size correctness and input-preservation checks before timing. Setup and reference checks can dominate wall-clock runtime. This profile does not include every baseline library/operation.</p>
-<p>Use <code>BENCH_PROFILE=size2000</code> for size 2000 alone. Do not append a second <code>-p size=...</code> to the same invocation: JMH combines repeated parameter declarations rather than replacing the profile's size list.</p><footer><a href="https://github.com/nmltd/nmdev-examples/tree/main/benchmark">Benchmark source and run archives</a> · <a href="tutorials.html">Java tutorials</a></footer></main></body></html>
+<p>Use <code>BENCH_PROFILE=size2000</code> for size 2000 alone. Do not append a second <code>-p size=...</code> to the same invocation: JMH combines repeated parameter declarations rather than replacing the profile's size list.</p>
+<h2>Reproduce the all-library coverage supplement</h2>
+<p>The <code>large</code> and <code>size2000</code> profiles now include all eleven supported libraries. The saved expansion used <code>large-missing</code> to measure only the seven adapters omitted from the earlier large archives, retaining those earlier measurements unchanged. Each thread profile runs sequentially with the same dependency binaries and measured operation sources.</p>
+<pre><code class="language-bash">BENCH_CPUSET=0 BENCH_THREADS=1 BENCH_PROFILE=large-missing bash benchmark/scripts/run.sh benchmark/results/my-missing-one -wi 2 -w 100ms -i 3 -r 200ms
+BENCH_CPUSET=0-3 BENCH_THREADS=4 BENCH_PROFILE=large-missing bash benchmark/scripts/run.sh benchmark/results/my-missing-four -wi 2 -w 100ms -i 3 -r 200ms
+</code></pre>
+<p>The single <a href="benchmarks.html">comparison page</a> keeps size, operation, source archive and requested thread setting attached to each point. Do not average results across the source archives. Shared-VM load can vary between runs, and requested native thread counts are not independently audited.</p><footer><a href="https://github.com/nmltd/nmdev-examples/tree/main/benchmark">Benchmark source and run archives</a> · <a href="tutorials.html">Java tutorials</a></footer></main></body></html>
