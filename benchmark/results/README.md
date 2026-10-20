@@ -7,16 +7,6 @@ Runs are stored under `YYYY-MM-DD/<run-id>/`. Dates and timestamps use UTC.
 | Date / run | Status | Cases | Website |
 |---|---|---:|---|
 | [2026-10-20/windows-082238Z](2026-10-20/windows-082238Z/) | Completed and validated | 660 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-20/windows-082238Z/index.html) |
-| [2026-10-18/updated-libraries-baseline](2026-10-18/updated-libraries-baseline/) | Completed | 286 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-18/updated-libraries-baseline/index.html) |
-| [2026-10-18/rectangular](2026-10-18/rectangular/) | Completed | 16 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-18/rectangular/index.html) |
-| [2026-10-18/original](2026-10-18/original/) | Historical snapshot; no completion marker | 104 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-18/original/index.html) |
-| [2026-10-18/large-4threads](2026-10-18/large-4threads/) | Completed | 40 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-18/large-4threads/index.html) |
-| [2026-10-18/large-1thread](2026-10-18/large-1thread/) | Completed | 40 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-18/large-1thread/index.html) |
-| [2026-10-18/fairness-corrected](2026-10-18/fairness-corrected/) | Completed | 286 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-18/fairness-corrected/index.html) |
-| [2026-10-18/fairness-audit](2026-10-18/fairness-audit/) | Audit | 0 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-18/fairness-audit/index.html) |
-| [2026-10-18/expanded](2026-10-18/expanded/) | Completed | 286 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-18/expanded/index.html) |
-| [2026-10-18/2000-4thread](2026-10-18/2000-4thread/) | Completed | 20 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-18/2000-4thread/index.html) |
-| [2026-10-18/2000-1thread](2026-10-18/2000-1thread/) | Completed | 20 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-18/2000-1thread/index.html) |
 
 ## Add a future run
 

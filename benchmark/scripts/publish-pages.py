@@ -9,7 +9,7 @@ import markdown
 
 REPO_URL = 'https://github.com/nmltd/nmdev-examples'
 NAV = [('benchmarks.html', 'Charts'), ('results.html', 'Results'), ('methodology.html', 'Methodology'),
-       ('libraries.html', 'Libraries'), ('validation.html', 'Validation'), ('fairness-audit.html', 'Audit'), ('reproduce.html', 'Reproduce')]
+       ('libraries.html', 'Libraries'), ('validation.html', 'Validation'), ('reproduce.html', 'Reproduce')]
 CSS = '''body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}'''
 
 def nav(current):

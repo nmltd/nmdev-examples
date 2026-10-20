@@ -136,16 +136,6 @@ def main():
         subset=[r for r in runs if r['date']==date]
         text=f'# Benchmark runs — {date}\n\n[All historical dates](../index.html)\n\n'+history_table(subset,'../')
         (folder/date/'index.html').write_text(shell('Benchmarks — '+date,site.render(text),'../../'))
-    # Legacy website links now lead to their permanent dated equivalents.
-    redirects={'fairness-audit.html':'2026-10-18/fairness-audit/results.html'}
-    for threads in [1,4]:
-        redirects[f'benchmarks-2000-{threads}thread.html']=f'2026-10-18/2000-{threads}thread/benchmarks.html'
-        redirects[f'results-2000-{threads}thread.html']=f'2026-10-18/2000-{threads}thread/results.html'
-    for name,target in redirects.items():
-        href='benchmarks/'+target
-        body='<h1>Historical benchmark</h1><p>This page has a permanent dated address: <a href="'+href+'">open the archived run</a>.</p>'
-        body+='<script>location.replace('+json.dumps(href)+'+location.search+location.hash)</script>'
-        (OUTPUT/name).write_text(shell('Historical benchmark',body,''))
     # GitHub directory entry points are generated from the same registry as the site.
     md='# Historical benchmark results\n\nRuns are stored under `YYYY-MM-DD/<run-id>/`. Dates and timestamps use UTC.\n\n[Browse all historical benchmarks](https://nmltd.github.io/nmdev-examples/benchmarks/index.html) · [Latest charts](https://nmltd.github.io/nmdev-examples/benchmarks.html)\n\n| Date / run | Status | Cases | Website |\n|---|---|---:|---|\n'
     for r in sorted(runs,key=lambda r:r['source'],reverse=True):md+=f"| [{r['source']}]({r['source']}/) | {r['status']} | {r['cases']} | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/{r['source']}/index.html) |\n"
