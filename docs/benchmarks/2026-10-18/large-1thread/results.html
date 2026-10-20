@@ -1,0 +1,542 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Large matrices — one requested thread — results — NM Dev benchmark history</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}</style></head><body><main><nav aria-label="Site navigation"><a href="../../../index.html">Home</a><a href="../../../getting-started.html">Getting Started</a><a href="../../../tutorials.html">Tutorials</a><a href="../../../benchmarks.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>2026-10-18 — Large matrices — one requested thread</h1>
+<p><strong>Completed</strong> · 40 cases · 4 libraries.</p>
+<p>AMD EPYC 9V74 80-Core Processor</p>
+<p>Requested native thread counts were not independently audited.</p>
+<p>Recorded completion: <strong>2026-10-18T12:11:37Z</strong>. Run IDs and dates are permanent; profiles from different machines are never merged.</p>
+<p><a href="../../../benchmarks/index.html">All historical runs</a> · <a href="../index.html">This date</a> · <a href="https://github.com/nmltd/nmdev-examples/tree/main/benchmark/results/2026-10-18/large-1thread">Saved files on GitHub</a></p><h2>Original report</h2>
+<h1>Linear algebra benchmark results — 2026-10-18-latest-large-1thread</h1>
+<p><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/README.md">Suite</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/METHODOLOGY.md">Methodology</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/LIBRARY-COVERAGE.md">Library coverage</a></p>
+<blockquote>
+<p>Corrected harness: deferred ojAlgo results are materialized inside timing, native inputs are checked for mutation, and every fork validates repeat execution. These short iterations provide a diagnostic baseline; use longer runs on dedicated hardware for fine rankings. See the <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/fairness-audit/README.md">fairness audit</a>.</p>
+</blockquote>
+<p><strong>5 operations × 4 libraries × 2 sizes = 40 measured cases</strong>, containing 240 measured iteration means. Lower milliseconds per operation is faster. These are observations on a shared VM, not universal performance rankings.</p>
+<p><strong><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/charts.html">Interactive charts with tooltips</a></strong> — download and open the self-contained HTML in a browser. Hover, tap or keyboard-focus a point for its version/backend, timing, confidence interval and ratio to NM Dev. GitHub inline image previews do not expose point tooltips. Standalone SVGs also contain native tooltip titles.</p>
+<h2>Environment</h2>
+<p>AMD EPYC 9V74 80-Core Processor; Linux-6.18.55-x86_64-with-glibc2.39. Visible CPUs: 9; container CPU quota: <code>800000 100000</code>. JVM 17.0.20. No exclusive CPU reservation; any requested affinity is recorded below.</p>
+<p>2 JVM forks per case; 2 warmup iterations of 100 ms; 3 measurement iterations of 200 ms. One JMH worker. The fork options fix a 1 GiB heap. Requested computational threads: 1; requested CPU affinity: 0. Affinity does not reserve a CPU exclusively.</p>
+<p>Native thread environment variables request the recorded computational thread count. Parallel Colt, ojAlgo and UJMP also receive explicit library thread limits; MTJ uses an explicitly forced pure-Java F2J backend. Native jblas thread counts are not independently audited. See the environment and backend records below.</p>
+<h2>Versions and backends</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Library</th>
+<th>Measured version / backend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NMDEV</td>
+<td>NM Dev 1.2.6</td>
+</tr>
+<tr>
+<td>EJML</td>
+<td>EJML 0.46.1</td>
+</tr>
+<tr>
+<td>JBLAS</td>
+<td>jblas 1.2.5 (native)</td>
+</tr>
+<tr>
+<td>OJALGO</td>
+<td>ojAlgo 57.5.0</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Correctness and interpretation</h2>
+<p>All <strong>429 baseline correctness cases passed twice</strong>. Every measured fork also checks its selected result before timing. Reference arithmetic and residual checks are outside timing.</p>
+<p>All <strong>66 targeted row-swap/row-cycle cases</strong> also passed. These check determinant signs, LU permutation orientation and solves on pivoting inputs.</p>
+<p>Tables show <strong>mean ± JMH 99.9% confidence half-width</strong>, in ms/op. These error bars are not standard deviations. Overlapping intervals or high uncertainty make fine rankings unreliable. Chart ratios are ratios of means and do not show ratio uncertainty.</p>
+<p>Native input conversion is outside timing; necessary copies, allocations and full factor output materialization are timed. This compares public API tasks, not identical algorithms. NM Dev Inverse detects symmetry and attempts Cholesky on SPD inputs, falling back to LU if that path raises a runtime exception. The exact measured JAR was verified separately by bytecode and runtime constructor-breakpoint tracing; see the fairness audit. F2J transpose/addition/scaling use adapter-owned Java loops because LAPACK does not define those matrix convenience APIs.</p>
+<h2>512 × 512 matrices</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Operation</th>
+<th style="text-align: right;">NMDEV</th>
+<th style="text-align: right;">EJML</th>
+<th style="text-align: right;">JBLAS</th>
+<th style="text-align: right;">OJALGO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>multiplication</td>
+<td style="text-align: right;">130.83 ± 35</td>
+<td style="text-align: right;">42.669 ± 0.91</td>
+<td style="text-align: right;">19.403 ± 6</td>
+<td style="text-align: right;">45.365 ± 4</td>
+</tr>
+<tr>
+<td>cholesky</td>
+<td style="text-align: right;">18.309 ± 0.75</td>
+<td style="text-align: right;">20.872 ± 18</td>
+<td style="text-align: right;">3.7034 ± 0.27</td>
+<td style="text-align: right;">9.9433 ± 2</td>
+</tr>
+<tr>
+<td>lu</td>
+<td style="text-align: right;">17.028 ± 20</td>
+<td style="text-align: right;">43.38 ± 12</td>
+<td style="text-align: right;">9.5693 ± 0.76</td>
+<td style="text-align: right;">11.309 ± 3.7</td>
+</tr>
+<tr>
+<td>qr</td>
+<td style="text-align: right;">133.94 ± 27</td>
+<td style="text-align: right;">84.687 ± 5.8</td>
+<td style="text-align: right;">43.506 ± 3.9</td>
+<td style="text-align: right;">46.478 ± 41</td>
+</tr>
+<tr>
+<td>solve</td>
+<td style="text-align: right;">24.607 ± 28</td>
+<td style="text-align: right;">39.102 ± 5.5</td>
+<td style="text-align: right;">5.8758 ± 0.83</td>
+<td style="text-align: right;">11.619 ± 7.8</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="Timing ratios relative to NM Dev at size 512" src="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/relative-times-512.svg" /></p>
+<p>NM Dev is 1×. Below 1× means less time than NM Dev; above 1× means more time. Logarithmic scale. Use the interactive HTML for exact point details.</p>
+<h2>1024 × 1024 matrices</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Operation</th>
+<th style="text-align: right;">NMDEV</th>
+<th style="text-align: right;">EJML</th>
+<th style="text-align: right;">JBLAS</th>
+<th style="text-align: right;">OJALGO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>multiplication</td>
+<td style="text-align: right;">801.6 ± 29</td>
+<td style="text-align: right;">345.73 ± 22</td>
+<td style="text-align: right;">132.31 ± 15</td>
+<td style="text-align: right;">352.35 ± 41</td>
+</tr>
+<tr>
+<td>cholesky</td>
+<td style="text-align: right;">154.11 ± 17</td>
+<td style="text-align: right;">52.673 ± 4.9</td>
+<td style="text-align: right;">27.373 ± 2.6</td>
+<td style="text-align: right;">73.96 ± 16</td>
+</tr>
+<tr>
+<td>lu</td>
+<td style="text-align: right;">71.267 ± 30</td>
+<td style="text-align: right;">313.81 ± 20</td>
+<td style="text-align: right;">54.94 ± 6.8</td>
+<td style="text-align: right;">147.26 ± 39</td>
+</tr>
+<tr>
+<td>qr</td>
+<td style="text-align: right;">930.81 ± 2.1e+02</td>
+<td style="text-align: right;">634.61 ± 27</td>
+<td style="text-align: right;">295.97 ± 1.5e+02</td>
+<td style="text-align: right;">307.87 ± 69</td>
+</tr>
+<tr>
+<td>solve</td>
+<td style="text-align: right;">92.236 ± 43</td>
+<td style="text-align: right;">325.05 ± 73</td>
+<td style="text-align: right;">42.004 ± 4.6</td>
+<td style="text-align: right;">147.04 ± 18</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="Timing ratios relative to NM Dev at size 1024" src="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/relative-times-1024.svg" /></p>
+<p>NM Dev is 1×. Below 1× means less time than NM Dev; above 1× means more time. Logarithmic scale. Use the interactive HTML for exact point details.</p>
+<h2>Limits</h2>
+<p>No aggregate speedup is reported because averaging operation ratios imposes an arbitrary workload weighting. This run uses one deterministic family of well-conditioned square matrices. It does not measure sparse matrices, conic optimization, parallel scaling, very large inputs or stability on difficult problems. Parameter order is deterministic, and the VM is shared. Reproduce your own workload on dedicated hardware before making broad performance claims.</p>
+<h2>Raw evidence</h2>
+<ul>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/jmh.json">JMH JSON and per-fork iteration means</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/jmh.log">Complete JMH log</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/summary.csv">Summary CSV</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/allocation.csv">JVM allocation per operation; native allocations are not fully included</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/correctness.csv">Baseline correctness residuals</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/pivot-correctness.csv">Targeted pivot/sign checks</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/environment.json">Environment and requested thread settings</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/artifacts.json">Artifact versions and SHA-256 checksums</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/source-checksums.json">Measured source checksums</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/harness-source.zip">Exact harness source snapshot</a></li>
+<li><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/large-1thread/fairness-check.txt">Deferred-output and mutation regression checks</a></li>
+</ul>
+<p>Regenerate with <code>python3 benchmark/scripts/report.py benchmark/results/2026-10-18/large-1thread</code>. Python only summarizes measurements and renders charts; all measured calculations run in Java/JMH. Matplotlib is required to regenerate charts and the self-contained HTML.</p><h2>All saved timings</h2><div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Profile</th>
+<th style="text-align: right;">Requested threads</th>
+<th>Size / shape</th>
+<th>Operation</th>
+<th>Library</th>
+<th style="text-align: right;">Mean ms/op</th>
+<th style="text-align: right;">99.9% error ± ms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">130.825062</td>
+<td style="text-align: right;">35.1697466</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">801.603784</td>
+<td style="text-align: right;">29.1775309</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>lu</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">17.027993</td>
+<td style="text-align: right;">20.0179937</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>lu</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">71.2667614</td>
+<td style="text-align: right;">29.7338241</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>cholesky</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">18.3091336</td>
+<td style="text-align: right;">0.746655161</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>cholesky</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">154.112635</td>
+<td style="text-align: right;">16.9678463</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>qr</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">133.942454</td>
+<td style="text-align: right;">27.203429</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>qr</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">930.813692</td>
+<td style="text-align: right;">205.641998</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>solve</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">24.6067194</td>
+<td style="text-align: right;">27.948214</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>solve</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">92.2363576</td>
+<td style="text-align: right;">43.2809096</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">42.6686377</td>
+<td style="text-align: right;">0.912954216</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">345.725596</td>
+<td style="text-align: right;">22.3528801</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>lu</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">43.3797149</td>
+<td style="text-align: right;">12.0015466</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>lu</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">313.809729</td>
+<td style="text-align: right;">20.2403316</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>cholesky</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">20.8715248</td>
+<td style="text-align: right;">17.823769</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>cholesky</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">52.6727422</td>
+<td style="text-align: right;">4.92024624</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>qr</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">84.686578</td>
+<td style="text-align: right;">5.83814151</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>qr</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">634.609904</td>
+<td style="text-align: right;">26.6356256</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>solve</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">39.1019322</td>
+<td style="text-align: right;">5.52581851</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>solve</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">325.048597</td>
+<td style="text-align: right;">72.6801271</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">45.3647608</td>
+<td style="text-align: right;">4.03235028</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">352.348282</td>
+<td style="text-align: right;">40.9652671</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>lu</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">11.3091156</td>
+<td style="text-align: right;">3.7409201</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>lu</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">147.262372</td>
+<td style="text-align: right;">38.9085695</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>cholesky</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">9.94333359</td>
+<td style="text-align: right;">1.99778007</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>cholesky</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">73.9597155</td>
+<td style="text-align: right;">15.7439211</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>qr</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">46.4777159</td>
+<td style="text-align: right;">40.501995</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>qr</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">307.866632</td>
+<td style="text-align: right;">69.2431188</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>solve</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">11.6193525</td>
+<td style="text-align: right;">7.8340584</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>solve</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">147.043691</td>
+<td style="text-align: right;">18.3638219</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">19.4027845</td>
+<td style="text-align: right;">6.02980667</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">132.309074</td>
+<td style="text-align: right;">15.4371462</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>lu</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">9.56934006</td>
+<td style="text-align: right;">0.75823833</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>lu</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">54.9398585</td>
+<td style="text-align: right;">6.77011256</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>cholesky</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">3.70338869</td>
+<td style="text-align: right;">0.268742731</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>cholesky</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">27.3732109</td>
+<td style="text-align: right;">2.61082973</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>qr</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">43.5057552</td>
+<td style="text-align: right;">3.87676412</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>qr</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">295.970874</td>
+<td style="text-align: right;">150.550547</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512</td>
+<td>solve</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">5.87577784</td>
+<td style="text-align: right;">0.826413965</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024</td>
+<td>solve</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">42.0036849</td>
+<td style="text-align: right;">4.64427998</td>
+</tr>
+</tbody>
+</table></div></main></body></html>

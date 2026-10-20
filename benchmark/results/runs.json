@@ -1,0 +1,190 @@
+{
+  "format": 1,
+  "latest": "2026-10-20/windows-082238Z",
+  "runs": [
+    {
+      "id": "original",
+      "date": "2026-10-18",
+      "title": "Original four-library baseline",
+      "source": "2026-10-18/original",
+      "legacy_source": "2026-10-18",
+      "status": "Historical snapshot; no completion marker",
+      "warning": "Original harness; interpret using the fairness audit.",
+      "cases": 104,
+      "libraries": 4,
+      "machine": "AMD EPYC 9V74 80-Core Processor",
+      "completed_utc": null,
+      "evidence_sha256": {
+        "jmh.json": "ac9a25c06df304d2479188ab5ef283b8b0d430b885cfe228a0daeebbf3bba8b3",
+        "summary.csv": "701337b4f09a015656bea8d897ffda3e98317a3fb32c84f1a2f9b3095febe1de"
+      }
+    },
+    {
+      "id": "expanded",
+      "date": "2026-10-18",
+      "title": "Expanded eleven-library baseline",
+      "source": "2026-10-18/expanded",
+      "legacy_source": "2026-10-18-expanded",
+      "status": "Completed",
+      "warning": "Historical harness issue: ojAlgo scaling returned deferred work. Scaling timings are invalid for completed-work comparisons.",
+      "cases": 286,
+      "libraries": 11,
+      "machine": "AMD EPYC 9V74 80-Core Processor",
+      "completed_utc": "2026-10-18T10:09:28.473336+00:00",
+      "evidence_sha256": {
+        "jmh.json": "3e7f5be949bdb4fb3eb45663e2b53346a2b00f5e0c2f2e448a76137f30082aae",
+        "summary.csv": "cd81bfd6ec9ed6493be869356eb01e5e6fcf20d9c764c2545db484fcc6ced1dc"
+      }
+    },
+    {
+      "id": "fairness-audit",
+      "date": "2026-10-18",
+      "title": "Fairness and inverse-path audit",
+      "source": "2026-10-18/fairness-audit",
+      "legacy_source": "2026-10-18-fairness-audit",
+      "status": "Audit",
+      "warning": "Diagnostic evidence; not a separate performance ranking.",
+      "cases": 0,
+      "libraries": 0,
+      "machine": "See audit evidence",
+      "completed_utc": null,
+      "evidence_sha256": {}
+    },
+    {
+      "id": "fairness-corrected",
+      "date": "2026-10-18",
+      "title": "Fairness-corrected baseline",
+      "source": "2026-10-18/fairness-corrected",
+      "legacy_source": "2026-10-18-fairness-corrected",
+      "status": "Completed",
+      "warning": "Short diagnostic timings; do not attribute every difference from older runs to the harness fix.",
+      "cases": 286,
+      "libraries": 11,
+      "machine": "AMD EPYC 9V74 80-Core Processor",
+      "completed_utc": "2026-10-18T11:32:14Z",
+      "evidence_sha256": {
+        "jmh.json": "24f13f3b305600093db83e84609bc61956902a269cc0823695d74bc85a0413c2",
+        "summary.csv": "5fa5f2b7d1647910c68c253d71606873a6dcc37bd69fb8c59852cc2290293780"
+      }
+    },
+    {
+      "id": "updated-libraries-baseline",
+      "date": "2026-10-18",
+      "title": "Updated-library baseline",
+      "source": "2026-10-18/updated-libraries-baseline",
+      "legacy_source": "2026-10-18-latest",
+      "status": "Completed",
+      "warning": "Short measurements on a shared VM; inspect confidence intervals.",
+      "cases": 286,
+      "libraries": 11,
+      "machine": "AMD EPYC 9V74 80-Core Processor",
+      "completed_utc": "2026-10-18T11:55:54Z",
+      "evidence_sha256": {
+        "jmh.json": "b7bc96395ac465e1943a8f986ed2993f5ddc850811563f2db74c9102994988be",
+        "summary.csv": "73d729b08e93c88f88fdf13478facba75fcf18a7378cbb379e63cd4fd450f923"
+      }
+    },
+    {
+      "id": "large-1thread",
+      "date": "2026-10-18",
+      "title": "Large matrices \u2014 one requested thread",
+      "source": "2026-10-18/large-1thread",
+      "legacy_source": "2026-10-18-latest-large-1thread",
+      "status": "Completed",
+      "warning": "Requested native thread counts were not independently audited.",
+      "cases": 40,
+      "libraries": 4,
+      "machine": "AMD EPYC 9V74 80-Core Processor",
+      "completed_utc": "2026-10-18T12:11:37Z",
+      "evidence_sha256": {
+        "jmh.json": "9be3b99497de88586c4e4cd075a7f5d53c95156e95b4383425410be2fa1b0a1f",
+        "summary.csv": "c91eadd3edbf96dbcc8b1943317ba0cca5071be66d7fac51e33b58d336c89dc0"
+      }
+    },
+    {
+      "id": "large-4threads",
+      "date": "2026-10-18",
+      "title": "Large matrices \u2014 four requested threads",
+      "source": "2026-10-18/large-4threads",
+      "legacy_source": "2026-10-18-latest-large-4threads",
+      "status": "Completed",
+      "warning": "A four-thread request does not imply every library executes in parallel.",
+      "cases": 40,
+      "libraries": 4,
+      "machine": "AMD EPYC 9V74 80-Core Processor",
+      "completed_utc": "2026-10-18T12:06:24Z",
+      "evidence_sha256": {
+        "jmh.json": "7f7b7729571e37fdf72c1f17465f73b01491457695e88e29afffde2b06604028",
+        "summary.csv": "119126b6a7fd74edf55c7ca6454b20338678fa9e3cfe00a95697dac5521ccf15"
+      }
+    },
+    {
+      "id": "rectangular",
+      "date": "2026-10-18",
+      "title": "Rectangular multiplication",
+      "source": "2026-10-18/rectangular",
+      "legacy_source": "2026-10-18-latest-rectangular",
+      "status": "Completed",
+      "warning": "Separate four-library multiplication track; short diagnostic measurements.",
+      "cases": 16,
+      "libraries": 4,
+      "machine": "AMD EPYC 9V74 80-Core Processor",
+      "completed_utc": "2026-10-18T12:02:22Z",
+      "evidence_sha256": {
+        "jmh.json": "e6c73da751a3e1dc8c72bec39e24ccaac040bb93e6f378faab040a6c8312d3ef",
+        "summary.csv": "23c2879b75bb6577f69e199d1a84e488bdaff0f37ffcd421aeb601877d760edf"
+      }
+    },
+    {
+      "id": "2000-1thread",
+      "date": "2026-10-18",
+      "title": "2000-square \u2014 one requested thread",
+      "source": "2026-10-18/2000-1thread",
+      "legacy_source": "2026-10-18-2000-1thread",
+      "status": "Completed",
+      "warning": "Requested native thread counts were not independently audited.",
+      "cases": 20,
+      "libraries": 4,
+      "machine": "AMD EPYC 9V74 80-Core Processor",
+      "completed_utc": "2026-10-18T21:47:33Z",
+      "evidence_sha256": {
+        "jmh.json": "82e39ca9f346440325e5d374cf413eb9af74da81737780e9b6a1f400cef00e5a",
+        "summary.csv": "295014fae4640c01e5385a53983ca4e7e2a892ad26b4c32d3f991a75e446c618"
+      }
+    },
+    {
+      "id": "2000-4thread",
+      "date": "2026-10-18",
+      "title": "2000-square \u2014 four requested threads",
+      "source": "2026-10-18/2000-4thread",
+      "legacy_source": "2026-10-18-2000-4thread",
+      "status": "Completed",
+      "warning": "A four-thread request does not imply every library executes in parallel.",
+      "cases": 20,
+      "libraries": 4,
+      "machine": "AMD EPYC 9V74 80-Core Processor",
+      "completed_utc": "2026-10-18T22:12:25Z",
+      "evidence_sha256": {
+        "jmh.json": "8642234faaf75f67e1bd07ce3220dcc0041a210f825c00767bb2aaae4fac1973",
+        "summary.csv": "1a3c7d374203ef2f50aaaba8c0873391af67aa252d03114dbfbc5163d11e74af"
+      }
+    },
+    {
+      "id": "windows-082238Z",
+      "date": "2026-10-20",
+      "title": "Windows full suite \u2014 08:22:38 UTC",
+      "source": "2026-10-20/windows-082238Z",
+      "legacy_source": "2026-10-20-windows-public",
+      "status": "Completed and validated",
+      "warning": "NM Dev 1.2.6; excludes the newer machine-capacity and Commons block cases. Native worker counts were not independently audited.",
+      "cases": 660,
+      "libraries": 11,
+      "machine": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+      "completed_utc": "2026-10-20T08:22:38.148289Z",
+      "evidence_sha256": {
+        "jmh.json": "3f381c637c5f76838b78c26be856ffa62931be7dc094f9d1419df65b965f5175",
+        "summary.csv": "b6711b4e2e2af3e1bbae9c06444aebb95bc18c5f72a1c4750a6e828cbbd6cf2d"
+      }
+    }
+  ]
+}

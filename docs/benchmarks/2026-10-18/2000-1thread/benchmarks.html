@@ -1,0 +1,142 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Interactive benchmark explorer — NM Dev</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}fieldset{background:white;border:1px solid #cbd6df;border-radius:10px;margin:20px 0;padding:16px}legend{font-weight:700;font-size:1.15em}.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}.choices label{display:flex;align-items:center;gap:8px;padding:7px;border:1px solid #dce3e8;border-radius:6px;cursor:pointer}.choices input{width:18px;height:18px;accent-color:#126c78}.swatch{width:11px;height:11px;border-radius:50%;flex-shrink:0}.toolbar{display:flex;gap:16px;flex-wrap:wrap;align-items:end;margin:14px 0}.toolbar label{display:flex;flex-direction:column;gap:4px}button,select,input{font:inherit}button,select{padding:8px 12px}button{cursor:pointer}input[type=text]{padding:8px;width:min(100%,800px);box-sizing:border-box}section{background:white;border:1px solid #dbe2e8;border-radius:12px;padding:16px;margin:24px 0}.plot{overflow-x:auto}.plot svg{width:100%;min-width:720px;height:auto;display:block}.plot circle{cursor:help}.plot circle:focus{outline:2px solid #111}#tooltip{position:fixed;z-index:10;pointer-events:none;white-space:pre-line;max-width:min(440px,calc(100vw - 24px));background:#102a38;color:white;padding:12px 16px;border-radius:8px;box-shadow:0 4px 20px #0004;font-size:14px;line-height:1.5}#selection-status{font-weight:600}.hint{font-size:.9em;color:#435766}[hidden]{display:none!important}</style></head><body><main><nav aria-label="Site navigation"><a href="../../../index.html">Home</a><a href="../../../getting-started.html">Getting Started</a><a href="../../../tutorials.html">Tutorials</a><a href="../../../benchmarks.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><nav aria-label="Run navigation"><a href="index.html">Run overview</a><a href="results.html">Results and evidence</a><a href="../../../benchmarks/index.html">All dates</a></nav><h1>NM Dev benchmark explorer</h1><h1>2026-10-18 — 2000-square — one requested thread</h1>
+<p><strong>Completed</strong> · 20 cases · 4 libraries.</p>
+<p>AMD EPYC 9V74 80-Core Processor</p>
+<p>Requested native thread counts were not independently audited.</p>
+<p>Recorded completion: <strong>2026-10-18T21:47:33Z</strong>. Run IDs and dates are permanent; profiles from different machines are never merged.</p>
+<p><a href="../../../benchmarks/index.html">All historical runs</a> · <a href="../index.html">This date</a> · <a href="https://github.com/nmltd/nmdev-examples/tree/main/benchmark/results/2026-10-18/2000-1thread">Saved files on GitHub</a></p><p>Compare saved measurements from 2026-10-18/2000-1thread. Hover, tap or keyboard-focus a point for timing, uncertainty and backend details.</p><p class="hint">Lower values mean less time. Both modes use a logarithmic horizontal axis. Ratios are ratios of measured means, without confidence intervals for the ratios. Results describe the recorded machine and backend configurations, not universal performance rankings.</p>
+<fieldset><legend>Chart settings</legend><div class="toolbar"><label>Timing display<select id="mode"><option value="relative">Relative time</option><option value="absolute">Milliseconds per operation</option></select></label><label>Reference library<select id="reference"><option value="NMDEV">NM Dev 1.2.6</option><option value="EJML">EJML 0.46.1</option><option value="JBLAS">jblas 1.2.5 (native)</option><option value="OJALGO">ojAlgo 57.5.0</option></select></label><label>Axis range<select id="axis"><option value="fixed">All benchmark data (fixed)</option><option value="visible">Fit selected results</option></select></label><button id="reset" type="button">Reset settings</button></div><p class="hint">Selections are saved in this browser. A shared link takes priority over saved settings. Hiding the reference library does not change the ratios.</p></fieldset>
+<fieldset id="library-filters"><legend>Visible libraries</legend><div class="choices"><label><input type="checkbox" name="library" value="NMDEV" checked><span class="swatch" style="background:#126c78"></span>NM Dev 1.2.6</label><label><input type="checkbox" name="library" value="EJML" checked><span class="swatch" style="background:#4678ba"></span>EJML 0.46.1</label><label><input type="checkbox" name="library" value="JBLAS" checked><span class="swatch" style="background:#6750a4"></span>jblas 1.2.5 (native)</label><label><input type="checkbox" name="library" value="OJALGO" checked><span class="swatch" style="background:#7a756e"></span>ojAlgo 57.5.0</label></div><div class="toolbar"><button id="show-all" type="button">Show all</button><button id="hide-all" type="button">Hide all</button></div></fieldset>
+<fieldset><legend>Visible operations</legend><div class="toolbar"><label>Operation group<select id="operation-group"><option value="custom">Choose individually</option><option value="all">All operations</option><option value="basic">Basic matrix operations</option><option value="decomposition">Decompositions</option><option value="systems">Determinants, inverses and solves</option></select></label><button id="all-operations" type="button">Show all operations</button><button id="no-operations" type="button">Hide all operations</button></div><div class="choices"><label><input type="checkbox" name="operation" value="multiplication" checked>multiplication</label><label><input type="checkbox" name="operation" value="cholesky" checked>cholesky</label><label><input type="checkbox" name="operation" value="lu" checked>lu</label><label><input type="checkbox" name="operation" value="qr" checked>qr</label><label><input type="checkbox" name="operation" value="solve" checked>solve</label></div></fieldset>
+<div class="toolbar"><button id="share" type="button">Copy comparison link</button><button id="export-csv" type="button">Download selected CSV</button></div><label for="share-url">Comparison link</label><input type="text" id="share-url" readonly><p id="selection-status" role="status" aria-live="polite"></p><p id="action-status" role="status" aria-live="polite"></p><div id="charts"></div><p><a href="results.html">Results tables</a> · <a href="../../../methodology.html">Methodology</a> · <a href="../../../libraries.html">Versions and backends</a> · <a href="../../../reproduce.html">Reproduce</a></p><p class="hint">SVG downloads contain the selected chart, labels, units and run identifier. CSV exports include original millisecond timings, confidence limits and the selected reference ratios. All calculations and exports use the saved measurements; no benchmark is run in your browser.</p></main><div id="tooltip" role="tooltip" hidden></div><script type="application/json" id="benchmark-data">{"run":"2026-10-18/2000-1thread","libraries":[{"id":"NMDEV","label":"NM Dev 1.2.6","color":"#126c78","backend":"Validated combined obfuscated 1.2.6 binary; ActiveProcessorCount=1; exact hash and source proof in validated-nmdev-artifact.json"},{"id":"EJML","label":"EJML 0.46.1","color":"#4678ba","backend":"EJML 0.46.1 ejml-ddense CommonOps_DDRM and standard decomposition factories; these adapter API paths do not request EJML concurrent kernels"},{"id":"JBLAS","label":"jblas 1.2.5 (native)","color":"#6750a4","backend":"Bundled native jblas 1.2.5; native thread environment requests 1; actual native worker counts not independently audited"},{"id":"OJALGO","label":"ojAlgo 57.5.0","color":"#7a756e","backend":"ojAlgo 57.5.0 R064Store/decomposition factories; configured thread limit=1; output factors materialized inside timing"}],"operations":["multiplication","cholesky","lu","qr","solve"],"sizes":[2000],"points":[{"library":"NMDEV","size":2000,"operation":"multiplication","mean":5226.4907015,"low":5085.05017024157,"high":5367.931232758429,"error":141.44053125842947,"forks":2,"iterations":6},{"library":"NMDEV","size":2000,"operation":"lu","mean":943.7365923333332,"low":754.5408954069733,"high":1132.932289259693,"error":189.19569692635991,"forks":2,"iterations":6},{"library":"NMDEV","size":2000,"operation":"cholesky","mean":1190.5133205,"low":1097.5137866958112,"high":1283.5128543041887,"error":92.99953380418889,"forks":2,"iterations":6},{"library":"NMDEV","size":2000,"operation":"qr","mean":7084.875217666668,"low":6483.729771485393,"high":7686.020663847942,"error":601.1454461812745,"forks":2,"iterations":6},{"library":"NMDEV","size":2000,"operation":"solve","mean":957.0650571666666,"low":884.2396067264549,"high":1029.8905076068784,"error":72.82545044021177,"forks":2,"iterations":6},{"library":"EJML","size":2000,"operation":"multiplication","mean":5188.540312,"low":4031.5519405357477,"high":6345.528683464252,"error":1156.9883714642524,"forks":2,"iterations":6},{"library":"EJML","size":2000,"operation":"lu","mean":2483.923336166667,"low":2244.400467273529,"high":2723.446205059805,"error":239.522868893138,"forks":2,"iterations":6},{"library":"EJML","size":2000,"operation":"cholesky","mean":378.9749006666666,"low":167.57008990515777,"high":590.3797114281754,"error":211.40481076150883,"forks":2,"iterations":6},{"library":"EJML","size":2000,"operation":"qr","mean":6633.214128833333,"low":5802.441066590584,"high":7463.987191076082,"error":830.7730622427491,"forks":2,"iterations":6},{"library":"EJML","size":2000,"operation":"solve","mean":2666.6681975,"low":2102.6280397784712,"high":3230.708355221529,"error":564.0401577215289,"forks":2,"iterations":6},{"library":"OJALGO","size":2000,"operation":"multiplication","mean":4691.847503333333,"low":4198.523757497614,"high":5185.171249169053,"error":493.32374583572,"forks":2,"iterations":6},{"library":"OJALGO","size":2000,"operation":"lu","mean":1914.6864848333335,"low":1234.6504316662963,"high":2594.7225380003706,"error":680.0360531670372,"forks":2,"iterations":6},{"library":"OJALGO","size":2000,"operation":"cholesky","mean":593.4547675,"low":432.96482101249535,"high":753.9447139875047,"error":160.48994648750465,"forks":2,"iterations":6},{"library":"OJALGO","size":2000,"operation":"qr","mean":3907.3198465000005,"low":3031.8371846088444,"high":4782.802508391157,"error":875.4826618911562,"forks":2,"iterations":6},{"library":"OJALGO","size":2000,"operation":"solve","mean":1966.768538,"low":1606.4965193757532,"high":2327.0405566242466,"error":360.27201862424675,"forks":2,"iterations":6},{"library":"JBLAS","size":2000,"operation":"multiplication","mean":879.2667006666667,"low":841.677964215373,"high":916.8554371179604,"error":37.58873645129365,"forks":2,"iterations":6},{"library":"JBLAS","size":2000,"operation":"lu","mean":362.65408983333333,"low":326.51988650989824,"high":398.7882931567684,"error":36.134203323435095,"forks":2,"iterations":6},{"library":"JBLAS","size":2000,"operation":"cholesky","mean":154.2832630833333,"low":139.06489492943453,"high":169.5016312372321,"error":15.21836815389879,"forks":2,"iterations":6},{"library":"JBLAS","size":2000,"operation":"qr","mean":1743.0734784999997,"low":1466.8423238062055,"high":2019.304633193794,"error":276.23115469379434,"forks":2,"iterations":6},{"library":"JBLAS","size":2000,"operation":"solve","mean":294.00861349999997,"low":258.6689562039633,"high":329.3482707960366,"error":35.339657296036634,"forks":2,"iterations":6}]}</script><script>/* Interactive views of saved JMH measurements. No external chart dependency. */
+(()=>{
+'use strict';
+const data=JSON.parse(document.getElementById('benchmark-data').textContent);
+const $=id=>document.getElementById(id), ns='http://www.w3.org/2000/svg';
+const libraryIds=data.libraries.map(l=>l.id), operationIds=data.operations;
+const byLib=new Map(data.libraries.map(l=>[l.id,l]));
+const lookup=new Map(data.points.map(p=>[[p.library,p.size,p.operation].join('|'),p]));
+const defaults=()=>({libraries:[...libraryIds],operations:[...operationIds],mode:'relative',reference:'NMDEV',axis:'fixed'});
+const storageKey='nmdev-benchmark-controls-v1';
+function clean(value){
+ const base=defaults(); if(!value||typeof value!=='object')return base;
+ return {libraries:Array.isArray(value.libraries)?libraryIds.filter(x=>value.libraries.includes(x)):base.libraries,
+ operations:Array.isArray(value.operations)?operationIds.filter(x=>value.operations.includes(x)):base.operations,
+ mode:['relative','absolute'].includes(value.mode)?value.mode:base.mode,
+ reference:libraryIds.includes(value.reference)?value.reference:base.reference,
+ axis:['fixed','visible'].includes(value.axis)?value.axis:base.axis};
+}
+let state=defaults();
+try{state=clean(JSON.parse(localStorage.getItem(storageKey)))}catch(_){}
+const query=new URLSearchParams(location.search);
+if(['libs','ops','mode','ref','axis'].some(k=>query.has(k))){
+ const from=defaults();
+ if(query.has('libs'))from.libraries=query.get('libs').split(',');
+ if(query.has('ops'))from.operations=query.get('ops').split(',');
+ if(query.has('mode'))from.mode=query.get('mode');
+ if(query.has('ref'))from.reference=query.get('ref');
+ if(query.has('axis'))from.axis=query.get('axis');
+ state=clean(from);
+}
+const libraryBoxes=[...document.querySelectorAll('input[name=library]')];
+const operationBoxes=[...document.querySelectorAll('input[name=operation]')];
+function apply(){
+ libraryBoxes.forEach(b=>b.checked=state.libraries.includes(b.value));
+ operationBoxes.forEach(b=>b.checked=state.operations.includes(b.value));
+ $('mode').value=state.mode;$('reference').value=state.reference;$('axis').value=state.axis;
+ $('operation-group').value='custom';
+}
+function selection(){return data.points.filter(p=>state.libraries.includes(p.library)&&state.operations.includes(p.operation))}
+function ratio(p){return p.mean/lookup.get([state.reference,p.size,p.operation].join('|')).mean}
+function value(p){return state.mode==='absolute'?p.mean:ratio(p)}
+function format(x){return Number(x).toPrecision(6).replace(/\.?0+(?=e|$)/,'')}
+function make(tag,attrs,text){const node=document.createElementNS(ns,tag);Object.entries(attrs||{}).forEach(([k,v])=>node.setAttribute(k,String(v)));if(text!==undefined)node.textContent=text;return node}
+function label(svg,x,y,text,attrs){svg.append(make('text',{x,y,fill:'#172b3a','font-family':'system-ui,sans-serif','font-size':13,...attrs},text))}
+let activePoint=null;
+function hideTooltip(){activePoint=null;$('tooltip').hidden=true}
+function showTooltip(point,x,y){
+ activePoint=point;const tooltip=$('tooltip');tooltip.textContent=point.dataset.tooltip;tooltip.hidden=false;
+ tooltip.style.left=Math.max(12,Math.min(x+14,innerWidth-tooltip.offsetWidth-12))+'px';
+ tooltip.style.top=Math.max(12,Math.min(y+14,innerHeight-tooltip.offsetHeight-12))+'px';
+}
+function dimensions(size){return typeof size==='number'?`${size} × ${size}`:String(size).replaceAll('x',' × ')}
+function tooltip(p){const lib=byLib.get(p.library);return `${lib.label} · ${p.operation} · ${dimensions(p.size)}\nMean: ${format(p.mean)} ms/op\n99.9% confidence interval: [${format(p.low)}, ${format(p.high)}] ms/op\nJMH error half-width: ±${format(p.error)} ms/op\nTime / ${byLib.get(state.reference).label}: ${format(ratio(p))}×\n${p.forks} JVM forks · ${p.iterations} measured iteration means\nBackend: ${lib.backend}`}
+function draw(size,selected){
+ const visible=selected.filter(p=>p.size===size), ops=operationIds.filter(x=>state.operations.includes(x));
+ const section=document.createElement('section'), heading=document.createElement('h2');heading.textContent=`${dimensions(size)} matrices`;section.append(heading);
+ const download=document.createElement('button');download.type='button';download.textContent=`Download ${dimensions(size)} SVG`;section.append(download);
+ if(!visible.length){const empty=document.createElement('p');empty.textContent='No results selected. Select at least one library and operation.';section.append(empty);download.disabled=true;$('charts').append(section);return}
+ const reference=byLib.get(state.reference).label, rowHeight=Math.max(54,state.libraries.length*7);
+ const width=1120,left=170,right=32,top=85+Math.ceil(state.libraries.length/3)*22,bottom=90,height=top+ops.length*rowHeight+bottom;
+ const svg=make('svg',{xmlns:ns,viewBox:`0 0 ${width} ${height}`,role:'group','aria-label':`${dimensions(size)} benchmark chart`});
+ svg.append(make('rect',{width,height,fill:'white'}));
+ svg.append(make('title',{},`${data.run}: ${dimensions(size)}, ${state.mode==='absolute'?'milliseconds per operation':'time relative to '+reference}`));
+ label(svg,20,26,`${dimensions(size)} matrices · ${state.mode==='absolute'?'milliseconds per operation':'time / '+reference}`,{'font-size':17,'font-weight':700});
+ label(svg,20,49,`Run ${data.run} · lower is faster · logarithmic axis`,{'font-size':12});
+ state.libraries.forEach((id,i)=>{const x=20+(i%3)*360,y=71+Math.floor(i/3)*22;svg.append(make('circle',{cx:x+5,cy:y-4,r:4.5,fill:byLib.get(id).color}));label(svg,x+16,y,byLib.get(id).label,{'font-size':12})});
+ const population=state.axis==='visible'?visible:data.points.filter(p=>p.size===size);
+ const values=population.map(value);if(state.mode==='relative')values.push(1);
+ let lo=Math.log10(Math.min(...values)),hi=Math.log10(Math.max(...values));
+ if(hi-lo<0.25){lo-=0.25;hi+=0.25}const pad=(hi-lo)*0.08;lo-=pad;hi+=pad;
+ const xpos=v=>left+(Math.log10(v)-lo)/(hi-lo)*(width-left-right);
+ const floor=top+ops.length*rowHeight;
+ for(let exponent=Math.ceil(lo);exponent<=Math.floor(hi);exponent++){
+  const tick=10**exponent,x=xpos(tick);
+  svg.append(make('line',{x1:x,y1:top-10,x2:x,y2:floor,stroke:'#dfe5e9','stroke-width':1}));
+  label(svg,x,floor+25,Math.abs(exponent)>2?'1e'+exponent:String(Number(tick.toPrecision(4))),{'text-anchor':'middle'});
+ }
+ if(state.mode==='relative')svg.append(make('line',{x1:xpos(1),y1:top-10,x2:xpos(1),y2:floor,stroke:'#334b59','stroke-width':1.5,'stroke-dasharray':'5 4'}));
+ ops.forEach((op,i)=>{
+  const center=top+(i+0.5)*rowHeight;
+  label(svg,left-12,center+4,op,{'text-anchor':'end'});
+  svg.append(make('line',{x1:left,y1:center,x2:width-right,y2:center,stroke:'#f0f3f5'}));
+  state.libraries.forEach((library,j)=>{
+   const p=lookup.get([library,size,op].join('|')), y=center+(j-(state.libraries.length-1)/2)*7;
+   const dot=make('circle',{cx:xpos(value(p)),cy:y,r:4.5,fill:byLib.get(library).color,stroke:'white','stroke-width':0.6,tabindex:0,role:'img','aria-label':tooltip(p),'data-library':library,'data-operation':op,'data-size':size,'data-tooltip':tooltip(p)});
+   dot.append(make('title',{},tooltip(p)));svg.append(dot);
+  });
+ });
+ label(svg,(left+width-right)/2,height-26,state.mode==='absolute'?'Mean time (ms/op, log scale)':'Time / '+reference+' (log scale)',{'text-anchor':'middle'});
+ label(svg,20,height-7,'Recorded machine · ratios of means · exact versions, backends and uncertainty in point tooltips',{'font-size':11});
+ const wrap=document.createElement('div');wrap.className='plot';wrap.append(svg);section.append(wrap);$('charts').append(section);
+ download.addEventListener('click',()=>{
+  const clone=svg.cloneNode(true);clone.querySelectorAll('circle').forEach(p=>{p.removeAttribute('tabindex')});
+  save(new XMLSerializer().serializeToString(clone),'image/svg+xml',`nmdev-${size}-${state.mode}.svg`);
+ });
+}
+function comparisonUrl(){const url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('libs',state.libraries.join(','));url.searchParams.set('ops',state.operations.join(','));url.searchParams.set('mode',state.mode);url.searchParams.set('ref',state.reference);url.searchParams.set('axis',state.axis);return url.href}
+function render(){
+ hideTooltip();$('charts').replaceChildren();const selected=selection();data.sizes.forEach(size=>draw(size,selected));
+ $('selection-status').textContent=`${state.libraries.length} of ${libraryIds.length} libraries · ${state.operations.length} of ${operationIds.length} operations · ${selected.length} points shown`;
+ $('share-url').value=comparisonUrl();$('export-csv').disabled=!selected.length;
+ try{localStorage.setItem(storageKey,JSON.stringify(state))}catch(_){}
+}
+function changed(){state=clean({libraries:libraryBoxes.filter(b=>b.checked).map(b=>b.value),operations:operationBoxes.filter(b=>b.checked).map(b=>b.value),mode:$('mode').value,reference:$('reference').value,axis:$('axis').value});render()}
+[...libraryBoxes,...operationBoxes,$('mode'),$('reference'),$('axis')].forEach(control=>control.addEventListener('change',changed));
+function setLibraries(all){state.libraries=all?[...libraryIds]:[];apply();render()}
+$('show-all').addEventListener('click',()=>setLibraries(true));$('hide-all').addEventListener('click',()=>setLibraries(false));
+$('all-operations').addEventListener('click',()=>{state.operations=[...operationIds];apply();render()});
+$('no-operations').addEventListener('click',()=>{state.operations=[];apply();render()});
+const groups={all:operationIds,basic:['transpose','addition','scale','multiplication'],decomposition:['cholesky','lu','qr','eigenSymmetric','svd'],systems:['determinant','inverse','inverseSPD','solve']};
+$('operation-group').addEventListener('change',()=>{const name=$('operation-group').value;if(groups[name]){state.operations=operationIds.filter(op=>groups[name].includes(op));operationBoxes.forEach(b=>b.checked=state.operations.includes(b.value));render()}});
+operationBoxes.forEach(box=>box.addEventListener('change',()=>{$('operation-group').value='custom'}));
+$('reset').addEventListener('click',()=>{state=defaults();apply();render();$('action-status').textContent='Default settings restored.'});
+$('share').addEventListener('click',async()=>{const url=comparisonUrl();try{await navigator.clipboard.writeText(url);$('action-status').textContent='Comparison link copied.'}catch(_){$('share-url').focus();$('share-url').select();$('action-status').textContent='Copy the selected comparison link with Ctrl+C (Command+C on Mac).'}});
+function save(content,type,name){const url=URL.createObjectURL(new Blob([content],{type}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('action-status').textContent=`Downloaded ${name}`}
+function csvCell(value){return '"'+String(value).replaceAll('"','""')+'"'}
+$('export-csv').addEventListener('click',()=>{
+ const columns=['run','size','operation','library','version','backend','mean_ms_per_op','ci_99_9_low_ms','ci_99_9_high_ms','jmh_error_ms','reference','ratio_to_reference','forks','iteration_means'];
+ const lines=selection().map(p=>[data.run,p.size,p.operation,p.library,byLib.get(p.library).label,byLib.get(p.library).backend,p.mean,p.low,p.high,p.error,state.reference,ratio(p),p.forks,p.iterations]);
+ save([columns,...lines].map(row=>row.map(csvCell).join(',')).join('\r\n')+'\r\n','text/csv;charset=utf-8','nmdev-selected-results.csv');
+});
+$('charts').addEventListener('pointerover',e=>{const p=e.target.closest('[data-tooltip]');if(p)showTooltip(p,e.clientX,e.clientY)});
+$('charts').addEventListener('pointermove',e=>{const p=e.target.closest('[data-tooltip]');if(p&&activePoint===p)showTooltip(p,e.clientX,e.clientY)});
+$('charts').addEventListener('pointerout',e=>{if(e.target.closest('[data-tooltip]'))hideTooltip()});
+$('charts').addEventListener('focusin',e=>{const p=e.target.closest('[data-tooltip]');if(p){const r=p.getBoundingClientRect();showTooltip(p,r.right,r.top)}});
+$('charts').addEventListener('focusout',hideTooltip);
+$('charts').addEventListener('click',e=>{const p=e.target.closest('[data-tooltip]');if(p){showTooltip(p,e.clientX,e.clientY);e.stopPropagation()}});
+document.addEventListener('click',e=>{if(!e.target.closest('[data-tooltip]'))hideTooltip()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hideTooltip()});
+window.addEventListener('resize',hideTooltip);window.addEventListener('scroll',hideTooltip,{passive:true});
+apply();render();
+})();
+</script></body></html>

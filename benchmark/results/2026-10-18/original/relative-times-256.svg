@@ -1,0 +1,896 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="576pt" viewBox="0 0 864 576" version="1.1">
+ <metadata>
+  <rdf:RDF>
+   <ns2:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <ns2:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </ns2:Agent>
+    </dc:creator>
+   </ns2:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 576  L 864 576  L 864 0  L 0 0  z " style="fill: #ffffff" />
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 99.7 449.4528  L 853.2 449.4528  L 853.2 50.856  L 99.7 50.856  z " style="fill: #ffffff" />
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 630.761571 449.4528  L 630.761571 50.856  " clip-path="url(#p0e3e1d08b0)" style="fill: none; stroke: #b0b0b0; stroke-opacity: 0.2; stroke-width: 0.8; stroke-linecap: square" />
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="mcfc977be52" d="M 0 0  L 0 3.5  " style="stroke: #000000; stroke-width: 0.8" />
+      </defs>
+      <g>
+       <use xlink:href="#mcfc977be52" x="630.761571" y="449.4528" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_1">
+      
+      <g transform="translate(621.961571 464.051238)">
+       <text>
+        <tspan x="0" y="-0.976562" style="font-size: 10px; font-family: 'DejaVu Sans'">1</tspan>
+        <tspan x="6.362305" y="-0.976562" style="font-size: 10px; font-family: 'DejaVu Sans'">0</tspan>
+        <tspan x="12.820312" y="-4.804688" style="font-size: 7px; font-family: 'DejaVu Sans'">0</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <defs>
+       <path id="m5103a1ef31" d="M 0 0  L 0 2  " style="stroke: #000000; stroke-width: 0.6" />
+      </defs>
+      <g>
+       <use xlink:href="#m5103a1ef31" x="102.935887" y="449.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+     <g id="text_2">
+      
+      <g transform="translate(81.885887 462.451237)">
+       <text>
+        <tspan x="0" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">2</tspan>
+        <tspan x="8.310547" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">×</tspan>
+        <tspan x="18.637695" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">1</tspan>
+        <tspan x="25" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">0</tspan>
+        <tspan x="31.458008" y="-3.892188" style="font-size: 7px; font-family: 'DejaVu Sans'">−</tspan>
+        <tspan x="37.323242" y="-3.892188" style="font-size: 7px; font-family: 'DejaVu Sans'">1</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m5103a1ef31" x="235.91082" y="449.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+     <g id="text_3">
+      
+      <g transform="translate(214.86082 462.451237)">
+       <text>
+        <tspan x="0" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">3</tspan>
+        <tspan x="8.310547" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">×</tspan>
+        <tspan x="18.637695" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">1</tspan>
+        <tspan x="25" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">0</tspan>
+        <tspan x="31.458008" y="-3.892188" style="font-size: 7px; font-family: 'DejaVu Sans'">−</tspan>
+        <tspan x="37.323242" y="-3.892188" style="font-size: 7px; font-family: 'DejaVu Sans'">1</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m5103a1ef31" x="330.258036" y="449.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+     <g id="text_4">
+      
+      <g transform="translate(309.208036 462.451237)">
+       <text>
+        <tspan x="0" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">4</tspan>
+        <tspan x="8.310547" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">×</tspan>
+        <tspan x="18.637695" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">1</tspan>
+        <tspan x="25" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">0</tspan>
+        <tspan x="31.458008" y="-3.892188" style="font-size: 7px; font-family: 'DejaVu Sans'">−</tspan>
+        <tspan x="37.323242" y="-3.892188" style="font-size: 7px; font-family: 'DejaVu Sans'">1</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m5103a1ef31" x="403.439422" y="449.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#m5103a1ef31" x="463.232968" y="449.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+     <g id="text_5">
+      
+      <g transform="translate(442.182968 462.451237)">
+       <text>
+        <tspan x="0" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">6</tspan>
+        <tspan x="8.310547" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">×</tspan>
+        <tspan x="18.637695" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">1</tspan>
+        <tspan x="25" y="-0.064063" style="font-size: 10px; font-family: 'DejaVu Sans'">0</tspan>
+        <tspan x="31.458008" y="-3.892188" style="font-size: 7px; font-family: 'DejaVu Sans'">−</tspan>
+        <tspan x="37.323242" y="-3.892188" style="font-size: 7px; font-family: 'DejaVu Sans'">1</tspan>
+       </text>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m5103a1ef31" x="513.787692" y="449.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#m5103a1ef31" x="557.580185" y="449.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="xtick_9">
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m5103a1ef31" x="596.207901" y="449.4528" style="stroke: #000000; stroke-width: 0.6" />
+      </g>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="476.45" y="477.729362" transform="rotate(-0 476.45 477.729362)">Time / NM Dev time (log scale; lower is faster)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_11">
+      <defs>
+       <path id="m89b5f51829" d="M 0 0  L -3.5 0  " style="stroke: #000000; stroke-width: 0.8" />
+      </defs>
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="77.189852" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="80.989071" transform="rotate(-0 92.7 80.989071)">transpose</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="106.017277" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="109.816496" transform="rotate(-0 92.7 109.816496)">addition</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="134.844702" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="138.64392" transform="rotate(-0 92.7 138.64392)">scale</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="163.672126" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="167.471345" transform="rotate(-0 92.7 167.471345)">multiplication</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="192.499551" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="196.29877" transform="rotate(-0 92.7 196.29877)">determinant</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="221.326975" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="225.126194" transform="rotate(-0 92.7 225.126194)">inverse</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_17">
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="250.1544" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="253.953619" transform="rotate(-0 92.7 253.953619)">inverseSPD</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="278.981825" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_14">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="282.781043" transform="rotate(-0 92.7 282.781043)">cholesky</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_19">
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="307.809249" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_15">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="311.608468" transform="rotate(-0 92.7 311.608468)">lu</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_20">
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="336.636674" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_16">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="340.435893" transform="rotate(-0 92.7 340.435893)">qr</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_21">
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="365.464098" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_17">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="369.263317" transform="rotate(-0 92.7 369.263317)">eigenSymmetric</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_22">
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="394.291523" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_18">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="398.090742" transform="rotate(-0 92.7 398.090742)">svd</text>
+     </g>
+    </g>
+    <g id="ytick_13">
+     <g id="line2d_23">
+      <g>
+       <use xlink:href="#m89b5f51829" x="99.7" y="423.118948" style="stroke: #000000; stroke-width: 0.8" />
+      </g>
+     </g>
+     <g id="text_19">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="92.7" y="426.918166" transform="rotate(-0 92.7 426.918166)">solve</text>
+     </g>
+    </g>
+   </g>
+   <g id="line2d_24">
+    <path d="M 630.761571 449.4528  L 630.761571 50.856  " clip-path="url(#p0e3e1d08b0)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333" />
+   </g>
+   <g id="patch_3">
+    <path d="M 99.7 449.4528  L 99.7 50.856  " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square" />
+   </g>
+   <g id="patch_4">
+    <path d="M 853.2 449.4528  L 853.2 50.856  " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square" />
+   </g>
+   <g id="patch_5">
+    <path d="M 99.7 449.4528  L 853.2 449.4528  " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square" />
+   </g>
+   <g id="patch_6">
+    <path d="M 99.7 50.856  L 853.2 50.856  " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square" />
+   </g>
+   <g id="point-256-NMDEV-transpose" data-tooltip="NM Dev 1.2.6-SNAPSHOT · transpose · 256 × 256&#10;Mean: 0.18789 ms/op&#10;99.9% confidence interval: [0.181389, 0.194392] ms/op&#10;JMH error half-width: ±0.0065 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · transpose · 256 × 256&#10;Mean: 0.18789 ms/op&#10;99.9% confidence interval: [0.181389, 0.194392] ms/op&#10;JMH error half-width: ±0.0065 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · transpose · 256 × 256
+Mean: 0.18789 ms/op
+99.9% confidence interval: [0.181389, 0.194392] ms/op
+JMH error half-width: ±0.0065 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><defs>
+     <path id="ma9ea9379bb" d="M 0 3  C 0.795609 3 1.55874 2.683901 2.12132 2.12132  C 2.683901 1.55874 3 0.795609 3 0  C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132  C 1.55874 -2.683901 0.795609 -3 0 -3  C -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132  C -2.683901 -1.55874 -3 -0.795609 -3 0  C -3 0.795609 -2.683901 1.55874 -2.12132 2.12132  C -1.55874 2.683901 -0.795609 3 0 3  z " style="stroke: #126c78" />
+    </defs>
+    <g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="68.974036" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-NMDEV-addition" data-tooltip="NM Dev 1.2.6-SNAPSHOT · addition · 256 × 256&#10;Mean: 0.0675767 ms/op&#10;99.9% confidence interval: [0.0344412, 0.100712] ms/op&#10;JMH error half-width: ±0.0331 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · addition · 256 × 256&#10;Mean: 0.0675767 ms/op&#10;99.9% confidence interval: [0.0344412, 0.100712] ms/op&#10;JMH error half-width: ±0.0331 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · addition · 256 × 256
+Mean: 0.0675767 ms/op
+99.9% confidence interval: [0.0344412, 0.100712] ms/op
+JMH error half-width: ±0.0331 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="97.801461" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-NMDEV-scale" data-tooltip="NM Dev 1.2.6-SNAPSHOT · scale · 256 × 256&#10;Mean: 0.0567217 ms/op&#10;99.9% confidence interval: [0.0494379, 0.0640054] ms/op&#10;JMH error half-width: ±0.00728 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · scale · 256 × 256&#10;Mean: 0.0567217 ms/op&#10;99.9% confidence interval: [0.0494379, 0.0640054] ms/op&#10;JMH error half-width: ±0.00728 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · scale · 256 × 256
+Mean: 0.0567217 ms/op
+99.9% confidence interval: [0.0494379, 0.0640054] ms/op
+JMH error half-width: ±0.00728 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="126.628886" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-NMDEV-multiplication" data-tooltip="NM Dev 1.2.6-SNAPSHOT · multiplication · 256 × 256&#10;Mean: 16.2884 ms/op&#10;99.9% confidence interval: [13.3639, 19.213] ms/op&#10;JMH error half-width: ±2.92 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · multiplication · 256 × 256&#10;Mean: 16.2884 ms/op&#10;99.9% confidence interval: [13.3639, 19.213] ms/op&#10;JMH error half-width: ±2.92 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · multiplication · 256 × 256
+Mean: 16.2884 ms/op
+99.9% confidence interval: [13.3639, 19.213] ms/op
+JMH error half-width: ±2.92 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="155.45631" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-NMDEV-determinant" data-tooltip="NM Dev 1.2.6-SNAPSHOT · determinant · 256 × 256&#10;Mean: 5.08571 ms/op&#10;99.9% confidence interval: [3.27889, 6.89252] ms/op&#10;JMH error half-width: ±1.81 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · determinant · 256 × 256&#10;Mean: 5.08571 ms/op&#10;99.9% confidence interval: [3.27889, 6.89252] ms/op&#10;JMH error half-width: ±1.81 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · determinant · 256 × 256
+Mean: 5.08571 ms/op
+99.9% confidence interval: [3.27889, 6.89252] ms/op
+JMH error half-width: ±1.81 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="184.283735" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-NMDEV-inverse" data-tooltip="NM Dev 1.2.6-SNAPSHOT · inverse · 256 × 256&#10;Mean: 19.8213 ms/op&#10;99.9% confidence interval: [17.2251, 22.4174] ms/op&#10;JMH error half-width: ±2.6 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · inverse · 256 × 256&#10;Mean: 19.8213 ms/op&#10;99.9% confidence interval: [17.2251, 22.4174] ms/op&#10;JMH error half-width: ±2.6 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · inverse · 256 × 256
+Mean: 19.8213 ms/op
+99.9% confidence interval: [17.2251, 22.4174] ms/op
+JMH error half-width: ±2.6 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="213.111159" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-NMDEV-inverseSPD" data-tooltip="NM Dev 1.2.6-SNAPSHOT · inverseSPD · 256 × 256&#10;Mean: 17.841 ms/op&#10;99.9% confidence interval: [15.4153, 20.2667] ms/op&#10;JMH error half-width: ±2.43 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · inverseSPD · 256 × 256&#10;Mean: 17.841 ms/op&#10;99.9% confidence interval: [15.4153, 20.2667] ms/op&#10;JMH error half-width: ±2.43 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · inverseSPD · 256 × 256
+Mean: 17.841 ms/op
+99.9% confidence interval: [15.4153, 20.2667] ms/op
+JMH error half-width: ±2.43 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="241.938584" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-NMDEV-cholesky" data-tooltip="NM Dev 1.2.6-SNAPSHOT · cholesky · 256 × 256&#10;Mean: 1.9216 ms/op&#10;99.9% confidence interval: [1.79529, 2.04791] ms/op&#10;JMH error half-width: ±0.126 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · cholesky · 256 × 256&#10;Mean: 1.9216 ms/op&#10;99.9% confidence interval: [1.79529, 2.04791] ms/op&#10;JMH error half-width: ±0.126 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · cholesky · 256 × 256
+Mean: 1.9216 ms/op
+99.9% confidence interval: [1.79529, 2.04791] ms/op
+JMH error half-width: ±0.126 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="270.766009" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-NMDEV-lu" data-tooltip="NM Dev 1.2.6-SNAPSHOT · lu · 256 × 256&#10;Mean: 5.0601 ms/op&#10;99.9% confidence interval: [2.80329, 7.3169] ms/op&#10;JMH error half-width: ±2.26 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · lu · 256 × 256&#10;Mean: 5.0601 ms/op&#10;99.9% confidence interval: [2.80329, 7.3169] ms/op&#10;JMH error half-width: ±2.26 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · lu · 256 × 256
+Mean: 5.0601 ms/op
+99.9% confidence interval: [2.80329, 7.3169] ms/op
+JMH error half-width: ±2.26 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="299.593433" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-NMDEV-qr" data-tooltip="NM Dev 1.2.6-SNAPSHOT · qr · 256 × 256&#10;Mean: 21.3989 ms/op&#10;99.9% confidence interval: [19.8075, 22.9903] ms/op&#10;JMH error half-width: ±1.59 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · qr · 256 × 256&#10;Mean: 21.3989 ms/op&#10;99.9% confidence interval: [19.8075, 22.9903] ms/op&#10;JMH error half-width: ±1.59 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · qr · 256 × 256
+Mean: 21.3989 ms/op
+99.9% confidence interval: [19.8075, 22.9903] ms/op
+JMH error half-width: ±1.59 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="328.420858" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-NMDEV-eigenSymmetric" data-tooltip="NM Dev 1.2.6-SNAPSHOT · eigenSymmetric · 256 × 256&#10;Mean: 59.6664 ms/op&#10;99.9% confidence interval: [50.6914, 68.6414] ms/op&#10;JMH error half-width: ±8.98 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · eigenSymmetric · 256 × 256&#10;Mean: 59.6664 ms/op&#10;99.9% confidence interval: [50.6914, 68.6414] ms/op&#10;JMH error half-width: ±8.98 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · eigenSymmetric · 256 × 256
+Mean: 59.6664 ms/op
+99.9% confidence interval: [50.6914, 68.6414] ms/op
+JMH error half-width: ±8.98 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="357.248282" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-NMDEV-svd" data-tooltip="NM Dev 1.2.6-SNAPSHOT · svd · 256 × 256&#10;Mean: 107.284 ms/op&#10;99.9% confidence interval: [103.255, 111.313] ms/op&#10;JMH error half-width: ±4.03 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · svd · 256 × 256&#10;Mean: 107.284 ms/op&#10;99.9% confidence interval: [103.255, 111.313] ms/op&#10;JMH error half-width: ±4.03 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · svd · 256 × 256
+Mean: 107.284 ms/op
+99.9% confidence interval: [103.255, 111.313] ms/op
+JMH error half-width: ±4.03 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="386.075707" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-NMDEV-solve" data-tooltip="NM Dev 1.2.6-SNAPSHOT · solve · 256 × 256&#10;Mean: 5.03015 ms/op&#10;99.9% confidence interval: [4.56311, 5.49718] ms/op&#10;JMH error half-width: ±0.467 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="NM Dev 1.2.6-SNAPSHOT · solve · 256 × 256&#10;Mean: 5.03015 ms/op&#10;99.9% confidence interval: [4.56311, 5.49718] ms/op&#10;JMH error half-width: ±0.467 ms/op&#10;Time / NM Dev: 1.0000× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>NM Dev 1.2.6-SNAPSHOT · solve · 256 × 256
+Mean: 5.03015 ms/op
+99.9% confidence interval: [4.56311, 5.49718] ms/op
+JMH error half-width: ±0.467 ms/op
+Time / NM Dev: 1.0000× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#ma9ea9379bb" x="630.761571" y="414.903132" style="fill: #126c78; stroke: #126c78" />
+    </g>
+   </g>
+   <g id="point-256-EJML-transpose" data-tooltip="EJML 0.46.1 · transpose · 256 × 256&#10;Mean: 0.169523 ms/op&#10;99.9% confidence interval: [0.15964, 0.179406] ms/op&#10;JMH error half-width: ±0.00988 ms/op&#10;Time / NM Dev: 0.9022× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · transpose · 256 × 256&#10;Mean: 0.169523 ms/op&#10;99.9% confidence interval: [0.15964, 0.179406] ms/op&#10;JMH error half-width: ±0.00988 ms/op&#10;Time / NM Dev: 0.9022× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · transpose · 256 × 256
+Mean: 0.169523 ms/op
+99.9% confidence interval: [0.15964, 0.179406] ms/op
+JMH error half-width: ±0.00988 ms/op
+Time / NM Dev: 0.9022× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><defs>
+     <path id="m55ebf71750" d="M 0 3  C 0.795609 3 1.55874 2.683901 2.12132 2.12132  C 2.683901 1.55874 3 0.795609 3 0  C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132  C 1.55874 -2.683901 0.795609 -3 0 -3  C -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132  C -2.683901 -1.55874 -3 -0.795609 -3 0  C -3 0.795609 -2.683901 1.55874 -2.12132 2.12132  C -1.55874 2.683901 -0.795609 3 0 3  z " style="stroke: #4678ba" />
+    </defs>
+    <g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="597.02436" y="74.451247" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-EJML-addition" data-tooltip="EJML 0.46.1 · addition · 256 × 256&#10;Mean: 0.0391422 ms/op&#10;99.9% confidence interval: [0.0359782, 0.0423063] ms/op&#10;JMH error half-width: ±0.00316 ms/op&#10;Time / NM Dev: 0.5792× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · addition · 256 × 256&#10;Mean: 0.0391422 ms/op&#10;99.9% confidence interval: [0.0359782, 0.0423063] ms/op&#10;JMH error half-width: ±0.00316 ms/op&#10;Time / NM Dev: 0.5792× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · addition · 256 × 256
+Mean: 0.0391422 ms/op
+99.9% confidence interval: [0.0359782, 0.0423063] ms/op
+JMH error half-width: ±0.00316 ms/op
+Time / NM Dev: 0.5792× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="451.677026" y="103.278672" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-EJML-scale" data-tooltip="EJML 0.46.1 · scale · 256 × 256&#10;Mean: 0.0327326 ms/op&#10;99.9% confidence interval: [0.0317258, 0.0337395] ms/op&#10;JMH error half-width: ±0.00101 ms/op&#10;Time / NM Dev: 0.5771× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · scale · 256 × 256&#10;Mean: 0.0327326 ms/op&#10;99.9% confidence interval: [0.0317258, 0.0337395] ms/op&#10;JMH error half-width: ±0.00101 ms/op&#10;Time / NM Dev: 0.5771× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · scale · 256 × 256
+Mean: 0.0327326 ms/op
+99.9% confidence interval: [0.0317258, 0.0337395] ms/op
+JMH error half-width: ±0.00101 ms/op
+Time / NM Dev: 0.5771× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="450.456336" y="132.106096" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-EJML-multiplication" data-tooltip="EJML 0.46.1 · multiplication · 256 × 256&#10;Mean: 5.51926 ms/op&#10;99.9% confidence interval: [5.17321, 5.86531] ms/op&#10;JMH error half-width: ±0.346 ms/op&#10;Time / NM Dev: 0.3388× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · multiplication · 256 × 256&#10;Mean: 5.51926 ms/op&#10;99.9% confidence interval: [5.17321, 5.86531] ms/op&#10;JMH error half-width: ±0.346 ms/op&#10;Time / NM Dev: 0.3388× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · multiplication · 256 × 256
+Mean: 5.51926 ms/op
+99.9% confidence interval: [5.17321, 5.86531] ms/op
+JMH error half-width: ±0.346 ms/op
+Time / NM Dev: 0.3388× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="275.842896" y="160.933521" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-EJML-determinant" data-tooltip="EJML 0.46.1 · determinant · 256 × 256&#10;Mean: 3.87652 ms/op&#10;99.9% confidence interval: [3.65989, 4.09315] ms/op&#10;JMH error half-width: ±0.217 ms/op&#10;Time / NM Dev: 0.7622× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · determinant · 256 × 256&#10;Mean: 3.87652 ms/op&#10;99.9% confidence interval: [3.65989, 4.09315] ms/op&#10;JMH error half-width: ±0.217 ms/op&#10;Time / NM Dev: 0.7622× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · determinant · 256 × 256
+Mean: 3.87652 ms/op
+99.9% confidence interval: [3.65989, 4.09315] ms/op
+JMH error half-width: ±0.217 ms/op
+Time / NM Dev: 0.7622× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="541.722712" y="189.760945" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-EJML-inverse" data-tooltip="EJML 0.46.1 · inverse · 256 × 256&#10;Mean: 14.5978 ms/op&#10;99.9% confidence interval: [13.6297, 15.566] ms/op&#10;JMH error half-width: ±0.968 ms/op&#10;Time / NM Dev: 0.7365× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · inverse · 256 × 256&#10;Mean: 14.5978 ms/op&#10;99.9% confidence interval: [13.6297, 15.566] ms/op&#10;JMH error half-width: ±0.968 ms/op&#10;Time / NM Dev: 0.7365× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · inverse · 256 × 256
+Mean: 14.5978 ms/op
+99.9% confidence interval: [13.6297, 15.566] ms/op
+JMH error half-width: ±0.968 ms/op
+Time / NM Dev: 0.7365× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="530.445346" y="218.58837" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-EJML-inverseSPD" data-tooltip="EJML 0.46.1 · inverseSPD · 256 × 256&#10;Mean: 9.97381 ms/op&#10;99.9% confidence interval: [9.56555, 10.3821] ms/op&#10;JMH error half-width: ±0.408 ms/op&#10;Time / NM Dev: 0.5590× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · inverseSPD · 256 × 256&#10;Mean: 9.97381 ms/op&#10;99.9% confidence interval: [9.56555, 10.3821] ms/op&#10;JMH error half-width: ±0.408 ms/op&#10;Time / NM Dev: 0.5590× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · inverseSPD · 256 × 256
+Mean: 9.97381 ms/op
+99.9% confidence interval: [9.56555, 10.3821] ms/op
+JMH error half-width: ±0.408 ms/op
+Time / NM Dev: 0.5590× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="440.042403" y="247.415795" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-EJML-cholesky" data-tooltip="EJML 0.46.1 · cholesky · 256 × 256&#10;Mean: 1.77707 ms/op&#10;99.9% confidence interval: [1.74655, 1.80759] ms/op&#10;JMH error half-width: ±0.0305 ms/op&#10;Time / NM Dev: 0.9248× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · cholesky · 256 × 256&#10;Mean: 1.77707 ms/op&#10;99.9% confidence interval: [1.74655, 1.80759] ms/op&#10;JMH error half-width: ±0.0305 ms/op&#10;Time / NM Dev: 0.9248× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · cholesky · 256 × 256
+Mean: 1.77707 ms/op
+99.9% confidence interval: [1.74655, 1.80759] ms/op
+JMH error half-width: ±0.0305 ms/op
+Time / NM Dev: 0.9248× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="605.117898" y="276.243219" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-EJML-lu" data-tooltip="EJML 0.46.1 · lu · 256 × 256&#10;Mean: 3.90263 ms/op&#10;99.9% confidence interval: [3.6637, 4.14156] ms/op&#10;JMH error half-width: ±0.239 ms/op&#10;Time / NM Dev: 0.7713× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · lu · 256 × 256&#10;Mean: 3.90263 ms/op&#10;99.9% confidence interval: [3.6637, 4.14156] ms/op&#10;JMH error half-width: ±0.239 ms/op&#10;Time / NM Dev: 0.7713× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · lu · 256 × 256
+Mean: 3.90263 ms/op
+99.9% confidence interval: [3.6637, 4.14156] ms/op
+JMH error half-width: ±0.239 ms/op
+Time / NM Dev: 0.7713× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="545.579689" y="305.070644" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-EJML-qr" data-tooltip="EJML 0.46.1 · qr · 256 × 256&#10;Mean: 10.4777 ms/op&#10;99.9% confidence interval: [9.56431, 11.391] ms/op&#10;JMH error half-width: ±0.913 ms/op&#10;Time / NM Dev: 0.4896× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · qr · 256 × 256&#10;Mean: 10.4777 ms/op&#10;99.9% confidence interval: [9.56431, 11.391] ms/op&#10;JMH error half-width: ±0.913 ms/op&#10;Time / NM Dev: 0.4896× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · qr · 256 × 256
+Mean: 10.4777 ms/op
+99.9% confidence interval: [9.56431, 11.391] ms/op
+JMH error half-width: ±0.913 ms/op
+Time / NM Dev: 0.4896× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="396.570159" y="333.898068" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-EJML-eigenSymmetric" data-tooltip="EJML 0.46.1 · eigenSymmetric · 256 × 256&#10;Mean: 25.9218 ms/op&#10;99.9% confidence interval: [24.1523, 27.6913] ms/op&#10;JMH error half-width: ±1.77 ms/op&#10;Time / NM Dev: 0.4344× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · eigenSymmetric · 256 × 256&#10;Mean: 25.9218 ms/op&#10;99.9% confidence interval: [24.1523, 27.6913] ms/op&#10;JMH error half-width: ±1.77 ms/op&#10;Time / NM Dev: 0.4344× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · eigenSymmetric · 256 × 256
+Mean: 25.9218 ms/op
+99.9% confidence interval: [24.1523, 27.6913] ms/op
+JMH error half-width: ±1.77 ms/op
+Time / NM Dev: 0.4344× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="357.349262" y="362.725493" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-EJML-svd" data-tooltip="EJML 0.46.1 · svd · 256 × 256&#10;Mean: 50.1015 ms/op&#10;99.9% confidence interval: [49.4133, 50.7896] ms/op&#10;JMH error half-width: ±0.688 ms/op&#10;Time / NM Dev: 0.4670× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · svd · 256 × 256&#10;Mean: 50.1015 ms/op&#10;99.9% confidence interval: [49.4133, 50.7896] ms/op&#10;JMH error half-width: ±0.688 ms/op&#10;Time / NM Dev: 0.4670× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · svd · 256 × 256
+Mean: 50.1015 ms/op
+99.9% confidence interval: [49.4133, 50.7896] ms/op
+JMH error half-width: ±0.688 ms/op
+Time / NM Dev: 0.4670× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="381.046828" y="391.552918" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-EJML-solve" data-tooltip="EJML 0.46.1 · solve · 256 × 256&#10;Mean: 3.91965 ms/op&#10;99.9% confidence interval: [3.69324, 4.14606] ms/op&#10;JMH error half-width: ±0.226 ms/op&#10;Time / NM Dev: 0.7792× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="EJML 0.46.1 · solve · 256 × 256&#10;Mean: 3.91965 ms/op&#10;99.9% confidence interval: [3.69324, 4.14606] ms/op&#10;JMH error half-width: ±0.226 ms/op&#10;Time / NM Dev: 0.7792× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>EJML 0.46.1 · solve · 256 × 256
+Mean: 3.91965 ms/op
+99.9% confidence interval: [3.69324, 4.14606] ms/op
+JMH error half-width: ±0.226 ms/op
+Time / NM Dev: 0.7792× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m55ebf71750" x="548.954116" y="420.380342" style="fill: #4678ba; stroke: #4678ba" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-transpose" data-tooltip="Commons Math 3.6.1 · transpose · 256 × 256&#10;Mean: 0.0750766 ms/op&#10;99.9% confidence interval: [0.0713605, 0.0787927] ms/op&#10;JMH error half-width: ±0.00372 ms/op&#10;Time / NM Dev: 0.3996× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · transpose · 256 × 256&#10;Mean: 0.0750766 ms/op&#10;99.9% confidence interval: [0.0713605, 0.0787927] ms/op&#10;JMH error half-width: ±0.00372 ms/op&#10;Time / NM Dev: 0.3996× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · transpose · 256 × 256
+Mean: 0.0750766 ms/op
+99.9% confidence interval: [0.0713605, 0.0787927] ms/op
+JMH error half-width: ±0.00372 ms/op
+Time / NM Dev: 0.3996× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><defs>
+     <path id="m14762963aa" d="M 0 3  C 0.795609 3 1.55874 2.683901 2.12132 2.12132  C 2.683901 1.55874 3 0.795609 3 0  C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132  C 1.55874 -2.683901 0.795609 -3 0 -3  C -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132  C -2.683901 -1.55874 -3 -0.795609 -3 0  C -3 0.795609 -2.683901 1.55874 -2.12132 2.12132  C -1.55874 2.683901 -0.795609 3 0 3  z " style="stroke: #d18829" />
+    </defs>
+    <g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="329.911012" y="79.928458" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-addition" data-tooltip="Commons Math 3.6.1 · addition · 256 × 256&#10;Mean: 0.0499722 ms/op&#10;99.9% confidence interval: [0.0478431, 0.0521012] ms/op&#10;JMH error half-width: ±0.00213 ms/op&#10;Time / NM Dev: 0.7395× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · addition · 256 × 256&#10;Mean: 0.0499722 ms/op&#10;99.9% confidence interval: [0.0478431, 0.0521012] ms/op&#10;JMH error half-width: ±0.00213 ms/op&#10;Time / NM Dev: 0.7395× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · addition · 256 × 256
+Mean: 0.0499722 ms/op
+99.9% confidence interval: [0.0478431, 0.0521012] ms/op
+JMH error half-width: ±0.00213 ms/op
+Time / NM Dev: 0.7395× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="531.785023" y="108.755882" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-scale" data-tooltip="Commons Math 3.6.1 · scale · 256 × 256&#10;Mean: 0.0439821 ms/op&#10;99.9% confidence interval: [0.0420322, 0.0459319] ms/op&#10;JMH error half-width: ±0.00195 ms/op&#10;Time / NM Dev: 0.7754× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · scale · 256 × 256&#10;Mean: 0.0439821 ms/op&#10;99.9% confidence interval: [0.0420322, 0.0459319] ms/op&#10;JMH error half-width: ±0.00195 ms/op&#10;Time / NM Dev: 0.7754× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · scale · 256 × 256
+Mean: 0.0439821 ms/op
+99.9% confidence interval: [0.0420322, 0.0459319] ms/op
+JMH error half-width: ±0.00195 ms/op
+Time / NM Dev: 0.7754× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="547.337887" y="137.583307" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-multiplication" data-tooltip="Commons Math 3.6.1 · multiplication · 256 × 256&#10;Mean: 14.0364 ms/op&#10;99.9% confidence interval: [13.51, 14.5627] ms/op&#10;JMH error half-width: ±0.526 ms/op&#10;Time / NM Dev: 0.8617× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · multiplication · 256 × 256&#10;Mean: 14.0364 ms/op&#10;99.9% confidence interval: [13.51, 14.5627] ms/op&#10;JMH error half-width: ±0.526 ms/op&#10;Time / NM Dev: 0.8617× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · multiplication · 256 × 256
+Mean: 14.0364 ms/op
+99.9% confidence interval: [13.51, 14.5627] ms/op
+JMH error half-width: ±0.526 ms/op
+Time / NM Dev: 0.8617× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="581.960183" y="166.410732" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-determinant" data-tooltip="Commons Math 3.6.1 · determinant · 256 × 256&#10;Mean: 4.17394 ms/op&#10;99.9% confidence interval: [3.98992, 4.35797] ms/op&#10;JMH error half-width: ±0.184 ms/op&#10;Time / NM Dev: 0.8207× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · determinant · 256 × 256&#10;Mean: 4.17394 ms/op&#10;99.9% confidence interval: [3.98992, 4.35797] ms/op&#10;JMH error half-width: ±0.184 ms/op&#10;Time / NM Dev: 0.8207× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · determinant · 256 × 256
+Mean: 4.17394 ms/op
+99.9% confidence interval: [3.98992, 4.35797] ms/op
+JMH error half-width: ±0.184 ms/op
+Time / NM Dev: 0.8207× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="565.966327" y="195.238156" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-inverse" data-tooltip="Commons Math 3.6.1 · inverse · 256 × 256&#10;Mean: 6.45334 ms/op&#10;99.9% confidence interval: [6.14095, 6.76573] ms/op&#10;JMH error half-width: ±0.312 ms/op&#10;Time / NM Dev: 0.3256× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · inverse · 256 × 256&#10;Mean: 6.45334 ms/op&#10;99.9% confidence interval: [6.14095, 6.76573] ms/op&#10;JMH error half-width: ±0.312 ms/op&#10;Time / NM Dev: 0.3256× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · inverse · 256 × 256
+Mean: 6.45334 ms/op
+99.9% confidence interval: [6.14095, 6.76573] ms/op
+JMH error half-width: ±0.312 ms/op
+Time / NM Dev: 0.3256× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="262.742443" y="224.065581" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-inverseSPD" data-tooltip="Commons Math 3.6.1 · inverseSPD · 256 × 256&#10;Mean: 3.92211 ms/op&#10;99.9% confidence interval: [3.80507, 4.03915] ms/op&#10;JMH error half-width: ±0.117 ms/op&#10;Time / NM Dev: 0.2198× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · inverseSPD · 256 × 256&#10;Mean: 3.92211 ms/op&#10;99.9% confidence interval: [3.80507, 4.03915] ms/op&#10;JMH error half-width: ±0.117 ms/op&#10;Time / NM Dev: 0.2198× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · inverseSPD · 256 × 256
+Mean: 3.92211 ms/op
+99.9% confidence interval: [3.80507, 4.03915] ms/op
+JMH error half-width: ±0.117 ms/op
+Time / NM Dev: 0.2198× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="133.95" y="252.893005" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-cholesky" data-tooltip="Commons Math 3.6.1 · cholesky · 256 × 256&#10;Mean: 1.57231 ms/op&#10;99.9% confidence interval: [1.48852, 1.65609] ms/op&#10;JMH error half-width: ±0.0838 ms/op&#10;Time / NM Dev: 0.8182× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · cholesky · 256 × 256&#10;Mean: 1.57231 ms/op&#10;99.9% confidence interval: [1.48852, 1.65609] ms/op&#10;JMH error half-width: ±0.0838 ms/op&#10;Time / NM Dev: 0.8182× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · cholesky · 256 × 256
+Mean: 1.57231 ms/op
+99.9% confidence interval: [1.48852, 1.65609] ms/op
+JMH error half-width: ±0.0838 ms/op
+Time / NM Dev: 0.8182× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="564.968614" y="281.72043" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-lu" data-tooltip="Commons Math 3.6.1 · lu · 256 × 256&#10;Mean: 4.21425 ms/op&#10;99.9% confidence interval: [3.93106, 4.49744] ms/op&#10;JMH error half-width: ±0.283 ms/op&#10;Time / NM Dev: 0.8328× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · lu · 256 × 256&#10;Mean: 4.21425 ms/op&#10;99.9% confidence interval: [3.93106, 4.49744] ms/op&#10;JMH error half-width: ±0.283 ms/op&#10;Time / NM Dev: 0.8328× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · lu · 256 × 256
+Mean: 4.21425 ms/op
+99.9% confidence interval: [3.93106, 4.49744] ms/op
+JMH error half-width: ±0.283 ms/op
+Time / NM Dev: 0.8328× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="570.773726" y="310.547855" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-qr" data-tooltip="Commons Math 3.6.1 · qr · 256 × 256&#10;Mean: 11.7491 ms/op&#10;99.9% confidence interval: [11.3136, 12.1847] ms/op&#10;JMH error half-width: ±0.436 ms/op&#10;Time / NM Dev: 0.5491× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · qr · 256 × 256&#10;Mean: 11.7491 ms/op&#10;99.9% confidence interval: [11.3136, 12.1847] ms/op&#10;JMH error half-width: ±0.436 ms/op&#10;Time / NM Dev: 0.5491× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · qr · 256 × 256
+Mean: 11.7491 ms/op
+99.9% confidence interval: [11.3136, 12.1847] ms/op
+JMH error half-width: ±0.436 ms/op
+Time / NM Dev: 0.5491× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="434.131648" y="339.375279" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-eigenSymmetric" data-tooltip="Commons Math 3.6.1 · eigenSymmetric · 256 × 256&#10;Mean: 45.5645 ms/op&#10;99.9% confidence interval: [43.55, 47.5789] ms/op&#10;JMH error half-width: ±2.01 ms/op&#10;Time / NM Dev: 0.7637× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · eigenSymmetric · 256 × 256&#10;Mean: 45.5645 ms/op&#10;99.9% confidence interval: [43.55, 47.5789] ms/op&#10;JMH error half-width: ±2.01 ms/op&#10;Time / NM Dev: 0.7637× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · eigenSymmetric · 256 × 256
+Mean: 45.5645 ms/op
+99.9% confidence interval: [43.55, 47.5789] ms/op
+JMH error half-width: ±2.01 ms/op
+Time / NM Dev: 0.7637× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="542.331089" y="368.202704" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-svd" data-tooltip="Commons Math 3.6.1 · svd · 256 × 256&#10;Mean: 149.527 ms/op&#10;99.9% confidence interval: [140.496, 158.558] ms/op&#10;JMH error half-width: ±9.03 ms/op&#10;Time / NM Dev: 1.3938× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · svd · 256 × 256&#10;Mean: 149.527 ms/op&#10;99.9% confidence interval: [140.496, 158.558] ms/op&#10;JMH error half-width: ±9.03 ms/op&#10;Time / NM Dev: 1.3938× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · svd · 256 × 256
+Mean: 149.527 ms/op
+99.9% confidence interval: [140.496, 158.558] ms/op
+JMH error half-width: ±9.03 ms/op
+Time / NM Dev: 1.3938× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="739.642836" y="397.030128" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-COMMONS-solve" data-tooltip="Commons Math 3.6.1 · solve · 256 × 256&#10;Mean: 4.07445 ms/op&#10;99.9% confidence interval: [3.89874, 4.25016] ms/op&#10;JMH error half-width: ±0.176 ms/op&#10;Time / NM Dev: 0.8100× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="Commons Math 3.6.1 · solve · 256 × 256&#10;Mean: 4.07445 ms/op&#10;99.9% confidence interval: [3.89874, 4.25016] ms/op&#10;JMH error half-width: ±0.176 ms/op&#10;Time / NM Dev: 0.8100× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>Commons Math 3.6.1 · solve · 256 × 256
+Mean: 4.07445 ms/op
+99.9% confidence interval: [3.89874, 4.25016] ms/op
+JMH error half-width: ±0.176 ms/op
+Time / NM Dev: 0.8100× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#m14762963aa" x="561.656644" y="425.857553" style="fill: #d18829; stroke: #d18829" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-transpose" data-tooltip="JAMA 1.0.3 · transpose · 256 × 256&#10;Mean: 0.0726786 ms/op&#10;99.9% confidence interval: [0.0694499, 0.0759072] ms/op&#10;JMH error half-width: ±0.00323 ms/op&#10;Time / NM Dev: 0.3868× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · transpose · 256 × 256&#10;Mean: 0.0726786 ms/op&#10;99.9% confidence interval: [0.0694499, 0.0759072] ms/op&#10;JMH error half-width: ±0.00323 ms/op&#10;Time / NM Dev: 0.3868× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · transpose · 256 × 256
+Mean: 0.0726786 ms/op
+99.9% confidence interval: [0.0694499, 0.0759072] ms/op
+JMH error half-width: ±0.00323 ms/op
+Time / NM Dev: 0.3868× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><defs>
+     <path id="md7fc651d7c" d="M 0 3  C 0.795609 3 1.55874 2.683901 2.12132 2.12132  C 2.683901 1.55874 3 0.795609 3 0  C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132  C 1.55874 -2.683901 0.795609 -3 0 -3  C -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132  C -2.683901 -1.55874 -3 -0.795609 -3 0  C -3 0.795609 -2.683901 1.55874 -2.12132 2.12132  C -1.55874 2.683901 -0.795609 3 0 3  z " style="stroke: #9d608e" />
+    </defs>
+    <g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="319.26485" y="85.405668" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-addition" data-tooltip="JAMA 1.0.3 · addition · 256 × 256&#10;Mean: 0.0430086 ms/op&#10;99.9% confidence interval: [0.0417579, 0.0442593] ms/op&#10;JMH error half-width: ±0.00125 ms/op&#10;Time / NM Dev: 0.6364× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · addition · 256 × 256&#10;Mean: 0.0430086 ms/op&#10;99.9% confidence interval: [0.0417579, 0.0442593] ms/op&#10;JMH error half-width: ±0.00125 ms/op&#10;Time / NM Dev: 0.6364× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · addition · 256 × 256
+Mean: 0.0430086 ms/op
+99.9% confidence interval: [0.0417579, 0.0442593] ms/op
+JMH error half-width: ±0.00125 ms/op
+Time / NM Dev: 0.6364× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="482.569774" y="114.233093" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-scale" data-tooltip="JAMA 1.0.3 · scale · 256 × 256&#10;Mean: 0.0399044 ms/op&#10;99.9% confidence interval: [0.0362212, 0.0435876] ms/op&#10;JMH error half-width: ±0.00368 ms/op&#10;Time / NM Dev: 0.7035× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · scale · 256 × 256&#10;Mean: 0.0399044 ms/op&#10;99.9% confidence interval: [0.0362212, 0.0435876] ms/op&#10;JMH error half-width: ±0.00368 ms/op&#10;Time / NM Dev: 0.7035× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · scale · 256 × 256
+Mean: 0.0399044 ms/op
+99.9% confidence interval: [0.0362212, 0.0435876] ms/op
+JMH error half-width: ±0.00368 ms/op
+Time / NM Dev: 0.7035× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="515.429102" y="143.060518" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-multiplication" data-tooltip="JAMA 1.0.3 · multiplication · 256 × 256&#10;Mean: 12.7231 ms/op&#10;99.9% confidence interval: [12.1472, 13.299] ms/op&#10;JMH error half-width: ±0.576 ms/op&#10;Time / NM Dev: 0.7811× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · multiplication · 256 × 256&#10;Mean: 12.7231 ms/op&#10;99.9% confidence interval: [12.1472, 13.299] ms/op&#10;JMH error half-width: ±0.576 ms/op&#10;Time / NM Dev: 0.7811× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · multiplication · 256 × 256
+Mean: 12.7231 ms/op
+99.9% confidence interval: [12.1472, 13.299] ms/op
+JMH error half-width: ±0.576 ms/op
+Time / NM Dev: 0.7811× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="549.744762" y="171.887942" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-determinant" data-tooltip="JAMA 1.0.3 · determinant · 256 × 256&#10;Mean: 3.67405 ms/op&#10;99.9% confidence interval: [3.46535, 3.88276] ms/op&#10;JMH error half-width: ±0.209 ms/op&#10;Time / NM Dev: 0.7224× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · determinant · 256 × 256&#10;Mean: 3.67405 ms/op&#10;99.9% confidence interval: [3.46535, 3.88276] ms/op&#10;JMH error half-width: ±0.209 ms/op&#10;Time / NM Dev: 0.7224× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · determinant · 256 × 256
+Mean: 3.67405 ms/op
+99.9% confidence interval: [3.46535, 3.88276] ms/op
+JMH error half-width: ±0.209 ms/op
+Time / NM Dev: 0.7224× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="524.130076" y="200.715367" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-inverse" data-tooltip="JAMA 1.0.3 · inverse · 256 × 256&#10;Mean: 11.7673 ms/op&#10;99.9% confidence interval: [10.6941, 12.8405] ms/op&#10;JMH error half-width: ±1.07 ms/op&#10;Time / NM Dev: 0.5937× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · inverse · 256 × 256&#10;Mean: 11.7673 ms/op&#10;99.9% confidence interval: [10.6941, 12.8405] ms/op&#10;JMH error half-width: ±1.07 ms/op&#10;Time / NM Dev: 0.5937× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · inverse · 256 × 256
+Mean: 11.7673 ms/op
+99.9% confidence interval: [10.6941, 12.8405] ms/op
+JMH error half-width: ±1.07 ms/op
+Time / NM Dev: 0.5937× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="459.754332" y="229.542791" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-inverseSPD" data-tooltip="JAMA 1.0.3 · inverseSPD · 256 × 256&#10;Mean: 25.1172 ms/op&#10;99.9% confidence interval: [24.3875, 25.8469] ms/op&#10;JMH error half-width: ±0.73 ms/op&#10;Time / NM Dev: 1.4078× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · inverseSPD · 256 × 256&#10;Mean: 25.1172 ms/op&#10;99.9% confidence interval: [24.3875, 25.8469] ms/op&#10;JMH error half-width: ±0.73 ms/op&#10;Time / NM Dev: 1.4078× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · inverseSPD · 256 × 256
+Mean: 25.1172 ms/op
+99.9% confidence interval: [24.3875, 25.8469] ms/op
+JMH error half-width: ±0.73 ms/op
+Time / NM Dev: 1.4078× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="742.940321" y="258.370216" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-cholesky" data-tooltip="JAMA 1.0.3 · cholesky · 256 × 256&#10;Mean: 1.91927 ms/op&#10;99.9% confidence interval: [1.72472, 2.11383] ms/op&#10;JMH error half-width: ±0.195 ms/op&#10;Time / NM Dev: 0.9988× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · cholesky · 256 × 256&#10;Mean: 1.91927 ms/op&#10;99.9% confidence interval: [1.72472, 2.11383] ms/op&#10;JMH error half-width: ±0.195 ms/op&#10;Time / NM Dev: 0.9988× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · cholesky · 256 × 256
+Mean: 1.91927 ms/op
+99.9% confidence interval: [1.72472, 2.11383] ms/op
+JMH error half-width: ±0.195 ms/op
+Time / NM Dev: 0.9988× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="630.364247" y="287.197641" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-lu" data-tooltip="JAMA 1.0.3 · lu · 256 × 256&#10;Mean: 3.74652 ms/op&#10;99.9% confidence interval: [3.52354, 3.96951] ms/op&#10;JMH error half-width: ±0.223 ms/op&#10;Time / NM Dev: 0.7404× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · lu · 256 × 256&#10;Mean: 3.74652 ms/op&#10;99.9% confidence interval: [3.52354, 3.96951] ms/op&#10;JMH error half-width: ±0.223 ms/op&#10;Time / NM Dev: 0.7404× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · lu · 256 × 256
+Mean: 3.74652 ms/op
+99.9% confidence interval: [3.52354, 3.96951] ms/op
+JMH error half-width: ±0.223 ms/op
+Time / NM Dev: 0.7404× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="532.191935" y="316.025065" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-qr" data-tooltip="JAMA 1.0.3 · qr · 256 × 256&#10;Mean: 37.9838 ms/op&#10;99.9% confidence interval: [37.1677, 38.7999] ms/op&#10;JMH error half-width: ±0.816 ms/op&#10;Time / NM Dev: 1.7750× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · qr · 256 × 256&#10;Mean: 37.9838 ms/op&#10;99.9% confidence interval: [37.1677, 38.7999] ms/op&#10;JMH error half-width: ±0.816 ms/op&#10;Time / NM Dev: 1.7750× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · qr · 256 × 256
+Mean: 37.9838 ms/op
+99.9% confidence interval: [37.1677, 38.7999] ms/op
+JMH error half-width: ±0.816 ms/op
+Time / NM Dev: 1.7750× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="818.95" y="344.85249" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-eigenSymmetric" data-tooltip="JAMA 1.0.3 · eigenSymmetric · 256 × 256&#10;Mean: 46.094 ms/op&#10;99.9% confidence interval: [44.5397, 47.6482] ms/op&#10;JMH error half-width: ±1.55 ms/op&#10;Time / NM Dev: 0.7725× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · eigenSymmetric · 256 × 256&#10;Mean: 46.094 ms/op&#10;99.9% confidence interval: [44.5397, 47.6482] ms/op&#10;JMH error half-width: ±1.55 ms/op&#10;Time / NM Dev: 0.7725× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · eigenSymmetric · 256 × 256
+Mean: 46.094 ms/op
+99.9% confidence interval: [44.5397, 47.6482] ms/op
+JMH error half-width: ±1.55 ms/op
+Time / NM Dev: 0.7725× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="546.120384" y="373.679914" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-svd" data-tooltip="JAMA 1.0.3 · svd · 256 × 256&#10;Mean: 131.782 ms/op&#10;99.9% confidence interval: [127.231, 136.334] ms/op&#10;JMH error half-width: ±4.55 ms/op&#10;Time / NM Dev: 1.2284× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · svd · 256 × 256&#10;Mean: 131.782 ms/op&#10;99.9% confidence interval: [127.231, 136.334] ms/op&#10;JMH error half-width: ±4.55 ms/op&#10;Time / NM Dev: 1.2284× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · svd · 256 × 256
+Mean: 131.782 ms/op
+99.9% confidence interval: [127.231, 136.334] ms/op
+JMH error half-width: ±4.55 ms/op
+Time / NM Dev: 1.2284× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="698.213959" y="402.507339" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="point-256-JAMA-solve" data-tooltip="JAMA 1.0.3 · solve · 256 × 256&#10;Mean: 3.84726 ms/op&#10;99.9% confidence interval: [3.67806, 4.01646] ms/op&#10;JMH error half-width: ±0.169 ms/op&#10;Time / NM Dev: 0.7648× (lower is faster)&#10;2 JVM forks · 10 measured iteration means" tabindex="0" role="img" aria-label="JAMA 1.0.3 · solve · 256 × 256&#10;Mean: 3.84726 ms/op&#10;99.9% confidence interval: [3.67806, 4.01646] ms/op&#10;JMH error half-width: ±0.169 ms/op&#10;Time / NM Dev: 0.7648× (lower is faster)&#10;2 JVM forks · 10 measured iteration means">
+    <title>JAMA 1.0.3 · solve · 256 × 256
+Mean: 3.84726 ms/op
+99.9% confidence interval: [3.67806, 4.01646] ms/op
+JMH error half-width: ±0.169 ms/op
+Time / NM Dev: 0.7648× (lower is faster)
+2 JVM forks · 10 measured iteration means</title><g clip-path="url(#p0e3e1d08b0)">
+     <use xlink:href="#md7fc651d7c" x="542.840352" y="431.334764" style="fill: #9d608e; stroke: #9d608e" />
+    </g>
+   </g>
+   <g id="text_20">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(99.7 22.324875)">Dense linear algebra — 256 × 256</text>
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(99.7 35.856)">Ratios of measured means on a shared VM</text>
+   </g>
+   <g id="legend_1">
+    <g id="PathCollection_1">
+     <g>
+      <use xlink:href="#ma9ea9379bb" x="332" y="507.271885" style="fill: #126c78; stroke: #126c78" />
+     </g>
+    </g>
+    <g id="text_21">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="350" y="509.896885" transform="rotate(-0 350 509.896885)">NM Dev 1.2.6-SNAPSHOT</text>
+    </g>
+    <g id="PathCollection_2">
+     <g>
+      <use xlink:href="#m55ebf71750" x="332" y="521.95001" style="fill: #4678ba; stroke: #4678ba" />
+     </g>
+    </g>
+    <g id="text_22">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="350" y="524.57501" transform="rotate(-0 350 524.57501)">EJML 0.46.1</text>
+    </g>
+    <g id="PathCollection_3">
+     <g>
+      <use xlink:href="#m14762963aa" x="505.8375" y="507.271885" style="fill: #d18829; stroke: #d18829" />
+     </g>
+    </g>
+    <g id="text_23">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="523.8375" y="509.896885" transform="rotate(-0 523.8375 509.896885)">Commons Math 3.6.1</text>
+    </g>
+    <g id="PathCollection_4">
+     <g>
+      <use xlink:href="#md7fc651d7c" x="505.8375" y="521.95001" style="fill: #9d608e; stroke: #9d608e" />
+     </g>
+    </g>
+    <g id="text_24">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="523.8375" y="524.57501" transform="rotate(-0 523.8375 524.57501)">JAMA 1.0.3</text>
+    </g>
+   </g>
+  </g>
+  <g id="text_25">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start; fill: #555555" x="8.64" y="570.24" transform="rotate(-0 8.64 570.24)">2 JVM forks · 10 measured iterations/case · JVM 17.0.20 · 1 worker · See report for confidence intervals</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p0e3e1d08b0">
+   <rect x="99.7" y="50.856" width="753.5" height="398.5968" />
+  </clipPath>
+ </defs>
+</svg>

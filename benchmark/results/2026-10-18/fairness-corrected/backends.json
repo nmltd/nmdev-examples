@@ -1,0 +1,13 @@
+{
+  "NMDEV": "Combined obfuscated 1.2.6-SNAPSHOT binary; checksum in artifacts.json",
+  "EJML": "ejml-ddense 0.46.1 Java implementation",
+  "COMMONS": "Array2DRowRealMatrix / Java implementation",
+  "JAMA": "Jama.Matrix / Java implementation",
+  "COLT": "cern.colt.matrix / Java implementation",
+  "PARALLEL_COLT": "DenseDoubleMatrix2D / Java JPLASMA and netlib-java F2J dependencies; ConcurrencyUtils threads=1",
+  "JBLAS": "1.2.5 bundled native libjblas; successful native loading in correctness run; requested native thread environment recorded, native thread count not independently audited",
+  "F2J_LAPACK": "net.sourceforge.f2j:arpack_combined_all:0.1; direct Dgemm and LAPACK translated Java routines. Replacement distribution, not org.netlib:jlapack:0.8",
+  "MTJ": "1.0.4 with com.github.fommil.netlib F2jBLAS/F2jLAPACK/F2jARPACK explicitly forced by JVM properties",
+  "OJALGO": "57.5.0 R064Store/decomposition factories; OjAlgoUtils.limitThreadsTo(1)",
+  "UJMP": "0.3.0 core algorithms; external Commons Math, EJML, jblas, MTJ, ojAlgo and Parallel Colt backends explicitly disabled; threads=1"
+}

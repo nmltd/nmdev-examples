@@ -1,0 +1,211 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rectangular multiplication — results — NM Dev benchmark history</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}</style></head><body><main><nav aria-label="Site navigation"><a href="../../../index.html">Home</a><a href="../../../getting-started.html">Getting Started</a><a href="../../../tutorials.html">Tutorials</a><a href="../../../benchmarks.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><h1>2026-10-18 — Rectangular multiplication</h1>
+<p><strong>Completed</strong> · 16 cases · 4 libraries.</p>
+<p>AMD EPYC 9V74 80-Core Processor</p>
+<p>Separate four-library multiplication track; short diagnostic measurements.</p>
+<p>Recorded completion: <strong>2026-10-18T12:02:22Z</strong>. Run IDs and dates are permanent; profiles from different machines are never merged.</p>
+<p><a href="../../../benchmarks/index.html">All historical runs</a> · <a href="../index.html">This date</a> · <a href="https://github.com/nmltd/nmdev-examples/tree/main/benchmark/results/2026-10-18/rectangular">Saved files on GitHub</a></p><h2>Original report</h2>
+<h1>Rectangular multiplication — 2026-10-18-latest-rectangular</h1>
+<p>Shapes are m×k×n. All returned results are materialized, inputs are constructed outside timing, and every fork checks arithmetic twice and exact input preservation. This is a separate four-library track, not an eleven-library decomposition comparison.</p>
+<p>Short diagnostic run on a shared VM. See the exact fork settings, affinity and thread requests in <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/rectangular/environment.json">environment.json</a>. Native jblas worker counts are not independently audited.</p>
+<p><strong>Versions:</strong> NM Dev 1.2.6, EJML 0.46.1, ojAlgo 57.5.0, jblas 1.2.5 (native). <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/rectangular/versions.json">Exact version labels</a>.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Shape</th>
+<th style="text-align: right;">NMDEV ms/op</th>
+<th style="text-align: right;">EJML ms/op</th>
+<th style="text-align: right;">OJALGO ms/op</th>
+<th style="text-align: right;">JBLAS ms/op</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1024x256x64</td>
+<td style="text-align: right;">18.2068 ± 1.2</td>
+<td style="text-align: right;">6.89375 ± 0.75</td>
+<td style="text-align: right;">6.33805 ± 4.7</td>
+<td style="text-align: right;">2.83331 ± 3.4</td>
+</tr>
+<tr>
+<td>128x512x64</td>
+<td style="text-align: right;">4.27058 ± 0.39</td>
+<td style="text-align: right;">1.71776 ± 0.24</td>
+<td style="text-align: right;">1.92979 ± 2</td>
+<td style="text-align: right;">0.451501 ± 0.044</td>
+</tr>
+<tr>
+<td>255x257x129</td>
+<td style="text-align: right;">9.49153 ± 1</td>
+<td style="text-align: right;">2.96713 ± 0.25</td>
+<td style="text-align: right;">3.14544 ± 0.65</td>
+<td style="text-align: right;">0.996403 ± 0.051</td>
+</tr>
+<tr>
+<td>512x128x256</td>
+<td style="text-align: right;">20.4682 ± 2.9</td>
+<td style="text-align: right;">5.73532 ± 0.28</td>
+<td style="text-align: right;">5.78412 ± 0.43</td>
+<td style="text-align: right;">2.01192 ± 0.66</td>
+</tr>
+</tbody>
+</table></div>
+<p>Errors are JMH 99.9% confidence half-widths. Wide or overlapping intervals do not support fine rankings. JVM allocation counts do not include all native allocations.</p>
+<p><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/rectangular/jmh.json">Raw JMH</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/rectangular/jmh.log">Log</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/rectangular/summary.csv">Summary and allocation</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/rectangular/artifacts.json">Artifacts</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/rectangular/harness-source.zip">Exact source snapshot</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18/fairness-audit/README.md">Fairness audit</a></p><h2>All saved timings</h2><div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Profile</th>
+<th style="text-align: right;">Requested threads</th>
+<th>Size / shape</th>
+<th>Operation</th>
+<th>Library</th>
+<th style="text-align: right;">Mean ms/op</th>
+<th style="text-align: right;">99.9% error ± ms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">4.27058334</td>
+<td style="text-align: right;">0.387928849</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">20.4682359</td>
+<td style="text-align: right;">2.89805631</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">18.2068202</td>
+<td style="text-align: right;">1.17113319</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">9.49152912</td>
+<td style="text-align: right;">1.04486491</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">1.71775519</td>
+<td style="text-align: right;">0.244523001</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">5.73532251</td>
+<td style="text-align: right;">0.283571838</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">6.89374792</td>
+<td style="text-align: right;">0.753346475</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">2.96713079</td>
+<td style="text-align: right;">0.253748224</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">1.92978576</td>
+<td style="text-align: right;">2.02117055</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">5.78411527</td>
+<td style="text-align: right;">0.432831187</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">6.33804909</td>
+<td style="text-align: right;">4.69244159</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">3.14544141</td>
+<td style="text-align: right;">0.654395195</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.451501254</td>
+<td style="text-align: right;">0.0440946529</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">2.01192059</td>
+<td style="text-align: right;">0.659603475</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">2.83330725</td>
+<td style="text-align: right;">3.39778415</td>
+</tr>
+<tr>
+<td>recorded</td>
+<td style="text-align: right;">see fork options</td>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.996402856</td>
+<td style="text-align: right;">0.0511215608</td>
+</tr>
+</tbody>
+</table></div></main></body></html>

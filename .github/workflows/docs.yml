@@ -36,7 +36,7 @@ jobs:
       - name: Install documentation renderer
         run: python -m pip install -r scripts/requirements-docs.txt
       - name: Build from Markdown and saved benchmark measurements
-        run: python benchmark/scripts/publish-pages.py benchmark/results/2026-10-20-windows-public
+        run: python benchmark/scripts/publish-history.py
       - name: Check links and navigation
         run: python scripts/check-site.py
       - uses: actions/upload-pages-artifact@v3
