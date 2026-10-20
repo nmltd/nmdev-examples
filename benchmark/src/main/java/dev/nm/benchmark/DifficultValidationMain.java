@@ -5,7 +5,7 @@ import java.util.Locale;
 /** Accuracy diagnostics are kept separate from baseline speed rankings. All failures are recorded. */
 public final class DifficultValidationMain {
     public static void main(String[] args) {
-        String[] libraries=args.length>0?args[0].split(","):new String[]{"NMDEV","EJML","COMMONS","JAMA","COLT","PARALLEL_COLT","JBLAS","F2J_LAPACK","MTJ","OJALGO","UJMP"};
+        String[] libraries=args.length>0?args[0].split(","):new String[]{"NMDEV","EJML","COMMONS","COMMONS_BLOCK","JAMA","COLT","PARALLEL_COLT","JBLAS","F2J_LAPACK","MTJ","OJALGO","UJMP"};
         java.io.PrintStream csv=System.out;System.setOut(System.err);
         csv.println("library,fixture,size,operation,residual,status");int failures=0;
         for(String library:libraries)for(String fixture:new String[]{"scaled-pivot","clustered-spd","hilbert","rank-deficient"}) {

@@ -5,7 +5,11 @@ import org.apache.commons.math4.legacy.linear.*;
 
 final class CommonsAdapter implements Adapter {
     final RealMatrix a,b,spd,rhs;
-    CommonsAdapter(Inputs in){a=new Array2DRowRealMatrix(in.a);b=new Array2DRowRealMatrix(in.b);spd=new Array2DRowRealMatrix(in.spd);rhs=new Array2DRowRealMatrix(in.rhs);}
+    CommonsAdapter(Inputs in){this(in,false);}
+    /** Convert native inputs before timing; both Commons variants use identical operations. */
+    CommonsAdapter(Inputs in, boolean block){a=matrix(in.a,block);b=matrix(in.b,block);spd=matrix(in.spd,block);rhs=matrix(in.rhs,block);}
+    private static RealMatrix matrix(double[][] data, boolean block){return block?new BlockRealMatrix(data):new Array2DRowRealMatrix(data);}
+
     public Object[] inputs(){return new Object[]{a,b,spd,rhs};}
     public Object run(String op) {
         switch(op) {

@@ -11,12 +11,28 @@ import static org.junit.jupiter.api.Assertions.*;
 class LauncherTest {
     @TempDir Path temporary;
     @Test void fullPlanIncludesEveryLibraryAtEveryProfile() {
-        var plan=BenchmarkMain.plan(false,BenchmarkMain.LIBRARIES);
-        assertEquals(660,plan.size()); assertEquals(660,plan.stream().map(BenchmarkMain.Case::id).distinct().count());
-        assertEquals(286,plan.stream().filter(c->c.profile().equals("baseline")).count());
-        assertEquals(44,plan.stream().filter(c->c.profile().equals("rectangular")).count());
+        var plan=BenchmarkMain.plan(false,BenchmarkMain.LIBRARIES,16);
+        assertEquals(1260,plan.size()); assertEquals(1260,plan.stream().map(BenchmarkMain.Case::id).distinct().count());
+        assertEquals(312,plan.stream().filter(c->c.profile().equals("baseline")).count());
+        assertEquals(48,plan.stream().filter(c->c.profile().equals("rectangular")).count());
         for(int threads:new int[]{1,4})for(String library:BenchmarkMain.LIBRARIES)
             assertEquals(15,plan.stream().filter(c->c.profile().equals("large")&&c.threads()==threads&&c.library().equals(library)).count());
+    }
+    @Test void machineCapacityProfilesRemainDistinctAndRouteRectangularCases() {
+        for(int available:new int[]{1,4,16}) {
+            var plan=BenchmarkMain.plan(false,BenchmarkMain.LIBRARIES,available);
+            var all=plan.stream().filter(c->c.profile().endsWith("-all-cores")).toList();
+            assertEquals(540,all.size());
+            assertTrue(all.stream().allMatch(c->c.threads()==available));
+            assertEquals(plan.size(),plan.stream().map(BenchmarkMain.Case::id).distinct().count());
+            var rectangular=all.stream().filter(c->c.profile().startsWith("rectangular")).findFirst().orElseThrow();
+            assertTrue(rectangular.benchmark().contains("ExpandedRectangularBenchmark"));
+            assertTrue(rectangular.parameters().containsKey("shape"));
+            for(String library:BenchmarkMain.LIBRARIES) {
+                assertEquals(15,all.stream().filter(c->c.profile().equals("large-all-cores")&&c.library().equals(library)).count());
+            }
+        }
+        assertThrows(IllegalArgumentException.class,()->BenchmarkMain.plan(false,BenchmarkMain.LIBRARIES,0));
     }
     @Test void checkpointRetainsFullPrecisionAndRejectsCorruption() throws Exception {
         var item=new BenchmarkMain.Case("large",4,"EJML","qr","2000");

@@ -1,6 +1,6 @@
 {
   "NMDEV": "NM Dev 1.2.6",
-  "COMMONS": "Commons Math 4.0-SNAPSHOT (20261018.085925-1575)",
+  "COMMONS": "Commons Math 4.0-SNAPSHOT (20261018.085925-1575) \u2014 Array2DRowRealMatrix",
   "PARALLEL_COLT": "Parallel Colt 0.11.4 (upstream tag build)",
   "EJML": "EJML 0.46.1",
   "OJALGO": "ojAlgo 57.5.0",
@@ -9,5 +9,6 @@
   "COLT": "Colt 1.2.0",
   "MTJ": "MTJ 1.0.4 (F2J)",
   "UJMP": "UJMP 0.3.0 (core)",
-  "F2J_LAPACK": "F2J LAPACK/BLAS 0.1"
+  "F2J_LAPACK": "F2J LAPACK/BLAS 0.1",
+  "COMMONS_BLOCK": "Commons Math 4.0-SNAPSHOT (20261018.085925-1575) \u2014 BlockRealMatrix"
 }

@@ -7,12 +7,12 @@ Requires a **full JDK 17+** and Maven to build. Download or clone [nmdev-example
 
 ```text
 mvn -f benchmark/pom.xml package
-java -jar benchmark/target/nmdev-benchmark-1.1.0.jar
+java -jar benchmark/target/nmdev-benchmark-1.2.0.jar --output nmdev-benchmark-all-cores
 ```
 
 The public entry point `dev.nm.benchmark.launcher.BenchmarkMain` prepares verified dependencies and the public trial license, builds Parallel Colt automatically, runs all eleven libraries across all profiles, records machine information, and packages the results. No Python, shell scripts, GitHub token or manual profile selection is required. First-run Internet access and a full JDK are needed for automatic compilation.
 
-The full run contains 660 cases and can take many hours. Run the same JAR/command again after an interruption to retain completed forks and repeat only unfinished ones. The shareable file is `nmdev-benchmark-output-results.zip`, beside its local checkpoint directory. It includes CPU, memory, OS, JVM, dependency hashes, logs, validation and full-precision measurements; it excludes licenses and private runtime files. [Complete local-run instructions](https://github.com/nmltd/nmdev-examples/blob/main/benchmark/LOCAL-RUN.md).
+The full run contains 1,260 cases (including all-core profiles and both Commons dense layouts) and can take many hours. Run the same JAR/command again after an interruption to retain completed forks and repeat only unfinished ones. The shareable file is `nmdev-benchmark-output-results.zip`, beside its local checkpoint directory. It includes CPU, memory, OS, JVM, dependency hashes, logs, validation and full-precision measurements; it excludes licenses and private runtime files. [Complete local-run instructions](https://github.com/nmltd/nmdev-examples/blob/main/benchmark/LOCAL-RUN.md).
 
 The launcher pins the public NM Dev 1.2.6 release by its published checksum. Its binary hash differs from the older archived benchmark binary; measurements from different binaries or machines are separate experiments. Native-library availability depends on host architecture; failures are recorded explicitly instead of substituted results.
 

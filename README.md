@@ -39,7 +39,7 @@ To run the entire comparison unattended on your computer (full JDK 17+ and Maven
 
 ```text
 mvn -f benchmark/pom.xml package
-java -jar benchmark/target/nmdev-benchmark-1.1.0.jar
+java -jar benchmark/target/nmdev-benchmark-1.2.0.jar
 ```
 
 The single entry point prepares dependencies automatically, runs all profiles, resumes saved JVM forks, collects CPU/memory/OS/JVM information and creates `nmdev-benchmark-output-results.zip`. See [local benchmark instructions](benchmark/LOCAL-RUN.md). No GitHub token, Python or manual profile selection is needed for this launcher.
