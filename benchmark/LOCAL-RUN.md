@@ -37,7 +37,7 @@ The trial license is downloaded from the public example repository, never from a
 
 ## Output ZIP
 
-Send `nmdev-benchmark-output-results.zip` (or `laptop-results-results.zip`) for validation and publication. The ZIP is refreshed after completed forks/cases and at orderly termination. A hard kill or power loss can prevent the last ZIP refresh; restart the application to reconstruct it from saved checkpoints.
+Send `nmdev-benchmark-output-results-<UTC timestamp>.zip` (or `laptop-results-results-<UTC timestamp>.zip`) for validation and publication. The ZIP is refreshed after completed forks/cases and at orderly termination. A hard kill or power loss can prevent the last ZIP refresh; restart the application to reconstruct it from saved checkpoints.
 
 Included:
 
@@ -114,3 +114,8 @@ java -jar benchmark/target/nmdev-benchmark-1.2.0.jar --output nmdev-benchmark-al
 ```
 
 Use this **new output directory**; 1.2.0 changes the measurement specification and cannot resume the older 660-case experiment. Keep its completed results and original JAR. Repeat the same new command with the same 1.2.0 JAR to resume the new experiment.
+
+
+### Timestamped ZIP filenames
+
+Results ZIPs include a Windows-safe UTC timestamp, for example `nmdev-benchmark-all-cores-results-20261020-084105-123Z.zip`. The timestamp is assigned when that result directory first creates a bundle and saved in `zip-timestamp.txt`. Refreshes and resumes reuse this filename, avoiding thousands of archives during a run. The console prints the exact upload path. Separate runs should use separate output directories, as before.

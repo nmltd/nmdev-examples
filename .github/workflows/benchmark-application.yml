@@ -43,7 +43,7 @@ jobs:
         if: always()
         with:
           name: benchmark-smoke-${{ matrix.os }}
-          path: smoke-results-results.zip
+          path: smoke-results-results-*.zip
           if-no-files-found: warn
       - uses: actions/upload-artifact@v4
         if: matrix.os == 'ubuntu-24.04' && success()
