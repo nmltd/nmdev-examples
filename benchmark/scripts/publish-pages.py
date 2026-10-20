@@ -67,6 +67,10 @@ def main():
     repo = Path(__file__).resolve().parents[2]
     source = args.results.resolve()
     source.relative_to(repo)
+    if (source/'request.json').exists() or (source/'publication-format.json').exists():
+        from publish_launcher import publish
+        publish(repo, source)
+        return
     output = repo / 'docs'
     guide = repo / 'benchmark/site'
     rows = json.loads((source/'jmh.json').read_text())

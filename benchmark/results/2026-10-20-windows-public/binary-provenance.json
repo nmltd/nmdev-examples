@@ -1,0 +1,6 @@
+{
+  "nmdev_url": "https://github.com/nmltd/maven-packages/releases/download/nmdev-1.2.6-validated/nmdev-1.2.6.jar",
+  "nmdev_sha256": "0b2d807d17927b482fadcdc313768a61d2fbdc80c7da4226005a198e0a6796ba",
+  "parallelcolt_source_url": "https://codeload.github.com/rwl/ParallelColt/zip/7c34364026680c1113f1a9586b9fb8c55080330c",
+  "parallelcolt_source_sha256": "a083064fd6f36780a7b4be15b80e5146c9b21f656ff76a6fb392045bea46388e"
+}
