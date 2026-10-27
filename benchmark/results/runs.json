@@ -1,0 +1,23 @@
+{
+  "format": 1,
+  "latest": "2026-10-20/windows-082238Z",
+  "runs": [
+    {
+      "id": "windows-082238Z",
+      "date": "2026-10-20",
+      "title": "Windows full suite \u2014 08:22:38 UTC",
+      "source": "2026-10-20/windows-082238Z",
+      "legacy_source": "2026-10-20-windows-public",
+      "status": "Completed and validated",
+      "warning": "NM Dev 1.2.6; excludes the newer machine-capacity and Commons block cases. Native worker counts were not independently audited.",
+      "cases": 660,
+      "libraries": 11,
+      "machine": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+      "completed_utc": "2026-10-20T08:22:38.148289Z",
+      "evidence_sha256": {
+        "jmh.json": "3f381c637c5f76838b78c26be856ffa62931be7dc094f9d1419df65b965f5175",
+        "summary.csv": "b6711b4e2e2af3e1bbae9c06444aebb95bc18c5f72a1c4750a6e828cbbd6cf2d"
+      }
+    }
+  ]
+}

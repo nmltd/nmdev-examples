@@ -7,6 +7,7 @@ public final class OriginValidationMain {
     public static void main(String[] args) throws Exception {
         String[][] cases={
             {"NMDEV","dev.nm.algebra.linear.matrix.doubles.matrixtype.dense.DenseMatrix","nmdev-1.2.6.jar"},
+            {"COMMONS_BLOCK","org.apache.commons.math4.legacy.linear.BlockRealMatrix","commons-math4-legacy-4.0-SNAPSHOT.jar"},
             {"COMMONS","org.apache.commons.math4.legacy.linear.Array2DRowRealMatrix","commons-math4-legacy-4.0-SNAPSHOT.jar"},
             {"PARALLEL_COLT","cern.colt.matrix.tdouble.impl.DenseDoubleMatrix2D","parallelcolt-0.11.4.jar"},
             {"EJML","org.ejml.data.DMatrixRMaj","ejml-core-0.46.1.jar"},

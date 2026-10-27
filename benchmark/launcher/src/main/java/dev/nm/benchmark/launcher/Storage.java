@@ -42,6 +42,21 @@ final class Storage {
         return name.endsWith(".json") || name.endsWith(".jsonl") || name.endsWith(".csv")
             || name.endsWith(".log") || name.endsWith(".md") || name.endsWith(".txt") || name.equals("harness-source.zip");
     }
+    /** One UTC timestamp per result directory, retained across ZIP refreshes and resumes. */
+    static synchronized Path bundlePath(Path output) throws IOException {
+        if(!Files.isDirectory(output))throw new NoSuchFileException(output.toString());
+        Path stamp=output.resolve("zip-timestamp.txt");
+        String timestamp;
+        if(Files.exists(stamp))timestamp=Files.readString(stamp).trim();
+        else {
+            timestamp=java.time.format.DateTimeFormatter.ofPattern("uuuuMMdd-HHmmss-SSS'Z'")
+                .withZone(java.time.ZoneOffset.UTC).format(java.time.Instant.now());
+            atomic(stamp,(timestamp+"\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+        }
+        if(!timestamp.matches("[0-9]{8}-[0-9]{6}-[0-9]{3}Z"))
+            throw new IOException("Invalid ZIP timestamp in "+stamp);
+        return output.resolveSibling(output.getFileName()+"-results-"+timestamp+".zip");
+    }
     static synchronized void bundle(Path output) throws IOException {
         bundle(output, null);
     }
@@ -61,7 +76,7 @@ final class Storage {
         }
     }
     private static void bundleSnapshot(Path output, Runnable afterSnapshot) throws IOException {
-        Path target = output.resolveSibling(output.getFileName() + "-results.zip");
+        Path target = bundlePath(output);
         Path temporary = Files.createTempFile(target.toAbsolutePath().getParent(), target.getFileName() + "-pending-", ".partial");
         boolean complete = false;
         try {

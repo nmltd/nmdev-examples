@@ -6,7 +6,7 @@ From a downloaded/cloned `nmdev-examples` project:
 
 ```text
 mvn -s benchmark/settings.xml -gs benchmark/settings.xml -f benchmark/pom.xml package
-java -jar benchmark/target/nmdev-benchmark-1.1.0.jar
+java -jar benchmark/target/nmdev-benchmark-1.2.0.jar
 ```
 
 The public application entry point is `dev.nm.benchmark.launcher.BenchmarkMain`. An IDE can invoke it from the packaged JAR. The JAR embeds the benchmark sources and build configuration and can be copied to another computer with a full JDK 17+.
@@ -16,7 +16,7 @@ With no arguments, the application automatically:
 1. Downloads checksum-verified numerical dependencies and the repository's public trial license. It uses the validated NM Dev 1.2.6 public release and the timestamp-pinned Commons Math 4 snapshot from the lockfile, keeping version labels explicit. The public NM Dev binary hash differs from the older archived benchmark binary; local measurements must be treated as a separate experiment.
 2. Builds Parallel Colt 0.11.4 from a checksum-verified archive of its exact upstream commit, then compiles the bundled JMH harness. The locally built binary's actual hash and compiler version are recorded; compiler-dependent binary hashes can differ between machines.
 3. Collects machine information and runs correctness, input-preservation, pivot and backend preflight checks.
-4. Runs all **660 cases** serially: 286 baseline cases, 330 large-square cases, and 44 rectangular cases. All eleven libraries are attempted. The one- and four-thread profiles are scheduled automatically; they never run concurrently.
+4. Runs all **1,260 cases** serially: 312 baseline, 360 large-square, 48 rectangular, plus 540 all-core cases. All eleven libraries (twelve implementation variants) are attempted. One-thread, four-thread and all-core profiles are scheduled automatically; they never run concurrently.
 5. Saves each independent JVM fork immediately, merges completed cases using JMH's own statistics, updates the CSV and JSON reports, and creates a ZIP beside the result directory.
 
 Every case has two independently warmed JVM forks, two warmup iterations and three measurement iterations per fork. Warmup targets are 100 ms and measurement targets 200 ms; expensive operations still complete in full. Full-size correctness checks run before timing. The complete suite can take many hours, especially at 2000×2000. Keep the computer awake and otherwise idle.
@@ -28,7 +28,7 @@ Run the **same JAR and command** again. The default result directory is `nmdev-b
 The launcher rejects incompatible resumes after a change in its JAR, dependency hashes, configuration or recorded machine identity. Use a different output directory for a different experiment:
 
 ```text
-java -jar benchmark/target/nmdev-benchmark-1.1.0.jar --output laptop-results
+java -jar benchmark/target/nmdev-benchmark-1.2.0.jar --output laptop-results
 ```
 
 Do not rebuild the application JAR between resumes. The same output directory is locked against concurrent runners. Logs and JSON heartbeats identify the active case. The launcher retries each failed fork twice without prompting and continues to other cases if a library is unsupported or fails. Failures are explicitly recorded and excluded from timing results. It exits with an error and packages partial evidence when failures remain; re-running retries failed/unfinished forks.
@@ -37,7 +37,7 @@ The trial license is downloaded from the public example repository, never from a
 
 ## Output ZIP
 
-Send `nmdev-benchmark-output-results.zip` (or `laptop-results-results.zip`) for validation and publication. The ZIP is refreshed after completed forks/cases and at orderly termination. A hard kill or power loss can prevent the last ZIP refresh; restart the application to reconstruct it from saved checkpoints.
+Send `nmdev-benchmark-output-results-<UTC timestamp>.zip` (or `laptop-results-results-<UTC timestamp>.zip`) for validation and publication. The ZIP is refreshed after completed forks/cases and at orderly termination. A hard kill or power loss can prevent the last ZIP refresh; restart the application to reconstruct it from saved checkpoints.
 
 Included:
 
@@ -52,7 +52,7 @@ Excluded: licenses, downloaded dependency JARs, private runtime cache, Maven set
 ## Quick verification (not publishable measurements)
 
 ```text
-java -jar benchmark/target/nmdev-benchmark-1.1.0.jar --smoke --output smoke-results
+java -jar benchmark/target/nmdev-benchmark-1.2.0.jar --smoke --output smoke-results
 ```
 
 Smoke mode exercises every library across all profile types using tiny matrices and 10 ms iteration targets. Its metadata explicitly says `SMOKE-NOT-FOR-PUBLICATION`. Internal test options `--libraries NMDEV,EJML` and `--max-cases 2` allow narrow recovery checks. Ordinary users need no options.
@@ -92,3 +92,30 @@ Do not overwrite an existing original-JAR backup. The one-time helper requires i
 ZIP creation is a best-effort export; checkpoint writes and measurement validation remain strict. If a source disappears, becomes unreadable, or traversal fails, the launcher abandons that snapshot, removes its incomplete staging file where possible, retains the previous ZIP and records `packaging-failure.json`. Measurements continue and a later refresh retries the export. Incomplete staging files use `.partial`, never a completed ZIP name. A successful later ZIP includes the historical failure report. If packaging warnings continue at the end, the ordinary ZIP may be stale; resolve the missing/unreadable files and rerun to validate checkpoints and regenerate it. Do not publish a stale ZIP as a complete run.
 
 For a run that already adopted the first ZIP fix, preserve its **currently used JAR** under a new backup name before rebuilding, e.g. `benchmark/nmdev-benchmark-before-snapshot-fix.jar`. Run PackagingResume with that backup (not the older original-JAR backup), then resume normally. The existing upgrade verifier permits only Storage.class and PackagingResume.class differences; all other JAR contents and normal checkpoint validation remain strict.
+
+
+## Machine-capacity and Commons block comparisons (application 1.2.0)
+
+The default application now runs **1,260 cases**, with eleven libraries and twelve implementation variants. Existing 1-thread baseline, 1/4-thread large, and 1-thread rectangular profiles remain. Additional `baseline-all-cores`, `large-all-cores`, and `rectangular-all-cores` profiles use every logical processor reported by the launcher JVM's `Runtime.availableProcessors()`. They remain separate even on machines with only one or four processors. JMH still uses one caller: the timed unit is one matrix operation, with library-internal parallelism permitted.
+
+All-core requests set JVM processor visibility, `benchmark.threads`, and native BLAS/OpenMP thread environment variables to that count. This makes processors available; it does not force sequential algorithms to run in parallel. In particular, Commons row/block multiplication, JAMA, Colt, the current EJML `CommonOps_DDRM` adapter, and F2J stay sequential. Parallel Colt, ojAlgo and UJMP receive explicit worker limits; NM Dev uses JVM processor visibility; native jblas worker counts are not independently audited. This is a comparison of the configured APIs on the same hardware, including parallel versus sequential execution, rather than a claim of equal actual worker counts or exhaustive fastest-API selection.
+
+`COMMONS` retains `Array2DRowRealMatrix`; `COMMONS_BLOCK` uses `BlockRealMatrix` from the exact same locked Commons Math 4 binary. Both are measured for every operation, including all large sizes and rectangular products. Every native input is constructed before timing; timed result allocation and decomposition-internal conversions remain included. Both variants receive repeated correctness and input-preservation checks. A block layout improves locality but does not itself provide parallelism.
+
+`machine.json` records CPU model, physical-core information when detectable, JVM-visible logical processors, memory, OS/JDK, JVM options and Linux container limits/cpuset where available. Windows additionally records host physical cores and logical processors. All-core means the resources visible to the JVM; do not launch with an artificial `-XX:ActiveProcessorCount` cap when measuring machine capacity. VM/container restrictions and OS affinity can limit resources; worker requests are not measured utilization or exclusive core reservation.
+
+Keep profiles and Commons variants separate in reporting. For matched operation/size cases, speedup is comparison time / candidate time, and time reduction is 100 × (comparison time − candidate time) / comparison time. Never pool the 1-thread, 4-thread and all-core profiles into one ranking. Published historical results remain unchanged until a new run is validated.
+
+Build and run the new experiment from the repository root:
+
+```powershell
+mvn -s benchmark/settings.xml -gs benchmark/settings.xml -f benchmark/pom.xml package
+java -jar benchmark/target/nmdev-benchmark-1.2.0.jar --output nmdev-benchmark-all-cores
+```
+
+Use this **new output directory**; 1.2.0 changes the measurement specification and cannot resume the older 660-case experiment. Keep its completed results and original JAR. Repeat the same new command with the same 1.2.0 JAR to resume the new experiment.
+
+
+### Timestamped ZIP filenames
+
+Results ZIPs include a Windows-safe UTC timestamp, for example `nmdev-benchmark-all-cores-results-20261020-084105-123Z.zip`. The timestamp is assigned when that result directory first creates a bundle and saved in `zip-timestamp.txt`. Refreshes and resumes reuse this filename, avoiding thousands of archives during a run. The console prints the exact upload path. Separate runs should use separate output directories, as before.

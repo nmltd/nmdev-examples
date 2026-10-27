@@ -49,18 +49,19 @@ function showTooltip(point,x,y){
  tooltip.style.left=Math.max(12,Math.min(x+14,innerWidth-tooltip.offsetWidth-12))+'px';
  tooltip.style.top=Math.max(12,Math.min(y+14,innerHeight-tooltip.offsetHeight-12))+'px';
 }
-function tooltip(p){const lib=byLib.get(p.library);return `${lib.label} · ${p.operation} · ${p.size} × ${p.size}\nMean: ${format(p.mean)} ms/op\n99.9% confidence interval: [${format(p.low)}, ${format(p.high)}] ms/op\nJMH error half-width: ±${format(p.error)} ms/op\nTime / ${byLib.get(state.reference).label}: ${format(ratio(p))}×\n${p.forks} JVM forks · ${p.iterations} measured iteration means\nBackend: ${lib.backend}`}
+function dimensions(size){return typeof size==='number'?`${size} × ${size}`:String(size).replaceAll('x',' × ')}
+function tooltip(p){const lib=byLib.get(p.library);return `${lib.label} · ${p.operation} · ${dimensions(p.size)}\nMean: ${format(p.mean)} ms/op\n99.9% confidence interval: [${format(p.low)}, ${format(p.high)}] ms/op\nJMH error half-width: ±${format(p.error)} ms/op\nTime / ${byLib.get(state.reference).label}: ${format(ratio(p))}×\n${p.forks} JVM forks · ${p.iterations} measured iteration means\nBackend: ${lib.backend}`}
 function draw(size,selected){
  const visible=selected.filter(p=>p.size===size), ops=operationIds.filter(x=>state.operations.includes(x));
- const section=document.createElement('section'), heading=document.createElement('h2');heading.textContent=`${size} × ${size} matrices`;section.append(heading);
- const download=document.createElement('button');download.type='button';download.textContent=`Download ${size} × ${size} SVG`;section.append(download);
+ const section=document.createElement('section'), heading=document.createElement('h2');heading.textContent=`${dimensions(size)} matrices`;section.append(heading);
+ const download=document.createElement('button');download.type='button';download.textContent=`Download ${dimensions(size)} SVG`;section.append(download);
  if(!visible.length){const empty=document.createElement('p');empty.textContent='No results selected. Select at least one library and operation.';section.append(empty);download.disabled=true;$('charts').append(section);return}
  const reference=byLib.get(state.reference).label, rowHeight=Math.max(54,state.libraries.length*7);
  const width=1120,left=170,right=32,top=85+Math.ceil(state.libraries.length/3)*22,bottom=90,height=top+ops.length*rowHeight+bottom;
- const svg=make('svg',{xmlns:ns,viewBox:`0 0 ${width} ${height}`,role:'group','aria-label':`${size} × ${size} benchmark chart`});
+ const svg=make('svg',{xmlns:ns,viewBox:`0 0 ${width} ${height}`,role:'group','aria-label':`${dimensions(size)} benchmark chart`});
  svg.append(make('rect',{width,height,fill:'white'}));
- svg.append(make('title',{},`${data.run}: ${size} × ${size}, ${state.mode==='absolute'?'milliseconds per operation':'time relative to '+reference}`));
- label(svg,20,26,`${size} × ${size} matrices · ${state.mode==='absolute'?'milliseconds per operation':'time / '+reference}`,{'font-size':17,'font-weight':700});
+ svg.append(make('title',{},`${data.run}: ${dimensions(size)}, ${state.mode==='absolute'?'milliseconds per operation':'time relative to '+reference}`));
+ label(svg,20,26,`${dimensions(size)} matrices · ${state.mode==='absolute'?'milliseconds per operation':'time / '+reference}`,{'font-size':17,'font-weight':700});
  label(svg,20,49,`Run ${data.run} · lower is faster · logarithmic axis`,{'font-size':12});
  state.libraries.forEach((id,i)=>{const x=20+(i%3)*360,y=71+Math.floor(i/3)*22;svg.append(make('circle',{cx:x+5,cy:y-4,r:4.5,fill:byLib.get(id).color}));label(svg,x+16,y,byLib.get(id).label,{'font-size':12})});
  const population=state.axis==='visible'?visible:data.points.filter(p=>p.size===size);
@@ -86,7 +87,7 @@ function draw(size,selected){
   });
  });
  label(svg,(left+width-right)/2,height-26,state.mode==='absolute'?'Mean time (ms/op, log scale)':'Time / '+reference+' (log scale)',{'text-anchor':'middle'});
- label(svg,20,height-7,'Shared VM · ratios of means · exact versions, backends and uncertainty in point tooltips',{'font-size':11});
+ label(svg,20,height-7,'Recorded machine · ratios of means · exact versions, backends and uncertainty in point tooltips',{'font-size':11});
  const wrap=document.createElement('div');wrap.className='plot';wrap.append(svg);section.append(wrap);$('charts').append(section);
  download.addEventListener('click',()=>{
   const clone=svg.cloneNode(true);clone.querySelectorAll('circle').forEach(p=>{p.removeAttribute('tabindex')});

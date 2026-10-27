@@ -36,17 +36,17 @@ jobs:
       - name: Build application and test checkpoint/ZIP safeguards
         run: mvn -B -f benchmark/pom.xml package
       - name: Verify automatic preparation and all library/profile adapters
-        run: java -Xmx2g -jar benchmark/target/nmdev-benchmark-1.1.0.jar --smoke --output smoke-results
+        run: java -Xmx2g -jar benchmark/target/nmdev-benchmark-1.2.0.jar --smoke --output smoke-results
       - name: Verify saved forks are reused
-        run: java -Xmx2g -jar benchmark/target/nmdev-benchmark-1.1.0.jar --smoke --output smoke-results
+        run: java -Xmx2g -jar benchmark/target/nmdev-benchmark-1.2.0.jar --smoke --output smoke-results
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: benchmark-smoke-${{ matrix.os }}
-          path: smoke-results-results.zip
+          path: smoke-results-results-*.zip
           if-no-files-found: warn
       - uses: actions/upload-artifact@v4
         if: matrix.os == 'ubuntu-24.04' && success()
         with:
           name: nmdev-benchmark-application
-          path: benchmark/target/nmdev-benchmark-1.1.0.jar
+          path: benchmark/target/nmdev-benchmark-1.2.0.jar

@@ -13,6 +13,8 @@ final class MachineInfo {
         m.put("recorded_utc", Instant.now().toString());
         for (String key : List.of("os.name","os.version","os.arch","java.version","java.vendor","java.vm.name","java.vm.version")) m.put(key, System.getProperty(key));
         m.put("available_processors", Runtime.getRuntime().availableProcessors());
+        m.put("launcher_jvm_arguments", ManagementFactory.getRuntimeMXBean().getInputArguments());
+        m.put("all_cores_definition", "Runtime.availableProcessors(): JVM-visible logical processors, subject to affinity, container limits and JVM overrides");
         m.put("jvm_max_heap_bytes", Runtime.getRuntime().maxMemory());
         var os = ManagementFactory.getOperatingSystemMXBean();
         if (os instanceof com.sun.management.OperatingSystemMXBean) {
@@ -37,11 +39,13 @@ final class MachineInfo {
                 cpu = command("/usr/sbin/sysctl", "-n", "machdep.cpu.brand_string");
                 m.put("physical_cores", command("/usr/sbin/sysctl", "-n", "hw.physicalcpu"));
             } else if (System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("win")) {
+                m.put("physical_cores", command("powershell.exe", "-NoProfile", "-NonInteractive", "-Command", "(Get-CimInstance Win32_Processor | Measure-Object -Property NumberOfCores -Sum).Sum"));
+                m.put("host_logical_processors", command("powershell.exe", "-NoProfile", "-NonInteractive", "-Command", "(Get-CimInstance Win32_Processor | Measure-Object -Property NumberOfLogicalProcessors -Sum).Sum"));
                 cpu = command("powershell.exe", "-NoProfile", "-NonInteractive", "-Command", "(Get-CimInstance Win32_Processor | Select-Object -ExpandProperty Name) -join '; '");
             }
         } catch (Exception ex) { m.put("cpu_detection_note", ex.getClass().getSimpleName()); }
         m.put("cpu_model", cpu);
-        for (String name : List.of("cpu.max", "memory.max", "memory.events", "pids.events")) {
+        for (String name : List.of("cpu.max", "cpuset.cpus.effective", "memory.max", "memory.events", "pids.events")) {
             try { Path p = Path.of("/sys/fs/cgroup", name); if (Files.exists(p)) m.put("cgroup_" + name, Files.readString(p).trim()); }
             catch (Exception ignored) { m.put("cgroup_" + name, "unavailable"); }
         }

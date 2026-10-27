@@ -1,6 +1,0 @@
-{
-  "NMDEV": "Validated combined obfuscated 1.2.6 binary; ActiveProcessorCount=4; exact hash and source proof in validated-nmdev-artifact.json",
-  "EJML": "EJML 0.46.1 ejml-ddense CommonOps_DDRM and standard decomposition factories; these adapter API paths do not request EJML concurrent kernels",
-  "OJALGO": "ojAlgo 57.5.0 R064Store/decomposition factories; configured thread limit=4; output factors materialized inside timing",
-  "JBLAS": "Bundled native jblas 1.2.5; native thread environment requests 4; actual native worker counts not independently audited"
-}

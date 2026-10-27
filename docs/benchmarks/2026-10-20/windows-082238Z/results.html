@@ -1,0 +1,4689 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Results — NM Dev benchmarks</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}</style></head><body><main><p><a href="index.html">Dated run overview</a> · <a href="../../../benchmarks/index.html">All historical benchmarks</a></p><nav aria-label="Measurement profiles"><a href="benchmarks.html">Baseline · 1 requested thread(s) · 286 cases</a> · <a href="benchmarks-large-1thread.html">Large · 1 requested thread(s) · 165 cases</a> · <a href="benchmarks-large-4thread.html">Large · 4 requested thread(s) · 165 cases</a> · <a href="benchmarks-rectangular-1thread.html">Rectangular · 1 requested thread(s) · 44 cases</a></nav><nav aria-label="Site navigation"><a href="../../../index.html">Home</a><a href="../../../getting-started.html">Getting Started</a><a href="../../../tutorials.html">Tutorials</a><a href="../../../benchmarks.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><nav aria-label="Benchmark navigation"><a href="benchmarks.html">Charts</a><a href="results.html" aria-current="page">Results</a><a href="methodology.html">Methodology</a><a href="libraries.html">Libraries</a><a href="validation.html">Validation</a><a href="reproduce.html">Reproduce</a></nav><h1>Benchmark results — windows-082238Z</h1>
+<p>660 cases across 11 libraries; 1,320 independently warmed fork records; 3,960 measured iteration means. Lower ms/op is faster.</p>
+<p>Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz; 12 logical processors; 63.92 GiB physical RAM; Windows 11 amd64; Oracle Corporation JDK 27 (27+35-2325).</p>
+<p>Two separately warmed JVM forks per case; two 100 ms warmups and three 200 ms measurements per fork; one JMH worker; requested compute threads are shown per profile. Fork heap: 256 MiB initial / 1 GiB maximum. CPU affinity was not set. Native worker counts were not independently audited. These short measurements may have wide confidence intervals; rankings are machine-specific.</p>
+<p>The run measures NM Dev <strong>1.2.6</strong>, not a later release. Profiles are kept separate: a 4-thread request does not imply every library executes in parallel. This archive contains no all-12-thread profile and no separate Commons block adapter.</p>
+<h2>Validation</h2>
+<p>All 660 requested case identities, both fork JSON checksums per case, raw sample counts, finite positive timings, arithmetic means, combined results, summary CSV values, JVM thread flags and machine identity fields passed validation. All five preflight processes exited successfully.</p>
+<p>The original ZIP retains historical launcher and packaging errors. The final status is complete, with zero failed cases; every requested case and fork is present, so the final archive is complete despite those earlier errors. Downloaded binaries are excluded: their recorded hashes establish provenance but cannot be independently recomputed from this ZIP.</p>
+<p><a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-20/windows-082238Z/validation-report.json">Validation evidence</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-20/windows-082238Z/jmh.json">Saved JMH measurements</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-20/windows-082238Z/summary.csv">Summary CSV</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-20/windows-082238Z/publication-format.json">Hardware and archive digest</a> · <a href="https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-20/windows-082238Z/binary-provenance.json">Binary provenance</a></p>
+<h2>Baseline — 1 requested compute thread(s)</h2>
+<p><a href="benchmarks.html">Interactive chart</a></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Size / shape</th>
+<th>Operation</th>
+<th>Library</th>
+<th style="text-align: right;">Mean ms/op</th>
+<th style="text-align: right;">99.9% error ± ms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>64</td>
+<td>transpose</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.00580577178</td>
+<td style="text-align: right;">0.00240314042</td>
+</tr>
+<tr>
+<td>256</td>
+<td>transpose</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.203537232</td>
+<td style="text-align: right;">0.0315847997</td>
+</tr>
+<tr>
+<td>64</td>
+<td>addition</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.00369553061</td>
+<td style="text-align: right;">0.000715866306</td>
+</tr>
+<tr>
+<td>256</td>
+<td>addition</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.111899852</td>
+<td style="text-align: right;">0.0281497292</td>
+</tr>
+<tr>
+<td>64</td>
+<td>scale</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.00329830324</td>
+<td style="text-align: right;">0.000946205328</td>
+</tr>
+<tr>
+<td>256</td>
+<td>scale</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.11114747</td>
+<td style="text-align: right;">0.0700810542</td>
+</tr>
+<tr>
+<td>64</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.235147645</td>
+<td style="text-align: right;">0.113709634</td>
+</tr>
+<tr>
+<td>256</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">29.7645878</td>
+<td style="text-align: right;">39.8386902</td>
+</tr>
+<tr>
+<td>64</td>
+<td>determinant</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.077914506</td>
+<td style="text-align: right;">0.0449691157</td>
+</tr>
+<tr>
+<td>256</td>
+<td>determinant</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">7.80127135</td>
+<td style="text-align: right;">1.76441614</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverse</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.521673833</td>
+<td style="text-align: right;">0.0968346512</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverse</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">28.2909777</td>
+<td style="text-align: right;">4.07141019</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverseSPD</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.488352387</td>
+<td style="text-align: right;">0.176763598</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverseSPD</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">24.5098368</td>
+<td style="text-align: right;">6.38660565</td>
+</tr>
+<tr>
+<td>64</td>
+<td>cholesky</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.0473449942</td>
+<td style="text-align: right;">0.00718215466</td>
+</tr>
+<tr>
+<td>256</td>
+<td>cholesky</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">2.85772516</td>
+<td style="text-align: right;">0.213220741</td>
+</tr>
+<tr>
+<td>64</td>
+<td>lu</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.0703195077</td>
+<td style="text-align: right;">0.025769411</td>
+</tr>
+<tr>
+<td>256</td>
+<td>lu</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">9.14865208</td>
+<td style="text-align: right;">5.32813841</td>
+</tr>
+<tr>
+<td>64</td>
+<td>qr</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.367146568</td>
+<td style="text-align: right;">0.0977717063</td>
+</tr>
+<tr>
+<td>256</td>
+<td>qr</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">28.4391475</td>
+<td style="text-align: right;">14.2118565</td>
+</tr>
+<tr>
+<td>64</td>
+<td>eigenSymmetric</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">5.76145103</td>
+<td style="text-align: right;">4.71537751</td>
+</tr>
+<tr>
+<td>256</td>
+<td>eigenSymmetric</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">117.566608</td>
+<td style="text-align: right;">31.9047855</td>
+</tr>
+<tr>
+<td>64</td>
+<td>svd</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">3.31409393</td>
+<td style="text-align: right;">2.083533</td>
+</tr>
+<tr>
+<td>256</td>
+<td>svd</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">132.899283</td>
+<td style="text-align: right;">36.2725</td>
+</tr>
+<tr>
+<td>64</td>
+<td>solve</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">0.213976672</td>
+<td style="text-align: right;">0.177811077</td>
+</tr>
+<tr>
+<td>256</td>
+<td>solve</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">8.64684868</td>
+<td style="text-align: right;">2.57288847</td>
+</tr>
+<tr>
+<td>64</td>
+<td>transpose</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.00495646705</td>
+<td style="text-align: right;">0.000668438123</td>
+</tr>
+<tr>
+<td>256</td>
+<td>transpose</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.171423198</td>
+<td style="text-align: right;">0.0886002562</td>
+</tr>
+<tr>
+<td>64</td>
+<td>addition</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.00385311098</td>
+<td style="text-align: right;">0.00201976682</td>
+</tr>
+<tr>
+<td>256</td>
+<td>addition</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.0851261444</td>
+<td style="text-align: right;">0.0712093193</td>
+</tr>
+<tr>
+<td>64</td>
+<td>scale</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.00326102249</td>
+<td style="text-align: right;">0.00101707496</td>
+</tr>
+<tr>
+<td>256</td>
+<td>scale</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.0591470076</td>
+<td style="text-align: right;">0.0221147279</td>
+</tr>
+<tr>
+<td>64</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.107525745</td>
+<td style="text-align: right;">0.0497805315</td>
+</tr>
+<tr>
+<td>256</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">4.17183276</td>
+<td style="text-align: right;">1.67591035</td>
+</tr>
+<tr>
+<td>64</td>
+<td>determinant</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.08524932</td>
+<td style="text-align: right;">0.0130260185</td>
+</tr>
+<tr>
+<td>256</td>
+<td>determinant</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">5.27104358</td>
+<td style="text-align: right;">0.592594165</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverse</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.306661482</td>
+<td style="text-align: right;">0.0212364846</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverse</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">17.9855092</td>
+<td style="text-align: right;">2.49053013</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverseSPD</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.141241679</td>
+<td style="text-align: right;">0.00951044515</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverseSPD</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">9.90209783</td>
+<td style="text-align: right;">1.09583652</td>
+</tr>
+<tr>
+<td>64</td>
+<td>cholesky</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.0443449223</td>
+<td style="text-align: right;">0.00507416552</td>
+</tr>
+<tr>
+<td>256</td>
+<td>cholesky</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">2.74323125</td>
+<td style="text-align: right;">0.161045967</td>
+</tr>
+<tr>
+<td>64</td>
+<td>lu</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.0935643218</td>
+<td style="text-align: right;">0.0143843453</td>
+</tr>
+<tr>
+<td>256</td>
+<td>lu</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">5.45658425</td>
+<td style="text-align: right;">0.422146841</td>
+</tr>
+<tr>
+<td>64</td>
+<td>qr</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.221218296</td>
+<td style="text-align: right;">0.0484796005</td>
+</tr>
+<tr>
+<td>256</td>
+<td>qr</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">11.7413106</td>
+<td style="text-align: right;">5.41113496</td>
+</tr>
+<tr>
+<td>64</td>
+<td>eigenSymmetric</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">1.01620255</td>
+<td style="text-align: right;">1.55682596</td>
+</tr>
+<tr>
+<td>256</td>
+<td>eigenSymmetric</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">23.8209143</td>
+<td style="text-align: right;">5.87003525</td>
+</tr>
+<tr>
+<td>64</td>
+<td>svd</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">1.12930159</td>
+<td style="text-align: right;">0.52866964</td>
+</tr>
+<tr>
+<td>256</td>
+<td>svd</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">42.2050194</td>
+<td style="text-align: right;">6.84725031</td>
+</tr>
+<tr>
+<td>64</td>
+<td>solve</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">0.100979829</td>
+<td style="text-align: right;">0.0261854083</td>
+</tr>
+<tr>
+<td>256</td>
+<td>solve</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">6.32937334</td>
+<td style="text-align: right;">3.60896233</td>
+</tr>
+<tr>
+<td>64</td>
+<td>transpose</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.00665352991</td>
+<td style="text-align: right;">0.00194877389</td>
+</tr>
+<tr>
+<td>256</td>
+<td>transpose</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.154659441</td>
+<td style="text-align: right;">0.0473172083</td>
+</tr>
+<tr>
+<td>64</td>
+<td>addition</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.00453892605</td>
+<td style="text-align: right;">0.000681856539</td>
+</tr>
+<tr>
+<td>256</td>
+<td>addition</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.0815548314</td>
+<td style="text-align: right;">0.015535962</td>
+</tr>
+<tr>
+<td>64</td>
+<td>scale</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.00529002329</td>
+<td style="text-align: right;">0.0039094142</td>
+</tr>
+<tr>
+<td>256</td>
+<td>scale</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.0832983645</td>
+<td style="text-align: right;">0.0348816924</td>
+</tr>
+<tr>
+<td>64</td>
+<td>multiplication</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.260780182</td>
+<td style="text-align: right;">0.00848395343</td>
+</tr>
+<tr>
+<td>256</td>
+<td>multiplication</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">20.1058891</td>
+<td style="text-align: right;">3.26069486</td>
+</tr>
+<tr>
+<td>64</td>
+<td>determinant</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.13910391</td>
+<td style="text-align: right;">0.166680587</td>
+</tr>
+<tr>
+<td>256</td>
+<td>determinant</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">7.95382585</td>
+<td style="text-align: right;">2.49440812</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverse</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.194576411</td>
+<td style="text-align: right;">0.0960196038</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverse</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">18.1755151</td>
+<td style="text-align: right;">20.3647773</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverseSPD</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.15282034</td>
+<td style="text-align: right;">0.0757233401</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverseSPD</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">7.80393501</td>
+<td style="text-align: right;">5.06800573</td>
+</tr>
+<tr>
+<td>64</td>
+<td>cholesky</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.0656727125</td>
+<td style="text-align: right;">0.02528306</td>
+</tr>
+<tr>
+<td>256</td>
+<td>cholesky</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">2.78804684</td>
+<td style="text-align: right;">0.923024514</td>
+</tr>
+<tr>
+<td>64</td>
+<td>lu</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.114619636</td>
+<td style="text-align: right;">0.0277133417</td>
+</tr>
+<tr>
+<td>256</td>
+<td>lu</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">8.82090567</td>
+<td style="text-align: right;">3.40129003</td>
+</tr>
+<tr>
+<td>64</td>
+<td>qr</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.282817543</td>
+<td style="text-align: right;">0.0490609638</td>
+</tr>
+<tr>
+<td>256</td>
+<td>qr</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">16.1196739</td>
+<td style="text-align: right;">3.945335</td>
+</tr>
+<tr>
+<td>64</td>
+<td>eigenSymmetric</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">2.37182658</td>
+<td style="text-align: right;">6.91614231</td>
+</tr>
+<tr>
+<td>256</td>
+<td>eigenSymmetric</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">62.3061153</td>
+<td style="text-align: right;">16.3196181</td>
+</tr>
+<tr>
+<td>64</td>
+<td>svd</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">53.415621</td>
+<td style="text-align: right;">71.5310689</td>
+</tr>
+<tr>
+<td>256</td>
+<td>svd</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">218.594917</td>
+<td style="text-align: right;">22.7530349</td>
+</tr>
+<tr>
+<td>64</td>
+<td>solve</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">0.127200593</td>
+<td style="text-align: right;">0.0377668101</td>
+</tr>
+<tr>
+<td>256</td>
+<td>solve</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">7.48962741</td>
+<td style="text-align: right;">3.47293221</td>
+</tr>
+<tr>
+<td>64</td>
+<td>transpose</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.00727044597</td>
+<td style="text-align: right;">0.00275652239</td>
+</tr>
+<tr>
+<td>256</td>
+<td>transpose</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.211192637</td>
+<td style="text-align: right;">0.19457545</td>
+</tr>
+<tr>
+<td>64</td>
+<td>addition</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.00467682552</td>
+<td style="text-align: right;">0.00128228494</td>
+</tr>
+<tr>
+<td>256</td>
+<td>addition</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.0913893395</td>
+<td style="text-align: right;">0.0318314801</td>
+</tr>
+<tr>
+<td>64</td>
+<td>scale</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.0049579416</td>
+<td style="text-align: right;">0.00116041467</td>
+</tr>
+<tr>
+<td>256</td>
+<td>scale</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.0967053626</td>
+<td style="text-align: right;">0.0362421996</td>
+</tr>
+<tr>
+<td>64</td>
+<td>multiplication</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.223430151</td>
+<td style="text-align: right;">0.082291068</td>
+</tr>
+<tr>
+<td>256</td>
+<td>multiplication</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">19.006505</td>
+<td style="text-align: right;">3.34740505</td>
+</tr>
+<tr>
+<td>64</td>
+<td>determinant</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.097289187</td>
+<td style="text-align: right;">0.0626473722</td>
+</tr>
+<tr>
+<td>256</td>
+<td>determinant</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">5.45111607</td>
+<td style="text-align: right;">2.69892492</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverse</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.276792546</td>
+<td style="text-align: right;">0.15624825</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverse</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">17.416505</td>
+<td style="text-align: right;">11.2142633</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverseSPD</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.440867964</td>
+<td style="text-align: right;">0.260309298</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverseSPD</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">42.365096</td>
+<td style="text-align: right;">31.2798456</td>
+</tr>
+<tr>
+<td>64</td>
+<td>cholesky</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.0485839831</td>
+<td style="text-align: right;">0.0121272752</td>
+</tr>
+<tr>
+<td>256</td>
+<td>cholesky</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">2.95958153</td>
+<td style="text-align: right;">1.50022108</td>
+</tr>
+<tr>
+<td>64</td>
+<td>lu</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.0886499593</td>
+<td style="text-align: right;">0.0129324273</td>
+</tr>
+<tr>
+<td>256</td>
+<td>lu</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">4.95821546</td>
+<td style="text-align: right;">0.742409685</td>
+</tr>
+<tr>
+<td>64</td>
+<td>qr</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.436155917</td>
+<td style="text-align: right;">0.0584230884</td>
+</tr>
+<tr>
+<td>256</td>
+<td>qr</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">41.2595967</td>
+<td style="text-align: right;">3.14105969</td>
+</tr>
+<tr>
+<td>64</td>
+<td>eigenSymmetric</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.895384865</td>
+<td style="text-align: right;">0.345390961</td>
+</tr>
+<tr>
+<td>256</td>
+<td>eigenSymmetric</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">64.1187236</td>
+<td style="text-align: right;">9.38555875</td>
+</tr>
+<tr>
+<td>64</td>
+<td>svd</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">7.13136559</td>
+<td style="text-align: right;">7.82817777</td>
+</tr>
+<tr>
+<td>256</td>
+<td>svd</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">195.815217</td>
+<td style="text-align: right;">40.494386</td>
+</tr>
+<tr>
+<td>64</td>
+<td>solve</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">0.102652296</td>
+<td style="text-align: right;">0.0367629208</td>
+</tr>
+<tr>
+<td>256</td>
+<td>solve</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">5.33139849</td>
+<td style="text-align: right;">0.521860253</td>
+</tr>
+<tr>
+<td>64</td>
+<td>transpose</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.00539232446</td>
+<td style="text-align: right;">0.000696837191</td>
+</tr>
+<tr>
+<td>256</td>
+<td>transpose</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.15496339</td>
+<td style="text-align: right;">0.0275575444</td>
+</tr>
+<tr>
+<td>64</td>
+<td>addition</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.00753208029</td>
+<td style="text-align: right;">0.00459223483</td>
+</tr>
+<tr>
+<td>256</td>
+<td>addition</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.164827258</td>
+<td style="text-align: right;">0.117859495</td>
+</tr>
+<tr>
+<td>64</td>
+<td>scale</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.00705496151</td>
+<td style="text-align: right;">0.00511358214</td>
+</tr>
+<tr>
+<td>256</td>
+<td>scale</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.111226186</td>
+<td style="text-align: right;">0.0990987937</td>
+</tr>
+<tr>
+<td>64</td>
+<td>multiplication</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.257675375</td>
+<td style="text-align: right;">0.0444049251</td>
+</tr>
+<tr>
+<td>256</td>
+<td>multiplication</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">38.6787028</td>
+<td style="text-align: right;">14.3548094</td>
+</tr>
+<tr>
+<td>64</td>
+<td>determinant</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.133780136</td>
+<td style="text-align: right;">0.067183952</td>
+</tr>
+<tr>
+<td>256</td>
+<td>determinant</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">9.02176207</td>
+<td style="text-align: right;">5.33590825</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverse</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.710676538</td>
+<td style="text-align: right;">0.231134596</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverse</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">31.1696329</td>
+<td style="text-align: right;">24.5420843</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverseSPD</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.510630359</td>
+<td style="text-align: right;">0.185744434</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverseSPD</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">44.2094067</td>
+<td style="text-align: right;">5.25178666</td>
+</tr>
+<tr>
+<td>64</td>
+<td>cholesky</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.0734972003</td>
+<td style="text-align: right;">0.0464249392</td>
+</tr>
+<tr>
+<td>256</td>
+<td>cholesky</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">2.87199957</td>
+<td style="text-align: right;">0.447927778</td>
+</tr>
+<tr>
+<td>64</td>
+<td>lu</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.201981336</td>
+<td style="text-align: right;">0.221719029</td>
+</tr>
+<tr>
+<td>256</td>
+<td>lu</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">6.17994592</td>
+<td style="text-align: right;">1.56503408</td>
+</tr>
+<tr>
+<td>64</td>
+<td>qr</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.490921184</td>
+<td style="text-align: right;">0.1067796</td>
+</tr>
+<tr>
+<td>256</td>
+<td>qr</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">91.4433528</td>
+<td style="text-align: right;">57.831493</td>
+</tr>
+<tr>
+<td>64</td>
+<td>eigenSymmetric</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">1.47219458</td>
+<td style="text-align: right;">1.88559843</td>
+</tr>
+<tr>
+<td>256</td>
+<td>eigenSymmetric</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">89.0688583</td>
+<td style="text-align: right;">70.3975128</td>
+</tr>
+<tr>
+<td>64</td>
+<td>svd</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">7.43559841</td>
+<td style="text-align: right;">8.71788828</td>
+</tr>
+<tr>
+<td>256</td>
+<td>svd</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">203.01565</td>
+<td style="text-align: right;">14.1034071</td>
+</tr>
+<tr>
+<td>64</td>
+<td>solve</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">0.341400264</td>
+<td style="text-align: right;">0.348298233</td>
+</tr>
+<tr>
+<td>256</td>
+<td>solve</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">10.2459553</td>
+<td style="text-align: right;">13.6212396</td>
+</tr>
+<tr>
+<td>64</td>
+<td>transpose</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">0.00591528492</td>
+<td style="text-align: right;">0.00128304877</td>
+</tr>
+<tr>
+<td>256</td>
+<td>transpose</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">0.158034355</td>
+<td style="text-align: right;">0.0232786541</td>
+</tr>
+<tr>
+<td>64</td>
+<td>addition</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">0.00705457203</td>
+<td style="text-align: right;">0.00206416261</td>
+</tr>
+<tr>
+<td>256</td>
+<td>addition</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">0.180778476</td>
+<td style="text-align: right;">0.0638524094</td>
+</tr>
+<tr>
+<td>64</td>
+<td>scale</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">0.00692804443</td>
+<td style="text-align: right;">0.00470130402</td>
+</tr>
+<tr>
+<td>256</td>
+<td>scale</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">0.116528616</td>
+<td style="text-align: right;">0.0884376527</td>
+</tr>
+<tr>
+<td>64</td>
+<td>multiplication</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">0.278405361</td>
+<td style="text-align: right;">0.0273814462</td>
+</tr>
+<tr>
+<td>256</td>
+<td>multiplication</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">37.8973426</td>
+<td style="text-align: right;">27.6854021</td>
+</tr>
+<tr>
+<td>64</td>
+<td>determinant</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">0.277198278</td>
+<td style="text-align: right;">0.300329743</td>
+</tr>
+<tr>
+<td>256</td>
+<td>determinant</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">7.95291463</td>
+<td style="text-align: right;">2.96381164</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverse</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">1.43715291</td>
+<td style="text-align: right;">0.397786463</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverse</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">26.1420538</td>
+<td style="text-align: right;">18.5491553</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverseSPD</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">0.877811857</td>
+<td style="text-align: right;">0.67984905</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverseSPD</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">19.1622496</td>
+<td style="text-align: right;">5.76532549</td>
+</tr>
+<tr>
+<td>64</td>
+<td>cholesky</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">0.29373982</td>
+<td style="text-align: right;">0.372724205</td>
+</tr>
+<tr>
+<td>256</td>
+<td>cholesky</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">4.95050128</td>
+<td style="text-align: right;">4.5010846</td>
+</tr>
+<tr>
+<td>64</td>
+<td>lu</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">0.274671715</td>
+<td style="text-align: right;">0.307468598</td>
+</tr>
+<tr>
+<td>256</td>
+<td>lu</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">7.88107302</td>
+<td style="text-align: right;">4.37561187</td>
+</tr>
+<tr>
+<td>64</td>
+<td>qr</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">1.75545004</td>
+<td style="text-align: right;">2.75983451</td>
+</tr>
+<tr>
+<td>256</td>
+<td>qr</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">20.9225524</td>
+<td style="text-align: right;">4.66449099</td>
+</tr>
+<tr>
+<td>64</td>
+<td>eigenSymmetric</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">1.29278934</td>
+<td style="text-align: right;">1.64404244</td>
+</tr>
+<tr>
+<td>256</td>
+<td>eigenSymmetric</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">65.4890444</td>
+<td style="text-align: right;">21.5032898</td>
+</tr>
+<tr>
+<td>64</td>
+<td>svd</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">7.95868255</td>
+<td style="text-align: right;">4.51438144</td>
+</tr>
+<tr>
+<td>256</td>
+<td>svd</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">106.227107</td>
+<td style="text-align: right;">133.429171</td>
+</tr>
+<tr>
+<td>64</td>
+<td>solve</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">0.443192813</td>
+<td style="text-align: right;">0.294567912</td>
+</tr>
+<tr>
+<td>256</td>
+<td>solve</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">8.99860987</td>
+<td style="text-align: right;">3.50597028</td>
+</tr>
+<tr>
+<td>64</td>
+<td>transpose</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.00718395947</td>
+<td style="text-align: right;">0.00452269673</td>
+</tr>
+<tr>
+<td>256</td>
+<td>transpose</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.168235729</td>
+<td style="text-align: right;">0.0585339191</td>
+</tr>
+<tr>
+<td>64</td>
+<td>addition</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.00355859589</td>
+<td style="text-align: right;">0.000266510393</td>
+</tr>
+<tr>
+<td>256</td>
+<td>addition</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.0691239746</td>
+<td style="text-align: right;">0.0176493316</td>
+</tr>
+<tr>
+<td>64</td>
+<td>scale</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.00314767197</td>
+<td style="text-align: right;">0.000959737311</td>
+</tr>
+<tr>
+<td>256</td>
+<td>scale</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.078773343</td>
+<td style="text-align: right;">0.0247505255</td>
+</tr>
+<tr>
+<td>64</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.187672907</td>
+<td style="text-align: right;">0.0213565668</td>
+</tr>
+<tr>
+<td>256</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">13.1536271</td>
+<td style="text-align: right;">4.53144739</td>
+</tr>
+<tr>
+<td>64</td>
+<td>determinant</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.108243805</td>
+<td style="text-align: right;">0.0153223754</td>
+</tr>
+<tr>
+<td>256</td>
+<td>determinant</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">6.21480858</td>
+<td style="text-align: right;">4.47980385</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverse</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.277558122</td>
+<td style="text-align: right;">0.0471122079</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverse</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">17.434852</td>
+<td style="text-align: right;">5.6463622</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverseSPD</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.430788291</td>
+<td style="text-align: right;">0.397183702</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverseSPD</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">21.2117177</td>
+<td style="text-align: right;">8.54813846</td>
+</tr>
+<tr>
+<td>64</td>
+<td>cholesky</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.0571393079</td>
+<td style="text-align: right;">0.00877219977</td>
+</tr>
+<tr>
+<td>256</td>
+<td>cholesky</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">3.1496875</td>
+<td style="text-align: right;">0.31603771</td>
+</tr>
+<tr>
+<td>64</td>
+<td>lu</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.113909947</td>
+<td style="text-align: right;">0.0134178146</td>
+</tr>
+<tr>
+<td>256</td>
+<td>lu</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">5.05372638</td>
+<td style="text-align: right;">0.286513588</td>
+</tr>
+<tr>
+<td>64</td>
+<td>qr</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.479593053</td>
+<td style="text-align: right;">0.117688198</td>
+</tr>
+<tr>
+<td>256</td>
+<td>qr</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">26.7833973</td>
+<td style="text-align: right;">7.45679691</td>
+</tr>
+<tr>
+<td>64</td>
+<td>eigenSymmetric</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.917580273</td>
+<td style="text-align: right;">0.247505888</td>
+</tr>
+<tr>
+<td>256</td>
+<td>eigenSymmetric</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">33.3353671</td>
+<td style="text-align: right;">9.94940634</td>
+</tr>
+<tr>
+<td>64</td>
+<td>svd</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">2.49595201</td>
+<td style="text-align: right;">0.680238782</td>
+</tr>
+<tr>
+<td>256</td>
+<td>svd</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">152.556883</td>
+<td style="text-align: right;">25.3080784</td>
+</tr>
+<tr>
+<td>64</td>
+<td>solve</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">0.110832912</td>
+<td style="text-align: right;">0.0599447045</td>
+</tr>
+<tr>
+<td>256</td>
+<td>solve</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">4.6672808</td>
+<td style="text-align: right;">1.19974973</td>
+</tr>
+<tr>
+<td>64</td>
+<td>transpose</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.0078056036</td>
+<td style="text-align: right;">0.0013700955</td>
+</tr>
+<tr>
+<td>256</td>
+<td>transpose</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.398826249</td>
+<td style="text-align: right;">0.0636060487</td>
+</tr>
+<tr>
+<td>64</td>
+<td>addition</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.018409598</td>
+<td style="text-align: right;">0.00307151169</td>
+</tr>
+<tr>
+<td>256</td>
+<td>addition</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.311475888</td>
+<td style="text-align: right;">0.121466895</td>
+</tr>
+<tr>
+<td>64</td>
+<td>scale</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.00347065158</td>
+<td style="text-align: right;">0.00134341159</td>
+</tr>
+<tr>
+<td>256</td>
+<td>scale</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.060458792</td>
+<td style="text-align: right;">0.0206356085</td>
+</tr>
+<tr>
+<td>64</td>
+<td>multiplication</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.120959785</td>
+<td style="text-align: right;">0.0844328096</td>
+</tr>
+<tr>
+<td>256</td>
+<td>multiplication</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">4.34609775</td>
+<td style="text-align: right;">1.47177869</td>
+</tr>
+<tr>
+<td>64</td>
+<td>determinant</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.0506619374</td>
+<td style="text-align: right;">0.0130095482</td>
+</tr>
+<tr>
+<td>256</td>
+<td>determinant</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">2.67431549</td>
+<td style="text-align: right;">2.46986723</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverse</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.187767226</td>
+<td style="text-align: right;">0.146098527</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverse</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">8.82649484</td>
+<td style="text-align: right;">5.02598045</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverseSPD</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.191102104</td>
+<td style="text-align: right;">0.182177098</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverseSPD</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">17.35129</td>
+<td style="text-align: right;">76.1226275</td>
+</tr>
+<tr>
+<td>64</td>
+<td>cholesky</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.0524776444</td>
+<td style="text-align: right;">0.0444224686</td>
+</tr>
+<tr>
+<td>256</td>
+<td>cholesky</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">1.46743405</td>
+<td style="text-align: right;">0.403580969</td>
+</tr>
+<tr>
+<td>64</td>
+<td>lu</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.0682124772</td>
+<td style="text-align: right;">0.0105875538</td>
+</tr>
+<tr>
+<td>256</td>
+<td>lu</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">2.80864749</td>
+<td style="text-align: right;">0.440868663</td>
+</tr>
+<tr>
+<td>64</td>
+<td>qr</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.26773489</td>
+<td style="text-align: right;">0.025026866</td>
+</tr>
+<tr>
+<td>256</td>
+<td>qr</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">15.9770071</td>
+<td style="text-align: right;">4.4819234</td>
+</tr>
+<tr>
+<td>64</td>
+<td>eigenSymmetric</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">1.64348881</td>
+<td style="text-align: right;">1.44501265</td>
+</tr>
+<tr>
+<td>256</td>
+<td>eigenSymmetric</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">31.1254075</td>
+<td style="text-align: right;">7.82253599</td>
+</tr>
+<tr>
+<td>64</td>
+<td>svd</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">3.06851021</td>
+<td style="text-align: right;">0.54358646</td>
+</tr>
+<tr>
+<td>256</td>
+<td>svd</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">158.357217</td>
+<td style="text-align: right;">126.199546</td>
+</tr>
+<tr>
+<td>64</td>
+<td>solve</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">0.0568090824</td>
+<td style="text-align: right;">0.00781525906</td>
+</tr>
+<tr>
+<td>256</td>
+<td>solve</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">2.52522239</td>
+<td style="text-align: right;">0.751206177</td>
+</tr>
+<tr>
+<td>64</td>
+<td>transpose</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.0126823521</td>
+<td style="text-align: right;">0.00132368857</td>
+</tr>
+<tr>
+<td>256</td>
+<td>transpose</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.628488776</td>
+<td style="text-align: right;">0.0487297321</td>
+</tr>
+<tr>
+<td>64</td>
+<td>addition</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.0278276253</td>
+<td style="text-align: right;">0.00278045713</td>
+</tr>
+<tr>
+<td>256</td>
+<td>addition</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.445388538</td>
+<td style="text-align: right;">0.185629459</td>
+</tr>
+<tr>
+<td>64</td>
+<td>scale</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.0202915898</td>
+<td style="text-align: right;">0.00436541921</td>
+</tr>
+<tr>
+<td>256</td>
+<td>scale</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.349343125</td>
+<td style="text-align: right;">0.0574641435</td>
+</tr>
+<tr>
+<td>64</td>
+<td>multiplication</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.117827045</td>
+<td style="text-align: right;">0.0393874727</td>
+</tr>
+<tr>
+<td>256</td>
+<td>multiplication</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">4.38356893</td>
+<td style="text-align: right;">1.11410357</td>
+</tr>
+<tr>
+<td>64</td>
+<td>determinant</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.0638758791</td>
+<td style="text-align: right;">0.0128899166</td>
+</tr>
+<tr>
+<td>256</td>
+<td>determinant</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">3.60480499</td>
+<td style="text-align: right;">2.82941531</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverse</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.291728661</td>
+<td style="text-align: right;">0.153576939</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverse</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">16.3395038</td>
+<td style="text-align: right;">1.82138361</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverseSPD</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.708434759</td>
+<td style="text-align: right;">1.84449212</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverseSPD</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">27.970466</td>
+<td style="text-align: right;">15.0211779</td>
+</tr>
+<tr>
+<td>64</td>
+<td>cholesky</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.110002251</td>
+<td style="text-align: right;">0.0387878194</td>
+</tr>
+<tr>
+<td>256</td>
+<td>cholesky</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">4.31792648</td>
+<td style="text-align: right;">1.03257296</td>
+</tr>
+<tr>
+<td>64</td>
+<td>lu</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.0866840563</td>
+<td style="text-align: right;">0.0800320649</td>
+</tr>
+<tr>
+<td>256</td>
+<td>lu</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">3.49414336</td>
+<td style="text-align: right;">2.39390604</td>
+</tr>
+<tr>
+<td>64</td>
+<td>qr</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.362710506</td>
+<td style="text-align: right;">0.180345872</td>
+</tr>
+<tr>
+<td>256</td>
+<td>qr</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">17.1855606</td>
+<td style="text-align: right;">9.18155589</td>
+</tr>
+<tr>
+<td>64</td>
+<td>eigenSymmetric</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">2.37732808</td>
+<td style="text-align: right;">2.18555694</td>
+</tr>
+<tr>
+<td>256</td>
+<td>eigenSymmetric</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">46.6846345</td>
+<td style="text-align: right;">96.1840897</td>
+</tr>
+<tr>
+<td>64</td>
+<td>svd</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">12.2085965</td>
+<td style="text-align: right;">12.9958709</td>
+</tr>
+<tr>
+<td>256</td>
+<td>svd</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">176.167892</td>
+<td style="text-align: right;">144.514113</td>
+</tr>
+<tr>
+<td>64</td>
+<td>solve</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">0.0662835989</td>
+<td style="text-align: right;">0.037147315</td>
+</tr>
+<tr>
+<td>256</td>
+<td>solve</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">2.89143191</td>
+<td style="text-align: right;">1.36219977</td>
+</tr>
+<tr>
+<td>64</td>
+<td>transpose</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.00832358279</td>
+<td style="text-align: right;">0.00377098865</td>
+</tr>
+<tr>
+<td>256</td>
+<td>transpose</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.190374201</td>
+<td style="text-align: right;">0.112087196</td>
+</tr>
+<tr>
+<td>64</td>
+<td>addition</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.00474730993</td>
+<td style="text-align: right;">0.0020773182</td>
+</tr>
+<tr>
+<td>256</td>
+<td>addition</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.126850739</td>
+<td style="text-align: right;">0.102138838</td>
+</tr>
+<tr>
+<td>64</td>
+<td>scale</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.00612398257</td>
+<td style="text-align: right;">0.00835326797</td>
+</tr>
+<tr>
+<td>256</td>
+<td>scale</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.0594318373</td>
+<td style="text-align: right;">0.019528263</td>
+</tr>
+<tr>
+<td>64</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.100678371</td>
+<td style="text-align: right;">0.0536910769</td>
+</tr>
+<tr>
+<td>256</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">4.00132061</td>
+<td style="text-align: right;">0.527727583</td>
+</tr>
+<tr>
+<td>64</td>
+<td>determinant</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.0586386434</td>
+<td style="text-align: right;">0.00346118497</td>
+</tr>
+<tr>
+<td>256</td>
+<td>determinant</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">1.79060121</td>
+<td style="text-align: right;">0.226553933</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverse</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.215606408</td>
+<td style="text-align: right;">0.0402296707</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverse</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">13.5153276</td>
+<td style="text-align: right;">4.64462072</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverseSPD</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.133481771</td>
+<td style="text-align: right;">0.0308754975</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverseSPD</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">6.93578355</td>
+<td style="text-align: right;">0.913857405</td>
+</tr>
+<tr>
+<td>64</td>
+<td>cholesky</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.0414836601</td>
+<td style="text-align: right;">0.0339119493</td>
+</tr>
+<tr>
+<td>256</td>
+<td>cholesky</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">1.14234446</td>
+<td style="text-align: right;">0.358428819</td>
+</tr>
+<tr>
+<td>64</td>
+<td>lu</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.0767589455</td>
+<td style="text-align: right;">0.0114596096</td>
+</tr>
+<tr>
+<td>256</td>
+<td>lu</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">2.04863597</td>
+<td style="text-align: right;">0.317785165</td>
+</tr>
+<tr>
+<td>64</td>
+<td>qr</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.293431204</td>
+<td style="text-align: right;">0.26813094</td>
+</tr>
+<tr>
+<td>256</td>
+<td>qr</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">7.80771549</td>
+<td style="text-align: right;">1.7400486</td>
+</tr>
+<tr>
+<td>64</td>
+<td>eigenSymmetric</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.781855766</td>
+<td style="text-align: right;">0.631191501</td>
+</tr>
+<tr>
+<td>256</td>
+<td>eigenSymmetric</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">24.6281426</td>
+<td style="text-align: right;">14.9525059</td>
+</tr>
+<tr>
+<td>64</td>
+<td>svd</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">1.88825046</td>
+<td style="text-align: right;">0.856583914</td>
+</tr>
+<tr>
+<td>256</td>
+<td>svd</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">49.6586622</td>
+<td style="text-align: right;">29.2877088</td>
+</tr>
+<tr>
+<td>64</td>
+<td>solve</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">0.060305073</td>
+<td style="text-align: right;">0.0396347358</td>
+</tr>
+<tr>
+<td>256</td>
+<td>solve</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">1.88349801</td>
+<td style="text-align: right;">0.586992506</td>
+</tr>
+<tr>
+<td>64</td>
+<td>transpose</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.0351836043</td>
+<td style="text-align: right;">0.0223084225</td>
+</tr>
+<tr>
+<td>256</td>
+<td>transpose</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.741931646</td>
+<td style="text-align: right;">0.319131903</td>
+</tr>
+<tr>
+<td>64</td>
+<td>addition</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.00873621462</td>
+<td style="text-align: right;">0.00386871481</td>
+</tr>
+<tr>
+<td>256</td>
+<td>addition</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.29317602</td>
+<td style="text-align: right;">0.082370612</td>
+</tr>
+<tr>
+<td>64</td>
+<td>scale</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.00791422884</td>
+<td style="text-align: right;">0.00318708142</td>
+</tr>
+<tr>
+<td>256</td>
+<td>scale</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.274295314</td>
+<td style="text-align: right;">0.024562973</td>
+</tr>
+<tr>
+<td>64</td>
+<td>multiplication</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.21422912</td>
+<td style="text-align: right;">0.033122714</td>
+</tr>
+<tr>
+<td>256</td>
+<td>multiplication</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">22.4595815</td>
+<td style="text-align: right;">1.3854791</td>
+</tr>
+<tr>
+<td>64</td>
+<td>determinant</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.0785563551</td>
+<td style="text-align: right;">0.0329916864</td>
+</tr>
+<tr>
+<td>256</td>
+<td>determinant</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">4.92110122</td>
+<td style="text-align: right;">1.01724333</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverse</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.243899931</td>
+<td style="text-align: right;">0.0306791146</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverse</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">15.0871418</td>
+<td style="text-align: right;">1.2081501</td>
+</tr>
+<tr>
+<td>64</td>
+<td>inverseSPD</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.378726908</td>
+<td style="text-align: right;">0.081414713</td>
+</tr>
+<tr>
+<td>256</td>
+<td>inverseSPD</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">30.2162286</td>
+<td style="text-align: right;">1.09667684</td>
+</tr>
+<tr>
+<td>64</td>
+<td>cholesky</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.0493564721</td>
+<td style="text-align: right;">0.00820369326</td>
+</tr>
+<tr>
+<td>256</td>
+<td>cholesky</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">2.75599895</td>
+<td style="text-align: right;">0.695528467</td>
+</tr>
+<tr>
+<td>64</td>
+<td>lu</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.0947084252</td>
+<td style="text-align: right;">0.0410981896</td>
+</tr>
+<tr>
+<td>256</td>
+<td>lu</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">5.00676227</td>
+<td style="text-align: right;">0.531303982</td>
+</tr>
+<tr>
+<td>64</td>
+<td>qr</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.435146698</td>
+<td style="text-align: right;">0.0338960576</td>
+</tr>
+<tr>
+<td>256</td>
+<td>qr</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">40.0298456</td>
+<td style="text-align: right;">0.901369281</td>
+</tr>
+<tr>
+<td>64</td>
+<td>eigenSymmetric</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">1.14358934</td>
+<td style="text-align: right;">0.775062228</td>
+</tr>
+<tr>
+<td>256</td>
+<td>eigenSymmetric</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">63.3346458</td>
+<td style="text-align: right;">7.32682078</td>
+</tr>
+<tr>
+<td>64</td>
+<td>svd</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">8.62708324</td>
+<td style="text-align: right;">11.952523</td>
+</tr>
+<tr>
+<td>256</td>
+<td>svd</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">217.717617</td>
+<td style="text-align: right;">94.8245717</td>
+</tr>
+<tr>
+<td>64</td>
+<td>solve</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">0.0884285729</td>
+<td style="text-align: right;">0.0129060162</td>
+</tr>
+<tr>
+<td>256</td>
+<td>solve</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">5.34703635</td>
+<td style="text-align: right;">1.38894727</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Large — 1 requested compute thread(s)</h2>
+<p><a href="benchmarks-large-1thread.html">Interactive chart</a></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Size / shape</th>
+<th>Operation</th>
+<th>Library</th>
+<th style="text-align: right;">Mean ms/op</th>
+<th style="text-align: right;">99.9% error ± ms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">230.140717</td>
+<td style="text-align: right;">47.0259174</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">1003.46012</td>
+<td style="text-align: right;">44.7127031</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">6948.46898</td>
+<td style="text-align: right;">928.737377</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">40.3524224</td>
+<td style="text-align: right;">34.3526172</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">229.305283</td>
+<td style="text-align: right;">22.6346567</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">1919.35308</td>
+<td style="text-align: right;">299.051886</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">24.099313</td>
+<td style="text-align: right;">1.11524631</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">189.67425</td>
+<td style="text-align: right;">3.74177251</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">1456.23282</td>
+<td style="text-align: right;">157.777151</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">151.738033</td>
+<td style="text-align: right;">34.4095181</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">1118.59205</td>
+<td style="text-align: right;">131.486103</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">7996.40368</td>
+<td style="text-align: right;">1384.87157</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">32.7936</td>
+<td style="text-align: right;">5.21440352</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">175.115767</td>
+<td style="text-align: right;">12.0607314</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">1680.11988</td>
+<td style="text-align: right;">122.369636</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">29.4755717</td>
+<td style="text-align: right;">11.2291749</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">443.724433</td>
+<td style="text-align: right;">129.625161</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">3606.21822</td>
+<td style="text-align: right;">233.098906</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">46.1654783</td>
+<td style="text-align: right;">7.79440592</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">439.961167</td>
+<td style="text-align: right;">35.2654966</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">3352.298</td>
+<td style="text-align: right;">206.109831</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">23.2167222</td>
+<td style="text-align: right;">1.07709569</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">77.5781111</td>
+<td style="text-align: right;">15.9698771</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">502.459167</td>
+<td style="text-align: right;">15.3080985</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">91.3280083</td>
+<td style="text-align: right;">24.0264376</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">800.001433</td>
+<td style="text-align: right;">38.8358034</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">6489.10672</td>
+<td style="text-align: right;">279.199711</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">49.0620008</td>
+<td style="text-align: right;">11.3070879</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">435.568</td>
+<td style="text-align: right;">62.3582465</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">3250.3809</td>
+<td style="text-align: right;">284.261832</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">203.336433</td>
+<td style="text-align: right;">22.8259746</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">8116.12403</td>
+<td style="text-align: right;">224.871081</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">89597.9667</td>
+<td style="text-align: right;">3367.20133</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">56.3521667</td>
+<td style="text-align: right;">5.01105502</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">1092.62363</td>
+<td style="text-align: right;">235.669689</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">19945.4525</td>
+<td style="text-align: right;">865.24385</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">16.6447091</td>
+<td style="text-align: right;">2.28129517</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">153.368358</td>
+<td style="text-align: right;">99.500133</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">1237.82873</td>
+<td style="text-align: right;">54.6382162</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">133.818233</td>
+<td style="text-align: right;">39.0129628</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">1044.89058</td>
+<td style="text-align: right;">299.177503</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">8708.83372</td>
+<td style="text-align: right;">2919.04948</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">70.8671139</td>
+<td style="text-align: right;">64.1123675</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">1303.75553</td>
+<td style="text-align: right;">559.92655</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">20280.2618</td>
+<td style="text-align: right;">760.28211</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">157.649975</td>
+<td style="text-align: right;">37.8066114</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">1269.80005</td>
+<td style="text-align: right;">61.8656894</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">9819.90395</td>
+<td style="text-align: right;">1113.96187</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">51.1334642</td>
+<td style="text-align: right;">5.67847749</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">453.035583</td>
+<td style="text-align: right;">94.7734656</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">3354.58527</td>
+<td style="text-align: right;">487.587831</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">22.7034976</td>
+<td style="text-align: right;">3.39276705</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">203.6996</td>
+<td style="text-align: right;">22.1543199</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">1653.65912</td>
+<td style="text-align: right;">315.111072</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">457.681217</td>
+<td style="text-align: right;">65.9425164</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">16192.689</td>
+<td style="text-align: right;">743.008344</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">204783.694</td>
+<td style="text-align: right;">6371.40977</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">48.0255992</td>
+<td style="text-align: right;">9.25987082</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">479.097817</td>
+<td style="text-align: right;">90.6805493</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">3381.3644</td>
+<td style="text-align: right;">379.478832</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">297.020817</td>
+<td style="text-align: right;">48.3001778</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">6267.62797</td>
+<td style="text-align: right;">340.030217</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">43475.7968</td>
+<td style="text-align: right;">1371.46251</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">51.7733239</td>
+<td style="text-align: right;">23.1482623</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">446.763367</td>
+<td style="text-align: right;">84.3596983</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">3436.88737</td>
+<td style="text-align: right;">948.063193</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">23.3776383</td>
+<td style="text-align: right;">4.08611467</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">209.449083</td>
+<td style="text-align: right;">72.7864013</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">1515.5035</td>
+<td style="text-align: right;">358.880462</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">734.178467</td>
+<td style="text-align: right;">80.3749926</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">11800.8159</td>
+<td style="text-align: right;">1354.46257</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">126661.872</td>
+<td style="text-align: right;">2476.90297</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">61.9790097</td>
+<td style="text-align: right;">31.2147578</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">587.116583</td>
+<td style="text-align: right;">155.218669</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">3101.41208</td>
+<td style="text-align: right;">196.72405</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">277.9055</td>
+<td style="text-align: right;">127.256552</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">6891.24315</td>
+<td style="text-align: right;">1387.283</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">43362.854</td>
+<td style="text-align: right;">1765.6507</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">64.7478958</td>
+<td style="text-align: right;">25.4423063</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">364.096833</td>
+<td style="text-align: right;">18.2437735</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">3040.03832</td>
+<td style="text-align: right;">545.223539</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">25.3414903</td>
+<td style="text-align: right;">5.55331722</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">216.137925</td>
+<td style="text-align: right;">11.6250011</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">1374.96668</td>
+<td style="text-align: right;">128.09072</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">182.909075</td>
+<td style="text-align: right;">133.100054</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">1483.05832</td>
+<td style="text-align: right;">316.084083</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">8900.29987</td>
+<td style="text-align: right;">663.573649</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">56.2407333</td>
+<td style="text-align: right;">12.5089942</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">429.018117</td>
+<td style="text-align: right;">138.54937</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">3626.25117</td>
+<td style="text-align: right;">802.94335</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">104.551456</td>
+<td style="text-align: right;">31.8074882</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">840.9257</td>
+<td style="text-align: right;">30.3508733</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">8346.46052</td>
+<td style="text-align: right;">7499.2898</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">35.5496</td>
+<td style="text-align: right;">2.66301737</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">270.677667</td>
+<td style="text-align: right;">17.0177343</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">1832.46985</td>
+<td style="text-align: right;">116.291362</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">25.9523688</td>
+<td style="text-align: right;">1.81559572</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">208.535667</td>
+<td style="text-align: right;">24.683146</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">1449.17993</td>
+<td style="text-align: right;">26.477076</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">235.637708</td>
+<td style="text-align: right;">104.424752</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">1579.44817</td>
+<td style="text-align: right;">102.313995</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">11584.9262</td>
+<td style="text-align: right;">236.860412</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">32.5972452</td>
+<td style="text-align: right;">2.85700082</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">248.53265</td>
+<td style="text-align: right;">23.2422692</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">1717.51667</td>
+<td style="text-align: right;">100.444234</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">32.0993544</td>
+<td style="text-align: right;">8.0809553</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">432.974683</td>
+<td style="text-align: right;">66.4166609</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">3564.90573</td>
+<td style="text-align: right;">159.798318</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">14.7098812</td>
+<td style="text-align: right;">1.49185944</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">118.560542</td>
+<td style="text-align: right;">13.0538347</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">704.5227</td>
+<td style="text-align: right;">45.8106798</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">8.9605642</td>
+<td style="text-align: right;">4.14211658</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">65.2412486</td>
+<td style="text-align: right;">7.09324365</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">574.957533</td>
+<td style="text-align: right;">76.8536077</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">119.190733</td>
+<td style="text-align: right;">17.4090383</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">976.518533</td>
+<td style="text-align: right;">89.4153552</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">7188.05813</td>
+<td style="text-align: right;">208.4014</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">14.3201082</td>
+<td style="text-align: right;">4.25368242</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">101.509853</td>
+<td style="text-align: right;">8.59418082</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">673.4682</td>
+<td style="text-align: right;">114.892191</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">31.0642996</td>
+<td style="text-align: right;">4.20949612</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">434.035</td>
+<td style="text-align: right;">61.456159</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">3544.62947</td>
+<td style="text-align: right;">217.302709</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">13.516255</td>
+<td style="text-align: right;">0.507164049</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">105.504142</td>
+<td style="text-align: right;">19.3293533</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">673.707</td>
+<td style="text-align: right;">46.1520278</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">25.4966032</td>
+<td style="text-align: right;">2.92005277</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">194.95565</td>
+<td style="text-align: right;">4.29045414</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">1409.4851</td>
+<td style="text-align: right;">30.72079</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">114.769358</td>
+<td style="text-align: right;">6.60381648</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">973.583933</td>
+<td style="text-align: right;">84.4861264</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">7155.9168</td>
+<td style="text-align: right;">149.047173</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">14.4148916</td>
+<td style="text-align: right;">4.02799975</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">101.561614</td>
+<td style="text-align: right;">8.50822665</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">665.012917</td>
+<td style="text-align: right;">61.0712301</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">28.5409643</td>
+<td style="text-align: right;">5.94057485</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">436.602917</td>
+<td style="text-align: right;">169.45506</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">3438.44983</td>
+<td style="text-align: right;">225.074017</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">13.8313936</td>
+<td style="text-align: right;">1.71768738</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">155.89595</td>
+<td style="text-align: right;">114.197003</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">1720.88453</td>
+<td style="text-align: right;">447.333751</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">7.09166188</td>
+<td style="text-align: right;">0.168444611</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">69.7514139</td>
+<td style="text-align: right;">41.0595755</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">877.400517</td>
+<td style="text-align: right;">153.279441</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">72.8432931</td>
+<td style="text-align: right;">17.6196526</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">665.823617</td>
+<td style="text-align: right;">109.576411</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">5979.8049</td>
+<td style="text-align: right;">235.113269</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">13.7588124</td>
+<td style="text-align: right;">2.67024061</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">169.240175</td>
+<td style="text-align: right;">55.5424112</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">1870.5451</td>
+<td style="text-align: right;">363.492565</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">257.873867</td>
+<td style="text-align: right;">45.5392717</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">7803.69508</td>
+<td style="text-align: right;">154.889043</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">88152.5366</td>
+<td style="text-align: right;">3234.98463</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">44.45752</td>
+<td style="text-align: right;">3.25832676</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">396.901733</td>
+<td style="text-align: right;">10.2428326</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">3197.98938</td>
+<td style="text-align: right;">34.429924</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">22.0457493</td>
+<td style="text-align: right;">1.91717441</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">195.392125</td>
+<td style="text-align: right;">12.112528</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">1585.12858</td>
+<td style="text-align: right;">68.8627133</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">468.756567</td>
+<td style="text-align: right;">131.838265</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">15915.9198</td>
+<td style="text-align: right;">845.573927</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">203120.498</td>
+<td style="text-align: right;">18578.4619</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">53.9121069</td>
+<td style="text-align: right;">29.8204394</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">497.617733</td>
+<td style="text-align: right;">91.8637699</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">3553.21162</td>
+<td style="text-align: right;">245.955838</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Large — 4 requested compute thread(s)</h2>
+<p><a href="benchmarks-large-4thread.html">Interactive chart</a></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Size / shape</th>
+<th>Operation</th>
+<th>Library</th>
+<th style="text-align: right;">Mean ms/op</th>
+<th style="text-align: right;">99.9% error ± ms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">79.5911611</td>
+<td style="text-align: right;">18.6134206</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">357.6633</td>
+<td style="text-align: right;">315.303466</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">1894.14083</td>
+<td style="text-align: right;">253.807491</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">35.609784</td>
+<td style="text-align: right;">28.7169733</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">201.797967</td>
+<td style="text-align: right;">116.700927</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">2212.31613</td>
+<td style="text-align: right;">482.997019</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">13.9180529</td>
+<td style="text-align: right;">7.09109221</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">75.9423778</td>
+<td style="text-align: right;">15.9760845</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">454.537867</td>
+<td style="text-align: right;">28.9853844</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">106.554481</td>
+<td style="text-align: right;">45.862868</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">467.183</td>
+<td style="text-align: right;">194.343919</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">4213.1137</td>
+<td style="text-align: right;">1417.0838</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">36.3184361</td>
+<td style="text-align: right;">5.2682754</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">247.961192</td>
+<td style="text-align: right;">147.742333</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">2117.08538</td>
+<td style="text-align: right;">954.448887</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">41.4638158</td>
+<td style="text-align: right;">30.478386</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">599.062033</td>
+<td style="text-align: right;">545.179267</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">4326.08873</td>
+<td style="text-align: right;">688.140915</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">135.144378</td>
+<td style="text-align: right;">183.689731</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">563.527117</td>
+<td style="text-align: right;">397.617565</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">3857.48878</td>
+<td style="text-align: right;">991.279533</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">24.1592134</td>
+<td style="text-align: right;">2.45644515</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">86.4824556</td>
+<td style="text-align: right;">31.3130716</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">553.972983</td>
+<td style="text-align: right;">86.841402</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">93.0514194</td>
+<td style="text-align: right;">25.8746767</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">826.746333</td>
+<td style="text-align: right;">143.221616</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">7485.57557</td>
+<td style="text-align: right;">1212.56418</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">48.4139042</td>
+<td style="text-align: right;">5.58140272</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">468.126167</td>
+<td style="text-align: right;">50.2818842</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">3387.62785</td>
+<td style="text-align: right;">106.490366</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">336.5664</td>
+<td style="text-align: right;">257.089393</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">9429.0506</td>
+<td style="text-align: right;">876.560207</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">97368.6897</td>
+<td style="text-align: right;">10593.3147</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">65.8944972</td>
+<td style="text-align: right;">21.8243965</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">1112.47828</td>
+<td style="text-align: right;">375.729896</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">20454.3125</td>
+<td style="text-align: right;">2215.80808</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">16.8819517</td>
+<td style="text-align: right;">2.2856366</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">147.120158</td>
+<td style="text-align: right;">51.4981926</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">1312.9787</td>
+<td style="text-align: right;">158.120393</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">127.710733</td>
+<td style="text-align: right;">26.8821497</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">1010.71105</td>
+<td style="text-align: right;">85.8789956</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">7599.8905</td>
+<td style="text-align: right;">250.597719</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">58.1673417</td>
+<td style="text-align: right;">7.88445564</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">1072.3206</td>
+<td style="text-align: right;">420.643992</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">19857.5452</td>
+<td style="text-align: right;">321.257775</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">153.196267</td>
+<td style="text-align: right;">9.31230464</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">1252.27182</td>
+<td style="text-align: right;">46.3335541</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">9298.83415</td>
+<td style="text-align: right;">129.58753</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">46.1796433</td>
+<td style="text-align: right;">6.74510319</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">398.46005</td>
+<td style="text-align: right;">41.2521686</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">3223.74603</td>
+<td style="text-align: right;">139.574211</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">21.674145</td>
+<td style="text-align: right;">1.66092268</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">201.549792</td>
+<td style="text-align: right;">48.0755444</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">1584.36835</td>
+<td style="text-align: right;">103.547927</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">506.1706</td>
+<td style="text-align: right;">99.8513113</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">15752.0057</td>
+<td style="text-align: right;">397.685108</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">200908.555</td>
+<td style="text-align: right;">13705.2932</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">44.0890967</td>
+<td style="text-align: right;">4.50533876</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">406.334783</td>
+<td style="text-align: right;">24.6309377</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">3278.42263</td>
+<td style="text-align: right;">426.336886</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">295.134883</td>
+<td style="text-align: right;">36.717689</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">5797.56865</td>
+<td style="text-align: right;">907.576503</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">42646.0022</td>
+<td style="text-align: right;">1229.6184</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">45.6123983</td>
+<td style="text-align: right;">13.8523273</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">423.662883</td>
+<td style="text-align: right;">100.099736</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">3451.09645</td>
+<td style="text-align: right;">1112.9399</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">21.6981526</td>
+<td style="text-align: right;">2.04751827</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">183.589642</td>
+<td style="text-align: right;">25.0460336</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">1411.37243</td>
+<td style="text-align: right;">75.3531067</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">683.654283</td>
+<td style="text-align: right;">39.230475</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">11723.1087</td>
+<td style="text-align: right;">1451.07185</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">133891.788</td>
+<td style="text-align: right;">40771.1483</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">48.0770758</td>
+<td style="text-align: right;">11.0778133</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">482.53155</td>
+<td style="text-align: right;">137.948203</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">3404.60832</td>
+<td style="text-align: right;">506.587016</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">80.8407389</td>
+<td style="text-align: right;">30.1969256</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">1562.8065</td>
+<td style="text-align: right;">823.432167</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">14076.1794</td>
+<td style="text-align: right;">2437.60222</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">78.8276089</td>
+<td style="text-align: right;">100.525345</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">426.565017</td>
+<td style="text-align: right;">101.090508</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">3653.30085</td>
+<td style="text-align: right;">773.343812</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">21.6602618</td>
+<td style="text-align: right;">16.5764688</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">84.1614611</td>
+<td style="text-align: right;">20.0236941</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">467.1696</td>
+<td style="text-align: right;">139.674549</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">90.0591722</td>
+<td style="text-align: right;">42.2257137</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">428.183917</td>
+<td style="text-align: right;">47.5959264</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">3959.38765</td>
+<td style="text-align: right;">4330.0869</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">129.397792</td>
+<td style="text-align: right;">47.4330076</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">642.8775</td>
+<td style="text-align: right;">381.262912</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">3545.9621</td>
+<td style="text-align: right;">492.552378</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">149.630617</td>
+<td style="text-align: right;">79.7047274</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">1204.90065</td>
+<td style="text-align: right;">528.058457</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">7156.7802</td>
+<td style="text-align: right;">1547.20079</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">39.1185578</td>
+<td style="text-align: right;">11.1135202</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">292.493633</td>
+<td style="text-align: right;">67.004411</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">2122.68875</td>
+<td style="text-align: right;">775.45577</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">26.5132612</td>
+<td style="text-align: right;">5.27004514</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">220.605458</td>
+<td style="text-align: right;">42.4527219</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">1487.73433</td>
+<td style="text-align: right;">152.759361</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">206.644325</td>
+<td style="text-align: right;">37.818475</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">1560.77052</td>
+<td style="text-align: right;">27.065424</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">12500.1434</td>
+<td style="text-align: right;">319.365098</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">34.5074468</td>
+<td style="text-align: right;">4.61938008</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">246.681433</td>
+<td style="text-align: right;">15.4185269</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">1892.93058</td>
+<td style="text-align: right;">197.244989</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">38.3029733</td>
+<td style="text-align: right;">8.50098938</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">511.3645</td>
+<td style="text-align: right;">59.914742</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">4351.29305</td>
+<td style="text-align: right;">383.126338</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">16.0156733</td>
+<td style="text-align: right;">3.28044853</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">128.451742</td>
+<td style="text-align: right;">11.1990792</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">746.500367</td>
+<td style="text-align: right;">30.1327127</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">9.654928</td>
+<td style="text-align: right;">3.91261172</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">102.102164</td>
+<td style="text-align: right;">76.0632874</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">727.62915</td>
+<td style="text-align: right;">151.174882</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">131.835542</td>
+<td style="text-align: right;">41.9522862</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">1017.79245</td>
+<td style="text-align: right;">96.5404175</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">7698.37472</td>
+<td style="text-align: right;">298.060542</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">14.110578</td>
+<td style="text-align: right;">0.684226125</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">104.525233</td>
+<td style="text-align: right;">19.3188442</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">677.685133</td>
+<td style="text-align: right;">36.3975284</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">37.3600952</td>
+<td style="text-align: right;">11.383614</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">570.156917</td>
+<td style="text-align: right;">212.463701</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">4035.82713</td>
+<td style="text-align: right;">962.102329</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">14.0264263</td>
+<td style="text-align: right;">0.928685793</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">106.222458</td>
+<td style="text-align: right;">18.8465874</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">657.310283</td>
+<td style="text-align: right;">36.6110815</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">25.3948312</td>
+<td style="text-align: right;">1.92834246</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">198.094742</td>
+<td style="text-align: right;">10.8670899</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">1413.80205</td>
+<td style="text-align: right;">17.2855953</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">132.103392</td>
+<td style="text-align: right;">41.5849588</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">1009.60117</td>
+<td style="text-align: right;">86.2956217</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">7423.35352</td>
+<td style="text-align: right;">794.770854</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">13.5209415</td>
+<td style="text-align: right;">1.45480909</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">104.587881</td>
+<td style="text-align: right;">6.93685533</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">662.21715</td>
+<td style="text-align: right;">51.346308</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">9.00460977</td>
+<td style="text-align: right;">2.55499891</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">115.643919</td>
+<td style="text-align: right;">37.2059845</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">1252.38285</td>
+<td style="text-align: right;">221.085626</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">15.1274477</td>
+<td style="text-align: right;">2.10062618</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">210.8515</td>
+<td style="text-align: right;">201.944576</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">1506.00102</td>
+<td style="text-align: right;">505.40271</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">23.020512</td>
+<td style="text-align: right;">3.56085131</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">82.3318056</td>
+<td style="text-align: right;">27.458882</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">617.97525</td>
+<td style="text-align: right;">109.049635</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">57.682125</td>
+<td style="text-align: right;">8.94969936</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">458.269083</td>
+<td style="text-align: right;">60.0347422</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">5013.79983</td>
+<td style="text-align: right;">1392.71502</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">14.067439</td>
+<td style="text-align: right;">2.7077795</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">197.271358</td>
+<td style="text-align: right;">203.779857</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">1795.3608</td>
+<td style="text-align: right;">264.465201</td>
+</tr>
+<tr>
+<td>512</td>
+<td>multiplication</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">95.1414583</td>
+<td style="text-align: right;">27.8598443</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>multiplication</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">2095.83733</td>
+<td style="text-align: right;">254.99165</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>multiplication</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">26139.4844</td>
+<td style="text-align: right;">1110.66878</td>
+</tr>
+<tr>
+<td>512</td>
+<td>lu</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">55.1313756</td>
+<td style="text-align: right;">26.7317099</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>lu</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">439.829167</td>
+<td style="text-align: right;">68.1646305</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>lu</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">3386.67032</td>
+<td style="text-align: right;">76.1632877</td>
+</tr>
+<tr>
+<td>512</td>
+<td>cholesky</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">25.2067191</td>
+<td style="text-align: right;">6.54694419</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>cholesky</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">211.676875</td>
+<td style="text-align: right;">23.7561396</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>cholesky</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">1664.86062</td>
+<td style="text-align: right;">53.1168365</td>
+</tr>
+<tr>
+<td>512</td>
+<td>qr</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">539.127917</td>
+<td style="text-align: right;">82.7833456</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>qr</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">16183.5512</td>
+<td style="text-align: right;">618.013978</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>qr</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">203408.989</td>
+<td style="text-align: right;">7309.06546</td>
+</tr>
+<tr>
+<td>512</td>
+<td>solve</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">44.1017267</td>
+<td style="text-align: right;">3.37708128</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>solve</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">420.247433</td>
+<td style="text-align: right;">58.2716518</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>solve</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">3246.7872</td>
+<td style="text-align: right;">85.2087997</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Rectangular — 1 requested compute thread(s)</h2>
+<p><a href="benchmarks-rectangular-1thread.html">Interactive chart</a></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Size / shape</th>
+<th>Operation</th>
+<th>Library</th>
+<th style="text-align: right;">Mean ms/op</th>
+<th style="text-align: right;">99.9% error ± ms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">6.96605029</td>
+<td style="text-align: right;">0.124861265</td>
+</tr>
+<tr>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">15.0672881</td>
+<td style="text-align: right;">0.360131043</td>
+</tr>
+<tr>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">28.7790935</td>
+<td style="text-align: right;">5.77863749</td>
+</tr>
+<tr>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>NM Dev 1.2.6</td>
+<td style="text-align: right;">14.8678561</td>
+<td style="text-align: right;">1.77500838</td>
+</tr>
+<tr>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">1.6629505</td>
+<td style="text-align: right;">0.559537664</td>
+</tr>
+<tr>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">3.97812809</td>
+<td style="text-align: right;">1.21515553</td>
+</tr>
+<tr>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">6.4208685</td>
+<td style="text-align: right;">0.871203503</td>
+</tr>
+<tr>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>EJML 0.46.1</td>
+<td style="text-align: right;">2.608395</td>
+<td style="text-align: right;">0.708365667</td>
+</tr>
+<tr>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">4.94395666</td>
+<td style="text-align: right;">0.247217527</td>
+</tr>
+<tr>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">17.7833417</td>
+<td style="text-align: right;">0.573614778</td>
+</tr>
+<tr>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">17.8919014</td>
+<td style="text-align: right;">0.43545865</td>
+</tr>
+<tr>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>Commons Math 4.0-SNAPSHOT (20261018.085925-1575)</td>
+<td style="text-align: right;">9.48139841</td>
+<td style="text-align: right;">0.339888272</td>
+</tr>
+<tr>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">4.20304111</td>
+<td style="text-align: right;">0.0562616157</td>
+</tr>
+<tr>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">13.7431968</td>
+<td style="text-align: right;">3.91007067</td>
+</tr>
+<tr>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">16.2423358</td>
+<td style="text-align: right;">2.74505657</td>
+</tr>
+<tr>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>JAMA 1.0.3</td>
+<td style="text-align: right;">8.12136831</td>
+<td style="text-align: right;">0.929454469</td>
+</tr>
+<tr>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">5.04317714</td>
+<td style="text-align: right;">0.591714525</td>
+</tr>
+<tr>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">20.0874415</td>
+<td style="text-align: right;">2.97442244</td>
+</tr>
+<tr>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">14.382131</td>
+<td style="text-align: right;">2.63169582</td>
+</tr>
+<tr>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>Colt 1.2.0</td>
+<td style="text-align: right;">6.64838922</td>
+<td style="text-align: right;">0.327012129</td>
+</tr>
+<tr>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">4.86058801</td>
+<td style="text-align: right;">0.800992297</td>
+</tr>
+<tr>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">20.0213848</td>
+<td style="text-align: right;">3.17630791</td>
+</tr>
+<tr>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">12.6682066</td>
+<td style="text-align: right;">0.541677013</td>
+</tr>
+<tr>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+<td style="text-align: right;">6.42751461</td>
+<td style="text-align: right;">1.66334511</td>
+</tr>
+<tr>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">3.10678522</td>
+<td style="text-align: right;">1.05997809</td>
+</tr>
+<tr>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">13.3575547</td>
+<td style="text-align: right;">2.75890002</td>
+</tr>
+<tr>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">13.2072499</td>
+<td style="text-align: right;">2.23426479</td>
+</tr>
+<tr>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>jblas 1.2.5 (native)</td>
+<td style="text-align: right;">5.62957025</td>
+<td style="text-align: right;">0.30482615</td>
+</tr>
+<tr>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">1.35589445</td>
+<td style="text-align: right;">0.0945720853</td>
+</tr>
+<tr>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">3.69818946</td>
+<td style="text-align: right;">0.237408287</td>
+</tr>
+<tr>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">4.28780808</td>
+<td style="text-align: right;">1.24216729</td>
+</tr>
+<tr>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+<td style="text-align: right;">2.33697814</td>
+<td style="text-align: right;">0.0983674459</td>
+</tr>
+<tr>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">1.43003047</td>
+<td style="text-align: right;">0.413458145</td>
+</tr>
+<tr>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">4.04609858</td>
+<td style="text-align: right;">1.11446706</td>
+</tr>
+<tr>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">4.86156042</td>
+<td style="text-align: right;">1.54184188</td>
+</tr>
+<tr>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>MTJ 1.0.4 (F2J)</td>
+<td style="text-align: right;">2.48061308</td>
+<td style="text-align: right;">0.314503086</td>
+</tr>
+<tr>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">1.17497938</td>
+<td style="text-align: right;">0.0770942674</td>
+</tr>
+<tr>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">3.44726556</td>
+<td style="text-align: right;">0.292201271</td>
+</tr>
+<tr>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">3.78359678</td>
+<td style="text-align: right;">0.467419704</td>
+</tr>
+<tr>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>ojAlgo 57.5.0</td>
+<td style="text-align: right;">2.37762284</td>
+<td style="text-align: right;">0.632695225</td>
+</tr>
+<tr>
+<td>128x512x64</td>
+<td>multiplication</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">6.09487567</td>
+<td style="text-align: right;">0.526720237</td>
+</tr>
+<tr>
+<td>512x128x256</td>
+<td>multiplication</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">28.4309381</td>
+<td style="text-align: right;">6.42980921</td>
+</tr>
+<tr>
+<td>1024x256x64</td>
+<td>multiplication</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">33.9014135</td>
+<td style="text-align: right;">3.65642062</td>
+</tr>
+<tr>
+<td>255x257x129</td>
+<td>multiplication</td>
+<td>UJMP 0.3.0 (core)</td>
+<td style="text-align: right;">10.3572672</td>
+<td style="text-align: right;">1.99216044</td>
+</tr>
+</tbody>
+</table></div><footer><a href="https://github.com/nmltd/nmdev-examples/tree/main/benchmark">Benchmark source and run archives</a> · <a href="../../../tutorials.html">Java tutorials</a></footer></main></body></html>

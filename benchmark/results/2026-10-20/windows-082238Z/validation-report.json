@@ -1,0 +1,29 @@
+{
+  "cases": 660,
+  "libraries": 11,
+  "fork_json_checksums": 1320,
+  "measurement_iteration_means": 3960,
+  "preflights_passed": 5,
+  "profiles": {
+    "baseline/1": 286,
+    "large/1": 165,
+    "large/4": 165,
+    "rectangular/1": 44
+  },
+  "machine": {
+    "cpu_model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+    "available_processors": 12,
+    "physical_memory_bytes": 68629864448,
+    "os.name": "Windows 11",
+    "os.arch": "amd64",
+    "java.vendor": "Oracle Corporation",
+    "java.version": "27",
+    "java.vm.version": "27+35-2325"
+  },
+  "limitations": [
+    "Downloaded binaries and binary fork checkpoints are intentionally absent; their recorded hashes cannot be recomputed from this archive.",
+    "Requested native worker counts were not independently audited.",
+    "Historical launcher and packaging errors are retained; all requested results and checksums are present in the final archive."
+  ],
+  "validation_scope": "Original uploaded ZIP validated locally before publication; public measurement data omits logs, local paths and process command lines."
+}

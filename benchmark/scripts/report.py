@@ -7,10 +7,13 @@ from pathlib import Path
 from chart_tooltips import annotate_svg, write_html
 
 OPERATIONS = ["transpose", "addition", "scale", "multiplication", "determinant", "inverse", "inverseSPD", "cholesky", "lu", "qr", "eigenSymmetric", "svd", "solve"]
-LIBRARIES = ["NMDEV", "EJML", "COMMONS", "JAMA", "COLT", "PARALLEL_COLT", "JBLAS", "F2J_LAPACK", "MTJ", "OJALGO", "UJMP"]
+LIBRARIES = ["NMDEV", "EJML", "COMMONS", "COMMONS_BLOCK", "JAMA", "COLT", "PARALLEL_COLT", "JBLAS", "F2J_LAPACK", "MTJ", "OJALGO", "UJMP"]
 # Historical fallback labels; every current run supplies its exact versions.json.
 VERSIONS = {"NMDEV":"NM Dev 1.2.6-SNAPSHOT", "EJML":"EJML 0.46.1", "COMMONS":"Commons Math 3.6.1", "JAMA":"JAMA 1.0.3", "COLT":"Colt 1.2.0", "PARALLEL_COLT":"Parallel Colt 0.10.1", "JBLAS":"jblas 1.2.5 (native)", "F2J_LAPACK":"F2J LAPACK/BLAS 0.1", "MTJ":"MTJ 1.0.4 (F2J)", "OJALGO":"ojAlgo 57.5.0", "UJMP":"UJMP 0.3.0 (core)"}
-COLORS = dict(zip(LIBRARIES,["#126c78","#4678ba","#d18829","#9d608e","#6b8c31","#b8493a","#6750a4","#4d8794","#b77265","#7a756e","#aa8a25"]))
+COLORS = dict(zip([lib for lib in LIBRARIES if lib != "COMMONS_BLOCK"],["#126c78","#4678ba","#d18829","#9d608e","#6b8c31","#b8493a","#6750a4","#4d8794","#b77265","#7a756e","#aa8a25"]))
+
+COLORS["COMMONS_BLOCK"] = "#946722"
+VERSIONS["COMMONS_BLOCK"] = "Commons Math — BlockRealMatrix"
 
 def table(rows):
     return "\n".join("| " + " | ".join(map(str,row)) + " |" for row in rows)

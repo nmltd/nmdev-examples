@@ -28,7 +28,7 @@ These baseline dense inputs are well-conditioned and intentionally avoid near-si
 | SVD | Full U, diagonal singular values, V; reconstruction and both orthogonality checks |
 | Solve | New factorization plus solve for one RHS; residual against RHS |
 
-NM Dev uses `Inverse` for both general and SPD inverse. `Inverse` detects symmetry and attempts Cholesky, with an LU fallback on a runtime exception. Bytecode and debugger constructor-breakpoint checks against the exact measured JAR confirm the SPD fixture takes Cholesky, without LU fallback. See the [fairness audit](https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/2026-10-18-fairness-audit/README.md). EJML, Commons Math and JAMA use Cholesky-based paths for the SPD inverse. General inversion paths can also differ by library. These are task-level API comparisons; a result is not a controlled comparison of identical algorithms.
+NM Dev uses `Inverse` for both general and SPD inverse. `Inverse` detects symmetry and attempts Cholesky, with an LU fallback on a runtime exception. Bytecode and debugger constructor-breakpoint checks against the exact measured JAR confirm the SPD fixture takes Cholesky, without LU fallback. EJML, Commons Math and JAMA use Cholesky-based paths for the SPD inverse. General inversion paths can also differ by library. These are task-level API comparisons; a result is not a controlled comparison of identical algorithms.
 
 Factor retrieval and any required materialization are timed. Libraries differ in pivot representation and factor storage. EJML's symmetric-eigen adapter assembles dense Q and D from the returned eigenpairs so it returns the same mathematical outputs. No attempt is made to tune each library beyond the adapters shown in source. Review the adapter source before drawing conclusions about API choices.
 
@@ -78,3 +78,25 @@ All runs include JMH's GC profiler, raw allocation metrics, exact invocation ove
 `DifficultValidationMain` tests row scaling with pivoting, tightly clustered eigenvalues, an 8×8 Hilbert matrix, and exact rank deficiency. It records every PASS/FAIL and exits nonzero if any case fails. Failed cases are retained in the audit and are not silently dropped or represented by a zero timing.
 
 For solves and inverses, these diagnostics use Frobenius-norm backward error `||AX-B|| / (||A|| ||X|| + ||B||)`, checking both multiplication orientations for an inverse. This assesses the residual relative to the computation's scale; it does not imply a small forward error for an ill-conditioned system. Other operations retain reconstruction/orthogonality checks and the common `1e-8` threshold. A failed rank-deficient QR call is recorded as an API failure, not proof that a mathematically valid QR factorization cannot exist.
+
+
+## Machine-capacity and Commons block comparisons (application 1.2.0)
+
+The default application now runs **1,260 cases**, with eleven libraries and twelve implementation variants. Existing 1-thread baseline, 1/4-thread large, and 1-thread rectangular profiles remain. Additional `baseline-all-cores`, `large-all-cores`, and `rectangular-all-cores` profiles use every logical processor reported by the launcher JVM's `Runtime.availableProcessors()`. They remain separate even on machines with only one or four processors. JMH still uses one caller: the timed unit is one matrix operation, with library-internal parallelism permitted.
+
+All-core requests set JVM processor visibility, `benchmark.threads`, and native BLAS/OpenMP thread environment variables to that count. This makes processors available; it does not force sequential algorithms to run in parallel. In particular, Commons row/block multiplication, JAMA, Colt, the current EJML `CommonOps_DDRM` adapter, and F2J stay sequential. Parallel Colt, ojAlgo and UJMP receive explicit worker limits; NM Dev uses JVM processor visibility; native jblas worker counts are not independently audited. This is a comparison of the configured APIs on the same hardware, including parallel versus sequential execution, rather than a claim of equal actual worker counts or exhaustive fastest-API selection.
+
+`COMMONS` retains `Array2DRowRealMatrix`; `COMMONS_BLOCK` uses `BlockRealMatrix` from the exact same locked Commons Math 4 binary. Both are measured for every operation, including all large sizes and rectangular products. Every native input is constructed before timing; timed result allocation and decomposition-internal conversions remain included. Both variants receive repeated correctness and input-preservation checks. A block layout improves locality but does not itself provide parallelism.
+
+`machine.json` records CPU model, physical-core information when detectable, JVM-visible logical processors, memory, OS/JDK, JVM options and Linux container limits/cpuset where available. Windows additionally records host physical cores and logical processors. All-core means the resources visible to the JVM; do not launch with an artificial `-XX:ActiveProcessorCount` cap when measuring machine capacity. VM/container restrictions and OS affinity can limit resources; worker requests are not measured utilization or exclusive core reservation.
+
+Keep profiles and Commons variants separate in reporting. For matched operation/size cases, speedup is comparison time / candidate time, and time reduction is 100 × (comparison time − candidate time) / comparison time. Never pool the 1-thread, 4-thread and all-core profiles into one ranking. Published historical results remain unchanged until a new run is validated.
+
+Build and run the new experiment from the repository root:
+
+```powershell
+mvn -s benchmark/settings.xml -gs benchmark/settings.xml -f benchmark/pom.xml package
+java -jar benchmark/target/nmdev-benchmark-1.2.0.jar --output nmdev-benchmark-all-cores
+```
+
+Use this **new output directory**; 1.2.0 changes the measurement specification and cannot resume the older 660-case experiment. Keep its completed results and original JAR. Repeat the same new command with the same 1.2.0 JAR to resume the new experiment.

@@ -35,6 +35,7 @@ for name in ['index.html','getting-started.html','tutorials.html','benchmarks.ht
 chart=(root/'benchmarks.html').read_text()
 payload=re.search(r'<script type="application/json" id="benchmark-data">(.*?)</script>',chart,re.S)
 if not payload or len(json.loads(payload.group(1))['points'])!=286:errors.append('Expected 286 measured chart points')
+if not (root/'benchmarks/index.html').exists():errors.append('Missing historical benchmark index')
 for source in (root/'tutorials').glob('*.md'):
  if not source.with_suffix('.html').exists():errors.append(f'Missing generated tutorial: {source}')
 if errors:print('\n'.join(errors));sys.exit(1)
@@ -53,3 +54,28 @@ for path in pages:
     if any(point['mean']<=0 for point in dataset['points']):
         raise SystemExit(f'Nonpositive logarithmic chart value: {path}')
 print('All chart profiles have complete, unique library/size/operation matrices.')
+
+# Every registered dated archive must exist and preserve its saved measurements.
+import hashlib
+registry=json.loads((repo/'benchmark/results/runs.json').read_text())
+for run in registry['runs']:
+    source=repo/'benchmark/results'/run['source']
+    dated=root/'benchmarks'/run['source']
+    for name in ['index.html','results.html']:
+        if not (dated/name).exists():raise SystemExit(f'Missing dated page: {dated/name}')
+    for name,digest in run['evidence_sha256'].items():
+        if hashlib.sha256((source/name).read_bytes()).hexdigest()!=digest:
+            raise SystemExit(f'Historical evidence changed: {source/name}')
+    charts=[]
+    for path in dated.glob('*.html'):
+        payload=re.search(r'<script type="application/json" id="benchmark-data">(.*?)</script>',path.read_text(),re.S)
+        if payload:charts.extend(json.loads(payload.group(1))['points'])
+    if len(charts)!=run['cases']:raise SystemExit(f'Wrong dated case count: {dated}')
+# Detect stale links into moved repository archives without network requests.
+for path,page in pages.items():
+    for link in page.links:
+        prefix='https://github.com/nmltd/nmdev-examples/blob/main/benchmark/results/'
+        if link.startswith(prefix):
+            target=repo/'benchmark/results'/unquote(urlsplit(link[len(prefix):]).path)
+            if not target.exists():raise SystemExit(f'Missing Git archive link in {path}: {link}')
+print(f"Verified {len(registry['runs'])} permanent dated archives and their original measurement digests.")

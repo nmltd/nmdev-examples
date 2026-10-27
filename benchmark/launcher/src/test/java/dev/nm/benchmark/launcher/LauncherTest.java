@@ -11,12 +11,42 @@ import static org.junit.jupiter.api.Assertions.*;
 class LauncherTest {
     @TempDir Path temporary;
     @Test void fullPlanIncludesEveryLibraryAtEveryProfile() {
-        var plan=BenchmarkMain.plan(false,BenchmarkMain.LIBRARIES);
-        assertEquals(660,plan.size()); assertEquals(660,plan.stream().map(BenchmarkMain.Case::id).distinct().count());
-        assertEquals(286,plan.stream().filter(c->c.profile().equals("baseline")).count());
-        assertEquals(44,plan.stream().filter(c->c.profile().equals("rectangular")).count());
+        var plan=BenchmarkMain.plan(false,BenchmarkMain.LIBRARIES,16);
+        assertEquals(1260,plan.size()); assertEquals(1260,plan.stream().map(BenchmarkMain.Case::id).distinct().count());
+        assertEquals(312,plan.stream().filter(c->c.profile().equals("baseline")).count());
+        assertEquals(48,plan.stream().filter(c->c.profile().equals("rectangular")).count());
         for(int threads:new int[]{1,4})for(String library:BenchmarkMain.LIBRARIES)
             assertEquals(15,plan.stream().filter(c->c.profile().equals("large")&&c.threads()==threads&&c.library().equals(library)).count());
+    }
+    @Test void machineCapacityProfilesRemainDistinctAndRouteRectangularCases() {
+        for(int available:new int[]{1,4,16}) {
+            var plan=BenchmarkMain.plan(false,BenchmarkMain.LIBRARIES,available);
+            var all=plan.stream().filter(c->c.profile().endsWith("-all-cores")).toList();
+            assertEquals(540,all.size());
+            assertTrue(all.stream().allMatch(c->c.threads()==available));
+            assertEquals(plan.size(),plan.stream().map(BenchmarkMain.Case::id).distinct().count());
+            var rectangular=all.stream().filter(c->c.profile().startsWith("rectangular")).findFirst().orElseThrow();
+            assertTrue(rectangular.benchmark().contains("ExpandedRectangularBenchmark"));
+            assertTrue(rectangular.parameters().containsKey("shape"));
+            for(String library:BenchmarkMain.LIBRARIES) {
+                assertEquals(15,all.stream().filter(c->c.profile().equals("large-all-cores")&&c.library().equals(library)).count());
+            }
+        }
+        assertThrows(IllegalArgumentException.class,()->BenchmarkMain.plan(false,BenchmarkMain.LIBRARIES,0));
+    }
+    @Test void timestampedZipNameIsPortableAndStableAcrossRefreshAndResume() throws Exception {
+        Path output=temporary.resolve("timestamped");Files.createDirectories(output);
+        Path first=Storage.bundlePath(output);
+        assertTrue(first.getFileName().toString().matches("timestamped-results-[0-9]{8}-[0-9]{6}-[0-9]{3}Z\\.zip"));
+        Storage.bundle(output);
+        assertEquals(first,Storage.bundlePath(output));
+        assertTrue(Files.isRegularFile(first));
+        // The timestamp is persisted, not held in process memory.
+        assertEquals(first,output.resolveSibling("timestamped-results-"+Files.readString(output.resolve("zip-timestamp.txt")).trim()+".zip"));
+        Storage.bundle(output);
+        try(var files=Files.list(temporary)) {
+            assertEquals(1,files.filter(p->p.getFileName().toString().endsWith(".zip")).count());
+        }
     }
     @Test void checkpointRetainsFullPrecisionAndRejectsCorruption() throws Exception {
         var item=new BenchmarkMain.Case("large",4,"EJML","qr","2000");
@@ -33,7 +63,7 @@ class LauncherTest {
         Files.writeString(output.resolve(".runtime/nm.lic"),"private");Files.writeString(output.resolve(".runtime/token.json"),"private");Files.writeString(output.resolve(".runtime/library.jar"),"private");
         Storage.json(output.resolve("machine.json"),MachineInfo.collect());Storage.json(output.resolve("progress.json"),Map.of("complete",false));
         Storage.bundle(output);
-        try(ZipFile zip=new ZipFile(temporary.resolve("output-results.zip").toFile())) {
+        try(ZipFile zip=new ZipFile(Storage.bundlePath(output).toFile())) {
             assertNotNull(zip.getEntry("machine.json"));assertNotNull(zip.getEntry("progress.json"));
             assertTrue(Collections.list(zip.entries()).stream().noneMatch(e->e.getName().contains(".runtime")||e.getName().endsWith(".lic")||e.getName().endsWith(".jar")));
         }
@@ -44,12 +74,12 @@ class LauncherTest {
         Path proof=output.resolve("fork-checkpoint.json");Storage.json(proof,Map.of("saved",true));
         String before=Files.readString(proof);
         // A nonempty directory deterministically denies replacement on Linux and Windows.
-        Path target=temporary.resolve("locked-results.zip");Files.createDirectories(target);
+        Path target=Storage.bundlePath(output);Files.createDirectories(target);
         Files.writeString(target.resolve("reader"),"do not replace");
         assertDoesNotThrow(()->Storage.bundle(output));
         assertEquals(before,Files.readString(proof));
         try(var files=Files.list(temporary)) {
-            Path pending=files.filter(f->f.getFileName().toString().startsWith("locked-results.zip-pending-")).findFirst().orElseThrow();
+            Path pending=files.filter(f->f.getFileName().toString().startsWith(target.getFileName()+"-pending-")).findFirst().orElseThrow();
             try(ZipFile zip=new ZipFile(pending.toFile())) {assertNotNull(zip.getEntry("machine.json"));}
         }
         Files.delete(target.resolve("reader"));Files.delete(target);
@@ -74,7 +104,7 @@ class LauncherTest {
         Storage.json(output.resolve("machine.json"),Map.of("test",true));
         Path source=output.resolve("fork-2.json");Files.writeString(source,"saved fork");
         Storage.bundle(output);
-        Path target=temporary.resolve("vanishing-results.zip");
+        Path target=Storage.bundlePath(output);
         byte[] previous=Files.readAllBytes(target);
         assertDoesNotThrow(()->Storage.bundle(output,()->{
             try { Files.delete(source); } catch(java.io.IOException ex) { throw new java.io.UncheckedIOException(ex); }
@@ -96,7 +126,7 @@ class LauncherTest {
         assertTrue(Files.exists(output.resolve("packaging-failure.json")));
         Path checkpoint=output.resolve("next-checkpoint.json");
         Storage.json(checkpoint,Map.of("saved",true));Storage.bundle(output);
-        try(ZipFile zip=new ZipFile(temporary.resolve("absent-output-results.zip").toFile())) {
+        try(ZipFile zip=new ZipFile(Storage.bundlePath(output).toFile())) {
             assertNotNull(zip.getEntry("next-checkpoint.json"));
         }
     }
