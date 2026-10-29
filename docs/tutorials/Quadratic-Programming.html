@@ -21,7 +21,7 @@ x_1-2x_2\ge-2,\quad -x_1-2x_2\ge-6,\quad -x_1+2x_2\ge-2,\quad x_1\ge0,\quad x_2\
 <li>Construct H and the linear coefficient vector p.</li>
 <li>Create <code>QuadraticFunction(H,p)</code>. The factor <strong>one half</strong> is part of the API's convention.</li>
 <li>Put each inequality's coefficients in one row of A and its right-hand side in b.</li>
-<li>Use <code>LinearGreaterThanConstraints(A,b)</code>: the convention is **A*x &gt;= b**.</li>
+<li>Use <code>LinearGreaterThanConstraints(A,b)</code>: the convention is <strong>A*x &gt;= b</strong>.</li>
 <li>Create <code>QPProblem(objective, null, constraints)</code>. The null argument means no equality constraints.</li>
 <li>Call <code>solve(problem).search()</code> on <code>QPDualActiveSetMinimizer</code>, then <code>minimizer()</code>.</li>
 </ol>

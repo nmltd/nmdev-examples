@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "latest": "2026-10-20/windows-082238Z",
+  "latest": "2026-10-28/windows-081313Z",
   "runs": [
     {
       "id": "windows-082238Z",
@@ -17,6 +17,22 @@
       "evidence_sha256": {
         "jmh.json": "3f381c637c5f76838b78c26be856ffa62931be7dc094f9d1419df65b965f5175",
         "summary.csv": "b6711b4e2e2af3e1bbae9c06444aebb95bc18c5f72a1c4750a6e828cbbd6cf2d"
+      }
+    },
+    {
+      "id": "windows-081313Z",
+      "date": "2026-10-28",
+      "title": "NM Dev 1.2.8 \u2014 Windows full suite",
+      "source": "2026-10-28/windows-081313Z",
+      "status": "Completed; archive limitation disclosed",
+      "warning": "NM Dev 1.2.8; 12 implementation variants across 11 libraries. Includes Commons row/block and 12-requested-thread profiles. Thread counts are requested limits; native workers were not independently audited. One individual UJMP solve fork JSON is missing; combined data is present.",
+      "cases": 1260,
+      "libraries": 11,
+      "machine": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+      "completed_utc": "2026-10-29T02:18:33.810660Z",
+      "evidence_sha256": {
+        "jmh.json": "9327d7efca1268be572e54546a9cc95348f698661d52b4a97efaa792c112e9d0",
+        "summary.csv": "6b0b0357c2d1f0f30e0aef3d45d3b858d8ac552fc800ff14f1e8f6945cb18872"
       }
     }
   ]

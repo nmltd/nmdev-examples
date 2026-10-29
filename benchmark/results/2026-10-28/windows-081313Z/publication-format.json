@@ -1,0 +1,24 @@
+{
+  "format": "public-benchmark-results-v1",
+  "original_zip_sha256": "3764cc4214ae584f70f638d44fae8a7e234e4323137265dcd4f1f54d003bcf49",
+  "cases": 1260,
+  "profiles": {
+    "baseline/1": 312,
+    "large/1": 180,
+    "large/4": 180,
+    "rectangular/1": 48,
+    "baseline-all-cores/12": 312,
+    "large-all-cores/12": 180,
+    "rectangular-all-cores/12": 48
+  },
+  "machine": {
+    "cpu_model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+    "available_processors": 12,
+    "physical_memory_bytes": 68629864448,
+    "os.name": "Windows 11",
+    "os.arch": "amd64",
+    "java.vendor": "Oracle Corporation",
+    "java.version": "27",
+    "java.vm.version": "27+35-2325"
+  }
+}

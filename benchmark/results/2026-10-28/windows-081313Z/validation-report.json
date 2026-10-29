@@ -1,0 +1,34 @@
+{
+  "cases": 1260,
+  "libraries": 12,
+  "fork_json_checksums": 2519,
+  "missing_fork_json": [
+    "cases/large__1thread__UJMP__solve__2000/fork-1.json"
+  ],
+  "measurement_iteration_means": 7560,
+  "preflights_passed": 6,
+  "profiles": {
+    "baseline/1": 312,
+    "large/1": 180,
+    "large/4": 180,
+    "rectangular/1": 48,
+    "baseline-all-cores/12": 312,
+    "large-all-cores/12": 180,
+    "rectangular-all-cores/12": 48
+  },
+  "machine": {
+    "cpu_model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+    "available_processors": 12,
+    "physical_memory_bytes": 68629864448,
+    "os.name": "Windows 11",
+    "os.arch": "amd64",
+    "java.vendor": "Oracle Corporation",
+    "java.version": "27",
+    "java.vm.version": "27+35-2325"
+  },
+  "limitations": [
+    "Downloaded binaries and binary fork checkpoints are intentionally absent; their recorded hashes cannot be recomputed from this archive.",
+    "Requested native worker counts were not independently audited.",
+    "One individual UJMP solve fork JSON is absent; 2,519 available fork JSON checksums verified. All 1,260 combined results and 7,560 sample means are present."
+  ]
+}

@@ -66,12 +66,15 @@ def historical_run(run):
     nav=site.site_nav('../../../')+'<nav aria-label="Run navigation"><a href="index.html">Run overview</a><a href="results.html">Results and evidence</a><a href="../../../benchmarks/index.html">All dates</a></nav>'
     charts=[]
     if rows:
-        name='benchmarks.html';charts=[(name,'Interactive charts')]
-        chart=write_explorer(source,rows,nav,site.CSS,run_id=run['source'])
-        chart=chart.replace('<h1>NM Dev benchmark explorer</h1>','<h1>NM Dev benchmark explorer</h1>'+overview(run))
-        # Historical charts use their own results; current guidance remains at the root.
-        for target in ['methodology.html','libraries.html','reproduce.html']:chart=chart.replace(f'href="{target}"',f'href="../../../{target}"')
-        (dest/name).write_text(chart)
+        groups=defaultdict(list)
+        for row in rows: groups[(row['profile'],row['requested_threads'])].append(row)
+        for (profile,threads),subset in groups.items():
+            name='benchmarks.html' if (profile,threads)==('baseline',1) else f'benchmarks-{profile}-{threads}thread.html'
+            charts.append((name,f'{profile.title()} — {threads} requested thread(s)'))
+            chart=write_explorer(source,subset,nav,site.CSS,run_id=run['source']+'/'+profile+'/'+str(threads))
+            chart=chart.replace('<h1>NM Dev benchmark explorer</h1>','<h1>NM Dev benchmark explorer</h1>'+overview(run))
+            for target in ['methodology.html','libraries.html','reproduce.html']:chart=chart.replace(f'href="{target}"',f'href="../../../{target}"')
+            (dest/name).write_text(chart)
     readme=source/'README.md'
     report=readme.read_text() if readme.exists() else '# Saved measurements\n'
     body=overview(run)+site.render('## Original report\n\n'+report_links(report,source))

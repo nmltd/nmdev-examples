@@ -34,7 +34,10 @@ for name in ['index.html','getting-started.html','tutorials.html','benchmarks.ht
  if (root/name).resolve() not in pages:errors.append(f'Missing required page: {name}')
 chart=(root/'benchmarks.html').read_text()
 payload=re.search(r'<script type="application/json" id="benchmark-data">(.*?)</script>',chart,re.S)
-if not payload or len(json.loads(payload.group(1))['points'])!=286:errors.append('Expected 286 measured chart points')
+registry=json.loads((repo/'benchmark/results/runs.json').read_text())
+latest=json.loads((repo/'benchmark/results'/registry['latest']/'jmh.json').read_text())
+expected_baseline=sum(r['profile']=='baseline' and r['requested_threads']==1 for r in latest)
+if not payload or len(json.loads(payload.group(1))['points'])!=expected_baseline:errors.append(f'Expected {expected_baseline} measured baseline points')
 if not (root/'benchmarks/index.html').exists():errors.append('Missing historical benchmark index')
 for source in (root/'tutorials').glob('*.md'):
  if not source.with_suffix('.html').exists():errors.append(f'Missing generated tutorial: {source}')

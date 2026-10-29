@@ -11,7 +11,7 @@ from pathlib import Path
 def validate(source):
     load=lambda n:json.loads((source/n).read_text(encoding='utf-8-sig'))
     rows=load('jmh.json');report=load('validation-report.json');manifest=load('publication-format.json')
-    assert len(rows)==manifest['cases']==report['cases']==660
+    assert len(rows)==manifest['cases']==report['cases']
     keys=[(r['profile'],r['requested_threads'],r['params']['library'],r['params'].get('operation','multiplication'),r['params'].get('size',r['params'].get('shape'))) for r in rows]
     assert len(set(keys))==len(keys)
     assert {f'{p}/{t}':n for (p,t),n in Counter((r['profile'],r['requested_threads']) for r in rows).items()}==manifest['profiles']==report['profiles']
@@ -27,7 +27,7 @@ def validate(source):
         assert (s['profile'],int(s['requested_threads']),s['library'],s['operation'],s['size_or_shape'])==key
         assert float(s['mean_ms_per_op'])==m['score']
         assert not {'jvm','jvmArgs'}.intersection(r)
-    assert sum(len(f) for r in rows for f in r['primaryMetric']['rawData'])==report['measurement_iteration_means']==3960
+    assert sum(len(f) for r in rows for f in r['primaryMetric']['rawData'])==report['measurement_iteration_means']
     return report
 
 if __name__=='__main__':

@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Libraries — NM Dev benchmarks</title><style>body{font:16px/1.6 system-ui,sans-serif;margin:0;background:#f4f6f8;color:#172b3a}main{max-width:1200px;margin:auto;padding:24px}a{color:#126c78}nav{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ccd6dd}nav a[aria-current]{font-weight:700;text-decoration-thickness:3px}h1{line-height:1.2}h2{margin-top:2em}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px;border:1px solid #d5dde3;text-align:left}th{background:#e6eff2}pre{overflow:auto;padding:18px;background:#e6edf2;border-radius:8px}code{font-size:.9em}img{max-width:100%}.table-scroll{overflow-x:auto}footer{margin-top:40px;border-top:1px solid #ccd6dd;padding-top:16px}.note{color:#435766}</style></head><body><main><p><a href="index.html">Dated run overview</a> · <a href="../../../benchmarks/index.html">All historical benchmarks</a></p><nav aria-label="Site navigation"><a href="../../../index.html">Home</a><a href="../../../getting-started.html">Getting Started</a><a href="../../../tutorials.html">Tutorials</a><a href="../../../benchmarks.html">Benchmarks</a><a href="https://github.com/nmltd/nmdev-examples">Source</a></nav><nav aria-label="Benchmark navigation"><a href="benchmarks.html">Charts</a><a href="results.html">Results</a><a href="methodology.html">Methodology</a><a href="libraries.html" aria-current="page">Libraries</a><a href="validation.html">Validation</a><a href="reproduce.html">Reproduce</a></nav><h1>Measured libraries</h1>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Library</th>
+<th>Recorded version / backend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NMDEV</td>
+<td>NM Dev 1.2.8</td>
+</tr>
+<tr>
+<td>COMMONS</td>
+<td>Commons Math 4.0-SNAPSHOT (20261023.103154-1592) — Array2DRowRealMatrix</td>
+</tr>
+<tr>
+<td>PARALLEL_COLT</td>
+<td>Parallel Colt 0.11.4 (upstream tag build)</td>
+</tr>
+<tr>
+<td>EJML</td>
+<td>EJML 0.46.1</td>
+</tr>
+<tr>
+<td>OJALGO</td>
+<td>ojAlgo 57.5.0</td>
+</tr>
+<tr>
+<td>JAMA</td>
+<td>JAMA 1.0.3</td>
+</tr>
+<tr>
+<td>JBLAS</td>
+<td>jblas 1.2.5 (native)</td>
+</tr>
+<tr>
+<td>COLT</td>
+<td>Colt 1.2.0</td>
+</tr>
+<tr>
+<td>MTJ</td>
+<td>MTJ 1.0.4 (F2J)</td>
+</tr>
+<tr>
+<td>UJMP</td>
+<td>UJMP 0.3.0 (core)</td>
+</tr>
+<tr>
+<td>F2J_LAPACK</td>
+<td>F2J LAPACK/BLAS 0.1</td>
+</tr>
+<tr>
+<td>COMMONS_BLOCK</td>
+<td>Commons Math 4.0-SNAPSHOT (20261023.103154-1592) — BlockRealMatrix</td>
+</tr>
+</tbody>
+</table></div>
+<p>MTJ uses F2J; jblas uses its native backend. Parallel Colt is locally built from the recorded upstream source. Commons row and block variants are separately identified where present. EJML multiplication uses the sequential CommonOps_DDRM API; Commons row and block multiplication are sequential. Requested thread limits do not establish equal parallel execution.</p><footer><a href="https://github.com/nmltd/nmdev-examples/tree/main/benchmark">Benchmark source and run archives</a> · <a href="../../../tutorials.html">Java tutorials</a></footer></main></body></html>

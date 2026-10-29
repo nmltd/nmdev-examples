@@ -1,0 +1,9 @@
+{
+  "parallelcolt_binary_is_locally_built": true,
+  "nmdev_url": "https://github.com/nmltd/maven-packages/releases/download/nmdev-1.2.8-validated/nmdev-1.2.8.jar",
+  "nmdev_checksum_source": "https://github.com/nmltd/maven-packages/releases/download/nmdev-1.2.8-validated/SHA256SUMS",
+  "parallelcolt_source_sha256": "a083064fd6f36780a7b4be15b80e5146c9b21f656ff76a6fb392045bea46388e",
+  "public_trial_url": "https://raw.githubusercontent.com/nmltd/nmdev-examples/ad1fbacaeea9c92ead37beb3002566c33b5a6006/nm.lic",
+  "nmdev_sha256": "a388d89f60f3b1dcaaa9281235f15298d968b88f853ff79632396b8db535c712",
+  "parallelcolt_source_url": "https://codeload.github.com/rwl/ParallelColt/zip/7c34364026680c1113f1a9586b9fb8c55080330c"
+}
