@@ -1,0 +1,34 @@
+{
+  "cases": 1260,
+  "libraries": 12,
+  "fork_json_checksums": 2519,
+  "missing_fork_json": [
+    "cases/large__1thread__OJALGO__multiplication__1024/fork-2.json"
+  ],
+  "measurement_iteration_means": 7560,
+  "preflights_passed": 6,
+  "profiles": {
+    "baseline/1": 312,
+    "large/1": 180,
+    "large/4": 180,
+    "rectangular/1": 48,
+    "baseline-all-cores/12": 312,
+    "large-all-cores/12": 180,
+    "rectangular-all-cores/12": 48
+  },
+  "machine": {
+    "cpu_model": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+    "available_processors": 12,
+    "physical_memory_bytes": 68629864448,
+    "os.name": "Windows 11",
+    "os.arch": "amd64",
+    "java.vendor": "Oracle Corporation",
+    "java.version": "27",
+    "java.vm.version": "27+35-2325"
+  },
+  "limitations": [
+    "Downloaded binaries and binary fork checkpoints are intentionally absent; their recorded hashes cannot be recomputed from this archive.",
+    "Requested native worker counts were not independently audited.",
+    "Historical logs are retained. Missing individual fork JSON files, if any, are explicitly listed; combined samples are validated separately."
+  ]
+}

@@ -1,11 +1,11 @@
 {
   "format": 1,
-  "latest": "2026-10-28/windows-081313Z",
+  "latest": "2026-11-01/windows-032108Z",
   "runs": [
     {
       "id": "windows-082238Z",
       "date": "2026-10-20",
-      "title": "Windows full suite \u2014 08:22:38 UTC",
+      "title": "Windows full suite — 08:22:38 UTC",
       "source": "2026-10-20/windows-082238Z",
       "legacy_source": "2026-10-20-windows-public",
       "status": "Completed and validated",
@@ -22,7 +22,7 @@
     {
       "id": "windows-081313Z",
       "date": "2026-10-28",
-      "title": "NM Dev 1.2.8 \u2014 Windows full suite",
+      "title": "NM Dev 1.2.8 — Windows full suite",
       "source": "2026-10-28/windows-081313Z",
       "status": "Completed; archive limitation disclosed",
       "warning": "NM Dev 1.2.8; 12 implementation variants across 11 libraries. Includes Commons row/block and 12-requested-thread profiles. Thread counts are requested limits; native workers were not independently audited. One individual UJMP solve fork JSON is missing; combined data is present.",
@@ -33,6 +33,22 @@
       "evidence_sha256": {
         "jmh.json": "9327d7efca1268be572e54546a9cc95348f698661d52b4a97efaa792c112e9d0",
         "summary.csv": "6b0b0357c2d1f0f30e0aef3d45d3b858d8ac552fc800ff14f1e8f6945cb18872"
+      }
+    },
+    {
+      "id": "windows-032108Z",
+      "date": "2026-11-01",
+      "title": "NM Dev 1.2.9 — Windows full suite",
+      "source": "2026-11-01/windows-032108Z",
+      "status": "Completed; archive limitation disclosed",
+      "warning": "NM Dev 1.2.9; 12 implementation variants across 11 libraries. One individual ojAlgo 1024-square single-thread multiplication fork JSON is absent; combined samples are present. 2,519 fork checksums verified. Requested thread limits do not establish actual worker counts; native workers were not independently audited.",
+      "cases": 1260,
+      "libraries": 11,
+      "machine": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+      "completed_utc": "2026-11-01T21:51:11.687270600Z",
+      "evidence_sha256": {
+        "jmh.json": "7cb07ca2207cfc26aeead0b0ba9daada43571806752cd9c491467e316629d875",
+        "summary.csv": "a71e796b90a91d2c8dfaff376e26368ecccfc57cda2709f7a778425d132614f7"
       }
     }
   ]
