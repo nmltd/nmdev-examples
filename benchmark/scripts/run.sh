@@ -24,10 +24,14 @@ case "$profile" in
   *) echo 'BENCH_PROFILE must be baseline, large, large-missing, size2000 or rectangular' >&2; exit 1 ;;
 esac
 if [[ ! -f "$output/environment.json" ]]; then
-NMDEV_JAR="$repo_root/benchmark/target/lib/nmdev-1.2.6.jar" bash benchmark/scripts/build-direct.sh
+NMDEV_JAR="$repo_root/benchmark/target/lib/nmdev-selected.jar" bash benchmark/scripts/build-direct.sh
 fi
 mkdir -p "$output"
-classpath='benchmark/target/classes:benchmark/target/lib/*'
+classpath='benchmark/target/classes'
+for dependency in "$repo_root"/benchmark/target/lib/*.jar; do
+  [[ "$(basename "$dependency")" == nmdev-*.jar && "$(basename "$dependency")" != nmdev-selected.jar ]] && continue
+  classpath="$classpath:$dependency"
+done
 export OPENBLAS_NUM_THREADS="$threads" OMP_NUM_THREADS="$threads" MKL_NUM_THREADS="$threads" BLIS_NUM_THREADS="$threads" VECLIB_MAXIMUM_THREADS="$threads"
 backend_flags=(
   -Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.F2jBLAS

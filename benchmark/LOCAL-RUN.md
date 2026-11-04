@@ -1,3 +1,34 @@
+# Reusable benchmark application 1.3.0
+
+From PowerShell, run `benchmark/run-benchmark.ps1`. It downloads the checksum-verified prebuilt runner and NMDEV 1.2.10, then starts the complete suite. A full JDK 17+ is required; Maven and source edits are unnecessary.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File benchmark/run-benchmark.ps1 -NmdevVersion 1.2.10
+# Future releases: change only -NmdevVersion. For a custom build, select its file:
+powershell -ExecutionPolicy Bypass -File benchmark/run-benchmark.ps1 -NmdevJar 'D:\path\nmdev.jar' -OutputDirectory custom-results
+```
+
+The same Java application also accepts `--nmdev-jar` directly:
+
+```text
+java -jar nmdev-benchmark-1.3.0.jar --nmdev-jar path/to/nmdev.jar --output new-results
+```
+
+All 1,260 cases and eleven libraries (twelve implementation variants) remain enabled, including Commons array and block matrices. The selected file is validated as an NMDEV JAR, copied under one private runtime filename, and its actual SHA-256, original filename and embedded version (if supplied by the JAR) are recorded. No version is inferred solely from its filename. A new NMDEV binary requires a new result directory; changing the binary in a stopped run is rejected before cached JARs or result metadata are replaced. Repeat the same command to resume.
+
+Commons now uses the released **4.0-beta1** JARs from Maven Central, with explicit hashes and matching origin checks. Expiring timestamped Apache snapshot URLs are no longer needed. These Commons results use a different comparator binary from historical 4.0-SNAPSHOT runs and must be labelled accordingly. Other comparison-library pins and numerical benchmark sources are unchanged.
+
+To build the runner yourself:
+
+```text
+mvn -s benchmark/settings.xml -gs benchmark/settings.xml -f benchmark/pom.xml package
+java -jar benchmark/target/nmdev-benchmark-1.3.0.jar --nmdev-jar path/to/nmdev.jar --output new-results
+```
+
+Older application instructions and experiment history follow. Do not use packaging-only migration to move a 1.2.0 experiment to 1.3.0; keep the original runner and results for that experiment.
+
+---
+
 # Run the complete benchmark unattended
 
 Requires a **full JDK 17 or newer**, Maven to build, and Internet access on the first run. Windows, Linux and macOS use the same Java entry point; no WSL, Python, shell scripts, GitHub token, manual dependency installation or profile selection is required.
@@ -13,7 +44,7 @@ The public application entry point is `dev.nm.benchmark.launcher.BenchmarkMain`.
 
 With no arguments, the application automatically:
 
-1. Downloads checksum-verified numerical dependencies and the repository's public trial license. It uses the validated NM Dev 1.2.6 public release and the timestamp-pinned Commons Math 4 snapshot from the lockfile, keeping version labels explicit. The public NM Dev binary hash differs from the older archived benchmark binary; local measurements must be treated as a separate experiment.
+1. Downloads checksum-verified numerical dependencies and the repository's public trial license. Application 1.3.0 defaults to the validated NM Dev 1.2.10 release (or your --nmdev-jar selection) and released Commons Math 4.0-beta1 modules from the lockfile, keeping version labels explicit. The public NM Dev binary hash differs from the older archived benchmark binary; local measurements must be treated as a separate experiment.
 2. Builds Parallel Colt 0.11.4 from a checksum-verified archive of its exact upstream commit, then compiles the bundled JMH harness. The locally built binary's actual hash and compiler version are recorded; compiler-dependent binary hashes can differ between machines.
 3. Collects machine information and runs correctness, input-preservation, pivot and backend preflight checks.
 4. Runs all **1,260 cases** serially: 312 baseline, 360 large-square, 48 rectangular, plus 540 all-core cases. All eleven libraries (twelve implementation variants) are attempted. One-thread, four-thread and all-core profiles are scheduled automatically; they never run concurrently.

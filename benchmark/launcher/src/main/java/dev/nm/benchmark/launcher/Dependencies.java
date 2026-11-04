@@ -13,8 +13,8 @@ import javax.tools.*;
 
 /** Prepares immutable public inputs without Maven credentials, Python or Git. */
 final class Dependencies {
-    static final String NM_URL = "https://github.com/nmltd/maven-packages/releases/download/nmdev-1.2.6-validated/nmdev-1.2.6.jar";
-    static final String NM_SHA = "0b2d807d17927b482fadcdc313768a61d2fbdc80c7da4226005a198e0a6796ba";
+    static final String NM_URL = "https://github.com/nmltd/maven-packages/releases/download/nmdev-1.2.10-validated/nmdev-1.2.10.jar";
+    static final String NM_SHA = "a4284d16dcb83851c5486892a4425e7b5c6b9341895b484609449aee30d4f846";
     static final String LICENSE_URL = "https://raw.githubusercontent.com/nmltd/nmdev-examples/ad1fbacaeea9c92ead37beb3002566c33b5a6006/nm.lic";
     static final String LICENSE_SHA = "2fbc9e56f7d8d933bfd7c59c39cf08bee151305b285f35a19882cc2c844bb1c1";
     static final String COLT_URL = "https://codeload.github.com/rwl/ParallelColt/zip/7c34364026680c1113f1a9586b9fb8c55080330c";
@@ -61,9 +61,18 @@ final class Dependencies {
         }
         throw new IOException("Unable to prepare verified dependency " + path.getFileName(), last);
     }
-    static Map<String,String> prepare(Path output) throws Exception {
+    static Map<String,String> prepare(Path output, Path selectedJar) throws Exception {
         Path runtime = output.resolve(".runtime"), lib = runtime.resolve("lib");
         Files.createDirectories(lib);
+        NmdevInput selected=selectedJar==null?null:NmdevInput.open(selectedJar);
+        NmdevInput.requireCompatibleRun(output,selected==null?NM_SHA:selected.sha256());
+        Path runtimeJar=lib.resolve(NmdevInput.RUNTIME_NAME);
+        if(selected==null) {
+            download(NM_URL,NM_SHA,runtimeJar);
+            selected=NmdevInput.open(runtimeJar);
+        }
+        selected.install(runtimeJar);
+        System.out.println("NMDEV binary: "+selected.label()+"; SHA-256 "+selected.sha256());
         resource("config/dependencies.lock.tsv", output.resolve("dependencies.lock.tsv.txt"));
         resource("config/versions.json", output.resolve("versions.json"));
         String lock = Files.readString(output.resolve("dependencies.lock.tsv.txt"));
@@ -74,7 +83,9 @@ final class Dependencies {
             if (values.length != 3) throw new IOException("Malformed dependency lock entry");
             if (!values[2].startsWith("source:")) download(values[2], values[1], lib.resolve(values[0]));
         }
-        download(NM_URL, NM_SHA, lib.resolve("nmdev-1.2.6.jar"));
+        var versions=Storage.read(output.resolve("versions.json")).getAsJsonObject();
+        versions.addProperty("NMDEV",selected.label());
+        Storage.json(output.resolve("versions.json"),versions);
         Path customLicense = System.getProperty("nmdev.license") == null ? null : Path.of(System.getProperty("nmdev.license")).toAbsolutePath();
         if (customLicense != null) Storage.atomic(runtime.resolve("nm.lic"), Files.readAllBytes(customLicense));
         else download(LICENSE_URL, LICENSE_SHA, runtime.resolve("nm.lic"));
@@ -99,7 +110,7 @@ final class Dependencies {
         try (var files = Files.list(lib)) { for (Path file : files.filter(p -> p.toString().endsWith(".jar")).sorted().toList()) hashes.put(file.getFileName().toString(), Storage.sha(file)); }
         Storage.json(output.resolve("artifacts.json"), hashes);
         Storage.json(output.resolve("parallelcolt-build.json"), Storage.read(stamp));
-        Storage.json(output.resolve("binary-provenance.json"), Map.of("nmdev_url", NM_URL, "nmdev_sha256", NM_SHA, "nmdev_checksum_source", "https://github.com/nmltd/maven-packages/releases/download/nmdev-1.2.6-validated/SHA256SUMS", "public_trial_url", LICENSE_URL,
+        Storage.json(output.resolve("binary-provenance.json"), Map.of("nmdev_url", selectedJar==null?NM_URL:"local-file", "nmdev_sha256", selected.sha256(), "nmdev_checksum_source", selectedJar==null?"https://github.com/nmltd/maven-packages/releases/download/nmdev-1.2.10-validated/SHA256SUMS":"computed from selected JAR", "nmdev_original_filename",selectedJar==null?"nmdev-1.2.10.jar":selected.path().getFileName().toString(), "nmdev_runtime_filename",NmdevInput.RUNTIME_NAME, "nmdev_version",selected.version(), "public_trial_url", LICENSE_URL,
             "parallelcolt_source_url", COLT_URL, "parallelcolt_source_sha256", COLT_SHA, "parallelcolt_binary_is_locally_built", true));
         return hashes;
     }

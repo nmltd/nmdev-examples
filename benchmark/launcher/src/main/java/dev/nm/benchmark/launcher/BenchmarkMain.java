@@ -47,16 +47,18 @@ public final class BenchmarkMain {
     }
     public static void main(String[] args) throws Exception {
         boolean smoke = false; Path output = Path.of("nmdev-benchmark-output"); int maxCases = Integer.MAX_VALUE;
-        List<String> libraries = LIBRARIES;
+        List<String> libraries = LIBRARIES; Path nmdevJar=null;
         for (int i=0;i<args.length;i++) switch(args[i]) {
             case "--output": output=Path.of(args[++i]); break;
+            case "--nmdev-jar": nmdevJar=Path.of(args[++i]); break;
             case "--smoke": smoke=true; break;
             case "--max-cases": maxCases=Integer.parseInt(args[++i]); break;
             case "--libraries": libraries=List.of(args[++i].split(",")); if(!LIBRARIES.containsAll(libraries)) throw new IllegalArgumentException("Unknown library"); break;
-            case "--help": System.out.println("java -jar nmdev-benchmark-1.2.0.jar [--output directory]\nNo arguments runs all 11 libraries (12 implementation variants) and all profiles. Repeat the same command to resume.\nDiagnostics only: --smoke [--libraries NMDEV,EJML] [--max-cases N]"); return;
+            case "--help": System.out.println("java -jar nmdev-benchmark-1.3.0.jar [--nmdev-jar path/to/nmdev.jar] [--output directory]\nNo arguments runs all 11 libraries (12 implementation variants) and all profiles. Repeat the same command to resume.\nDiagnostics only: --smoke [--libraries NMDEV,EJML] [--max-cases N]"); return;
             default: throw new IllegalArgumentException("Unknown argument: "+args[i]);
         }
         if (!smoke && !libraries.equals(LIBRARIES)) throw new IllegalArgumentException("--libraries is a diagnostic option requiring --smoke");
+        if(nmdevJar!=null) NmdevInput.open(nmdevJar);
         output=output.toAbsolutePath().normalize(); Files.createDirectories(output);
         final Path root=output;
         try (FileChannel channel=FileChannel.open(output.resolve(".runner.lock"),StandardOpenOption.CREATE,StandardOpenOption.WRITE)) {
@@ -70,7 +72,7 @@ public final class BenchmarkMain {
                     catch(Exception ex) { System.err.println("Could not finish interruption ZIP: "+ex.getMessage()); }
                 },"benchmark-shutdown");
                 Runtime.getRuntime().addShutdownHook(hook);
-                try { run(output,smoke,libraries,maxCases); }
+                try { run(output,smoke,libraries,maxCases,nmdevJar); }
                 catch(Exception ex) {
                     Storage.json(output.resolve("launcher-error.json"),Map.of("utc",Instant.now().toString(),"type",ex.getClass().getName(),"message",String.valueOf(ex.getMessage())));
                     Storage.bundle(output); throw ex;
@@ -78,14 +80,17 @@ public final class BenchmarkMain {
             }
         }
     }
-    static void run(Path output, boolean smoke, List<String> libraries, int maxCases) throws Exception {
+    static void run(Path output, boolean smoke, List<String> libraries, int maxCases, Path nmdevJar) throws Exception {
+        Path previousRequest=output.resolve("request.json");
+        if(Files.exists(previousRequest) && !Storage.read(previousRequest).getAsJsonObject().get("application_sha256").getAsString().equals(Storage.sha(Dependencies.application())))
+            throw new IOException("Benchmark application changed. Use a new --output directory; saved results were preserved.");
         List<Case> cases=plan(smoke,libraries);
         Map<String,Object> machine=MachineInfo.collect();
         if(!Files.exists(output.resolve("machine.json"))) Storage.json(output.resolve("machine.json"),machine);
         Storage.json(output.resolve("latest-machine.json"),machine);
         System.out.println("NM Dev unattended benchmark: "+cases.size()+" cases, two independent JVM forks per case.");
         System.out.println("Output: "+output+"; repeat this command to resume. Long operations can take several minutes.");
-        Map<String,String> artifacts=Dependencies.prepare(output); Dependencies.harness(output);
+        Map<String,String> artifacts=Dependencies.prepare(output,nmdevJar); Dependencies.harness(output);
         Map<String,Object> request=new LinkedHashMap<>();
         request.put("format",2); request.put("all_cores_available_processors",Runtime.getRuntime().availableProcessors()); request.put("suite",smoke?"SMOKE-NOT-FOR-PUBLICATION":"FULL"); request.put("cases",cases); request.put("artifacts",artifacts);
         request.put("machine",MachineInfo.identity(machine)); request.put("application_sha256",Storage.sha(Dependencies.application()));
