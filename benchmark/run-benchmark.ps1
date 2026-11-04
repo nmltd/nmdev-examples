@@ -3,11 +3,12 @@ param(
     [string]$NmdevVersion = '1.2.10',
     [string]$OutputDirectory,
     [string]$CacheDirectory = (Join-Path $PSScriptRoot '.benchmark-cache'),
+    [switch]$UpgradeResume,
     [switch]$Smoke
 )
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
-$applicationVersion = '1.3.0'
+$applicationVersion = '1.3.1'
 $cache = [IO.Path]::GetFullPath($CacheDirectory)
 [IO.Directory]::CreateDirectory($cache) | Out-Null
 
@@ -44,6 +45,24 @@ if ([string]::IsNullOrWhiteSpace($NmdevJar)) {
     if ([string]::IsNullOrWhiteSpace($OutputDirectory)) {
         $hash = (Get-FileHash -LiteralPath $NmdevJar -Algorithm SHA256).Hash.ToLowerInvariant()
         $OutputDirectory = 'nmdev-' + $hash.Substring(0,12) + '-full'
+    }
+}
+$requestPath = Join-Path $OutputDirectory 'request.json'
+if (Test-Path -LiteralPath $requestPath) {
+    $request = Get-Content -LiteralPath $requestPath -Raw | ConvertFrom-Json
+    $currentHash = (Get-FileHash -LiteralPath $application -Algorithm SHA256).Hash.ToLowerInvariant()
+    if ($request.application_sha256 -ne $currentHash) {
+        $original = Get-VerifiedReleaseFile 'https://github.com/nmltd/nmdev-examples/releases/download/benchmark-v1.3.0' 'nmdev-benchmark-1.3.0.jar'
+        if ((Get-FileHash -LiteralPath $original -Algorithm SHA256).Hash -ne $request.application_sha256) {
+            throw 'Saved run uses a different application. Keep its original runner or choose a new output directory.'
+        }
+        if ($UpgradeResume) {
+            & java -cp $application dev.nm.benchmark.launcher.ResumeUpgrade $original $OutputDirectory
+            if ($LASTEXITCODE -ne 0) { throw 'Resume upgrade verification failed; keep the original runner.' }
+        } else {
+            Write-Host 'Using the original runner to preserve this run. Add -UpgradeResume for the verified faster resume/export upgrade.'
+            $application = $original
+        }
     }
 }
 $arguments = @('-jar',$application,'--nmdev-jar',$NmdevJar,'--output',$OutputDirectory)

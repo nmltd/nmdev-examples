@@ -1,3 +1,17 @@
+# Faster resume and exports (application 1.3.1)
+
+Completed cases are verified in one scan and collected without re-entering the measurement loop. Reports are rebuilt once before unfinished work; fully completed resumes only export at the end. Fork checkpoints are still written and synchronized immediately. During measurement, full ZIP snapshots are limited to once a minute; orderly completion and interruption force a final snapshot. Brief Windows AccessDenied failures during file replacement are retried without deleting the previous file or ignoring checkpoint errors.
+
+The checked-in PowerShell entry point downloads application 1.3.1. Existing 1.3.0 result directories continue using their original runner unless an explicit verified resume upgrade is requested. To upgrade a stopped published 1.3.0 run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File run-benchmark.ps1 -NmdevVersion 1.2.10 -UpgradeResume
+```
+
+Stop an active runner with Ctrl+C first. The helper verifies the original published 1.3.0 SHA-256 and byte-compares the application JARs: numerical harness sources, dependencies, case-model class and other application classes must match. Only the audited resume/export classes, added upgrade helper and application version metadata may differ. It locks the result directory, backs up request.json, records provenance and updates only the application hash. Saved fork files, measurements, selected NMDEV binary and case specifications are not changed. Full normal machine/configuration/dependency and fork integrity checks run after migration. An unknown original build or any unexpected JAR entry difference is rejected.
+
+---
+
 # Reusable benchmark application 1.3.0
 
 From PowerShell, run `benchmark/run-benchmark.ps1`. It downloads the checksum-verified prebuilt runner and NMDEV 1.2.10, then starts the complete suite. A full JDK 17+ is required; Maven and source edits are unnecessary.

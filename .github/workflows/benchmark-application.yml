@@ -39,18 +39,42 @@ jobs:
       - name: Build application and test checkpoint/ZIP safeguards
         run: mvn -B -f benchmark/pom.xml package
       - name: Verify automatic preparation and all library/profile adapters
-        run: java -Xmx2g -jar benchmark/target/nmdev-benchmark-1.3.0.jar --smoke --output smoke-results
+        run: java -Xmx2g -jar benchmark/target/nmdev-benchmark-1.3.1.jar --smoke --output smoke-results
       - name: Verify arbitrary local NMDEV filename and recorded binary origin
         shell: pwsh
         run: |
           Copy-Item smoke-results/.runtime/lib/nmdev-selected.jar 'selected NMDEV.jar'
-          java -Xmx2g -jar benchmark/target/nmdev-benchmark-1.3.0.jar --nmdev-jar 'selected NMDEV.jar' --smoke --libraries 'NMDEV,COMMONS,COMMONS_BLOCK' --max-cases 1 --output local-jar-results
+          java -Xmx2g -jar benchmark/target/nmdev-benchmark-1.3.1.jar --nmdev-jar 'selected NMDEV.jar' --smoke --libraries 'NMDEV,COMMONS,COMMONS_BLOCK' --max-cases 1 --output local-jar-results
           if ($LASTEXITCODE -ne 0) { throw 'Local-JAR smoke failed' }
           $expected = (Get-FileHash 'selected NMDEV.jar' -Algorithm SHA256).Hash.ToLowerInvariant()
           $recorded = Get-Content local-jar-results/binary-provenance.json -Raw | ConvertFrom-Json
           if ($recorded.nmdev_sha256 -ne $expected -or $recorded.nmdev_original_filename -ne 'selected NMDEV.jar') { throw 'Wrong NMDEV binary provenance' }
-      - name: Verify saved forks are reused
-        run: java -Xmx2g -jar benchmark/target/nmdev-benchmark-1.3.0.jar --smoke --output smoke-results
+      - name: Verify fast resume does not iterate completed cases
+        shell: pwsh
+        run: |
+          $resumed = java -Xmx2g -jar benchmark/target/nmdev-benchmark-1.3.1.jar --smoke --output smoke-results
+          $resumed | Write-Host
+          if ($LASTEXITCODE -ne 0) { throw 'Resume failed' }
+          if ($resumed -match '^Case [0-9]+/') { throw 'Resume revisited completed case loop' }
+          if (-not ($resumed -match '^Resume: verified [1-9]')) { throw 'No completed checkpoints restored' }
+      - name: Verify published 1.3.0 run upgrades without changing saved forks
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -UseBasicParsing 'https://github.com/nmltd/nmdev-examples/releases/download/benchmark-v1.3.0/nmdev-benchmark-1.3.0.jar' -OutFile original-1.3.0.jar
+          if ((Get-FileHash original-1.3.0.jar -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'a6b58052fedb17ea91f4c2812ac816708c700dfc386a9e3019306e9a26fde9cf') { throw 'Original binary hash mismatch' }
+          New-Item -ItemType Directory upgrade-results | Out-Null
+          Copy-Item local-jar-results/.runtime upgrade-results/.runtime -Recurse
+          java -Xmx2g -jar original-1.3.0.jar --nmdev-jar 'selected NMDEV.jar' --smoke --libraries 'NMDEV,COMMONS,COMMONS_BLOCK' --max-cases 1 --output upgrade-results
+          if ($LASTEXITCODE -ne 0) { throw 'Original run failed' }
+          $before = @{}
+          Get-ChildItem upgrade-results/cases -Recurse -File | Where-Object { $_.Name -like 'fork-*' -and $_.Extension -ne '.log' } | ForEach-Object { $before[$_.FullName] = (Get-FileHash $_.FullName -Algorithm SHA256).Hash }
+          java -cp benchmark/target/nmdev-benchmark-1.3.1.jar dev.nm.benchmark.launcher.ResumeUpgrade original-1.3.0.jar upgrade-results
+          if ($LASTEXITCODE -ne 0) { throw 'Upgrade verification failed' }
+          $resumed = java -Xmx2g -jar benchmark/target/nmdev-benchmark-1.3.1.jar --nmdev-jar 'selected NMDEV.jar' --smoke --libraries 'NMDEV,COMMONS,COMMONS_BLOCK' --max-cases 1 --output upgrade-results
+          $resumed | Write-Host
+          if ($LASTEXITCODE -ne 0 -or ($resumed -match '^Case [0-9]+/')) { throw 'Upgraded run repeated a completed case' }
+          foreach ($path in $before.Keys) { if ((Get-FileHash $path -Algorithm SHA256).Hash -ne $before[$path]) { throw 'Saved fork changed during upgrade/resume' } }
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -61,7 +85,7 @@ jobs:
         if: matrix.os == 'ubuntu-24.04' && success()
         with:
           name: nmdev-benchmark-application
-          path: benchmark/target/nmdev-benchmark-1.3.0.jar
+          path: benchmark/target/nmdev-benchmark-1.3.1.jar
 
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -80,5 +104,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cd release
-          sha256sum nmdev-benchmark-1.3.0.jar > SHA256SUMS
-          gh release create benchmark-v1.3.0 nmdev-benchmark-1.3.0.jar SHA256SUMS ../benchmark/run-benchmark.ps1 --repo nmltd/nmdev-examples --target "$GITHUB_SHA" --title 'Reusable benchmark application 1.3.0' --notes 'Select any NMDEV binary with --nmdev-jar. Full 1,260-case suite across eleven libraries including both Commons matrix implementations. Released checksum-pinned Commons Math 4.0-beta1 dependencies. Windows and Linux application smoke, local-JAR selection and resume checks passed for this exact application build. Full benchmark timings are run locally.'
+          sha256sum nmdev-benchmark-1.3.1.jar > SHA256SUMS
+          gh release create benchmark-v1.3.1 nmdev-benchmark-1.3.1.jar SHA256SUMS ../benchmark/run-benchmark.ps1 --repo nmltd/nmdev-examples --target "$GITHUB_SHA" --title 'Faster benchmark resume 1.3.1' --notes 'Select any NMDEV binary with --nmdev-jar. Full 1,260-case suite across eleven libraries including both Commons matrix implementations. Released checksum-pinned Commons Math 4.0-beta1 dependencies. Windows and Linux application smoke, local-JAR selection and resume checks passed for this exact application build. Fast checkpoint scan and periodic ZIP exports. Published 1.3.0 resume migration verified with unchanged saved fork hashes. Full benchmark timings are run locally.'

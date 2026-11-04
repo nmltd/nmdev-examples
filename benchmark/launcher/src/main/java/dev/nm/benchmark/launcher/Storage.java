@@ -20,8 +20,23 @@ final class Storage {
         move(temp, path);
     }
     static void move(Path from, Path to) throws IOException {
-        try { Files.move(from, to, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING); }
-        catch (AtomicMoveNotSupportedException ex) { Files.move(from, to, StandardCopyOption.REPLACE_EXISTING); }
+        // Windows scanners/readers can briefly deny replacement of a closed file.
+        // Retry the rename; never delete the previous destination or weaken checkpoints.
+        for(int attempt=0;;attempt++) {
+            try {
+                try {Files.move(from,to,StandardCopyOption.ATOMIC_MOVE,StandardCopyOption.REPLACE_EXISTING);}
+                catch(AtomicMoveNotSupportedException ex) {Files.move(from,to,StandardCopyOption.REPLACE_EXISTING);}
+                return;
+            } catch(AccessDeniedException ex) {
+                if(attempt==7)throw ex;
+                try {Thread.sleep(100L*(attempt+1));}
+                catch(InterruptedException interrupted) {
+                    Thread.currentThread().interrupt();
+                    java.io.InterruptedIOException failure=new java.io.InterruptedIOException("Interrupted while replacing "+to);
+                    failure.initCause(ex);throw failure;
+                }
+            }
+        }
     }
     static String sha(Path path) throws IOException {
         try {
@@ -57,11 +72,18 @@ final class Storage {
             throw new IOException("Invalid ZIP timestamp in "+stamp);
         return output.resolveSibling(output.getFileName()+"-results-"+timestamp+".zip");
     }
+    private static final Map<Path,Long> LAST_BUNDLE=new HashMap<>();
+    /** Durable fork checkpoints are immediate; full ZIP exports are at most once a minute. */
+    static synchronized void bundlePeriodically(Path output) throws IOException {
+        long now=System.nanoTime();Long previous=LAST_BUNDLE.get(output.toAbsolutePath().normalize());
+        if(previous==null || now-previous>=java.util.concurrent.TimeUnit.SECONDS.toNanos(60))bundle(output);
+    }
     static synchronized void bundle(Path output) throws IOException {
         bundle(output, null);
     }
     // Snapshot callback enables deterministic tests of disappearing source files.
     static synchronized void bundle(Path output, Runnable afterSnapshot) throws IOException {
+        LAST_BUNDLE.put(output.toAbsolutePath().normalize(),System.nanoTime());
         try { bundleSnapshot(output, afterSnapshot); }
         catch (IOException | java.io.UncheckedIOException | SecurityException ex) {
             System.err.println("WARNING: Results ZIP refresh failed: " + ex

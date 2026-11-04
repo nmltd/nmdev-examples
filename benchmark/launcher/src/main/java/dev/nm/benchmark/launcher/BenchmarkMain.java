@@ -54,7 +54,7 @@ public final class BenchmarkMain {
             case "--smoke": smoke=true; break;
             case "--max-cases": maxCases=Integer.parseInt(args[++i]); break;
             case "--libraries": libraries=List.of(args[++i].split(",")); if(!LIBRARIES.containsAll(libraries)) throw new IllegalArgumentException("Unknown library"); break;
-            case "--help": System.out.println("java -jar nmdev-benchmark-1.3.0.jar [--nmdev-jar path/to/nmdev.jar] [--output directory]\nNo arguments runs all 11 libraries (12 implementation variants) and all profiles. Repeat the same command to resume.\nDiagnostics only: --smoke [--libraries NMDEV,EJML] [--max-cases N]"); return;
+            case "--help": System.out.println("java -jar nmdev-benchmark-1.3.1.jar [--nmdev-jar path/to/nmdev.jar] [--output directory]\nNo arguments runs all 11 libraries (12 implementation variants) and all profiles. Repeat the same command to resume.\nDiagnostics only: --smoke [--libraries NMDEV,EJML] [--max-cases N]"); return;
             default: throw new IllegalArgumentException("Unknown argument: "+args[i]);
         }
         if (!smoke && !libraries.equals(LIBRARIES)) throw new IllegalArgumentException("--libraries is a diagnostic option requiring --smoke");
@@ -99,7 +99,7 @@ public final class BenchmarkMain {
         request.put("child_jvm_options","-Xms256m -Xmx1g; ActiveProcessorCount and benchmark.threads per case; F2J BLAS/LAPACK/ARPACK forced");
         Path manifest=output.resolve("request.json"); JsonElement specification=Storage.JSON.toJsonTree(request);
         if(Files.exists(manifest) && !Storage.read(manifest).equals(specification)) throw new IOException("Run configuration, binaries or machine changed. Use a different --output directory; existing checkpoints were preserved.");
-        Storage.json(manifest,specification); Files.deleteIfExists(output.resolve("completed-utc.txt"));
+        Storage.json(manifest,specification);
         Storage.atomic(output.resolve("README.md"),("# NM Dev benchmark output\n\nSuite: "+request.get("suite")+". Profiles ending in -all-cores request all JVM-visible logical processors recorded in request.json. Single-threaded APIs remain single threaded; requested workers do not establish actual utilization. COMMONS uses Array2DRowRealMatrix; COMMONS_BLOCK uses BlockRealMatrix, constructed before timing. Compare matching operations and dimensions across profiles; do not pool thread settings. All measurements are local to the machine recorded in machine.json.\n\nCase checkpoints include two independently warmed JVM forks. Fork JSON is preserved verbatim; combined JSON uses JMH's own aggregators. Requested native thread counts are not independently audited.\n\nUpload the sibling *-results-<UTC timestamp>.zip. It excludes licenses, downloaded binaries, credentials and private runtime cache. Partial runs are explicitly marked in progress.json. To resume, keep the complete local output directory, including .runtime and binary fork checkpoints, and run the same JAR again.\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
         // Preflight failures are recorded; each timed fork independently validates its
         // own full-size inputs. An unsupported native backend does not hide other libraries.
@@ -113,10 +113,21 @@ public final class BenchmarkMain {
             }
             if(Storage.read(done).getAsJsonObject().get("exit_code").getAsInt()!=0) preflightFailures.add(name);
         }
-        JsonArray combined=new JsonArray(); List<Map<String,Object>> failed=new ArrayList<>(); int completed=0,attempted=0;
+        List<Case> selected=cases.subList(0,Math.min(Math.max(maxCases,0),cases.size()));
+        Map<String,JsonObject> results=restoreCompleted(output,selected);
+        List<Case> pendingCases=selected.stream().filter(item->!results.containsKey(item.id())).toList();
+        JsonArray combined=orderedResults(selected,results);
+        List<Map<String,Object>> failed=new ArrayList<>(); int completed=results.size(),attempted=0;
+        System.out.println("Resume: verified "+completed+" completed cases; "+pendingCases.size()+" cases need work in this invocation.");
+        if(!pendingCases.isEmpty() || !preflightFailures.isEmpty()) Files.deleteIfExists(output.resolve("completed-utc.txt"));
+        // Rebuild saved reports once, not once for each retained case.
+        if(completed>0 && !pendingCases.isEmpty()) {
+            Storage.json(output.resolve("jmh.json"),combined); summary(output,combined);
+        }
+        boolean measurementsFinished=false;
         try {
-            for(Case item:cases) {
-                if(attempted++>=maxCases) break;
+            for(Case item:pendingCases) {
+                attempted=cases.indexOf(item)+1;
                 Path directory=output.resolve("cases").resolve(item.id());Files.createDirectories(directory);
                 System.out.println("Case "+attempted+"/"+cases.size()+": "+item.id());
                 boolean successful=true;
@@ -132,23 +143,27 @@ public final class BenchmarkMain {
                         if(code==0 && validRow(pending,item) && Files.isRegularFile(binary)) {
                             Storage.move(pending,json);
                             Storage.json(proof,Map.of("json_sha256",Storage.sha(json),"binary_sha256",Storage.sha(binary),"completed_utc",Instant.now().toString()));
-                            saved=true;System.out.println("  Saved fork "+fork+" (full-precision checkpoint)");Storage.bundle(output);
+                            saved=true;System.out.println("  Saved fork "+fork+" (full-precision checkpoint)");Storage.bundlePeriodically(output);
                         } else System.err.println("  Fork failed (exit "+code+"); attempt "+attempt+"/2; see case log.");
                     }
                     if(!saved) {successful=false;failed.add(Map.of("case",item.id(),"fork",fork,"reason","Two attempts failed; no timing result published for this case"));break;}
                 }
                 if(successful) {
                     JsonObject row=merge(directory);Storage.json(directory.resolve("result.json"),row);
-                    JsonObject labelled=row.deepCopy();labelled.addProperty("requested_threads",item.threads);labelled.addProperty("profile",item.profile);labelled.addProperty("case_id",item.id());
-                    combined.add(labelled);completed++;
+                    JsonObject labelled=labelResult(row,item);
+                    results.put(item.id(),labelled); combined=orderedResults(selected,results); completed++;
                 }
                 Storage.json(output.resolve("jmh.json"),combined);
                 Storage.json(output.resolve("failures.json"),failed);
                 Storage.json(output.resolve("progress.json"),Map.of("complete",completed==cases.size() && preflightFailures.isEmpty(),"completed_cases",completed,"attempted_cases",Math.min(attempted,cases.size()),"total_cases",cases.size(),"failed_cases",failed.size(),"updated_utc",Instant.now().toString()));
-                summary(output,combined);Storage.bundle(output);
+                summary(output,combined);Storage.bundlePeriodically(output);
             }
-        } finally {Storage.bundle(output);}
-        if(completed==cases.size() && preflightFailures.isEmpty()) Storage.atomic(output.resolve("completed-utc.txt"),(Instant.now()+"\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            measurementsFinished=true;
+        } finally {if(!measurementsFinished) Storage.bundle(output);}
+        Storage.json(output.resolve("jmh.json"),combined); summary(output,combined);
+        Storage.json(output.resolve("failures.json"),failed);
+        Storage.json(output.resolve("progress.json"),Map.of("complete",completed==cases.size() && preflightFailures.isEmpty(),"completed_cases",completed,"attempted_cases",selected.size(),"total_cases",cases.size(),"failed_cases",failed.size(),"updated_utc",Instant.now().toString()));
+        if(completed==cases.size() && preflightFailures.isEmpty() && !Files.exists(output.resolve("completed-utc.txt"))) Storage.atomic(output.resolve("completed-utc.txt"),(Instant.now()+"\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
         Storage.json(output.resolve("suite-status.json"),Map.of("complete",completed==cases.size() && preflightFailures.isEmpty(),"completed_cases",completed,"total_cases",cases.size(),"failed_cases",failed.size(),"preflight_failures",preflightFailures,"suite",smoke?"SMOKE-NOT-FOR-PUBLICATION":"FULL"));
         Storage.bundle(output);
         System.out.println("Saved "+completed+"/"+cases.size()+" cases. Upload "+Storage.bundlePath(output));
@@ -198,6 +213,30 @@ public final class BenchmarkMain {
         for(JsonElement value:rows){JsonObject r=value.getAsJsonObject(),p=r.getAsJsonObject("params"),m=r.getAsJsonObject("primaryMetric");
             csv.append(r.get("profile").getAsString()).append(',').append(r.get("requested_threads")).append(',').append(p.get("library").getAsString()).append(',').append(p.has("operation")?p.get("operation").getAsString():"multiplication").append(',').append(p.has("size")?p.get("size").getAsString():p.get("shape").getAsString()).append(',').append(m.get("score")).append(',').append(m.get("scoreError")).append(",6\n");}
         Storage.atomic(output.resolve("summary.csv"),csv.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
+    }
+    /** Verify every saved fork once. Only fully valid pairs may skip measurement. */
+    static Map<String,JsonObject> restoreCompleted(Path output,List<Case> cases) throws Exception {
+        Map<String,JsonObject> results=new LinkedHashMap<>();
+        for(Case item:cases) {
+            Path directory=output.resolve("cases").resolve(item.id());
+            if(validFork(directory.resolve("fork-1.json"),directory.resolve("fork-1.bin"),directory.resolve("fork-1-checkpoint.json"),item)
+                && validFork(directory.resolve("fork-2.json"),directory.resolve("fork-2.bin"),directory.resolve("fork-2-checkpoint.json"),item))
+                results.put(item.id(),completedResult(directory,item));
+        }
+        return results;
+    }
+    static JsonObject completedResult(Path directory,Case item) throws Exception {
+        return labelResult(merge(directory),item);
+    }
+    static JsonObject labelResult(JsonObject row,Case item) {
+        // Case result files are exports; do not rewrite them during a retained-case scan.
+        JsonObject labelled=row.deepCopy();labelled.addProperty("requested_threads",item.threads);labelled.addProperty("profile",item.profile);labelled.addProperty("case_id",item.id());
+        return labelled;
+    }
+    static JsonArray orderedResults(List<Case> cases,Map<String,JsonObject> results) {
+        JsonArray combined=new JsonArray();
+        for(Case item:cases)if(results.containsKey(item.id()))combined.add(results.get(item.id()));
+        return combined;
     }
     private BenchmarkMain() {}
 }
