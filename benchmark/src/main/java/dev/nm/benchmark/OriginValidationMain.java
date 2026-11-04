@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 public final class OriginValidationMain {
     public static void main(String[] args) throws Exception {
         String[][] cases={
-            {"NMDEV","dev.nm.algebra.linear.matrix.doubles.matrixtype.dense.DenseMatrix","nmdev-1.2.6.jar"},
+            {"NMDEV","dev.nm.algebra.linear.matrix.doubles.matrixtype.dense.DenseMatrix","nmdev-selected.jar"},
             {"COMMONS_BLOCK","org.apache.commons.math4.legacy.linear.BlockRealMatrix","commons-math4-legacy-4.0-beta1.jar"},
             {"COMMONS","org.apache.commons.math4.legacy.linear.Array2DRowRealMatrix","commons-math4-legacy-4.0-beta1.jar"},
             {"PARALLEL_COLT","cern.colt.matrix.tdouble.impl.DenseDoubleMatrix2D","parallelcolt-0.11.4.jar"},

@@ -23,11 +23,12 @@ while IFS=$'\t' read -r filename sha256 url; do
   fi
   printf '%s  %s\n' "$sha256" "$destination" | sha256sum --check --status
 done < "$benchmark_root/dependencies.lock.tsv"
-if [[ ! "$NMDEV_JAR" -ef "$benchmark_root/target/lib/nmdev-1.2.6.jar" ]]; then
-  cp "$NMDEV_JAR" "$benchmark_root/target/lib/nmdev-1.2.6.jar"
+if [[ ! "$NMDEV_JAR" -ef "$benchmark_root/target/lib/nmdev-selected.jar" ]]; then
+  cp "$NMDEV_JAR" "$benchmark_root/target/lib/nmdev-selected.jar"
 fi
 classpath=""
 for dependency in "$benchmark_root"/target/lib/*.jar; do
+  [[ "$(basename "$dependency")" == nmdev-*.jar && "$(basename "$dependency")" != nmdev-selected.jar ]] && continue
   classpath="${classpath:+$classpath:}$dependency"
 done
 mapfile -t sources < <(find "$benchmark_root/src/main/java" -name '*.java' -print | sort)
