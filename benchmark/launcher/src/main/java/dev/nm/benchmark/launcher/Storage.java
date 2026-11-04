@@ -13,6 +13,14 @@ final class Storage {
     static final Gson JSON = new GsonBuilder().setPrettyPrinting().serializeSpecialFloatingPointValues().create();
     static JsonElement read(Path path) throws IOException { return JsonParser.parseString(Files.readString(path)); }
     static void json(Path path, Object value) throws IOException { atomic(path, JSON.toJson(value).getBytes(java.nio.charset.StandardCharsets.UTF_8)); }
+    /** Derived exports may be reused; authoritative checkpoints still use strict atomic writes. */
+    static void jsonIfChanged(Path path,Object value) throws IOException {
+        atomicIfChanged(path,JSON.toJson(value).getBytes(java.nio.charset.StandardCharsets.UTF_8));
+    }
+    static void atomicIfChanged(Path path,byte[] bytes) throws IOException {
+        if(Files.isRegularFile(path) && Arrays.equals(Files.readAllBytes(path),bytes))return;
+        atomic(path,bytes);
+    }
     static void atomic(Path path, byte[] bytes) throws IOException {
         Files.createDirectories(path.toAbsolutePath().getParent());
         Path temp = path.resolveSibling(path.getFileName() + ".tmp");

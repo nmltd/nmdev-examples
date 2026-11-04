@@ -92,11 +92,14 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Original run failed' }
           $before = @{}
           Get-ChildItem upgrade-results/cases -Recurse -File | Where-Object { $_.Name -like 'fork-*' -and $_.Extension -ne '.log' } | ForEach-Object { $before[$_.FullName] = (Get-FileHash $_.FullName -Algorithm SHA256).Hash }
+          # Simulate a crash after both forks were saved but before the case report was exported.
+          Get-ChildItem upgrade-results/cases -Recurse -Filter result.json | Remove-Item
           java -cp release/nmdev-benchmark-1.3.1.jar dev.nm.benchmark.launcher.ResumeUpgrade original-1.3.0.jar upgrade-results
           if ($LASTEXITCODE -ne 0) { throw 'Upgrade verification failed' }
           $resumed = java -Xmx2g -jar release/nmdev-benchmark-1.3.1.jar --smoke --libraries 'NMDEV,COMMONS,COMMONS_BLOCK' --max-cases 1 --output upgrade-results
           $resumed | Write-Host
           if ($LASTEXITCODE -ne 0 -or ($resumed -match '^Case [0-9]+/')) { throw 'Upgraded run repeated a completed case' }
+          if (@(Get-ChildItem upgrade-results/cases -Recurse -Filter result.json).Count -ne 1) { throw 'Missing case report was not rebuilt' }
           foreach ($path in $before.Keys) { if ((Get-FileHash $path -Algorithm SHA256).Hash -ne $before[$path]) { throw 'Saved fork changed during upgrade/resume' } }
 
 

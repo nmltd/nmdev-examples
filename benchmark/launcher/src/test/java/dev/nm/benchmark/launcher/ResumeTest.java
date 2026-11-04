@@ -40,6 +40,17 @@ class ResumeTest {
         assertEquals(early.id(),ordered.get(0).getAsJsonObject().get("case_id").getAsString());
         assertEquals(later.id(),ordered.get(1).getAsJsonObject().get("case_id").getAsString());
     }
+    @Test void unchangedExportsAreNotReplacedAndMissingExportsAreRepaired() throws Exception {
+        Path report=temporary.resolve("result.json");
+        Storage.jsonIfChanged(report,Map.of("mean",1.25));
+        var marker=java.nio.file.attribute.FileTime.fromMillis(1000000000L);Files.setLastModifiedTime(report,marker);
+        Storage.jsonIfChanged(report,Map.of("mean",1.25));
+        assertEquals(marker,Files.getLastModifiedTime(report));
+        Files.delete(report);Storage.jsonIfChanged(report,Map.of("mean",1.25));
+        assertEquals(1.25,Storage.read(report).getAsJsonObject().get("mean").getAsDouble());
+        Files.writeString(report,"broken report");Storage.jsonIfChanged(report,Map.of("mean",1.25));
+        assertEquals(1.25,Storage.read(report).getAsJsonObject().get("mean").getAsDouble());
+    }
     private Path jar(String name,Map<String,String> entries) throws Exception {
         Path path=temporary.resolve(name);
         try(var jar=new JarOutputStream(Files.newOutputStream(path))) {

@@ -122,7 +122,7 @@ public final class BenchmarkMain {
         if(!pendingCases.isEmpty() || !preflightFailures.isEmpty()) Files.deleteIfExists(output.resolve("completed-utc.txt"));
         // Rebuild saved reports once, not once for each retained case.
         if(completed>0 && !pendingCases.isEmpty()) {
-            Storage.json(output.resolve("jmh.json"),combined); summary(output,combined);
+            Storage.jsonIfChanged(output.resolve("jmh.json"),combined); summary(output,combined);
         }
         boolean measurementsFinished=false;
         try {
@@ -153,14 +153,14 @@ public final class BenchmarkMain {
                     JsonObject labelled=labelResult(row,item);
                     results.put(item.id(),labelled); combined=orderedResults(selected,results); completed++;
                 }
-                Storage.json(output.resolve("jmh.json"),combined);
+                Storage.jsonIfChanged(output.resolve("jmh.json"),combined);
                 Storage.json(output.resolve("failures.json"),failed);
                 Storage.json(output.resolve("progress.json"),Map.of("complete",completed==cases.size() && preflightFailures.isEmpty(),"completed_cases",completed,"attempted_cases",Math.min(attempted,cases.size()),"total_cases",cases.size(),"failed_cases",failed.size(),"updated_utc",Instant.now().toString()));
                 summary(output,combined);Storage.bundlePeriodically(output);
             }
             measurementsFinished=true;
         } finally {if(!measurementsFinished) Storage.bundle(output);}
-        Storage.json(output.resolve("jmh.json"),combined); summary(output,combined);
+        Storage.jsonIfChanged(output.resolve("jmh.json"),combined); summary(output,combined);
         Storage.json(output.resolve("failures.json"),failed);
         Storage.json(output.resolve("progress.json"),Map.of("complete",completed==cases.size() && preflightFailures.isEmpty(),"completed_cases",completed,"attempted_cases",selected.size(),"total_cases",cases.size(),"failed_cases",failed.size(),"updated_utc",Instant.now().toString()));
         if(completed==cases.size() && preflightFailures.isEmpty() && !Files.exists(output.resolve("completed-utc.txt"))) Storage.atomic(output.resolve("completed-utc.txt"),(Instant.now()+"\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
@@ -212,7 +212,7 @@ public final class BenchmarkMain {
         StringBuilder csv=new StringBuilder("profile,requested_threads,library,operation,size_or_shape,mean_ms_per_op,jmh_99_9_error_ms,iteration_means\n");
         for(JsonElement value:rows){JsonObject r=value.getAsJsonObject(),p=r.getAsJsonObject("params"),m=r.getAsJsonObject("primaryMetric");
             csv.append(r.get("profile").getAsString()).append(',').append(r.get("requested_threads")).append(',').append(p.get("library").getAsString()).append(',').append(p.has("operation")?p.get("operation").getAsString():"multiplication").append(',').append(p.has("size")?p.get("size").getAsString():p.get("shape").getAsString()).append(',').append(m.get("score")).append(',').append(m.get("scoreError")).append(",6\n");}
-        Storage.atomic(output.resolve("summary.csv"),csv.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
+        Storage.atomicIfChanged(output.resolve("summary.csv"),csv.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
     }
     /** Verify every saved fork once. Only fully valid pairs may skip measurement. */
     static Map<String,JsonObject> restoreCompleted(Path output,List<Case> cases) throws Exception {
@@ -226,7 +226,10 @@ public final class BenchmarkMain {
         return results;
     }
     static JsonObject completedResult(Path directory,Case item) throws Exception {
-        return labelResult(merge(directory),item);
+        JsonObject row=merge(directory);
+        // A crash after the second fork may leave this derived export missing or stale.
+        Storage.jsonIfChanged(directory.resolve("result.json"),row);
+        return labelResult(row,item);
     }
     static JsonObject labelResult(JsonObject row,Case item) {
         // Case result files are exports; do not rewrite them during a retained-case scan.
