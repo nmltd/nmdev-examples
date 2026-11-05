@@ -1,0 +1,12 @@
+{
+  "nmdev_checksum_source": "computed from selected JAR",
+  "nmdev_runtime_filename": "nmdev-selected.jar",
+  "parallelcolt_source_sha256": "a083064fd6f36780a7b4be15b80e5146c9b21f656ff76a6fb392045bea46388e",
+  "nmdev_sha256": "a4284d16dcb83851c5486892a4425e7b5c6b9341895b484609449aee30d4f846",
+  "parallelcolt_binary_is_locally_built": true,
+  "nmdev_version": "",
+  "parallelcolt_source_url": "https://codeload.github.com/rwl/ParallelColt/zip/7c34364026680c1113f1a9586b9fb8c55080330c",
+  "nmdev_original_filename": "nmdev-1.2.10.jar",
+  "public_trial_url": "https://raw.githubusercontent.com/nmltd/nmdev-examples/ad1fbacaeea9c92ead37beb3002566c33b5a6006/nm.lic",
+  "nmdev_url": "local-file"
+}

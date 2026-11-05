@@ -6,6 +6,8 @@ Runs are stored under `YYYY-MM-DD/<run-id>/`. Dates and timestamps use UTC.
 
 | Date / run | Status | Cases | Website |
 |---|---|---:|---|
+| [2026-11-05/windows-014014Z](2026-11-05/windows-014014Z/) | Complete and validated | 1260 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-11-05/windows-014014Z/index.html) |
+| [2026-11-01/windows-032108Z](2026-11-01/windows-032108Z/) | Completed; archive limitation disclosed | 1260 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-11-01/windows-032108Z/index.html) |
 | [2026-10-28/windows-081313Z](2026-10-28/windows-081313Z/) | Completed; archive limitation disclosed | 1260 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-28/windows-081313Z/index.html) |
 | [2026-10-20/windows-082238Z](2026-10-20/windows-082238Z/) | Completed and validated | 660 | [Open](https://nmltd.github.io/nmdev-examples/benchmarks/2026-10-20/windows-082238Z/index.html) |
 
