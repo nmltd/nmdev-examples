@@ -1,11 +1,11 @@
 {
   "format": 1,
-  "latest": "2026-11-01/windows-032108Z",
+  "latest": "2026-11-05/windows-014014Z",
   "runs": [
     {
       "id": "windows-082238Z",
       "date": "2026-10-20",
-      "title": "Windows full suite — 08:22:38 UTC",
+      "title": "Windows full suite \u2014 08:22:38 UTC",
       "source": "2026-10-20/windows-082238Z",
       "legacy_source": "2026-10-20-windows-public",
       "status": "Completed and validated",
@@ -22,7 +22,7 @@
     {
       "id": "windows-081313Z",
       "date": "2026-10-28",
-      "title": "NM Dev 1.2.8 — Windows full suite",
+      "title": "NM Dev 1.2.8 \u2014 Windows full suite",
       "source": "2026-10-28/windows-081313Z",
       "status": "Completed; archive limitation disclosed",
       "warning": "NM Dev 1.2.8; 12 implementation variants across 11 libraries. Includes Commons row/block and 12-requested-thread profiles. Thread counts are requested limits; native workers were not independently audited. One individual UJMP solve fork JSON is missing; combined data is present.",
@@ -38,7 +38,7 @@
     {
       "id": "windows-032108Z",
       "date": "2026-11-01",
-      "title": "NM Dev 1.2.9 — Windows full suite",
+      "title": "NM Dev 1.2.9 \u2014 Windows full suite",
       "source": "2026-11-01/windows-032108Z",
       "status": "Completed; archive limitation disclosed",
       "warning": "NM Dev 1.2.9; 12 implementation variants across 11 libraries. One individual ojAlgo 1024-square single-thread multiplication fork JSON is absent; combined samples are present. 2,519 fork checksums verified. Requested thread limits do not establish actual worker counts; native workers were not independently audited.",
@@ -49,6 +49,22 @@
       "evidence_sha256": {
         "jmh.json": "7cb07ca2207cfc26aeead0b0ba9daada43571806752cd9c491467e316629d875",
         "summary.csv": "a71e796b90a91d2c8dfaff376e26368ecccfc57cda2709f7a778425d132614f7"
+      }
+    },
+    {
+      "id": "2026-11-05/windows-014014Z",
+      "date": "2026-11-05",
+      "title": "NM Dev 1.2.10 \u2014 Windows full benchmark",
+      "source": "2026-11-05/windows-014014Z",
+      "status": "Complete and validated",
+      "warning": "Commons Math uses released 4.0-beta1; earlier runs used snapshots. Compare within each requested thread profile. Native worker counts were not independently audited.",
+      "cases": 1260,
+      "libraries": 11,
+      "machine": "Intel Core i7-8750H; Windows 11; Oracle JDK 27; 12 logical processors",
+      "completed_utc": "2026-11-05T01:40:14.801125600Z",
+      "evidence_sha256": {
+        "jmh.json": "a353ff5bdda9a7406e4f1e2d370edd6ff0f7132938fa2b79002cadacf3a23214",
+        "summary.csv": "5b077a7b576a87b02c804362c2189c643e79097b7202f16e127dc3e529a6cb9d"
       }
     }
   ]
